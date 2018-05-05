@@ -1,7 +1,9 @@
 
 # What is League of Legends Bot
 
-  League of legends bot is a pixel bot, written in C# .NET using System.Interop, PVInvoke.
+  * League of legends bot is a pixel bot, written in C# .NET using System.Interop, PVInvoke. 
+  * It's a good way to raise your level 30 account quickly without having to play. Or to win blue essences for free
+  * This bot is undetectable because it is visual (a pixel-bot)
 
 ## Installation
 
@@ -18,7 +20,7 @@
    ![alt text](https://preview.ibb.co/mpkng7/Explication_Algo.png)
    * Then leave the game, return to this screen: 
    ![alt text](https://image.ibb.co/kRUcES/Explication_Algo.png)
-   * And launch the bot.
+   * And launch the bot. 
 	 
 ## License
 
