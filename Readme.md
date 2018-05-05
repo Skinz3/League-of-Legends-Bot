@@ -10,15 +10,15 @@
   
 ## How to make it work?
 
-   Start League of legends. Login:
+   * Start League of legends. Login:
    ![alt text](https://image.ibb.co/kRUcES/Explication_Algo.png)
-   Go to options and set window size to 1600 * 900
+   * Go to options and set window size to 1600 * 900
    ![alt text](https://image.ibb.co/bDsxES/Explication_Algo.png)
-   Then, go in game (in practice mode for example) and change window size to 1024*768 and the mode to windowed:
+   * Then, go in game (in practice mode for example) and change window size to 1024*768 and the mode to windowed:
    ![alt text](https://preview.ibb.co/mpkng7/Explication_Algo.png)
-   Then leave the game, return to this screen: 
+   * Then leave the game, return to this screen: 
    ![alt text](https://image.ibb.co/kRUcES/Explication_Algo.png)
-   And launch the bot.
+   * And launch the bot.
 	 
 ## License
 
