@@ -1,0 +1,7 @@
+c:\users\skinz\source\repos\LeagueBot\LeagueBot\bin\Debug\LeagueBot.exe
+c:\users\skinz\source\repos\LeagueBot\LeagueBot\bin\Debug\LeagueBot.pdb
+c:\users\skinz\source\repos\LeagueBot\LeagueBot\obj\Debug\LeagueBot.csprojResolveAssemblyReference.cache
+c:\users\skinz\source\repos\LeagueBot\LeagueBot\obj\Debug\LeagueBot.csproj.CoreCompileInputs.cache
+c:\users\skinz\source\repos\LeagueBot\LeagueBot\obj\Debug\LeagueBot.exe
+c:\users\skinz\source\repos\LeagueBot\LeagueBot\obj\Debug\LeagueBot.pdb
+C:\Users\Skinz\source\repos\LeagueBot\LeagueBot\bin\Debug\InputManager.dll
