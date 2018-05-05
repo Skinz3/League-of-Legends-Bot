@@ -10,10 +10,8 @@
   
 ## How to make it work?
 
-   Start League of legends. Login:
+   Start League of legends. Login and wait here: 
    ![alt text](https://image.ibb.co/kRUcES/Explication_Algo.png)
-   Go to options and set window size to 1600 * 900
-   ![alt text](https://image.ibb.co/bDsxES/Explication_Algo.png)
 	 
 ## License
 
