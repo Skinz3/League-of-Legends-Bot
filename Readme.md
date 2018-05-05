@@ -11,7 +11,7 @@
 ## How to make it work?
 
    Start League of legends. Login and wait here: 
-   ![alt text]https://image.ibb.co/kRUcES/Explication_Algo.png
+   ![alt text](https://image.ibb.co/kRUcES/Explication_Algo.png)
 	 
 ## License
 
