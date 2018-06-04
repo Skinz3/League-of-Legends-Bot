@@ -22,6 +22,3 @@
    ![alt text](https://image.ibb.co/kRUcES/Explication_Algo.png)
    * And launch the bot. 
 	 
-## License
-
-  ![alt text](https://lesoufflenumerique.files.wordpress.com/2015/09/licence-cc-by.png?w=768&h=271)
