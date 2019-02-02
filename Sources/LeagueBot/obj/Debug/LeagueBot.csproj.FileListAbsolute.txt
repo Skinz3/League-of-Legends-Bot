@@ -12,3 +12,11 @@ C:\Users\Skinz\source\repos\LeagueBot\Sources\LeagueBot\obj\Debug\LeagueBot.cspr
 C:\Users\Skinz\source\repos\LeagueBot\Sources\LeagueBot\obj\Debug\LeagueBot.csproj.CoreCompileInputs.cache
 C:\Users\Skinz\source\repos\LeagueBot\Sources\LeagueBot\obj\Debug\LeagueBot.exe
 C:\Users\Skinz\source\repos\LeagueBot\Sources\LeagueBot\obj\Debug\LeagueBot.pdb
+C:\Users\Skinz\Desktop\League-Of-Legends-BOT-master\League-Of-Legends-BOT\Sources\LeagueBot\bin\Debug\LeagueBot.exe
+C:\Users\Skinz\Desktop\League-Of-Legends-BOT-master\League-Of-Legends-BOT\Sources\LeagueBot\bin\Debug\LeagueBot.pdb
+C:\Users\Skinz\Desktop\League-Of-Legends-BOT-master\League-Of-Legends-BOT\Sources\LeagueBot\bin\Debug\InputManager.dll
+C:\Users\Skinz\Desktop\League-Of-Legends-BOT-master\League-Of-Legends-BOT\Sources\LeagueBot\obj\Debug\LeagueBot.csprojAssemblyReference.cache
+C:\Users\Skinz\Desktop\League-Of-Legends-BOT-master\League-Of-Legends-BOT\Sources\LeagueBot\obj\Debug\LeagueBot.csproj.CoreCompileInputs.cache
+C:\Users\Skinz\Desktop\League-Of-Legends-BOT-master\League-Of-Legends-BOT\Sources\LeagueBot\obj\Debug\LeagueBot.csproj.CopyComplete
+C:\Users\Skinz\Desktop\League-Of-Legends-BOT-master\League-Of-Legends-BOT\Sources\LeagueBot\obj\Debug\LeagueBot.exe
+C:\Users\Skinz\Desktop\League-Of-Legends-BOT-master\League-Of-Legends-BOT\Sources\LeagueBot\obj\Debug\LeagueBot.pdb

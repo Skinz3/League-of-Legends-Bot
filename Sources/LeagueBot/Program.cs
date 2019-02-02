@@ -18,6 +18,7 @@ namespace LeagueBot
 
         static void Main(string[] args)
         {
+            Console.Read();
             Console.Title = "LeagueBot";
             Bot bot = new Bot();
             bot.Start(AvailableGameType.ARAM);
