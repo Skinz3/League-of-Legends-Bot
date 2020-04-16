@@ -13,7 +13,7 @@
 ## How to make it work?
 
    * First step go to league of legends client and set windows size to 1600 * 900
-   ![alt text](https://puu.sh/FyhN7/087162d02b.png)
+   ![alt text](https://puu.sh/FyhQs/e8a84b1ad9.png)
    * Start league of legends and set resolution to 1024 * 768 and window mode to windowed.
    ![alt text](https://puu.sh/FyhOo/904cc3bde5.png)
    * Then leave the game, return to this screen: 
