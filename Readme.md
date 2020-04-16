@@ -16,6 +16,7 @@
    ![alt text](https://puu.sh/FyhDh/7f43e786a6.png)
    * Start league of legends and set resolution to 1024 * 768 and window mode to windowed.
    ![alt text](https://puu.sh/FyhG0/656e037675.png)
+   ![alt text](https://puu.sh/FyhLS/cf1b2546ff.png)
    * Then leave the game, return to this screen: 
    ![alt text](https://image.ibb.co/kRUcES/Explication_Algo.png)
    * And launch the bot. 
