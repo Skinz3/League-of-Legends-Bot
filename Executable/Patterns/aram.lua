@@ -22,11 +22,33 @@ function Execute()
 
     api:log("We are in game !");
 
-    api:rightClick(1039,463);
+    api:wait(2000);
 
-    
+    api:leftClick(1241,920); -- lock camera
 
+    api:wait(200);
+
+    api:leftClick(826,833); -- upgrade summoner Q
     
+    api:wait(200);
+
+    api:leftClick(875,833); -- upgrade summoner Z
+    
+    api:wait(200);
+
+    api:leftClick(917,833); -- upgrade summoner E
+
+    api:wait(200);
+
+    api:leftClick(1138,917); -- open shop
+
+    api:wait(200);
+
+    api:rightClick(578,332) -- buy item
+
+    api:wait(200);
+
+    api:rightClick(1260,189); -- close shop
 
 end
 
