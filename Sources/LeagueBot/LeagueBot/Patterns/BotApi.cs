@@ -59,6 +59,7 @@ namespace LeagueBot.Patterns
                 height = rect.Bottom - rect.Top;
 
                 Thread.Sleep(1000);
+
             }
         }
         public void centerProcess(string processName)
