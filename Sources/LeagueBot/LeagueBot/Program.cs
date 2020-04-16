@@ -20,7 +20,7 @@ namespace LeagueBot
 
             PatternsManager.Initialize();
 
-            PatternsManager.Execute("startAram.lua");
+            PatternsManager.Execute("aram.lua");
 
             Console.Read();
         }

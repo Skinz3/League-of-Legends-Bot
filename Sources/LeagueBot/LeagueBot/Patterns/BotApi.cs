@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using static LeagueBot.Windows.Interop;
 
 namespace LeagueBot.Patterns
@@ -19,6 +20,14 @@ namespace LeagueBot.Patterns
         {
             get;
             set;
+        }
+        public void pressKey(string key)
+        {
+            Keyboard.KeyPress((Keys)Enum.Parse(typeof(Keys), key), 150);
+        }
+        public void moveMouse(int x,int y)
+        {
+            Mouse.Move(x, y);
         }
         public void rightClick(int x, int y)
         {
@@ -61,6 +70,10 @@ namespace LeagueBot.Patterns
                 Thread.Sleep(1000);
 
             }
+        }
+        public bool isProcessOpen(string processName)
+        {
+            return Process.GetProcessesByName(processName).Length > 0;
         }
         public void centerProcess(string processName)
         {

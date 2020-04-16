@@ -18,7 +18,7 @@ function Execute()
     api:bringProcessToFront(GAME_PROCESS_NAME);
     api:centerProcess(GAME_PROCESS_NAME)
 
-    api:waitForColor(999,908,"#00D605");
+    api:waitForColor(997,904,"#00D304");
 
     api:log("We are in game !");
 
@@ -38,17 +38,31 @@ function Execute()
 
     api:leftClick(917,833); -- upgrade summoner E
 
-    api:wait(200);
+    api:wait(10000);
 
-    api:leftClick(1138,917); -- open shop
+    api:rightClick(1351,860);
 
-    api:wait(200);
 
-    api:rightClick(578,332) -- buy item
+    while api:isProcessOpen(GAME_PROCESS_NAME) do
+        api:rightClick(1351,860);
+        api:wait(10000);
+        api:rightClick(1372,837);
+        api:wait(1000);
+        api:moveMouse(1026,475);
+        api:pressKey("D1");
+        api:wait(1000);
+        api:rightClick(1372,830);
+        api:wait(1000);
+        api:moveMouse(1026,475);
+        api:pressKey("D2");
+        api:moveMouse(1026,475);
+        api:pressKey("D3");
+        api:wait(500);
+        api:rightClick(1351,860);
+    end
 
-    api:wait(200);
+    api:log("ended.");
 
-    api:rightClick(1260,189); -- close shop
 
 end
 

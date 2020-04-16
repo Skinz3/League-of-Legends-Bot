@@ -18,7 +18,7 @@ function Execute()
     api:bringProcessToFront(CLIENT_PROCESS_NAME);
     api:centerProcess(CLIENT_PROCESS_NAME)
 
-    api:waitForColor(478,107,"#B98E37"); -- Wait for an UI element of the client to be displayed 
+    api:waitForColor(1371,124,"#E3BA3D"); -- Wait for an UI element of the client to be displayed 
 
     api:log("Client Loaded.");
     
@@ -28,16 +28,15 @@ function Execute()
     api:wait(1000);
     api:leftClick(832,949);  -- Click 'confirm' button
 
-    api:waitForColor(977,497,"#025E6E"); -- Wait for aram background to be displayed (client can be laggy)
+    api:waitForColor(438,217,"#F0E6D2") -- Wait for aram background to be displayed (client can be laggy)
 
     api:leftClick(832,949);  -- Click 'Find match' button
-
 
     api:log("Finding match...");
 
     while api:getColor(1353,164) ~= "#58431B" do -- while match not founded, accept match
         api:leftClick(947,780);
-        api:wait(1000);
+        api:wait(3000);
     end
 
     api:executePattern("aram.lua");
