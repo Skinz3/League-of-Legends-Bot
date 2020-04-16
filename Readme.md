@@ -20,3 +20,6 @@
    ![alt text](https://puu.sh/FyhP1/9c3a9c8aac.png)
    * And launch the bot. 
 	 
+# Contact
+
+   Discord : Skinz#1128
