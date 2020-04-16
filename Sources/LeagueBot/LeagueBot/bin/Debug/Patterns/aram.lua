@@ -22,6 +22,8 @@ function Execute()
 
     api:log("We are in game !");
 
+    api:rightClick(1039,463);
+
     
 
     
