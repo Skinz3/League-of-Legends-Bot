@@ -22,4 +22,4 @@
 	 
 # Contact
 
-   Discord : Skinz#1128
+   Join the discord server : https://discord.gg/cB8qtcE
