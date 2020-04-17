@@ -3,38 +3,37 @@
 
 ---------
 CLIENT_PROCESS_NAME = "LeagueClientUX"
+GAME_PROCESS_NAME = "League of Legends"
 --------
 
 function Execute()
 
     api:log("Waiting for league client process...");
-
-    api:waitProcessOpen(CLIENT_PROCESS_NAME);
  
     api:waitUntilProcessBounds(CLIENT_PROCESS_NAME,1600,900)    
 
-    api:log("Waiting for league client to load.");
+    api:log("Waiting for game to load.");
 
     api:bringProcessToFront(CLIENT_PROCESS_NAME);
     api:centerProcess(CLIENT_PROCESS_NAME)
 
-    api:waitForColor(1371,124,"#E3BA3D"); -- Wait for an UI element of the client to be displayed 
+    api:wait(2000); -- Wait for an UI element of the client to be displayed 
 
     api:log("Client Loaded.");
     
     api:leftClick(306,139); -- Click 'play' button
-    api:wait(1000);
+    api:wait(2000);
     api:leftClick(624,373); -- Click 'aram' button
-    api:wait(1000);
+    api:wait(2000);
     api:leftClick(832,949);  -- Click 'confirm' button
 
-    api:waitForColor(438,217,"#F0E6D2") -- Wait for aram background to be displayed (client can be laggy)
+    api:wait(5000); -- Wait for aram background to be displayed (client can be laggy)
 
     api:leftClick(832,949);  -- Click 'Find match' button
 
     api:log("Finding match...");
 
-    while api:getColor(1353,164) ~= "#58431B" do -- while match not founded, accept match
+    while api:isProcessOpen(GAME_PROCESS_NAME) == false do -- while match not founded, accept match
         api:leftClick(947,780);
         api:wait(3000);
     end
