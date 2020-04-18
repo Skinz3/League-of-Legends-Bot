@@ -121,9 +121,6 @@ namespace LeagueBot.Game
 
             Logger.Write("League of legends settings applied.", MessageState.INFO2);
 
-
-
-
             CFGFile file = new CFGFile(Path.Combine(Configuration.Instance.ClientPath, KEYCONFIG_PATH));
 
 

@@ -55,6 +55,8 @@ function Execute()
     BuyItem2();
     ToogleShop();
 
+    LockAlly2();
+    
     api:talk("salam les roya");
 
     while api:isProcessOpen(GAME_PROCESS_NAME) do
@@ -101,6 +103,11 @@ function LockCamera()
     api:wait(200);
 end
 
+function LockAlly2()
+    api:keyDown("F2");
+    api:wait(200);
+end
+
 function CastSpell1(x,y)
     api:moveMouse(CAST_SPELL_TARGET[1],CAST_SPELL_TARGET[2]);
     api:pressKey("D1");
@@ -108,7 +115,6 @@ function CastSpell1(x,y)
 end
 
 function MoveToAlly2()
-    api:keyDown("F2");
     api:rightClick(886,521);
     api:wait(200);
 end
