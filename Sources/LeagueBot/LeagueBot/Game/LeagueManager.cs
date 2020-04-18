@@ -16,25 +16,17 @@ namespace LeagueBot.Game
 
         public static void ApplySettings()
         {
-            return;
-
             CFGFile config;
 
-            FileIOPermission f = new FileIOPermission(PermissionState.Unrestricted);
-            f.AllLocalFiles = FileIOPermissionAccess.Read;
             try
             {
-                f.Demand();
                 config = new CFGFile(Path.Combine(Configuration.Instance.ClientPath, CONFIG_PATH));
             }
-            catch (SecurityException s)
+            catch
             {
-                //cannot get permissions for files.got exception
-                Console.WriteLine(s.Message);
+                Logger.Write("Unable to set league of legends settings. (Probably due to permission restrictions.)", MessageState.WARNING);
                 return;
             }
-        
-
 
             config.Set("General", "WindowMode", "1");
             config.Set("General", "Width", "1024");
