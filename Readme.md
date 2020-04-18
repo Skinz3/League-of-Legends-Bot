@@ -16,10 +16,8 @@
    ![alt text](https://puu.sh/FyhQs/e8a84b1ad9.png)
    * Now go to this screen: 
    ![alt text](https://puu.sh/FyhP1/9c3a9c8aac.png)
-   * Start \Binaries\LeagueBot.exe
+   * Start \Binaries\LeagueBot.exe as Administrator.
    * Type 'startAram'
-
-   
 	 
 # Contact
 
