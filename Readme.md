@@ -5,9 +5,11 @@
   * It's a good way to raise your level 30 account quickly without having to play. Or to win blue essences for free
   * This bot is undetectable because it is visual (a pixel-bot)
 
+  > Version: League of Legends 10.8
+
 ## Installation
 
-   Requirements : League Of Legends 10.8 (a League of legends account), a computer with a 1920 * 1080 Resolution. 
+   Requirements : League Of Legends (a League of legends account), a computer with a 1920 * 1080 Resolution. 
    .NET 4.7 framework.
   
 ## How to make it work?
