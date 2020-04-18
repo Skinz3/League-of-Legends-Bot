@@ -32,9 +32,24 @@ namespace LeagueBot.Patterns
                 }
             }
         }
+        public static bool Contains(string filename)
+        {
+            return Scripts.ContainsKey(filename);
+        }
         public static void Execute(string filename)
         {
             Scripts[filename].Execute();
+        }
+        public static string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+
+            foreach (var script in Scripts)
+            {
+                sb.AppendLine("-" + script.Value.ToString());
+            }
+
+            return sb.ToString();
         }
     }
 }

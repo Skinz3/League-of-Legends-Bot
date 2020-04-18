@@ -1,4 +1,5 @@
-﻿using LeagueBot.IO;
+﻿using LeagueBot.Game;
+using LeagueBot.IO;
 using LeagueBot.Patterns;
 using LeagueBot.Windows;
 using System;
@@ -14,15 +15,37 @@ namespace LeagueBot
 {
     class Program
     {
+        [STAThread]
         static void Main(string[] args)
         {
             Logger.OnStartup();
 
+            Configuration.LoadConfig();
+
             PatternsManager.Initialize();
 
-            PatternsManager.Execute("startAram.lua");
+            LeagueManager.ApplySettings();
+
+            HandleCommand();
 
             Console.Read();
+        }
+
+        static void HandleCommand()
+        {
+            Logger.Write("Enter a pattern filename, type 'help' for help.");
+
+            string line = Console.ReadLine();
+
+            if (line == "help" || !PatternsManager.Contains(line))
+            {
+                Logger.Write(PatternsManager.ToString(), MessageState.INFO2);
+                HandleCommand();
+                return;
+            }
+
+
+            PatternsManager.Execute(line);
         }
     }
 }

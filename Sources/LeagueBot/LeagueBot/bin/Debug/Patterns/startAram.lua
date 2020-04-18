@@ -4,13 +4,16 @@
 ---------
 CLIENT_PROCESS_NAME = "LeagueClientUX"
 GAME_PROCESS_NAME = "League of Legends"
+Description = "This pattern script start an Aram Game."
 --------
 
 function Execute()
 
     api:log("Waiting for league client process...");
- 
-    api:waitUntilProcessBounds(CLIENT_PROCESS_NAME,1600,900)    
+  
+    api:waitProcessOpen(CLIENT_PROCESS_NAME);
+    api:waitUntilProcessBounds(CLIENT_PROCESS_NAME,1600,900);
+    
 
     api:log("Waiting for game to load.");
 

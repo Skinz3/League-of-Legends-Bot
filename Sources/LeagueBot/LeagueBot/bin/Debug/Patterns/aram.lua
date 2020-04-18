@@ -1,8 +1,7 @@
 
- -- This pattern script start an Aram Game.
-
 ---------
 GAME_PROCESS_NAME = "League of Legends"
+Description = "This pattern play an Aram Game."
 --------
 
 function Execute()

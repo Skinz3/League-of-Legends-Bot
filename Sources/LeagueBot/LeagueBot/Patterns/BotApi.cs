@@ -25,7 +25,7 @@ namespace LeagueBot.Patterns
         {
             Keyboard.KeyPress((Keys)Enum.Parse(typeof(Keys), key), 150);
         }
-        public void moveMouse(int x,int y)
+        public void moveMouse(int x, int y)
         {
             Mouse.Move(x, y);
         }
@@ -62,7 +62,14 @@ namespace LeagueBot.Patterns
 
             while (width != boundsX && height != boundsY)
             {
-                Interop.GetWindowRect(Process.GetProcessesByName(processName)[0].MainWindowHandle, out rect);
+                var process = Process.GetProcessesByName(processName).FirstOrDefault();
+
+                if (process == null)
+                {
+                    throw new Exception("Process " + process + " cannot be found.");
+                }
+
+                Interop.GetWindowRect(process.MainWindowHandle, out rect);
 
                 width = rect.Right - rect.Left;
                 height = rect.Bottom - rect.Top;

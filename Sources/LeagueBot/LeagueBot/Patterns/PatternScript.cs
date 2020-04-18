@@ -15,6 +15,11 @@ namespace LeagueBot.Patterns
             get;
             set;
         }
+        private string Description
+        {
+            get;
+            set;
+        }
         private Lua Lua
         {
             get;
@@ -24,6 +29,7 @@ namespace LeagueBot.Patterns
         {
             this.Filename = fileName;
             lua["api"] = new BotApi();
+            this.Description = lua.GetString("Description");
             this.Lua = lua;
         }
 
@@ -32,6 +38,10 @@ namespace LeagueBot.Patterns
             Logger.Write("Running " + Filename);
             LuaFunction functionMain = Lua.GetFunction("Execute");
             functionMain.Call();
+        }
+        public override string ToString()
+        {
+            return Filename + " \"" + Description + "\"";
         }
     }
 }
