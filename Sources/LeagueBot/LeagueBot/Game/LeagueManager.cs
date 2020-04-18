@@ -16,6 +16,7 @@ namespace LeagueBot.Game
 
         public static void ApplySettings()
         {
+            return;
 
             CFGFile config;
 
