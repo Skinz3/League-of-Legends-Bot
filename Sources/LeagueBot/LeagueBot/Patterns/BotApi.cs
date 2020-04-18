@@ -21,6 +21,14 @@ namespace LeagueBot.Patterns
             get;
             set;
         }
+        public void keyUp(string key)
+        {
+            Keyboard.KeyUp((Keys)Enum.Parse(typeof(Keys), key));
+        }
+        public void keyDown(string key)
+        {
+            Keyboard.KeyDown((Keys)Enum.Parse(typeof(Keys), key));
+        }
         public void pressKey(string key)
         {
             Keyboard.KeyPress((Keys)Enum.Parse(typeof(Keys), key), 150);

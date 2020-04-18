@@ -41,7 +41,7 @@ function Execute()
         api:wait(3000);
     end
 
-    api:executePattern("aram.lua");
+    api:executePattern("aram");
     
 
 end

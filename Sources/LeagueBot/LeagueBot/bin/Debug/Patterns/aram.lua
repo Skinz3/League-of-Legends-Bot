@@ -20,6 +20,9 @@ function Execute()
     api:waitForColor(997,904,"#00D304");
 
     api:log("We are in game !");
+--[[
+    api:bringProcessToFront(GAME_PROCESS_NAME);
+    api:centerProcess(GAME_PROCESS_NAME)
 
     api:wait(2000);
 
@@ -39,25 +42,33 @@ function Execute()
 
     api:wait(10000);
 
-    api:rightClick(1351,860);
+    api:rightClick(1351,860); --]]
 
 
     while api:isProcessOpen(GAME_PROCESS_NAME) do
-        api:rightClick(1351,860);
-        api:wait(10000);
-        api:rightClick(1372,837);
-        api:wait(1000);
+        api:keyDown("F2");
+
+        api:rightClick(886,521);
+
         api:moveMouse(1026,475);
         api:pressKey("D1");
-        api:wait(1000);
-        api:rightClick(1372,830);
-        api:wait(1000);
+        api:wait(200);
+
         api:moveMouse(1026,475);
         api:pressKey("D2");
+        api:wait(1000);
+
+        api:rightClick(886,521);
+
         api:moveMouse(1026,475);
         api:pressKey("D3");
-        api:wait(500);
-        api:rightClick(1351,860);
+        api:wait(1000);
+
+        api:rightClick(886,521);
+        
+        api:moveMouse(1026,475);
+        api:pressKey("D4");
+        api:wait(1000);
     end
 
     api:log("ended.");
