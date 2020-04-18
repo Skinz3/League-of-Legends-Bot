@@ -50,10 +50,11 @@ function Execute()
     UpgradeSummonerSpell2();
     UpgradeSummonerSpell3();
 
-    OpenShop();
+    ToogleShop();
     BuyItem1();
     BuyItem2();
-    
+    ToogleShop();
+
     api:talk("salam les roya");
 
     while api:isProcessOpen(GAME_PROCESS_NAME) do
@@ -113,7 +114,7 @@ function MoveToAlly2()
 end
 
 
-function OpenShop()
+function ToogleShop()
     api:pressKey("P");
     api:wait(200);
 end

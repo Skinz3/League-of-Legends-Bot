@@ -33,6 +33,7 @@ namespace LeagueBot.Patterns
         {
             Keyboard.KeyPress((Keys)Enum.Parse(typeof(Keys), key), 150);
         }
+
         public void moveMouse(int x, int y)
         {
             Mouse.Move(x, y);
@@ -60,6 +61,22 @@ namespace LeagueBot.Patterns
                 color = Interop.GetPixelColor(new Point(x, y));
                 Thread.Sleep(1000);
             }
+        }
+        public void talk(string message)
+        {
+            Keyboard.KeyPress(Keys.Enter, 150);
+            this.wait(100);
+
+            foreach (var character in message)
+            {
+                Keys key = KeyboardMapper.GetKey(character);
+                Keyboard.KeyPress(key, 150);
+                this.wait(100);
+            }
+
+            this.wait(100);
+            Keyboard.KeyPress(Keys.Enter, 150);
+
         }
         public void waitUntilProcessBounds(string processName, int boundsX, int boundsY)
         {
@@ -118,6 +135,9 @@ namespace LeagueBot.Patterns
         {
             Thread.Sleep(ms);
         }
+
+
+
 
     }
 }

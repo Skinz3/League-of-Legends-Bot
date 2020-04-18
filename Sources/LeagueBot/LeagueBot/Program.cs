@@ -24,7 +24,14 @@ namespace LeagueBot
 
             PatternsManager.Initialize();
 
-            LeagueManager.ApplySettings();
+            try
+            {
+                LeagueManager.ApplySettings();
+            }
+            catch
+            {
+                Logger.Write("Unable to set league of legends settings. (Probably due to permission restrictions.)", MessageState.WARNING);
+            }
 
             HandleCommand();
 

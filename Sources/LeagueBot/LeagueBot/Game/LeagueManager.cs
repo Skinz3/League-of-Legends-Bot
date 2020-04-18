@@ -14,19 +14,13 @@ namespace LeagueBot.Game
     {
         const string CONFIG_PATH = @"League of Legends\Config\game.cfg";
 
+        const string KEYCONFIG_PATH = @"League of Legends\Config\input.ini";
+
+        const string PERSISTED_CONFIG_PATH = @"League of Legends\Config\PersistedSettings.json";
+
         public static void ApplySettings()
         {
-            CFGFile config;
-
-            try
-            {
-                config = new CFGFile(Path.Combine(Configuration.Instance.ClientPath, CONFIG_PATH));
-            }
-            catch
-            {
-                Logger.Write("Unable to set league of legends settings. (Probably due to permission restrictions.)", MessageState.WARNING);
-                return;
-            }
+            CFGFile config = new CFGFile(Path.Combine(Configuration.Instance.ClientPath, CONFIG_PATH));
 
             config.Set("General", "WindowMode", "1");
             config.Set("General", "Width", "1024");
@@ -126,6 +120,35 @@ namespace LeagueBot.Game
             config.Save();
 
             Logger.Write("League of legends settings applied.", MessageState.INFO2);
+
+
+
+
+            CFGFile file = new CFGFile(Path.Combine(Configuration.Instance.ClientPath, KEYCONFIG_PATH));
+
+
+            file.Set("GameEvents", "evtSelectSelf", "[F1]");
+            file.Set("GameEvents", "evtSelectAlly4", "[F5]");
+            file.Set("GameEvents", "evtSelectAlly3", "[F4]");
+            file.Set("GameEvents", "evtSelectAlly2", "[F3]");
+            file.Set("GameEvents", "evtSelectAlly1", "[F2]");
+
+
+            file.Set("GameEvents", "evtCastSpell1", "[1]");
+            file.Set("GameEvents", "evtCastSpell2", "[2]");
+            file.Set("GameEvents", "evtCastSpell3", "[3]");
+            file.Set("GameEvents", "evtCastSpell4", "[4]");
+
+
+            file.Set("GameEvents", "evtUseItem1", "[q]");
+            file.Set("GameEvents", "evtUseItem2", "[w]");
+            file.Set("GameEvents", "evtUseItem3", "[e]");
+
+            file.Save();
+
+            string target = Path.Combine(Configuration.Instance.ClientPath, PERSISTED_CONFIG_PATH);
+
+            File.Copy("PersistedSettings.json", target, true);
         }
     }
 }
