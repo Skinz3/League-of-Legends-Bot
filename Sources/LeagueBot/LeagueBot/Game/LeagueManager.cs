@@ -63,7 +63,7 @@ namespace LeagueBot.Game
             config.Set("HUD", "ReplayScrollSmoothingEnabled", "0");
             config.Set("HUD", "ReplayMiddleMouseScrollSpeed","0.5000");
             config.Set("HUD", "ItemShopPrevY", "0");
-            config.Set("HUD", "ItemShopPrevX", "0");
+            config.Set("HUD", "ItemShopPrevX", "15");
             config.Set("HUD", "ItemShopResizeHeight", "76");
             config.Set("HUD", "ItemShopResizeWidth", "260");
             config.Set("HUD", "ItemShopPrevResizeHeight", "1080");

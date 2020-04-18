@@ -56,7 +56,19 @@ namespace LeagueBot.IO
 
         public void Set(string category, string key, string value)
         {
-            Content[category][key] = value;
+            if (!Content.ContainsKey(category))
+            {
+                Content.Add(category, new Dictionary<string, string>());
+            }
+
+            if (!Content[category].ContainsKey(key))
+            {
+                Content[category].Add(key, value);
+            }
+            else
+            {
+                Content[category][key] = value;
+            }
         }
 
         public void Save()
