@@ -1,6 +1,8 @@
 
 ---------
 GAME_PROCESS_NAME = "League of Legends"
+CLIENT_PROCESS_NAME = "LeagueClientUX"
+
 Description = "This pattern play an Aram Game."
 
 Side = false -- Blue = true, Red = false
@@ -37,7 +39,7 @@ function Execute()
     Side = getSide();
 
     if Side == true then
-        CAST_SPELL_TARGET = {1326,320}
+        CAST_SPELL_TARGET = {1084,398}
         api:log("We are blue side!");
     else
         CAST_SPELL_TARGET = {644,761}
@@ -57,7 +59,7 @@ function Execute()
 
     LockAlly2();
     
-    api:talk("salam les roya");
+    -- api:talk("salam les roya");
 
     while api:isProcessOpen(GAME_PROCESS_NAME) do
 
@@ -65,12 +67,32 @@ function Execute()
 
         CastSpell1();
 
+        api:wait(1000);
+
         MoveToAlly2();
 
+        CastSpell2();
+
         api:wait(1000);
+
+        MoveToAlly2();
+
+        CastSpell3();
+
+        api:wait(1000);
+
+        MoveToAlly2();
+
+        CastSpell4();
+      
     end
 
-    api:log("ended.");
+    api:log("Match ended.");
+
+    api:waitProcessOpen(CLIENT_PROCESS_NAME);
+
+    api:bringProcessToFront(CLIENT_PROCESS_NAME);
+    api:centerProcess(CLIENT_PROCESS_NAME)
 
 
 end
@@ -104,6 +126,8 @@ function LockCamera()
 end
 
 function LockAlly2()
+    api:keyUp("F2");
+    api:wait(200);
     api:keyDown("F2");
     api:wait(200);
 end
@@ -111,6 +135,24 @@ end
 function CastSpell1(x,y)
     api:moveMouse(CAST_SPELL_TARGET[1],CAST_SPELL_TARGET[2]);
     api:pressKey("D1");
+    api:wait(200);
+end
+
+function CastSpell2(x,y)
+    api:moveMouse(CAST_SPELL_TARGET[1],CAST_SPELL_TARGET[2]);
+    api:pressKey("D2");
+    api:wait(200);
+end
+
+function CastSpell3(x,y)
+    api:moveMouse(CAST_SPELL_TARGET[1],CAST_SPELL_TARGET[2]);
+    api:pressKey("D3");
+    api:wait(200);
+end
+
+function CastSpell4(x,y)
+    api:moveMouse(CAST_SPELL_TARGET[1],CAST_SPELL_TARGET[2]);
+    api:pressKey("D4");
     api:wait(200);
 end
 
