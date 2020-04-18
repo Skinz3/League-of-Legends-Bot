@@ -28,17 +28,17 @@ namespace LeagueBot.Patterns
                     string filename = Path.GetFileName(file);
                     Lua lua = new Lua();
                     lua.DoFile(file);
-                    Scripts.Add(filename, new PatternScript(filename, lua));
+                    Scripts.Add(Path.GetFileNameWithoutExtension(filename), new PatternScript(filename, lua));
                 }
             }
         }
-        public static bool Contains(string filename)
+        public static bool Contains(string name)
         {
-            return Scripts.ContainsKey(filename);
+            return Scripts.ContainsKey(name);
         }
-        public static void Execute(string filename)
+        public static void Execute(string name)
         {
-            Scripts[filename].Execute();
+            Scripts[name].Execute();
         }
         public static string ToString()
         {

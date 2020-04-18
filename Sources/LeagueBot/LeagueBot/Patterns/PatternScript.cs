@@ -2,6 +2,7 @@
 using NLua;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -41,7 +42,7 @@ namespace LeagueBot.Patterns
         }
         public override string ToString()
         {
-            return Filename + " \"" + Description + "\"";
+            return Path.GetFileNameWithoutExtension(Filename) + " \"" + Description + "\"";
         }
     }
 }
