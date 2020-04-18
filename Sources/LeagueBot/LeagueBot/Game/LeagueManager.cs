@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security;
+using System.Security.Permissions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,7 +16,24 @@ namespace LeagueBot.Game
 
         public static void ApplySettings()
         {
-            CFGFile config = new CFGFile(Path.Combine(Configuration.Instance.ClientPath, CONFIG_PATH));
+
+            CFGFile config;
+
+            FileIOPermission f = new FileIOPermission(PermissionState.Unrestricted);
+            f.AllLocalFiles = FileIOPermissionAccess.Read;
+            try
+            {
+                f.Demand();
+                config = new CFGFile(Path.Combine(Configuration.Instance.ClientPath, CONFIG_PATH));
+            }
+            catch (SecurityException s)
+            {
+                //cannot get permissions for files.got exception
+                Console.WriteLine(s.Message);
+                return;
+            }
+        
+
 
             config.Set("General", "WindowMode", "1");
             config.Set("General", "Width", "1024");
@@ -39,7 +58,7 @@ namespace LeagueBot.Game
             config.Set("Performance", "BudgetDrawCallCount", "1000");
             config.Set("Performance", "EnableGrassSwaying", "1");
             config.Set("Performance", "EnableFXAA", "1");
-            config.Set("Performance", "FrameCapType","8");
+            config.Set("Performance", "FrameCapType", "8");
             config.Set("Performance", "ShadowQuality", "4");
             config.Set("Performance", "EffectsQuality", "4");
             config.Set("Performance", "EnvironmentQuality", "4");
@@ -56,12 +75,12 @@ namespace LeagueBot.Game
             config.Set("HUD", "AutoDisplayTarget", "1");
             config.Set("HUD", "FlashScreenWhenStunned", "1");
             config.Set("HUD", "FlashScreenWhenDamaged", "1");
-            config.Set("HUD", "ShowPlayerPerks","0");
+            config.Set("HUD", "ShowPlayerPerks", "0");
             config.Set("HUD", "ShowPlayerStats", "1");
-            config.Set("HUD", "ShowAllChannelChatSpectator","0");
+            config.Set("HUD", "ShowAllChannelChatSpectator", "0");
             config.Set("HUD", "GlobalScaleReplay", "1.0000");
             config.Set("HUD", "ReplayScrollSmoothingEnabled", "0");
-            config.Set("HUD", "ReplayMiddleMouseScrollSpeed","0.5000");
+            config.Set("HUD", "ReplayMiddleMouseScrollSpeed", "0.5000");
             config.Set("HUD", "ItemShopPrevY", "0");
             config.Set("HUD", "ItemShopPrevX", "15");
             config.Set("HUD", "ItemShopResizeHeight", "76");
@@ -76,7 +95,7 @@ namespace LeagueBot.Game
             config.Set("HUD", "PracticeToolScale", "1.0000");
             config.Set("HUD", "ItemShopItemDisplayMode", "0");
             config.Set("HUD", "ItemShopStartPane", "1");
-            config.Set("HUD", "DisableMouseCaptureDebugger","0");
+            config.Set("HUD", "DisableMouseCaptureDebugger", "0");
             config.Set("HUD", "ShowSpellCosts", "0");
             config.Set("HUD", "NameTagDisplay", "1");
             config.Set("HUD", "ShowChampionIndicator", "0");
