@@ -1,4 +1,8 @@
 
+<p align="center">
+  <img  src="icon.png">
+</p>
+
 # What is League of Legends Bot
 
   * League of legends bot is a pixel bot, written in C# .NET using System.Interop, PVInvoke and NLua. 
