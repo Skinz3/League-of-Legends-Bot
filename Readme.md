@@ -33,3 +33,13 @@
 
    * **Skinz** - *Initial work* [Skinz3](https://github.com/Skinz3)
    * **Forerunner**  [Glenndilen](https://github.com/glenndilen)
+
+# API References
+
+| Function | Return Type | Description |
+| :--- | :--- | :--- |
+| `keyUp` | `void` |  Release a keyboard key |
+| `keyDown` | `void` |  Sink a keyboard key |
+| `pressKey` | `void` |  Press a keyboard key |
+| `moveMouse` | `void` |  **(int x,int y)** Mouve mouse |
+| `rightClick` | `void` |  **(int x,int y)** Right click at position |
