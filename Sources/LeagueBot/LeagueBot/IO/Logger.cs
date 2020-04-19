@@ -19,8 +19,8 @@ namespace LeagueBot.IO
     }
     public class Logger
     {
-        private const ConsoleColor COLOR_1 = ConsoleColor.Magenta;
-        private const ConsoleColor COLOR_2 = ConsoleColor.DarkMagenta;
+        private const ConsoleColor COLOR_1 = ConsoleColor.Cyan;
+        private const ConsoleColor COLOR_2 = ConsoleColor.DarkCyan;
 
         private static Dictionary<MessageState, ConsoleColor> Colors = new Dictionary<MessageState, ConsoleColor>()
         {
@@ -54,8 +54,21 @@ namespace LeagueBot.IO
         {
             Console.WriteLine(Environment.NewLine);
         }
+        /*
+         * 
+         * 
+           
+           
+           
+              */
         public static void OnStartup()
         {
+            WriteColor1(" __                           _____     _   ");
+            WriteColor1("|  |   ___ ___ ___ _ _ ___   | __  |___| |_ ");
+            WriteColor1("|  |__| -_| .'| . | | | -_|  | __ -| . |  _|");
+            WriteColor1("|_____|___|__,|_  |___|___|  |_____|___|_|  ");
+            WriteColor1("              |___|                         ");
+            Console.WriteLine();
             Console.Title = Assembly.GetCallingAssembly().GetName().Name;
         }
     }
