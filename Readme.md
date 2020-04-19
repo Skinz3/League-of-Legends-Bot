@@ -6,8 +6,7 @@
 # What is League of Legends Bot
 
   * League of legends bot is a pixel bot, written in C# .NET using System.Interop, PVInvoke and NLua. 
-  * It's a good way to raise your level 30 account quickly without having to play. Or to win blue essences for free
-  * This bot is undetectable because it is visual (a pixel-bot)
+  * It's a good way to raise your account level 30  quickly without having to play. Or to win blue essences for free
 
   > Version: League of Legends 10.8
 
@@ -23,7 +22,7 @@
    * Now go to this screen: 
    ![alt text](https://puu.sh/FyhP1/9c3a9c8aac.png)
    * Start \Binaries\LeagueBot.exe as Administrator.
-   * Type 'startAram'
+   * Type 'startAram' or 'startCoop'
 	 
 # Contact
 
