@@ -48,4 +48,4 @@
 | `waitForColor` | `void` |  ** `(int x,int y,String colorHex)`**  Stop bot until hex color exists at position |
 | `talk` | `void` |  ** `(String message)`**  Talk in ally chat channel |
 | `waitUntilProcessBounds` | `void` |  ** `(String processName,int width,int height)`**  Wait until process rect bounds is width * heigth |
-| `isProcessOpen` | `bool` |  ** `(String processName)`**  Return state of the process |
+| `isProcessOpen` | `bool` |   `**(String processName)**`  Return state of the process |
