@@ -176,3 +176,7 @@ function BuyItem2()
     api:rightClick(782,336);
     api:wait(200);
 end
+
+function IsAlive()
+    return api:getColor(765,904) == "#07140E";
+end

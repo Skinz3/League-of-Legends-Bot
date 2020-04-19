@@ -157,7 +157,6 @@ namespace LeagueBot.Patterns
 
                 Mouse.Move(coords.X, coords.Y);
                 Mouse.PressButton(Mouse.MouseKeys.Left, 150);
-
             }
 
         }
