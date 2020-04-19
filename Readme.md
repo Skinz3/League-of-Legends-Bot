@@ -55,3 +55,6 @@
 | `centerProcess` | `void` |  `(String processName)` Center process windows relatively to screen size |
 | `executePattern` | `void` |  `(String patternName)` Execute a new pattern |
 | `log` | `void` |  `(String message)` Log message in the console |
+| `wait` | `void` |  `(int duration)` Wait (duration is in milliseconds) |
+| `waitForImage` | `void` |  `(string image)` Wait util the 'image' is displayed on screen ('image' must exists in '/Binaries/Images/') |
+| `leftClickImage` | `void` |  `(string image)` Right click the first 'image' founded on screen ('image' must exists in '/Binaries/Images/') |
