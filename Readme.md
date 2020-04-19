@@ -38,9 +38,9 @@
 
 | Function | Return Type | Description |
 | :--- | :--- | :--- |
-| `keyUp` | `void` |  Release a keyboard key |
-| `keyDown` | `void` |  Sink a keyboard key |
-| `pressKey` | `void` |  Press a keyboard key |
+| `keyUp` | `void` |  `(string key)` Release a keyboard key |
+| `keyDown` | `void` | `(string key)`  Sink a keyboard key |
+| `pressKey` | `void` | `(string key)`  Press a keyboard key |
 | `moveMouse` | `void` |  `(int x,int y)` Mouve mouse |
 | `rightClick` | `void` |  `(int x,int y)` Mouse right click |
 | `leftClick` | `void` |  `(int x,int y)` Mouse left click |
@@ -53,8 +53,8 @@
 | `bringProcessToFront` | `void` |  `(String processName)` Bring process window to front |
 | `waitProcessOpen` | `void` |  `(String processName)` Pause bot until the process open |
 | `centerProcess` | `void` |  `(String processName)` Center process windows relatively to screen size |
-| `executePattern` | `void` |  `(String patternName)` Execute a new pattern |
-| `log` | `void` |  `(String message)` Log message in the console |
-| `wait` | `void` |  `(int duration)` Wait (duration is in milliseconds) |
-| `waitForImage` | `void` |  `(string image)` Wait util the 'image' is displayed on screen ('image' must exists in '/Binaries/Images/') |
-| `leftClickImage` | `void` |  `(string image)` Right click the first 'image' founded on screen ('image' must exists in '/Binaries/Images/') |
+| `executePattern` | `void` |  `(String patternName)` Execute pattern **pattern name** |
+| `log` | `void` |  `(String message)` Log **message** in the console |
+| `wait` | `void` |  `(int duration)` Wait (**duration** is in milliseconds) |
+| `waitForImage` | `void` |  `(string image)` Wait util the **image** is displayed on screen (**image** must exists in `/Binaries/Images/`) |
+| `leftClickImage` | `void` |  `(string image)` Right click the first **image** founded on screen (**image** must exists in `/Binaries/Images/`) |
