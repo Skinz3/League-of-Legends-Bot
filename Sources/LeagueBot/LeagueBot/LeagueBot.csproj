@@ -68,6 +68,7 @@
     <Compile Include="Patterns\BotApi.cs" />
     <Compile Include="Patterns\PatternScript.cs" />
     <Compile Include="Patterns\PatternsManager.cs" />
+    <Compile Include="Windows\ImageRecognition.cs" />
     <Compile Include="Windows\Interop.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
