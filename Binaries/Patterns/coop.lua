@@ -63,6 +63,9 @@ function Execute()
 
     while api:isProcessOpen(GAME_PROCESS_NAME) do
 
+        api:bringProcessToFront(GAME_PROCESS_NAME);
+        api:centerProcess(GAME_PROCESS_NAME)
+        
         MoveToAlly2();
 
         CastSpell1();
