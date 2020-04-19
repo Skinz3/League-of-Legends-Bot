@@ -41,5 +41,5 @@
 | `keyUp` | `void` |  Release a keyboard key |
 | `keyDown` | `void` |  Sink a keyboard key |
 | `pressKey` | `void` |  Press a keyboard key |
-| `moveMouse` | `void` |  **(int x,int y)** Mouve mouse |
-| `rightClick` | `void` |  **(int x,int y)** Right click at position |
+| `moveMouse` | `void` |  `(int x,int y)` Mouve mouse |
+| `rightClick` | `void` |  `(int x,int y)` Right click at position |
