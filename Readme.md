@@ -31,5 +31,5 @@
 
 # Authors
 
-   * **Skinz3** - *Initial work*
-   * **Forerunner** 
+   * **Skinz** - *Initial work* [Skinz3](https://github.com/Skinz3)
+   * **Forerunner**  [Glenndilen](https://github.com/glenndilen)
