@@ -24,3 +24,8 @@
 # Contact
 
    Join the discord server : https://discord.gg/cB8qtcE
+
+# Authors
+
+   * **Skinz3** - *Initial work*
+   * **Forerunner** - 
