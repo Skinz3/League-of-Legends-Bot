@@ -1,6 +1,6 @@
 
 <p align="center">
-  <img  src="icon.png">
+  <img  src="icon.jpg">
 </p>
 
 # What is League of Legends Bot
