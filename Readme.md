@@ -42,4 +42,10 @@
 | `keyDown` | `void` |  Sink a keyboard key |
 | `pressKey` | `void` |  Press a keyboard key |
 | `moveMouse` | `void` |  `(int x,int y)` Mouve mouse |
-| `rightClick` | `void` |  `(int x,int y)` Right click at position |
+| `rightClick` | `void` |  `(int x,int y)` Mouse right click |
+| `leftClick` | `void` |  `(int x,int y)` Mouse left click |
+| `getColor` | `String` |  `(int x,int y)` Get Hexadecimal color |
+| `waitForColor` | `void` |  `(int x,int y,String colorHex)` Stop bot until hex color exists at position |
+| `talk` | `void` |  `(String message)` Talk in ally chat channel |
+| `waitUntilProcessBounds` | `void` |  `(String processName,int width,int height)` Wait until process rect bounds is width * heigth |
+| `isProcessOpen` | `bool` |  `(String processName)` Return state of the process |
