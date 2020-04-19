@@ -70,6 +70,7 @@
     <Compile Include="Patterns\PatternScript.cs" />
     <Compile Include="Patterns\PatternsManager.cs" />
     <Compile Include="Img\ImageRecognition.cs" />
+    <Compile Include="Windows\ApplicationCapture.cs" />
     <Compile Include="Windows\Interop.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

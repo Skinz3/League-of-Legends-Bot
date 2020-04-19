@@ -94,6 +94,17 @@ function Execute()
     api:bringProcessToFront(CLIENT_PROCESS_NAME);
     api:centerProcess(CLIENT_PROCESS_NAME)
 
+    api:wait(5000);
+
+    api:leftClick(962,903); -- skip honor
+
+    api:wait(2000);
+
+    api:leftClick(716,947); -- close game recap
+
+    api:wait(2000);
+
+    api:executePattern("startCoop"); -- find new match.
 
 end
 
