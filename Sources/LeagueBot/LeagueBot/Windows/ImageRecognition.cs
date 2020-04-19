@@ -45,56 +45,56 @@ namespace LeagueBot.Windows
             int y = 1;
 
 
-            or( int key = 0; key < screen.Length; ++key )
+            for(int key = 0; key < screen.Length; ++key )
             {
-                
+
                 //Match 1st pixel
-                if( screen[ key ] == find[ 0 ])
+                if (screen[key] == find[0])
                 {
 
 
-                  
+
                     //Match 4 X pixel
-                    if( 
-                        screen[ key + 1 ] == find[ 1 ] &&
-                        screen[ key + 2 ] == find[ 2 ] &&
-                        screen[ key + 3 ] == find[ 3 ]
+                    if (
+                        screen[key + 1] == find[1] &&
+                        screen[key + 2] == find[2] &&
+                        screen[key + 3] == find[3]
                         )
                     {
 
                         //Match 4 Y pixel
-                        if(
-                            
-                            screen[ key + image.Width ] == find[ loaded.Width ] &&
-                            screen[ key + ( image.Width * 2 ) ] == find[ ( loaded.Width * 2 ) ] &&
-                            screen[ key + ( image.Width * 3 ) ] == find[ ( loaded.Width * 3 ) ]
+                        if (
+
+                            screen[key + image.Width] == find[loaded.Width] &&
+                            screen[key + (image.Width * 2)] == find[(loaded.Width * 2)] &&
+                            screen[key + (image.Width * 3)] == find[(loaded.Width * 3)]
 
                         )
                         {
 
                             //Match 4 center pixel
-                            if(
-                                
-                                screen[ key + ( image.Width * ( loaded.Height / 2 ) ) + ( loaded.Width / 2 ) ] == find[ ( loaded.Width * ( loaded.Height / 2 ) + ( loaded.Width / 2 ) ) ] &&
-                                screen[ key + ( image.Width * ( ( loaded.Height / 2 ) + 1 ) ) + ( loaded.Width / 2 ) ] == find[ ( loaded.Width * ( ( loaded.Height / 2 ) + 1 ) + ( loaded.Width / 2 ) ) ] &&
-                                screen[ key + ( image.Width * ( loaded.Height / 2 ) ) + ( loaded.Width / 2 ) + 1 ] == find[ ( loaded.Width * ( loaded.Height / 2 ) + ( loaded.Width / 2 ) ) + 1 ] &&
-                                screen[ key + ( image.Width * ( ( loaded.Height / 2 ) + 1 ) ) + ( loaded.Width / 2 ) + 1 ] == find[ ( loaded.Width * ( ( loaded.Height / 2 ) + 1 ) + ( loaded.Width / 2 ) ) + 1 ]
+                            if (
+
+                                screen[key + (image.Width * (loaded.Height / 2)) + (loaded.Width / 2)] == find[(loaded.Width * (loaded.Height / 2) + (loaded.Width / 2))] &&
+                                screen[key + (image.Width * ((loaded.Height / 2) + 1)) + (loaded.Width / 2)] == find[(loaded.Width * ((loaded.Height / 2) + 1) + (loaded.Width / 2))] &&
+                                screen[key + (image.Width * (loaded.Height / 2)) + (loaded.Width / 2) + 1] == find[(loaded.Width * (loaded.Height / 2) + (loaded.Width / 2)) + 1] &&
+                                screen[key + (image.Width * ((loaded.Height / 2) + 1)) + (loaded.Width / 2) + 1] == find[(loaded.Width * ((loaded.Height / 2) + 1) + (loaded.Width / 2)) + 1]
 
 
                             )
                             {
 
-                                return new Point( x, y );
+                                return new Point(x, y);
 
                             }
 
                         }
-                        
+
                     }
 
                 }
 
-                if( x == image.Width )
+                if (x == image.Width)
                 {
                     y++;
                     x = 0;
@@ -148,12 +148,6 @@ namespace LeagueBot.Windows
             return pixels;
 
         }
-
-
-
-
-
-
 
         private static Bitmap CurrentScreen()
         {
