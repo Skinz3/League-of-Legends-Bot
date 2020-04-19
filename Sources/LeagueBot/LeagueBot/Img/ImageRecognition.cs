@@ -9,18 +9,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace LeagueBot.Windows
+namespace LeagueBot.Img
 {
-    /*
-     * Thanks to Forerunner
-     */
     public class ImageRecognition
     {
         public static Point ImageCoords(string image)
         {
             Bitmap screen = CurrentScreen();
             return FindImagePosition(screen, image);
-
         }
 
         public static bool ImageExists(string image)
@@ -33,10 +29,9 @@ namespace LeagueBot.Windows
             return false;
 
         }
-
         private static Point FindImagePosition(Bitmap image, string filename)
         {
-            Bitmap loaded = ImageFromFile(filename);
+            Bitmap loaded = ImageCache.GetBitmap(filename);
 
             int[] screen = GetPixels(image);
             int[] find = GetPixels(loaded);
@@ -47,13 +42,9 @@ namespace LeagueBot.Windows
 
             for(int key = 0; key < screen.Length; ++key )
             {
-
                 //Match 1st pixel
                 if (screen[key] == find[0])
                 {
-
-
-
                     //Match 4 X pixel
                     if (
                         screen[key + 1] == find[1] &&
@@ -74,13 +65,10 @@ namespace LeagueBot.Windows
 
                             //Match 4 center pixel
                             if (
-
                                 screen[key + (image.Width * (loaded.Height / 2)) + (loaded.Width / 2)] == find[(loaded.Width * (loaded.Height / 2) + (loaded.Width / 2))] &&
                                 screen[key + (image.Width * ((loaded.Height / 2) + 1)) + (loaded.Width / 2)] == find[(loaded.Width * ((loaded.Height / 2) + 1) + (loaded.Width / 2))] &&
                                 screen[key + (image.Width * (loaded.Height / 2)) + (loaded.Width / 2) + 1] == find[(loaded.Width * (loaded.Height / 2) + (loaded.Width / 2)) + 1] &&
                                 screen[key + (image.Width * ((loaded.Height / 2) + 1)) + (loaded.Width / 2) + 1] == find[(loaded.Width * ((loaded.Height / 2) + 1) + (loaded.Width / 2)) + 1]
-
-
                             )
                             {
 
@@ -104,17 +92,6 @@ namespace LeagueBot.Windows
             }
 
             return new Point(0, 0);
-
-        }
-
-
-
-
-
-
-        private static Bitmap ImageFromFile(string path)
-        {
-            return new Bitmap("Images/" + path + ".png");
 
         }
 
@@ -154,7 +131,7 @@ namespace LeagueBot.Windows
             var image = new Bitmap(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height, PixelFormat.Format32bppArgb);
             var gfx = Graphics.FromImage(image);
             gfx.CopyFromScreen(Screen.PrimaryScreen.Bounds.X, Screen.PrimaryScreen.Bounds.Y, 0, 0, Screen.PrimaryScreen.Bounds.Size, CopyPixelOperation.SourceCopy);
-            return image;//scaleImage( image, 0.8 );
+            return image;//scaleImage( image, 0.8 ); 
         }
 
         private static Bitmap ScaleImage(Image image, Double scale)

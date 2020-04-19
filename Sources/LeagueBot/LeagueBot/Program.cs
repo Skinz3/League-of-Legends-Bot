@@ -1,4 +1,5 @@
 ﻿using LeagueBot.Game;
+using LeagueBot.Img;
 using LeagueBot.IO;
 using LeagueBot.Patterns;
 using LeagueBot.Windows;
@@ -23,6 +24,8 @@ namespace LeagueBot
             Configuration.LoadConfig();
 
             PatternsManager.Initialize();
+
+            ImageCache.Initialize();
 
             try
             {

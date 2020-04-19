@@ -62,13 +62,14 @@
   <ItemGroup>
     <Compile Include="Configuration.cs" />
     <Compile Include="Game\LeagueManager.cs" />
+    <Compile Include="Img\ImageCache.cs" />
     <Compile Include="IO\Json.cs" />
     <Compile Include="IO\CFGFile.cs" />
     <Compile Include="IO\Logger.cs" />
     <Compile Include="Patterns\BotApi.cs" />
     <Compile Include="Patterns\PatternScript.cs" />
     <Compile Include="Patterns\PatternsManager.cs" />
-    <Compile Include="Windows\ImageRecognition.cs" />
+    <Compile Include="Img\ImageRecognition.cs" />
     <Compile Include="Windows\Interop.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

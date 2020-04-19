@@ -54,13 +54,6 @@ namespace LeagueBot.IO
         {
             Console.WriteLine(Environment.NewLine);
         }
-        /*
-         * 
-         * 
-           
-           
-           
-              */
         public static void OnStartup()
         {
             WriteColor1(" __                           _____     _   ");
