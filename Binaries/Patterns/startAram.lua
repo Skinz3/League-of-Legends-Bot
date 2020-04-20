@@ -9,7 +9,7 @@ Description = "This pattern script start an Aram Game."
 
 function Execute()
 
-    win:log("Waiting for league client process...");
+    win:log("Waiting for league client process...Ensure League client window size is 1600x900");");
   
     win:waitProcessOpen(CLIENT_PROCESS_NAME);
     win:waitUntilProcessBounds(CLIENT_PROCESS_NAME,1600,900);
