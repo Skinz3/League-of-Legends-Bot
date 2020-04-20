@@ -15,7 +15,10 @@ namespace LeagueBot.Img
 {
     public class PixelCache
     {
+        public const string SCREENSHOT_IMAGE_NAME = "screenshot";
+
         public const string PATH = "Images/";
+
         public const int STEP = 250;
 
         public static string[] EXTENSIONS = new string[]
@@ -27,6 +30,7 @@ namespace LeagueBot.Img
         private static Dictionary<string, int[]> ImagePixels = new Dictionary<string, int[]>();
         private static Dictionary<string, int> ImageY = new Dictionary<string, int>();
         private static Dictionary<string, int> ImageX = new Dictionary<string, int>();
+
 
         public static void Initialize()
         {
@@ -51,30 +55,28 @@ namespace LeagueBot.Img
 
         }
 
-
-
         public static int[] GetPixels(string filename)
         {
-            if (filename == "screenshot")
+            if (filename == SCREENSHOT_IMAGE_NAME)
             {
-                if (ImageHelper.ImageTimestampExpired("screenshot", STEP))
+                if (ImageHelper.ImageTimestampExpired(SCREENSHOT_IMAGE_NAME, STEP))
                 {
 
                     //Get a screen capture
                     Bitmap image = ImageHelper.TakeScreenCapture();
 
                     //Save the screenshot pixels
-                    ImagePixels["screenshot"] = ConvertImage(image);
+                    ImagePixels[SCREENSHOT_IMAGE_NAME] = ConvertImage(image);
 
                     //Set width and height
-                    ImageX["screenshot"] = image.Width;
-                    ImageY["screenshot"] = image.Height;
+                    ImageX[SCREENSHOT_IMAGE_NAME] = image.Width;
+                    ImageY[SCREENSHOT_IMAGE_NAME] = image.Height;
 
                     //Clear image from memory
                     image.Dispose();
 
                     //Set new image screenshot time
-                    ImageHelper.UpdateImageTimestamp("screenshot");
+                    ImageHelper.UpdateImageTimestamp(SCREENSHOT_IMAGE_NAME);
 
                 }
 
@@ -146,19 +148,5 @@ namespace LeagueBot.Img
 
             //Return array of pixels in hex format
             return pixels;
-
         }
-
-
-
-
-
-
-
-
-
-
-
-    }
-
 }
