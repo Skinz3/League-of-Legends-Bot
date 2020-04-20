@@ -28,27 +28,21 @@ namespace LeagueBot.Img
         };
 
         private static Dictionary<string, int[]> ImagePixels = new Dictionary<string, int[]>();
-        private static Dictionary<string, int> ImageY = new Dictionary<string, int>();
-        private static Dictionary<string, int> ImageX = new Dictionary<string, int>();
+        private static Dictionary<string, int> ImageHeigth = new Dictionary<string, int>();
+        private static Dictionary<string, int> ImageWidth = new Dictionary<string, int>();
 
 
         public static void Initialize()
         {
-
             foreach (var file in Directory.GetFiles(Path.Combine(Environment.CurrentDirectory, PATH)))
             {
-
                 if (EXTENSIONS.Contains(Path.GetExtension(file)))
                 {
-
                     Bitmap image = (Bitmap)Bitmap.FromFile(file);
-
                     ImagePixels.Add(Path.GetFileName(file), ConvertImage(image));
-                    ImageY.Add(Path.GetFileName(file), image.Height);
-                    ImageX.Add(Path.GetFileName(file), image.Width);
-
+                    ImageHeigth.Add(Path.GetFileName(file), image.Height);
+                    ImageWidth.Add(Path.GetFileName(file), image.Width);
                     image.Dispose();
-
                 }
 
             }
@@ -69,8 +63,8 @@ namespace LeagueBot.Img
                     ImagePixels[SCREENSHOT_IMAGE_NAME] = ConvertImage(image);
 
                     //Set width and height
-                    ImageX[SCREENSHOT_IMAGE_NAME] = image.Width;
-                    ImageY[SCREENSHOT_IMAGE_NAME] = image.Height;
+                    ImageWidth[SCREENSHOT_IMAGE_NAME] = image.Width;
+                    ImageHeigth[SCREENSHOT_IMAGE_NAME] = image.Height;
 
                     //Clear image from memory
                     image.Dispose();
@@ -88,12 +82,12 @@ namespace LeagueBot.Img
 
         public static int GetHeight(string filename)
         {
-            return ImageY[filename];
+            return ImageHeigth[filename];
         }
 
         public static int GetWidth(string filename)
         {
-            return ImageX[filename];
+            return ImageWidth[filename];
         }
 
         private static int[] ConvertImage(Bitmap image)
