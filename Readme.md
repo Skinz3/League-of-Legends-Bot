@@ -36,6 +36,7 @@
 # API References
 
 * Win Api
+
 | Function | Return Type | Description |
 | :--- | :--- | :--- |
 | `keyUp` | `void` |  `(string key)` Release a keyboard key |
