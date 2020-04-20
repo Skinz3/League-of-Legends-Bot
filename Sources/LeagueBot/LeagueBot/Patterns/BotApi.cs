@@ -164,12 +164,18 @@ namespace LeagueBot.Patterns
 
         public int health()
         {
-            return ImageValues.Health();
+            int v = ImageValues.Health();
+            log( "Health is " + v);
+            return v;
+
+            //return ImageValues.Health();
         }
 
         public int mana()
         {
-            return ImageValues.Mana();
+            int v = ImageValues.Mana();
+            log( "Mana is " + v);
+            return v;
         }
 
 

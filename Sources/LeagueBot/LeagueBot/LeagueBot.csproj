@@ -62,7 +62,8 @@
   <ItemGroup>
     <Compile Include="Configuration.cs" />
     <Compile Include="Game\LeagueManager.cs" />
-    <Compile Include="Img\ImageCache.cs" />
+    <Compile Include="Img\ImageHelper.cs" />
+    <Compile Include="Img\PixelCache.cs" />
     <Compile Include="Img\ImageValues.cs" />
     <Compile Include="IO\Json.cs" />
     <Compile Include="IO\CFGFile.cs" />

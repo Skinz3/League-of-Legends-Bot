@@ -25,7 +25,7 @@ namespace LeagueBot
 
             PatternsManager.Initialize();
 
-            ImageCache.Initialize();
+            PixelCache.Initialize();
 
             try
             {

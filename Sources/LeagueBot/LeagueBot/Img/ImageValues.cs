@@ -21,10 +21,10 @@ namespace LeagueBot.Img
 		public static int Health()
         { 
             //Get matching x pixels of the health bar
-            int value = ImageRecognition.MatchingXPixels( "health.png" );
+            int value = ImageRecognition.MatchingXPixels( "health.png", 15 );
             
             //Get total pixels of health bar
-            int total = ImageCache.GetBitmapWidth( "health.png" );
+            int total = PixelCache.GetWidth( "health.png" );
 
             //Get percentage of 100
             return (int) Math.Round( ( double ) ( 100 * value ) / total );
@@ -36,10 +36,10 @@ namespace LeagueBot.Img
 		public static int Mana()
         { 
             //Get matching x pixels of the health bar
-            int value = ImageRecognition.MatchingXPixels( "mana.png" );
+            int value = ImageRecognition.MatchingXPixels( "mana.png", 15 );
             
             //Get total pixels of health bar
-            int total = ImageCache.GetBitmapWidth( "mana.png" );
+            int total = PixelCache.GetWidth( "mana.png" );
 
             //Get percentage of 100
             return (int) Math.Round( ( double ) ( 100 * value ) / total );

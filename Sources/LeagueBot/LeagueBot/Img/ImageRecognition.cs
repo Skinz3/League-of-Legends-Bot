@@ -14,11 +14,27 @@ namespace LeagueBot.Img
     public class ImageRecognition
     {
 		
+        public const int STEP = 250;
+
+
+        private static Dictionary<string, int> ImageXMatches = new Dictionary<string, int>();
+        private static Dictionary<string, Point> ImagePositionMatches = new Dictionary<string, Point>();
+
+
         //Find image coordinates on screen
         public static Point ImageCoords(string image)
         {
+
+            if( ImageHelper.ImageTimestampExpired( image, STEP  ) )
+            {
+
+                ImagePositionMatches[ image ] = FindImagePosition( image );
+                ImageHelper.UpdateImageTimestamp( image );
+
+            }
+
             //Return image coordinates
-            return FindImagePosition( image );
+            return ImagePositionMatches[ image ];
 
         }
         
@@ -26,8 +42,15 @@ namespace LeagueBot.Img
         public static bool ImageExists(string image)
         {
 			
+            if( ImageHelper.ImageTimestampExpired( image, STEP   ) )
+            {
+
+                ImagePositionMatches[ image ] = FindImagePosition( image );
+                ImageHelper.UpdateImageTimestamp( image );
+            }
+
             //Get coords of image on our screen
-            Point coords = FindImagePosition( image );
+            Point coords = ImagePositionMatches[ image ];
             
             //If the image was found somewhere on screen, return true
             if (coords.X > 0 && coords.Y > 0) return true;
@@ -38,11 +61,18 @@ namespace LeagueBot.Img
         }
 
         //Get number of matching pixels in sequence of an image
-        public static int MatchingXPixels(string image)
+        public static int MatchingXPixels( string image, int resolution = 3)
         {
 
+            if( ImageHelper.ImageTimestampExpired( image, STEP   ) )
+            {
+
+                ImageXMatches[ image ] = MatchImageX( image, resolution );
+                ImageHelper.UpdateImageTimestamp( image );
+            }
+
             //Return the match count
-            return MatchImageX( image );
+            return ImageXMatches[ image ];
 
         }
         
@@ -54,16 +84,12 @@ namespace LeagueBot.Img
 
 		
 		//Match pixels of an image on an X plane 
-		private static int MatchImageX(string filename)
+		private static int MatchImageX( string filename, int resolution = 3 )
 		{
 			
-			//Get current screen and cached image
-			Bitmap screen = CurrentScreen();
-			Bitmap loaded = ImageCache.GetBitmap(filename); 
-			
 			//Convert images to pixel arrays
-			int[] pixels = GetPixels( screen );
-			int[] search = GetPixels( loaded );
+			int[] pixels = PixelCache.GetPixels( "screenshot" );
+			int[] search = PixelCache.GetPixels( filename );
 			
 			//Loop through each pixel in screenshot
 			for( int key = 0; key < pixels.Length; ++key )
@@ -73,26 +99,33 @@ namespace LeagueBot.Img
 				if( pixels[ key ] == search[ 0 ] )
 				{
 					
-					//If the next 3 pixels also match
-					if( pixels[ key + 1 ] == search[ 1 ] &&
-						pixels[ key + 2 ] == search[ 2 ] &&
-						pixels[ key + 3 ] == search[ 3 ] )
-					{
-						
+                    //Create a matched variable
+                    bool matched = true;
+
+                    //Foreach pixel in our resolution
+                    for( int i = 1; i < resolution; ++i )
+                    {
+
+                        //If the pixel does not match, unset the matched variable
+                        if( pixels[ key + i ] != search[ i ] ) matched = false;
+
+                    }
+
+                    //If all pixels in resolution matched
+                    if( matched )
+                    { 
+
 						//Create the value var
 						int value = 0;
 						
 						//Loop through each pixel in the first row of our loaded image
-						for( int i = 0; i < loaded.Width; ++i )
+						for( int i = 0; i < PixelCache.GetWidth( filename ); ++i )
 						{
 							
 							//If this pixel matches, increment our value
 							if( pixels[ key + i ] == search[ i ] ) value++;
 							
 						}
-
-                        //Dispose of unndeeded objects
-                        screen.Dispose();
 
 						//Return the value
 						return value;
@@ -103,25 +136,21 @@ namespace LeagueBot.Img
 				
 			}
 			
-            //Dispose of unndeeded objects
-            screen.Dispose();
- 
             //No pixels matched
 			return 0;
 			
 		}
 		
+
         private static Point FindImagePosition(string filename)
         {
-			
-			//Get current screen and cached image
-			Bitmap screen = CurrentScreen();
-			Bitmap loaded = ImageCache.GetBitmap(filename); 
-			
+
 			//Convert images to pixel arrays
-            int[] pixels = GetPixels(screen);
-            int[] search = GetPixels(loaded);
+            int[] pixels = PixelCache.GetPixels( "screenshot" );
+            int[] search = PixelCache.GetPixels( filename );
 			
+           ;
+
 			//Set X and Y pointer for search
             int x = 1;
             int y = 1;
@@ -141,21 +170,19 @@ namespace LeagueBot.Img
                     {
 
                         //Next we'll check the next 3 Y pixels match our image 
-                        if( pixels[ key + screen.Width ] == search[ loaded.Width ] &&
-                            pixels[ key + ( screen.Width * 2 ) ] == search[ ( loaded.Width * 2 ) ] &&
-                            pixels[ key + ( screen.Width * 3 ) ] == search[ ( loaded.Width * 3 ) ] )
-                        {
+                        if( pixels[ key + PixelCache.GetWidth( "screenshot" ) ] == search[ PixelCache.GetWidth( filename ) ] &&
+                            pixels[ key + ( PixelCache.GetWidth( "screenshot" ) * 2 ) ] == search[ ( PixelCache.GetWidth( filename ) * 2 ) ] &&
+                            pixels[ key + ( PixelCache.GetWidth( "screenshot" ) * 3 ) ] == search[ ( PixelCache.GetWidth( filename ) * 3 ) ] )
+                        { 
+                            
 
                             //Finally, we will match the four center pixels of the image, to ensure this really is what we are looking for
-                            if( pixels[ key + ( screen.Width * ( loaded.Height / 2 ) ) + ( loaded.Width / 2 ) ] == search[ ( loaded.Width * ( loaded.Height / 2 ) + ( loaded.Width / 2 ) ) ] &&
-                                pixels[ key + ( screen.Width * ( ( loaded.Height / 2 ) + 1 ) ) + ( loaded.Width / 2 ) ] == search[ ( loaded.Width * ( ( loaded.Height / 2 ) + 1 ) + ( loaded.Width / 2 ) ) ] &&
-                                pixels[ key + ( screen.Width * ( loaded.Height / 2 ) ) + ( loaded.Width / 2 ) + 1 ] == search[ ( loaded.Width * ( loaded.Height / 2 ) + ( loaded.Width / 2 ) ) + 1 ] &&
-                                pixels[ key + ( screen.Width * ( ( loaded.Height / 2 ) + 1 ) ) + ( loaded.Width / 2 ) + 1 ] == search[ ( loaded.Width * ( ( loaded.Height / 2 ) + 1 ) + ( loaded.Width / 2 ) ) + 1 ] )
+                            if( pixels[ key + ( PixelCache.GetWidth( "screenshot" ) * (  PixelCache.GetHeight( filename ) / 2 ) ) + ( PixelCache.GetWidth( filename ) / 2 ) ] == search[ ( PixelCache.GetWidth( filename ) * ( PixelCache.GetWidth( filename ) / 2 ) + ( PixelCache.GetWidth( filename ) / 2 ) ) ] &&
+                                pixels[ key + ( PixelCache.GetWidth( "screenshot" ) * ( (  PixelCache.GetHeight( filename ) / 2 ) + 1 ) ) + ( PixelCache.GetWidth( filename ) / 2 ) ] == search[ ( PixelCache.GetWidth( filename ) * ( ( PixelCache.GetWidth( filename ) / 2 ) + 1 ) + ( PixelCache.GetWidth( filename ) / 2 ) ) ] &&
+                                pixels[ key + ( PixelCache.GetWidth( "screenshot" ) * (  PixelCache.GetHeight( filename ) / 2 ) ) + ( PixelCache.GetWidth( filename ) / 2 ) + 1 ] == search[ ( PixelCache.GetWidth( filename ) * ( PixelCache.GetWidth( filename ) / 2 ) + ( PixelCache.GetWidth( filename ) / 2 ) ) + 1 ] &&
+                                pixels[ key + ( PixelCache.GetWidth( "screenshot" ) * ( (  PixelCache.GetHeight( filename ) / 2 ) + 1 ) ) + ( PixelCache.GetWidth( filename ) / 2 ) + 1 ] == search[ ( PixelCache.GetWidth( filename ) * ( ( PixelCache.GetWidth( filename ) / 2 ) + 1 ) + ( PixelCache.GetWidth( filename ) / 2 ) ) + 1 ] )
                             {
 								
-                                //Dispose of unndeeded objects
-                                screen.Dispose();
-
 								//Return the coordinates of this image
                                 return new Point(x, y);
 
@@ -168,7 +195,7 @@ namespace LeagueBot.Img
                 }
 				
 				//If we are at the edge of the screen
-                if( x == screen.Width )
+                if( x == PixelCache.GetWidth( "screenshot" ) )
                 {	
 					
 					//Increment the row
@@ -183,97 +210,13 @@ namespace LeagueBot.Img
 
             }
 			
-            //Dispose of unndeeded objects
-            screen.Dispose();
-
 			//No image detected, return 0,0
             return new Point(0, 0);
 
         }
 		
-        //Return array of hex colour values of each pixel in an image
-        private static int[] GetPixels(Bitmap image)
-        {
-
-            //Create a new canvas
-            Rectangle rect = new Rectangle( 0, 0, image.Width, image.Height );
-
-            //Get bitmap image data
-            BitmapData imageData = image.LockBits( rect, ImageLockMode.ReadWrite, PixelFormat.Format24bppRgb );
-            
-            //Get pointer 
-            IntPtr ptr = imageData.Scan0;
-
-            //Get bytes in image
-            int bytes = imageData.Stride * image.Height;
-            
-            //Create array for RGB values
-            byte[] rgbValues = new byte[ bytes ];
-
-            //Copy array from the pointer to the RGB array
-            Marshal.Copy( ptr, rgbValues, 0, bytes );
-
-            //Counter
-            int count = 0;
-
-            //End of row
-            int stride = imageData.Stride;
-
-            //Array of pixel values
-            int[] pixels = new int[ image.Width * image.Height ];
-
-            //Foreach pixel column
-            for( int column = 0; column < imageData.Height; column++ )
-            {
-                
-                //Foreach pixel row
-                for( int row = 0; row < imageData.Width; row++ )
-                {
-                    
-                    //Convert the RGB value to hex and save in array
-                    pixels[ count ] = ( ( ( rgbValues[ ( column * stride ) + ( row * 3 ) + 2 ] ) & 0xff ) << 16 ) + ( ( ( rgbValues[ ( column * stride ) + ( row * 3 ) + 1 ] ) & 0xff ) << 8 ) + ( ( rgbValues[ ( column * stride ) + ( row * 3 ) ] ) & 0xff );
-                    
-                    //Increment our counter
-                    count++;
-
-                }
-
-            }
-
-            //Unlock the image data
-            image.UnlockBits( imageData );
-
-            //Return array of pixels in hex format
-            return pixels;
-
-        }
-
-
-
-
-
-        //Capture current screen as Bitmap
-        private static Bitmap CurrentScreen()
-        {
-
-            //Create a new bitmap screen size
-            Bitmap image = new Bitmap(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height, PixelFormat.Format32bppArgb);
-            
-            //Create a new Graphics object
-            var gfx = Graphics.FromImage(image);
-            
-            //Copy the current screen
-            gfx.CopyFromScreen(Screen.PrimaryScreen.Bounds.X, Screen.PrimaryScreen.Bounds.Y, 0, 0, Screen.PrimaryScreen.Bounds.Size, CopyPixelOperation.SourceCopy);
-            
-            //Dispose of gfx
-            gfx.Dispose();
-
-            //Return image as bitmap
-            return image; 
-        
-        }
-
-
+       
+  
 
 
         //FIX ME, downsize images correctly for pixel to pixel matching
