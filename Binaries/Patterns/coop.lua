@@ -14,36 +14,36 @@ CAST_SPELL_TARGET = {}
 
 function Execute()
 
-    api:log("Waiting for league of legends process...");
+    win:log("Waiting for league of legends process...");
 
-    api:waitProcessOpen(GAME_PROCESS_NAME);
+    win:waitProcessOpen(GAME_PROCESS_NAME);
  
-    api:waitUntilProcessBounds(GAME_PROCESS_NAME,1030,797)    
+    win:waitUntilProcessBounds(GAME_PROCESS_NAME,1030,797)    
 
-    api:wait(200);
+    win:wait(200);
 
-    api:log("Waiting for game to load.");
+    win:log("Waiting for game to load.");
 
-    api:bringProcessToFront(GAME_PROCESS_NAME);
-    api:centerProcess(GAME_PROCESS_NAME)
+    win:bringProcessToFront(GAME_PROCESS_NAME);
+    win:centerProcess(GAME_PROCESS_NAME)
 
     WaitForGameToStart();
 
-    api:log("We are in game !");
+    win:log("We are in game !");
 
-    api:bringProcessToFront(GAME_PROCESS_NAME);
-    api:centerProcess(GAME_PROCESS_NAME)
+    win:bringProcessToFront(GAME_PROCESS_NAME);
+    win:centerProcess(GAME_PROCESS_NAME)
 
-    api:wait(1000);
+    win:wait(1000);
 
     Side = getSide();
 
     if Side == true then
         CAST_SPELL_TARGET = {1084,398}
-        api:log("We are blue side!");
+        win:log("We are blue side!");
     else
         CAST_SPELL_TARGET = {644,761}
-        api:log("We are red side!");   
+        win:log("We are red side!");   
     end
 
     LockCamera();
@@ -59,30 +59,30 @@ function Execute()
 
     LockAlly2();
     
-    -- api:talk("salam les roya");
+    game:talk("Hello world");
 
-    while api:isProcessOpen(GAME_PROCESS_NAME) do
+    while win:isProcessOpen(GAME_PROCESS_NAME) do
 
-        api:bringProcessToFront(GAME_PROCESS_NAME);
-        api:centerProcess(GAME_PROCESS_NAME)
+        win:bringProcessToFront(GAME_PROCESS_NAME);
+        win:centerProcess(GAME_PROCESS_NAME)
         
         MoveToAlly2();
 
         CastSpell1();
 
-        api:wait(1000);
+        win:wait(1000);
 
         MoveToAlly2();
 
         CastSpell2();
 
-        api:wait(1000);
+        win:wait(1000);
 
         MoveToAlly2();
 
         CastSpell3();
 
-        api:wait(1000);
+        win:wait(1000);
 
         MoveToAlly2();
 
@@ -90,107 +90,107 @@ function Execute()
       
     end
 
-    api:log("Match ended.");
+    win:log("Match ended.");
 
-    api:waitProcessOpen(CLIENT_PROCESS_NAME);
+    win:waitProcessOpen(CLIENT_PROCESS_NAME);
 
-    api:bringProcessToFront(CLIENT_PROCESS_NAME);
-    api:centerProcess(CLIENT_PROCESS_NAME)
+    win:bringProcessToFront(CLIENT_PROCESS_NAME);
+    win:centerProcess(CLIENT_PROCESS_NAME)
 
-    api:wait(5000);
+    win:wait(5000);
 
-    api:leftClick(962,903); -- skip honor
+    win:leftClick(962,903); -- skip honor
 
-    api:wait(2000);
+    win:wait(2000);
 
-    api:leftClick(716,947); -- close game recap
+    win:leftClick(716,947); -- close game recap
 
-    api:wait(2000);
+    win:wait(2000);
 
-    api:executePattern("startCoop"); -- find new match.
+    win:executePattern("startCoop"); -- find new match.
 
 end
 
 function getSide()
-    return api:getColor(1343,868) == "#2A768C";
+    return win:getColor(1343,868) == "#2A768C";
 end
 
 function UpgradeSummonerSpell1()
-    api:leftClick(826,833); 
-    api:wait(200);
+    win:leftClick(826,833); 
+    win:wait(200);
 end
 
 function UpgradeSummonerSpell2()
-    api:leftClick(875,833);
-    api:wait(200);
+    win:leftClick(875,833);
+    win:wait(200);
 end
 
 function UpgradeSummonerSpell3()
-    api:leftClick(917,833); 
-    api:wait(200);
+    win:leftClick(917,833); 
+    win:wait(200);
 end
 
 function WaitForGameToStart()
-    api:waitForColor(997,904,"#00D304");
+    win:waitForColor(997,904,"#00D304");
 end
 
 function LockCamera()
-    api:leftClick(1241,920); 
-    api:wait(200);
+    win:leftClick(1241,920); 
+    win:wait(200);
 end
 
 function LockAlly2()
-    api:keyUp("F2");
-    api:wait(200);
-    api:keyDown("F2");
-    api:wait(200);
+    win:keyUp("F2");
+    win:wait(200);
+    win:keyDown("F2");
+    win:wait(200);
 end
 
 function CastSpell1(x,y)
-    api:moveMouse(CAST_SPELL_TARGET[1],CAST_SPELL_TARGET[2]);
-    api:pressKey("D1");
-    api:wait(200);
+    win:moveMouse(CAST_SPELL_TARGET[1],CAST_SPELL_TARGET[2]);
+    win:pressKey("D1");
+    win:wait(200);
 end
 
 function CastSpell2(x,y)
-    api:moveMouse(CAST_SPELL_TARGET[1],CAST_SPELL_TARGET[2]);
-    api:pressKey("D2");
-    api:wait(200);
+    win:moveMouse(CAST_SPELL_TARGET[1],CAST_SPELL_TARGET[2]);
+    win:pressKey("D2");
+    win:wait(200);
 end
 
 function CastSpell3(x,y)
-    api:moveMouse(CAST_SPELL_TARGET[1],CAST_SPELL_TARGET[2]);
-    api:pressKey("D3");
-    api:wait(200);
+    win:moveMouse(CAST_SPELL_TARGET[1],CAST_SPELL_TARGET[2]);
+    win:pressKey("D3");
+    win:wait(200);
 end
 
 function CastSpell4(x,y)
-    api:moveMouse(CAST_SPELL_TARGET[1],CAST_SPELL_TARGET[2]);
-    api:pressKey("D4");
-    api:wait(200);
+    win:moveMouse(CAST_SPELL_TARGET[1],CAST_SPELL_TARGET[2]);
+    win:pressKey("D4");
+    win:wait(200);
 end
 
 function MoveToAlly2()
-    api:rightClick(886,521);
-    api:wait(200);
+    win:rightClick(886,521);
+    win:wait(200);
 end
 
 
 function ToogleShop()
-    api:pressKey("P");
-    api:wait(200);
+    win:pressKey("P");
+    win:wait(200);
 end
 
 function BuyItem1()
-    api:rightClick(577,337);
-    api:wait(200);
+    win:rightClick(577,337);
+    win:wait(200);
 end
 
 function BuyItem2()
-    api:rightClick(782,336);
-    api:wait(200);
+    win:rightClick(782,336);
+    win:wait(200);
 end
 
 function IsAlive()
-    return api:getColor(765,904) == "#07140E";
+    return win:getColor(765,904) == "#07140E";
 end

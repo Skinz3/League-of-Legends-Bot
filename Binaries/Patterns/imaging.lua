@@ -11,7 +11,7 @@ function Execute()
 
 
 	while true do
-		api:health();
+		game:health();
 	end
 	
 	

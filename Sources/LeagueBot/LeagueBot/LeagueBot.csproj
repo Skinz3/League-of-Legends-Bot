@@ -68,7 +68,8 @@
     <Compile Include="IO\Json.cs" />
     <Compile Include="IO\CFGFile.cs" />
     <Compile Include="IO\Logger.cs" />
-    <Compile Include="Patterns\BotApi.cs" />
+    <Compile Include="Patterns\GameApi.cs" />
+    <Compile Include="Patterns\WinApi.cs" />
     <Compile Include="Patterns\PatternScript.cs" />
     <Compile Include="Patterns\PatternsManager.cs" />
     <Compile Include="Img\ImageRecognition.cs" />

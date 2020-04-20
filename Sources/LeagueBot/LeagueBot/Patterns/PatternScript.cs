@@ -29,7 +29,11 @@ namespace LeagueBot.Patterns
         public PatternScript(string fileName, Lua lua)
         {
             this.Filename = fileName;
-            lua["api"] = new BotApi();
+
+            var winApi = new WinApi();
+            lua["win"] = winApi;
+            lua["game"] = new GameApi(winApi);
+
             this.Description = lua.GetString("Description");
             this.Lua = lua;
         }

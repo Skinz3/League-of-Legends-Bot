@@ -15,13 +15,8 @@ using static LeagueBot.Windows.Interop;
 
 namespace LeagueBot.Patterns
 {
-    public class BotApi
+    public class WinApi
     {
-        private PatternScript Script
-        {
-            get;
-            set;
-        }
         public void keyUp(string key)
         {
             Keyboard.KeyUp((Keys)Enum.Parse(typeof(Keys), key));
@@ -63,22 +58,7 @@ namespace LeagueBot.Patterns
                 Thread.Sleep(1000);
             }
         }
-        public void talk(string message)
-        {
-            Keyboard.KeyPress(Keys.Enter, 150);
-            this.wait(100);
-
-            foreach (var character in message)
-            {
-                Keys key = KeyboardMapper.GetKey(character);
-                Keyboard.KeyPress(key, 150);
-                this.wait(100);
-            }
-
-            this.wait(100);
-            Keyboard.KeyPress(Keys.Enter, 150);
-
-        }
+        
         public void waitUntilProcessBounds(string processName, int boundsX, int boundsY)
         {
             RECT rect = new RECT();
@@ -160,23 +140,6 @@ namespace LeagueBot.Patterns
             }
 
         }
-        
-        public int getHealth()
-        {
-            int v = ImageValues.Health();
-            log( "Health is " + v);
-            return v;
-
-            //return ImageValues.Health();
-        }
-
-        public int getMana()
-        {
-            int v = ImageValues.Mana();
-            log( "Mana is " + v);
-            return v;
-        }
-
 
     }
 }
