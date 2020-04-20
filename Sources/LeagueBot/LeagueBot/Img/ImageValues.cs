@@ -15,7 +15,6 @@ namespace LeagueBot.Img
     //Use image recognition to find game values
     public class ImageValues
     {
-        
 		
 		//Return health value percentage
 		public static int Health()

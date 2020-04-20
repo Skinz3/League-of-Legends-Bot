@@ -161,13 +161,12 @@ namespace LeagueBot.Patterns
 
         }
         
-
-        public int health()
+        public int getHealth()
         {
             return ImageValues.Health();
         }
 
-        public int mana()
+        public int getMana()
         {
             return ImageValues.Mana();
         }
