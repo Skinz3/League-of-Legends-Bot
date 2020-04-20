@@ -15,7 +15,6 @@ namespace LeagueBot.Img
 {
     public class PixelCache
     {
-
         public const string PATH = "Images/";
         public const int STEP = 250;
 
@@ -26,9 +25,8 @@ namespace LeagueBot.Img
         };
 
         private static Dictionary<string, int[]> ImagePixels = new Dictionary<string, int[]>();
-        private static Dictionary<string, int>   ImageY = new Dictionary<string, int>();
-        private static Dictionary<string, int>   ImageX = new Dictionary<string, int>();
-
+        private static Dictionary<string, int> ImageY = new Dictionary<string, int>();
+        private static Dictionary<string, int> ImageX = new Dictionary<string, int>();
 
         public static void Initialize()
         {
@@ -36,51 +34,48 @@ namespace LeagueBot.Img
             foreach (var file in Directory.GetFiles(Path.Combine(Environment.CurrentDirectory, PATH)))
             {
 
-                if( EXTENSIONS.Contains( Path.GetExtension( file ) ) )
+                if (EXTENSIONS.Contains(Path.GetExtension(file)))
                 {
 
-                    Bitmap image = (Bitmap) Bitmap.FromFile( file );
+                    Bitmap image = (Bitmap)Bitmap.FromFile(file);
 
-                    ImagePixels.Add( Path.GetFileName( file ), ConvertImage( image ) );
-                    ImageY.Add( Path.GetFileName( file ), image.Height );
-                    ImageX.Add( Path.GetFileName( file ), image.Width );
+                    ImagePixels.Add(Path.GetFileName(file), ConvertImage(image));
+                    ImageY.Add(Path.GetFileName(file), image.Height);
+                    ImageX.Add(Path.GetFileName(file), image.Width);
 
                     image.Dispose();
 
                 }
 
             }
- 
+
         }
 
 
 
- 
-
         public static int[] GetPixels(string filename)
-        {   
-
-            if( filename == "screenshot" )
+        {
+            if (filename == "screenshot")
             {
-                if( ImageHelper.ImageTimestampExpired( "screenshot", STEP   ) )
+                if (ImageHelper.ImageTimestampExpired("screenshot", STEP))
                 {
 
                     //Get a screen capture
                     Bitmap image = ImageHelper.TakeScreenCapture();
 
                     //Save the screenshot pixels
-                    ImagePixels[ "screenshot" ] = ConvertImage( image );
+                    ImagePixels["screenshot"] = ConvertImage(image);
 
                     //Set width and height
-                    ImageX[ "screenshot" ] = image.Width;
-                    ImageY[ "screenshot" ] = image.Height;
+                    ImageX["screenshot"] = image.Width;
+                    ImageY["screenshot"] = image.Height;
 
                     //Clear image from memory
                     image.Dispose();
 
                     //Set new image screenshot time
-                    ImageHelper.UpdateImageTimestamp( "screenshot" );
-                
+                    ImageHelper.UpdateImageTimestamp("screenshot");
+
                 }
 
             }
@@ -99,26 +94,25 @@ namespace LeagueBot.Img
             return ImageX[filename];
         }
 
-        private static int[] ConvertImage( Bitmap image )
+        private static int[] ConvertImage(Bitmap image)
         {
-
             //Create a new canvas
-            Rectangle rect = new Rectangle( 0, 0, image.Width, image.Height );
+            Rectangle rect = new Rectangle(0, 0, image.Width, image.Height);
 
             //Get bitmap image data
-            BitmapData imageData = image.LockBits( rect, ImageLockMode.ReadWrite, PixelFormat.Format24bppRgb );
-            
+            BitmapData imageData = image.LockBits(rect, ImageLockMode.ReadWrite, PixelFormat.Format24bppRgb);
+
             //Get pointer 
             IntPtr ptr = imageData.Scan0;
 
             //Get bytes in image
             int bytes = imageData.Stride * image.Height;
-            
+
             //Create array for RGB values
-            byte[] rgbValues = new byte[ bytes ];
+            byte[] rgbValues = new byte[bytes];
 
             //Copy array from the pointer to the RGB array
-            Marshal.Copy( ptr, rgbValues, 0, bytes );
+            Marshal.Copy(ptr, rgbValues, 0, bytes);
 
             //Counter
             int count = 0;
@@ -127,19 +121,19 @@ namespace LeagueBot.Img
             int stride = imageData.Stride;
 
             //Array of pixel values
-            int[] pixels = new int[ image.Width * image.Height ];
+            int[] pixels = new int[image.Width * image.Height];
 
             //Foreach pixel column
-            for( int column = 0; column < imageData.Height; column++ )
+            for (int column = 0; column < imageData.Height; column++)
             {
-                
+
                 //Foreach pixel row
-                for( int row = 0; row < imageData.Width; row++ )
+                for (int row = 0; row < imageData.Width; row++)
                 {
-                    
+
                     //Convert the RGB value to hex and save in array
-                    pixels[ count ] = ( ( ( rgbValues[ ( column * stride ) + ( row * 3 ) + 2 ] ) & 0xff ) << 16 ) + ( ( ( rgbValues[ ( column * stride ) + ( row * 3 ) + 1 ] ) & 0xff ) << 8 ) + ( ( rgbValues[ ( column * stride ) + ( row * 3 ) ] ) & 0xff );
-                    
+                    pixels[count] = (((rgbValues[(column * stride) + (row * 3) + 2]) & 0xff) << 16) + (((rgbValues[(column * stride) + (row * 3) + 1]) & 0xff) << 8) + ((rgbValues[(column * stride) + (row * 3)]) & 0xff);
+
                     //Increment our counter
                     count++;
 
@@ -148,7 +142,7 @@ namespace LeagueBot.Img
             }
 
             //Unlock the image data
-            image.UnlockBits( imageData );
+            image.UnlockBits(imageData);
 
             //Return array of pixels in hex format
             return pixels;
@@ -156,7 +150,7 @@ namespace LeagueBot.Img
         }
 
 
-        
+
 
 
 
