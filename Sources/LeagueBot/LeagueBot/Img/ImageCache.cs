@@ -38,5 +38,17 @@ namespace LeagueBot.Img
         {
             return Cache[filename];
         }
+
+
+        public static int GetBitmapHeight(string filename)
+        {
+            return Cache[filename].Height;    
+        }
+
+         public static int GetBitmapWidth(string filename)
+        {
+            return Cache[filename].Width;    
+        }
+
     }
 }

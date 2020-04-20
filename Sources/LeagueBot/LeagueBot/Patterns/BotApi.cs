@@ -160,8 +160,11 @@ namespace LeagueBot.Patterns
             }
 
         }
-
-
+        
+        public int health()
+        {
+            return ImageValues.Health();
+        }
 
 
     }

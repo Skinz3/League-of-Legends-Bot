@@ -44,8 +44,8 @@
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="NLua, Version=1.4.30.0, Culture=neutral, PublicKeyToken=6a194c04b9c89217, processorArchitecture=MSIL">
-      <HintPath>..\packages\NLua.1.4.30\lib\net45\NLua.dll</HintPath>
+    <Reference Include="NLua, Version=1.4.31.0, Culture=neutral, PublicKeyToken=6a194c04b9c89217, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLua.1.4.31\lib\net45\NLua.dll</HintPath>
     </Reference>
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
@@ -63,6 +63,7 @@
     <Compile Include="Configuration.cs" />
     <Compile Include="Game\LeagueManager.cs" />
     <Compile Include="Img\ImageCache.cs" />
+    <Compile Include="Img\ImageValues.cs" />
     <Compile Include="IO\Json.cs" />
     <Compile Include="IO\CFGFile.cs" />
     <Compile Include="IO\Logger.cs" />
