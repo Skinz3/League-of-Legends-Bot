@@ -58,8 +58,6 @@ function Execute()
     ToogleShop();
 
     LockAlly2();
-    
-    -- api:talk("salam les roya");
 
     while api:isProcessOpen(GAME_PROCESS_NAME) do
 
@@ -96,6 +94,18 @@ function Execute()
 
     api:bringProcessToFront(CLIENT_PROCESS_NAME);
     api:centerProcess(CLIENT_PROCESS_NAME)
+
+    api:wait(5000);
+
+    api:leftClick(962,903); -- skip honor
+
+    api:wait(2000);
+
+    api:leftClick(716,947); -- close game recap
+
+    api:wait(2000);
+
+    api:executePattern("startAram"); -- find new match.
 
 
 end

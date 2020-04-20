@@ -23,8 +23,11 @@ function Execute()
     api:wait(2000); -- Wait for an UI element of the client to be displayed 
 
     api:log("Client Loaded.");
+
+    -- api:leftClickImage("play.png");
     
     api:leftClick(306,139); -- Click 'play' button
+
     api:wait(2000);
     api:leftClick(624,373); -- Click 'aram' button
     api:wait(2000);
