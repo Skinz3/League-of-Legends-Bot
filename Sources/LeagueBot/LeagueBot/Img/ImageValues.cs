@@ -31,6 +31,20 @@ namespace LeagueBot.Img
 
         }
 
+
+        //Return health value percentage
+		public static int Mana()
+        { 
+            //Get matching x pixels of the health bar
+            int value = ImageRecognition.MatchingXPixels( "mana.png" );
+            
+            //Get total pixels of health bar
+            int total = ImageCache.GetBitmapWidth( "mana.png" );
+
+            //Get percentage of 100
+            return (int) Math.Round( ( double ) ( 100 * value ) / total );
+
+        }
 		
 
 		
