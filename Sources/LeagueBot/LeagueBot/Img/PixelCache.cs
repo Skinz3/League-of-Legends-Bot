@@ -149,4 +149,5 @@ namespace LeagueBot.Img
             //Return array of pixels in hex format
             return pixels;
         }
+    }
 }

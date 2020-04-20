@@ -216,9 +216,6 @@ namespace LeagueBot.Img
         }
 
 
-
-
-
         //FIX ME, downsize images correctly for pixel to pixel matching
         private static Bitmap ScaleImage(Image image, Double scale)
         {
