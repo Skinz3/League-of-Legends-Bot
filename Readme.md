@@ -10,7 +10,7 @@
 
   > Version: League of Legends 10.8
 
-  [<img src="https://appspourpc.com/wp-content/uploads/2017/11/Discord-Logo.png">](https://discord.gg/cB8qtcE)
+  [<img src="discord.png">](https://discord.gg/cB8qtcE)
 
 ## Installation
 
