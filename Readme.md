@@ -6,7 +6,8 @@
 # What is League of Legends Bot
 
   * League of legends bot is a pixel bot, written in C# .NET using System.Interop, PVInvoke and NLua. 
-  * It's a good way to raise your account level 30  quickly without having to play. Or to win blue essences for free
+  * This software is opensource and free.
+  * It's a good way to raise your account level 30 without having to play or simply to win blue essences.
 
   > Version: League of Legends 10.8
 
