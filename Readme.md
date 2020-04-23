@@ -10,9 +10,8 @@
 
   > Version: League of Legends 10.8
 
-<p align="center">
-  [<img src="discord.png">](https://discord.gg/cB8qtcE)
-</p>
+  [<p align="center"><img src="discord.png"></p>](https://discord.gg/cB8qtcE)
+
 
 ## Installation
 
