@@ -10,6 +10,8 @@
 
   > Version: League of Legends 10.8
 
+  [<img src="https://appspourpc.com/wp-content/uploads/2017/11/Discord-Logo.png">](https://discord.gg/cB8qtcE)
+
 ## Installation
 
    Requirements : League Of Legends (a League of legends account), a computer with a 1920 * 1080 Resolution. 
