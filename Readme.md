@@ -13,7 +13,7 @@
 
   [<p align="center"><img src="discord.png"></p>](https://discord.gg/cB8qtcE)
 
-  [<p align="center">![Discord](https://discordapp.com/api/guilds/700654362841579571/widget.png)</p>](https://discord.gg/cB8qtcE)
+  
 
 
 
@@ -34,7 +34,7 @@
 	 
 # Contact
 
-   Join the discord server : https://discord.gg/cB8qtcE
+   Join the discord server : [![Discord](https://discordapp.com/api/guilds/700654362841579571/widget.png)](https://discord.gg/cB8qtcE)
 
 # Authors
 
