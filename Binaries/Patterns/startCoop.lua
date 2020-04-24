@@ -36,7 +36,7 @@ function Execute()
 
     win:log("Finding match...");
 
-    while win:getColor(1721,222) ~= "#070E13" do -- while match not founded, accept match
+    while win:getColor(1032,816) ~= "#1E2328" do -- while match not founded, accept match
         win:leftClick(947,780);
         win:wait(3000);
     end
