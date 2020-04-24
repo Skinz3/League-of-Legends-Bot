@@ -33,6 +33,7 @@ namespace LeagueBot.Patterns
             var winApi = new WinApi();
             lua["win"] = winApi;
             lua["game"] = new GameApi(winApi);
+            lua["client"] = new ClientApi();
 
             this.Description = lua.GetString("Description");
             this.Lua = lua;

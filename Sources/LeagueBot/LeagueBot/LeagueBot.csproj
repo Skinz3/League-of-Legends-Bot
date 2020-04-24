@@ -69,6 +69,7 @@
     <Compile Include="IO\CFGFile.cs" />
     <Compile Include="IO\Logger.cs" />
     <Compile Include="Patterns\GameApi.cs" />
+    <Compile Include="Patterns\ClientApi.cs" />
     <Compile Include="Patterns\WinApi.cs" />
     <Compile Include="Patterns\PatternScript.cs" />
     <Compile Include="Patterns\PatternsManager.cs" />

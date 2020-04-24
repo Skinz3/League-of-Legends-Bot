@@ -60,7 +60,7 @@
 | `executePattern` | `void` |  `(string patternName)` Execute pattern **pattern name** |
 | `log` | `void` |  `(string message)` Log **message** in the console |
 | `wait` | `void` |  `(int duration)` Wait (**duration** is in milliseconds) |
-| `waitForImage` | `void` |  `(string image)` Wait util the **image** is displayed on screen (**image** must exists in `/Binaries/Images/`) |
+| `waitForSingleImage` | `void` |  `(string image)` Wait util a **single image** is displayed on screen (**image** must exists in `/Binaries/Images/`) |
 | `leftClickImage` | `void` |  `(string image)` Right click the first **image** founded on screen (**image** must exists in `/Binaries/Images/`) |
 
 * Game Api (Beta)

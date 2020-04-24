@@ -29,7 +29,7 @@ namespace LeagueBot
 
             try
             {
-                LeagueManager.ApplySettings();é
+                LeagueManager.ApplySettings();
             }
             catch
             {
