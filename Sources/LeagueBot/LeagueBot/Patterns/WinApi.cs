@@ -116,9 +116,9 @@ namespace LeagueBot.Patterns
         {
             Thread.Sleep(ms);
         }
-
-
-        //Wait for a single image to be displayed on screen
+        /*
+         * Wait an image to be displayed on screen.
+         */
         public void waitForImage(string image)
         {
             bool exists = ImageRecognition.ImageExists(image);
@@ -129,7 +129,6 @@ namespace LeagueBot.Patterns
             }
 
         }
-
         public void leftClickImage(string image)
         {
             if (ImageRecognition.ImageExists(image))
@@ -141,7 +140,6 @@ namespace LeagueBot.Patterns
             }
 
         }
-
 
     }
 }

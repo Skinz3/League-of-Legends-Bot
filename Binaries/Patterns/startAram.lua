@@ -24,9 +24,9 @@ function Execute()
 
     win:log("Client Loaded.");
 
-    --win:leftClickImage("play.png");
+    win:leftClickImage("play.png");
     
-    win:leftClick(306,139); -- Click 'play' button
+   -- win:leftClick(306,139); -- Click 'play' button
 
     win:wait(2000);
     win:leftClick(624,373); -- Click 'aram' button

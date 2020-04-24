@@ -13,6 +13,10 @@
 
   [<p align="center"><img src="discord.png"></p>](https://discord.gg/cB8qtcE)
 
+  
+
+
+
 
 ## Installation
 
@@ -30,7 +34,7 @@
 	 
 # Contact
 
-   Join the discord server : https://discord.gg/cB8qtcE
+   Join the discord server : [![Discord](https://discordapp.com/api/guilds/700654362841579571/widget.png)](https://discord.gg/cB8qtcE)
 
 # Authors
 
@@ -60,7 +64,7 @@
 | `executePattern` | `void` |  `(string patternName)` Execute pattern **pattern name** |
 | `log` | `void` |  `(string message)` Log **message** in the console |
 | `wait` | `void` |  `(int duration)` Wait (**duration** is in milliseconds) |
-| `waitForSingleImage` | `void` |  `(string image)` Wait util a **single image** is displayed on screen (**image** must exists in `/Binaries/Images/`) |
+| `waitForImage` | `void` |  `(string image)` Wait util the **image** is displayed on screen (**image** must exists in `/Binaries/Images/`) |
 | `leftClickImage` | `void` |  `(string image)` Right click the first **image** founded on screen (**image** must exists in `/Binaries/Images/`) |
 
 * Game Api (Beta)
