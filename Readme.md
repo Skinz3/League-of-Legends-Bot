@@ -68,5 +68,5 @@
 | Function | Return Type | Description |
 | :--- | :--- | :--- |
 | `getHealthPercent` | `int` |  Return your player health percentage |
-| `getHealthPercent` | `int` |  Return your player mana percentage |
+| `getManaPercent` | `int` |  Return your player mana percentage |
 | `talk` | `void` |  `(string message)` Talk in ally chat channel |
