@@ -31,7 +31,9 @@ namespace LeagueBot.Patterns
             this.Filename = fileName;
 
             var winApi = new WinApi();
+ 
             lua["win"] = winApi;
+            lua["win"] = new ClientApi();
             lua["game"] = new GameApi(winApi);
 
             this.Description = lua.GetString("Description");
