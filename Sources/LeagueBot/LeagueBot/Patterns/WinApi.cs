@@ -119,6 +119,7 @@ namespace LeagueBot.Patterns
         /*
          * Wait an image to be displayed on screen.
          */
+
         public void waitForImage(string image)
         {
             bool exists = ImageRecognition.ImageExists(image);

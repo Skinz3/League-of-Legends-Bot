@@ -22,13 +22,13 @@ namespace LeagueBot.Img
 
 
         //Find image coordinates on screen
-        public static Point ImageCoords(string image)
+        public static Point ImageCoords(string image, int resolution = 3 )
         {
 
             if (ImageHelper.ImageTimestampExpired(image, STEP))
             {
 
-                ImagePositionMatches[image] = FindImagePosition(image);
+                ImagePositionMatches[image] = FindImagePosition(image, resolution);
                 ImageHelper.UpdateImageTimestamp(image);
 
             }
@@ -39,13 +39,13 @@ namespace LeagueBot.Img
         }
 
         //Does an image exist on our screen
-        public static bool ImageExists(string image)
+        public static bool ImageExists(string image, int resolution = 3 )
         {
 
             if (ImageHelper.ImageTimestampExpired(image, STEP))
             {
 
-                ImagePositionMatches[image] = FindImagePosition(image);
+                ImagePositionMatches[image] = FindImagePosition(image, resolution);
                 ImageHelper.UpdateImageTimestamp(image);
             }
 
@@ -59,6 +59,12 @@ namespace LeagueBot.Img
             return false;
 
         }
+
+
+
+
+
+
 
         //Get number of matching pixels in sequence of an image
         public static int MatchingXPixels(string image, int resolution = 3)

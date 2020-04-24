@@ -21,18 +21,26 @@ function Execute()
 	
 	--Center the process
 	win:centerProcess( CLIENT_PROCESS_NAME );
+	
+	--If we don't have the game confirm button
+	if client:getConfirmButton() == false then
+	
+		--Wait for the play button to be displayed on screen
+		client:waitForPlayButton();
+		
+		--Click the play button once it's found
+		client:clickPlayButton();
 
-	--Wait for the play button to be displayed on screen
-	client:waitForPlayButton();
+		--Wait for the game confirm button
+		client:waitForConfirmButton();
 	
-	win:log( "Play button detected" );
+	end
 	
+	--Select the game mode ( "summoners rift", "aram", "one for all", "teamfight tactics" )
+	client:clickGameMode( "one for all" );
 	
-	--Detect current client status
-	--status = win:getClientStatus();
-	
-	
-	
+	--Click the confirm button
+	client:clickConfirmButton();
 	
 end
 
