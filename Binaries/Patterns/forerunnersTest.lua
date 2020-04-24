@@ -25,7 +25,7 @@ function Execute()
 	--Wait for the play button to be displayed on screen
 	client:waitForPlayButton();
 	
-	
+	win:log( "Play button detected" );
 	
 	
 	--Detect current client status

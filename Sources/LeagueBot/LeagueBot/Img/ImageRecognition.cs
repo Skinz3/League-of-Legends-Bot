@@ -195,28 +195,33 @@ namespace LeagueBot.Img
                         {
 
                             //The starting pointer ( end of the iamge on screen )
-                            int start = ( key - 1 ) + ( PixelCache.GetWidth( PixelCache.SCREENSHOT_IMAGE_NAME ) * PixelCache.GetHeight( filename ) ) + PixelCache.GetWidth( filename );
+                            int start = ( key ) + ( PixelCache.GetWidth( PixelCache.SCREENSHOT_IMAGE_NAME ) * ( PixelCache.GetHeight( filename ) - 1 ) ) + PixelCache.GetWidth( filename );
+                            
 
+                            //Increment the amount of pixels to remove
                             for( int i = 1; i < resolution; ++i)
                             {
                                 
-
+                                 //If the pixel does not match, unset the matched variable
+                                 if( pixels[ start - i ] != search[ ( PixelCache.GetWidth( filename ) * PixelCache.GetHeight( filename ) ) - i ] ) matched = false;
 
                             }
 
-
-
-
-
-                            //Finally, we will match the four center pixels of the image, to ensure this really is what we are looking for
-                            if( pixels[key + (PixelCache.GetWidth(PixelCache.SCREENSHOT_IMAGE_NAME) * (PixelCache.GetHeight(filename) / 2)) + (PixelCache.GetWidth(filename) / 2)] == search[(PixelCache.GetWidth(filename) * (PixelCache.GetHeight(filename) / 2) + (PixelCache.GetWidth(filename) / 2))] &&
-                                pixels[key + (PixelCache.GetWidth(PixelCache.SCREENSHOT_IMAGE_NAME) * ((PixelCache.GetHeight(filename) / 2) + 1)) + (PixelCache.GetWidth(filename) / 2)] == search[(PixelCache.GetWidth(filename) * ((PixelCache.GetHeight(filename) / 2) + 1) + (PixelCache.GetWidth(filename) / 2))] &&
-                                pixels[key + (PixelCache.GetWidth(PixelCache.SCREENSHOT_IMAGE_NAME) * (PixelCache.GetHeight(filename) / 2)) + (PixelCache.GetWidth(filename) / 2) + 1] == search[(PixelCache.GetWidth(filename) * (PixelCache.GetHeight(filename) / 2) + (PixelCache.GetWidth(filename) / 2)) + 1] &&
-                                pixels[key + (PixelCache.GetWidth(PixelCache.SCREENSHOT_IMAGE_NAME) * ((PixelCache.GetHeight(filename) / 2) + 1)) + (PixelCache.GetWidth(filename) / 2) + 1] == search[(PixelCache.GetWidth(filename) * ((PixelCache.GetHeight(filename) / 2) + 1) + (PixelCache.GetWidth(filename) / 2)) + 1])
+                            //Did we match the last X pixels of our image?
+                            if( matched)
                             {
 
-                                //Return the coordinates of this image
-                                return new Point(x, y);
+                                //Finally, we will match the four center pixels of the image, to ensure this really is what we are looking for
+                                if( pixels[key + (PixelCache.GetWidth(PixelCache.SCREENSHOT_IMAGE_NAME) * (PixelCache.GetHeight(filename) / 2)) + (PixelCache.GetWidth(filename) / 2)] == search[(PixelCache.GetWidth(filename) * (PixelCache.GetHeight(filename) / 2) + (PixelCache.GetWidth(filename) / 2))] &&
+                                    pixels[key + (PixelCache.GetWidth(PixelCache.SCREENSHOT_IMAGE_NAME) * ((PixelCache.GetHeight(filename) / 2) + 1)) + (PixelCache.GetWidth(filename) / 2)] == search[(PixelCache.GetWidth(filename) * ((PixelCache.GetHeight(filename) / 2) + 1) + (PixelCache.GetWidth(filename) / 2))] &&
+                                    pixels[key + (PixelCache.GetWidth(PixelCache.SCREENSHOT_IMAGE_NAME) * (PixelCache.GetHeight(filename) / 2)) + (PixelCache.GetWidth(filename) / 2) + 1] == search[(PixelCache.GetWidth(filename) * (PixelCache.GetHeight(filename) / 2) + (PixelCache.GetWidth(filename) / 2)) + 1] &&
+                                    pixels[key + (PixelCache.GetWidth(PixelCache.SCREENSHOT_IMAGE_NAME) * ((PixelCache.GetHeight(filename) / 2) + 1)) + (PixelCache.GetWidth(filename) / 2) + 1] == search[(PixelCache.GetWidth(filename) * ((PixelCache.GetHeight(filename) / 2) + 1) + (PixelCache.GetWidth(filename) / 2)) + 1])
+                                {
+
+                                    //Return the coordinates of this image
+                                    return new Point(x, y);
+
+                                }
 
                             }
                             
