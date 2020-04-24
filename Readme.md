@@ -13,6 +13,8 @@
 
   [<p align="center"><img src="discord.png"></p>](https://discord.gg/cB8qtcE)
 
+  [![Discord](https://discordapp.com/api/guilds/700654362841579571/widget.png)](https://discord.gg/ShareX)
+
 
 ## Installation
 
