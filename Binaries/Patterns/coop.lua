@@ -46,7 +46,7 @@ function Execute()
         win:log("We are red side!");   
     end
 
-    LockCamera();
+  --  LockCamera();
     
     UpgradeSummonerSpell1();
     UpgradeSummonerSpell2();
@@ -59,7 +59,7 @@ function Execute()
 
     LockAlly2();
     
-    game:talk("Hello world");
+  --  game:talk("Hello world");
 
     while win:isProcessOpen(GAME_PROCESS_NAME) do
 
@@ -141,9 +141,9 @@ end
 
 function LockAlly2()
     win:keyUp("F2");
-    win:wait(200);
+    win:wait(500);
     win:keyDown("F2");
-    win:wait(200);
+    win:wait(500);
 end
 
 function CastSpell1(x,y)
