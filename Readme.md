@@ -13,9 +13,9 @@
 
   [<p align="center"><img src="discord.png"></p>](https://discord.gg/cB8qtcE)
 
-  [![Discord](https://discordapp.com/api/guilds/700654362841579571/widget.png)](https://discord.gg/ShareX)
+  [<p align="center">![Discord](https://discordapp.com/api/guilds/700654362841579571/widget.png)</p>](https://discord.gg/cB8qtcE)
 
-<iframe src="https://discordapp.com/widget?id=700654362841579571&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0"></iframe>
+
 
 
 ## Installation
