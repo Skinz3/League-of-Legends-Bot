@@ -90,6 +90,12 @@ namespace LeagueBot.Img
             return ImageWidth[filename];
         }
 
+        public static int GetLength(string filename)
+        {
+            return ImagePixels[filename].Length;
+
+        }
+
         private static int[] ConvertImage(Bitmap image)
         {
             //Create a new canvas

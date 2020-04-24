@@ -194,7 +194,21 @@ namespace LeagueBot.Img
                         if( matched )
                         {
 
-                             //Finally, we will match the four center pixels of the image, to ensure this really is what we are looking for
+                            //The starting pointer ( end of the iamge on screen )
+                            int start = ( key - 1 ) + ( PixelCache.GetWidth( PixelCache.SCREENSHOT_IMAGE_NAME ) * PixelCache.GetHeight( filename ) ) + PixelCache.GetWidth( filename );
+
+                            for( int i = 1; i < resolution; ++i)
+                            {
+                                
+
+
+                            }
+
+
+
+
+
+                            //Finally, we will match the four center pixels of the image, to ensure this really is what we are looking for
                             if( pixels[key + (PixelCache.GetWidth(PixelCache.SCREENSHOT_IMAGE_NAME) * (PixelCache.GetHeight(filename) / 2)) + (PixelCache.GetWidth(filename) / 2)] == search[(PixelCache.GetWidth(filename) * (PixelCache.GetHeight(filename) / 2) + (PixelCache.GetWidth(filename) / 2))] &&
                                 pixels[key + (PixelCache.GetWidth(PixelCache.SCREENSHOT_IMAGE_NAME) * ((PixelCache.GetHeight(filename) / 2) + 1)) + (PixelCache.GetWidth(filename) / 2)] == search[(PixelCache.GetWidth(filename) * ((PixelCache.GetHeight(filename) / 2) + 1) + (PixelCache.GetWidth(filename) / 2))] &&
                                 pixels[key + (PixelCache.GetWidth(PixelCache.SCREENSHOT_IMAGE_NAME) * (PixelCache.GetHeight(filename) / 2)) + (PixelCache.GetWidth(filename) / 2) + 1] == search[(PixelCache.GetWidth(filename) * (PixelCache.GetHeight(filename) / 2) + (PixelCache.GetWidth(filename) / 2)) + 1] &&
