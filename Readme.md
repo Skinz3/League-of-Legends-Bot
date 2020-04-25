@@ -25,6 +25,8 @@
   
 ## How to make it work?
 
+   * Ensure your display settings are configured correctly
+    ![alt text](https://i.imgur.com/h3BZVJX.png)  
    * First step go to league of legends client and set windows size to 1600 * 900
    ![alt text](https://puu.sh/FyhQs/e8a84b1ad9.png)
    * Now go to this screen: 
