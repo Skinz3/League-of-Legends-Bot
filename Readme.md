@@ -25,14 +25,14 @@
   
 ## How to make it work?
 
-   * Ensure your display settings are configured correctly
+   > Ensure your display settings are configured correctly
     ![alt text](https://i.imgur.com/h3BZVJX.png)  
-   * First step go to league of legends client and set windows size to 1600 * 900
+   > Then go to league of legends client and set windows size to 1600 * 900
    ![alt text](https://puu.sh/FyhQs/e8a84b1ad9.png)
-   * Now go to this screen: 
+   > Now go to this screen: 
    ![alt text](https://puu.sh/FyhP1/9c3a9c8aac.png)
-   * Start \Binaries\LeagueBot.exe as Administrator.
-   * Type 'startAram' or 'startCoop'
+   > Start \Binaries\LeagueBot.exe as Administrator.
+   > Type 'startAram' or 'startCoop'
 	 
 # Contact
 
