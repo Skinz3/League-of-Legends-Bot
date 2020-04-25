@@ -36,6 +36,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Configuration.cs" />
+    <Compile Include="Game\Enums\ChampionBehaviour.cs" />
+    <Compile Include="Game\Enums\ChampionEnum.cs" />
     <Compile Include="Game\Enums\GameType.cs" />
     <Compile Include="Game\LeagueManager.cs" />
     <Compile Include="Img\ImageHelper.cs" />
@@ -44,7 +46,7 @@
     <Compile Include="IO\Json.cs" />
     <Compile Include="IO\CFGFile.cs" />
     <Compile Include="IO\Logger.cs" />
-    <Compile Include="Api\ClientApi.cs" />
+    <Compile Include="Api\ImgApi.cs" />
     <Compile Include="Api\GameApi.cs" />
     <Compile Include="Api\WinApi.cs" />
     <Compile Include="Patterns\PatternScript.cs" />

@@ -41,7 +41,6 @@ namespace LeagueBot.Img
         //Does an image exist on our screen
         public static bool ImageExists(string image, int resolution = 3 )
         {
-
             if (ImageHelper.ImageTimestampExpired(image, STEP))
             {
 
@@ -59,10 +58,6 @@ namespace LeagueBot.Img
             return false;
 
         }
-
-
-
-
 
 
 

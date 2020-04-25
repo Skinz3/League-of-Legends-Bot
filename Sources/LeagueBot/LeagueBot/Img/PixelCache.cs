@@ -34,19 +34,28 @@ namespace LeagueBot.Img
 
         public static void Initialize()
         {
-            foreach (var file in Directory.GetFiles(Path.Combine(Environment.CurrentDirectory, PATH)))
+            string dir = Path.Combine(Environment.CurrentDirectory, PATH);
+
+            foreach (var file in Directory.EnumerateFiles(dir, "*.*", SearchOption.AllDirectories))
             {
                 if (EXTENSIONS.Contains(Path.GetExtension(file)))
                 {
+                    string key = file.Replace(dir, string.Empty);
+
                     Bitmap image = (Bitmap)Bitmap.FromFile(file);
-                    ImagePixels.Add(Path.GetFileName(file), ConvertImage(image));
-                    ImageHeigth.Add(Path.GetFileName(file), image.Height);
-                    ImageWidth.Add(Path.GetFileName(file), image.Width);
+                    ImagePixels.Add(key, ConvertImage(image));
+                    ImageHeigth.Add(key, image.Height);
+                    ImageWidth.Add(key, image.Width);
+
                     image.Dispose();
                 }
 
             }
 
+        }
+        public static bool Exists(string key)
+        {
+            return ImagePixels.ContainsKey(key);
         }
 
         public static int[] GetPixels(string filename)

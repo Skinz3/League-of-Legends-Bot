@@ -1,4 +1,5 @@
 ﻿using LeagueBot.Game;
+using LeagueBot.Game.Enums;
 using LeagueBot.Img;
 using LeagueBot.IO;
 using LeagueBot.Patterns;
@@ -14,6 +15,14 @@ using static LeagueBot.Windows.Interop;
 
 namespace LeagueBot
 {
+    /* 
+     * The user input settings (game mode, champion , champion behaviour)
+     * -> We create SessionParameters.cs that we pass to each scripts.
+     * Or
+     * 
+     * The user input settings (game mode, champion , champion behaviour)
+     * -> We create Session.cs that call scripts.
+     */
     class Program
     {
         [STAThread]

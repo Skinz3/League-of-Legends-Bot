@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace LeagueBot.Game.Enums
 {
-    public enum GameType
-    { 
-        Unknown,
-        Aram,
-        CoopAgainstIA,
+    public enum ChampionBehaviour
+    {
+        Agressive,
+        FollowAlly,
     }
 }

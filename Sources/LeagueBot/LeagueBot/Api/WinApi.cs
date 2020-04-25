@@ -1,6 +1,7 @@
 ﻿using InputManager;
 using LeagueBot.Img;
 using LeagueBot.IO;
+using LeagueBot.Patterns;
 using LeagueBot.Windows;
 using System;
 using System.Collections.Generic;
@@ -120,27 +121,7 @@ namespace LeagueBot.Api
          * Wait an image to be displayed on screen.
          */
 
-        public void waitForImage(string image)
-        {
-            bool exists = ImageRecognition.ImageExists(image);
-            while (!exists)
-            {
-                exists = ImageRecognition.ImageExists(image);
-                Thread.Sleep(1000);
-            }
-
-        }
-        public void leftClickImage(string image)
-        {
-            if (ImageRecognition.ImageExists(image))
-            {
-                Point coords = ImageRecognition.ImageCoords(image);
-
-                Mouse.Move(coords.X, coords.Y);
-                Mouse.PressButton(Mouse.MouseKeys.Left, 150);
-            }
-
-        }
+       
 
     }
 }

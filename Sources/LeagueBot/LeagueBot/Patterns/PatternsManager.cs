@@ -15,6 +15,7 @@ namespace LeagueBot.Patterns
     class PatternsManager
     {
         public const string PATH = "Patterns/";
+
         public const string EXTENSION = ".lua";
 
         static Dictionary<string, PatternScript> Scripts = new Dictionary<string, PatternScript>();
