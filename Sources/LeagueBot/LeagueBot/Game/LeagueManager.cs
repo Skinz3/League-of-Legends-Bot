@@ -29,6 +29,7 @@ namespace LeagueBot.Game
             config.Set("General", "RelativeTeamColors", "1");
             config.Set("General", "UserSetResolution", "1");
             config.Set("General", "Antialiasing", "0");
+            config.Set("General", "AutoAcquireTarget", "1");
 
 
             config.Set("Performance", "GraphicsSlider", "6");
