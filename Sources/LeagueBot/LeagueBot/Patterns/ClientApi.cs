@@ -19,7 +19,7 @@ namespace LeagueBot.Patterns
     {
 
 
-         private WinApi WinApi
+        private WinApi WinApi
         {
             get;
             set;
@@ -31,7 +31,7 @@ namespace LeagueBot.Patterns
         }
 
 
-     
+
 
         //Wait for the client by detecting when the play button is displayed
         public void waitForPlayButton()
@@ -39,7 +39,7 @@ namespace LeagueBot.Patterns
 
             bool normal = ImageRecognition.ImageExists("playNormal.png");
             bool hover = ImageRecognition.ImageExists("playHover.png");
-        
+
             while (!normal && !hover)
             {
                 normal = ImageRecognition.ImageExists("playNormal.png");
@@ -49,7 +49,7 @@ namespace LeagueBot.Patterns
 
         }
 
-       
+
         public void clickPlayButton()
         {
 
@@ -57,14 +57,15 @@ namespace LeagueBot.Patterns
             {
 
                 Point coords = ImageRecognition.ImageCoords("playNormal.png");
-                Mouse.Move(coords.X + ( PixelCache.GetWidth( "playNormal.png" ) / 2 ), coords.Y + ( PixelCache.GetHeight( "playNormal.png" ) / 2 ));
+                Mouse.Move(coords.X + (PixelCache.GetWidth("playNormal.png") / 2), coords.Y + (PixelCache.GetHeight("playNormal.png") / 2));
                 Mouse.PressButton(Mouse.MouseKeys.Left, 150);
 
-            }else if (ImageRecognition.ImageExists("playHover.png"))
+            }
+            else if (ImageRecognition.ImageExists("playHover.png"))
             {
 
                 Point coords = ImageRecognition.ImageCoords("playHover.png");
-                Mouse.Move(coords.X + ( PixelCache.GetWidth( "playHover.png" ) / 2 ), coords.Y + ( PixelCache.GetHeight( "playHover.png" ) / 2 ));
+                Mouse.Move(coords.X + (PixelCache.GetWidth("playHover.png") / 2), coords.Y + (PixelCache.GetHeight("playHover.png") / 2));
                 Mouse.PressButton(Mouse.MouseKeys.Left, 150);
             }
 
@@ -73,13 +74,13 @@ namespace LeagueBot.Patterns
 
         }
 
-         //Wait for the client by detecting when the play button is displayed
+        //Wait for the client by detecting when the play button is displayed
         public void waitForConfirmButton()
         {
 
             bool normal = ImageRecognition.ImageExists("confirmNormal.png");
             bool hover = ImageRecognition.ImageExists("confirmHover.png");
-        
+
             while (!normal && !hover)
             {
                 normal = ImageRecognition.ImageExists("confirmNormal.png");
@@ -90,21 +91,22 @@ namespace LeagueBot.Patterns
         }
 
 
-         public void clickConfirmButton()
+        public void clickConfirmButton()
         {
 
             if (ImageRecognition.ImageExists("confirmNormal.png"))
             {
 
                 Point coords = ImageRecognition.ImageCoords("confirmNormal.png");
-                Mouse.Move(coords.X + ( PixelCache.GetWidth( "confirmNormal.png" ) / 2 ), coords.Y + ( PixelCache.GetHeight( "confirmNormal.png" ) / 2 ));
+                Mouse.Move(coords.X + (PixelCache.GetWidth("confirmNormal.png") / 2), coords.Y + (PixelCache.GetHeight("confirmNormal.png") / 2));
                 Mouse.PressButton(Mouse.MouseKeys.Left, 150);
 
-            }else if (ImageRecognition.ImageExists("confirmHover.png"))
+            }
+            else if (ImageRecognition.ImageExists("confirmHover.png"))
             {
 
                 Point coords = ImageRecognition.ImageCoords("confirmHover.png");
-                Mouse.Move(coords.X + ( PixelCache.GetWidth( "confirmHover.png" ) / 2 ), coords.Y + ( PixelCache.GetHeight( "confirmHover.png" ) / 2 ));
+                Mouse.Move(coords.X + (PixelCache.GetWidth("confirmHover.png") / 2), coords.Y + (PixelCache.GetHeight("confirmHover.png") / 2));
                 Mouse.PressButton(Mouse.MouseKeys.Left, 150);
             }
 
@@ -117,7 +119,7 @@ namespace LeagueBot.Patterns
         public bool getConfirmButton()
         {
 
-            if( ImageRecognition.ImageExists("confirmNormal.png"))
+            if (ImageRecognition.ImageExists("confirmNormal.png"))
             {
 
                 return true;
@@ -126,7 +128,7 @@ namespace LeagueBot.Patterns
             else
             {
 
-                if( ImageRecognition.ImageExists("confirmHover.png"))
+                if (ImageRecognition.ImageExists("confirmHover.png"))
                 {
 
                     return true;
@@ -145,17 +147,17 @@ namespace LeagueBot.Patterns
 
 
 
-        public void clickGameMode( string type )
+        public void clickGameMode(string type)
         {
 
-            if( type == "summoners rift")
+            if (type == "summoners rift")
             {
 
                 if (ImageRecognition.ImageExists("summonersRiftNormal.png", 10))
                 {
 
                     Point coords = ImageRecognition.ImageCoords("summonersRiftNormal.png", 10);
-                    Mouse.Move(coords.X + ( PixelCache.GetWidth( "summonersRiftNormal.png" ) / 2 ), coords.Y + ( PixelCache.GetHeight( "summonersRiftNormal.png" ) / 2 ));
+                    Mouse.Move(coords.X + (PixelCache.GetWidth("summonersRiftNormal.png") / 2), coords.Y + (PixelCache.GetHeight("summonersRiftNormal.png") / 2));
                     Mouse.PressButton(Mouse.MouseKeys.Left, 150);
 
                 }
@@ -170,19 +172,20 @@ namespace LeagueBot.Patterns
                     }
 
                     Point coords = ImageRecognition.ImageCoords("summonersRiftHover.png", 10);
-                    Mouse.Move(coords.X + ( PixelCache.GetWidth( "summonersRiftHover.png" ) / 2 ), coords.Y + ( PixelCache.GetHeight( "summonersRiftHover.png" ) / 2 ));
+                    Mouse.Move(coords.X + (PixelCache.GetWidth("summonersRiftHover.png") / 2), coords.Y + (PixelCache.GetHeight("summonersRiftHover.png") / 2));
                     Mouse.PressButton(Mouse.MouseKeys.Left, 150);
 
                 }
 
-            }else if( type == "aram")
+            }
+            else if (type == "aram")
             {
 
                 if (ImageRecognition.ImageExists("aramNormal.png", 10))
                 {
 
                     Point coords = ImageRecognition.ImageCoords("aramNormal.png", 10);
-                    Mouse.Move(coords.X + ( PixelCache.GetWidth( "aramNormal.png" ) / 2 ), coords.Y + ( PixelCache.GetHeight( "aramNormal.png" ) / 2 ));
+                    Mouse.Move(coords.X + (PixelCache.GetWidth("aramNormal.png") / 2), coords.Y + (PixelCache.GetHeight("aramNormal.png") / 2));
                     Mouse.PressButton(Mouse.MouseKeys.Left, 150);
 
                 }
@@ -197,19 +200,20 @@ namespace LeagueBot.Patterns
                     }
 
                     Point coords = ImageRecognition.ImageCoords("aramHover.png", 10);
-                    Mouse.Move(coords.X + ( PixelCache.GetWidth( "aramHover.png" ) / 2 ), coords.Y + ( PixelCache.GetHeight( "aramHover.png" ) / 2 ));
+                    Mouse.Move(coords.X + (PixelCache.GetWidth("aramHover.png") / 2), coords.Y + (PixelCache.GetHeight("aramHover.png") / 2));
                     Mouse.PressButton(Mouse.MouseKeys.Left, 150);
 
                 }
 
-            }else if( type == "one for all")
+            }
+            else if (type == "one for all")
             {
 
                 if (ImageRecognition.ImageExists("oneForAllNormal.png", 10))
                 {
 
                     Point coords = ImageRecognition.ImageCoords("oneForAllNormal.png", 10);
-                    Mouse.Move(coords.X + ( PixelCache.GetWidth( "oneForAllNormal.png" ) / 2 ), coords.Y + ( PixelCache.GetHeight( "oneForAllNormal.png" ) / 2 ));
+                    Mouse.Move(coords.X + (PixelCache.GetWidth("oneForAllNormal.png") / 2), coords.Y + (PixelCache.GetHeight("oneForAllNormal.png") / 2));
                     Mouse.PressButton(Mouse.MouseKeys.Left, 150);
 
                 }
@@ -224,19 +228,20 @@ namespace LeagueBot.Patterns
                     }
 
                     Point coords = ImageRecognition.ImageCoords("oneForAllHover.png", 10);
-                    Mouse.Move(coords.X + ( PixelCache.GetWidth( "oneForAllHover.png" ) / 2 ), coords.Y + ( PixelCache.GetHeight( "oneForAllHover.png" ) / 2 ));
+                    Mouse.Move(coords.X + (PixelCache.GetWidth("oneForAllHover.png") / 2), coords.Y + (PixelCache.GetHeight("oneForAllHover.png") / 2));
                     Mouse.PressButton(Mouse.MouseKeys.Left, 150);
 
                 }
 
-            }else if( type == "teamfight tactics")
+            }
+            else if (type == "teamfight tactics")
             {
 
                 if (ImageRecognition.ImageExists("teamfightTacticsNormal.png", 10))
                 {
 
                     Point coords = ImageRecognition.ImageCoords("teamfightTacticsNormal.png", 10);
-                    Mouse.Move(coords.X + ( PixelCache.GetWidth( "teamfightTacticsNormal.png" ) / 2 ), coords.Y + ( PixelCache.GetHeight( "teamfightTacticsNormal.png" ) / 2 ));
+                    Mouse.Move(coords.X + (PixelCache.GetWidth("teamfightTacticsNormal.png") / 2), coords.Y + (PixelCache.GetHeight("teamfightTacticsNormal.png") / 2));
                     Mouse.PressButton(Mouse.MouseKeys.Left, 150);
 
                 }
@@ -251,7 +256,7 @@ namespace LeagueBot.Patterns
                     }
 
                     Point coords = ImageRecognition.ImageCoords("teamfightTacticsHover.png", 10);
-                    Mouse.Move(coords.X + ( PixelCache.GetWidth( "teamfightTacticsHover.png" ) / 2 ), coords.Y + ( PixelCache.GetHeight( "teamfightTacticsHover.png" ) / 2 ));
+                    Mouse.Move(coords.X + (PixelCache.GetWidth("teamfightTacticsHover.png") / 2), coords.Y + (PixelCache.GetHeight("teamfightTacticsHover.png") / 2));
                     Mouse.PressButton(Mouse.MouseKeys.Left, 150);
 
                 }
@@ -263,7 +268,7 @@ namespace LeagueBot.Patterns
                 //Unknown game mode
 
             }
-            
+
         }
 
 
