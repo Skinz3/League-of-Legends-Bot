@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static LeagueBot.Windows.Interop;
 
-namespace LeagueBot.Patterns
+namespace LeagueBot.Api
 {
     public class WinApi
     {
