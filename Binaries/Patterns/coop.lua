@@ -13,10 +13,6 @@ CAST_SPELL_TARGET = {}
 --------
 
 function Execute()
-
-    win:log("Waiting for league of legends process...");
-
-    win:waitProcessOpen(GAME_PROCESS_NAME);
  
     win:waitUntilProcessBounds(GAME_PROCESS_NAME,1030,797)    
 
@@ -101,6 +97,9 @@ function Execute()
 
     win:leftClick(962,903); -- skip honor
 
+    win:wait(2000);
+    
+    win:leftClick(960,936); -- close level up screen, if any
     win:wait(2000);
 
     win:leftClick(716,947); -- close game recap
