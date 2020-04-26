@@ -1,0 +1,3473 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Patagames.Ocr</name>
+    </assembly>
+    <members>
+        <member name="T:Patagames.Ocr.Enums.ImageFileFormat">
+            <summary>
+            Represents the image file format types
+            </summary>
+            <remarks>
+            The IFF_DEFAULT flag is used to write the file out in the
+            same(input) file format that the pix was read from.If the pix
+            was not read from file, the input format field will be
+            IFF_UNKNOWN and the output file format will be chosen to
+            be compressed and lossless; namely, IFF_TIFF_G4 for d = 1
+            and IFF_PNG for everything else.   IFF_JP2 is for jpeg2000, which
+            is not supported in leptonica.
+            </remarks>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.ImageFileFormat.IFF_UNKNOWN">
+            <summary>
+            Unknonw
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.ImageFileFormat.IFF_BMP">
+            <summary>
+            BMP image
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.ImageFileFormat.IFF_JFIF_JPEG">
+            <summary>
+            JPEG image
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.ImageFileFormat.IFF_PNG">
+            <summary>
+            PNG image
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.ImageFileFormat.IFF_TIFF">
+            <summary>
+            TIFF image
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.ImageFileFormat.IFF_TIFF_PACKBITS">
+            <summary>
+            TIFF image
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.ImageFileFormat.IFF_TIFF_RLE">
+            <summary>
+            TIFF image
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.ImageFileFormat.IFF_TIFF_G3">
+            <summary>
+            TIFF image
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.ImageFileFormat.IFF_TIFF_G4">
+            <summary>
+            TIFF image
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.ImageFileFormat.IFF_TIFF_LZW">
+            <summary>
+            TIFF image
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.ImageFileFormat.IFF_TIFF_ZIP">
+            <summary>
+            TIFF image
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.ImageFileFormat.IFF_PNM">
+            <summary>
+            PNM image
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.ImageFileFormat.IFF_PS">
+            <summary>
+            PS image
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.ImageFileFormat.IFF_GIF">
+            <summary>
+            GIF image
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.ImageFileFormat.IFF_JP2">
+            <summary>
+            JP2 image
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.ImageFileFormat.IFF_WEBP">
+            <summary>
+            WEBP image
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.ImageFileFormat.IFF_LPDF">
+            <summary>
+            LPDF image
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.ImageFileFormat.IFF_DEFAULT">
+            <summary>
+            Default file format. See remarks for details.
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.ImageFileFormat.IFF_SPIX">
+            <summary>
+            SPIX file format
+            </summary>
+        </member>
+        <member name="T:Patagames.Ocr.Enums.Languages">
+            <summary>
+            Represents the available languages
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.Afrikaans">
+            <summary>
+            Afrikaans language data
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.Amharic">
+            <summary>
+            * Amharic language data (A language of Ethiopia)
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.Arabic">
+            <summary>
+            Arabic language data
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.Assamese">
+            <summary>
+            * Assamese language data (A language of India)
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.Azerbaijani">
+            <summary>
+            Azerbaijani language data
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.AzerbaijaniCyr">
+            <summary>
+            Azerbaijani cyrillic language data
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.Belarusian">
+            <summary>
+            Belarusian language data
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.Bengali">
+            <summary>
+            Bengali language data
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.Tibetan">
+            <summary>
+            * Tibetan (Central) language data (A language of China)
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.Bosnian">
+            <summary>
+            * Bosnian language data (A language of Bosnia and Herzegovina)
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.Bulgarian">
+            <summary>
+            Bulgarian language data
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.Catalan">
+            <summary>
+            Catalan language data
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.Cebuano">
+            <summary>
+            * Cebuano language data (A language of Philippines)
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.Czech">
+            <summary>
+            Czech language data
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.ChineseSimplified">
+            <summary>
+            Chinese (Simplified) language data
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.ChineseTraditional">
+            <summary>
+            Chinese (Traditional) language data
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.Cherokee">
+            <summary>
+            Cherokee language data
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.Welsh">
+            <summary>
+            * Welsh language data (A language of United Kingdom)
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.Danish">
+            <summary>
+            Danish language data
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.DanishFraktur">
+            <summary>
+            Danish (Fraktur) language data
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.German">
+            <summary>
+            German language data
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.GermanFraktur">
+            <summary>
+            German (Fraktur) language data
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.Dzongkha">
+            <summary>
+            * Dzongkha language data (A language of Bhutan)
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.Greek">
+            <summary>
+            Greek language data
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.English">
+            <summary>
+            English language data
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.MiddleEnglish">
+            <summary>
+            Middle English (1100-1500) language data
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.Esperanto">
+            <summary>
+            Esperanto language data
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.MathEquation">
+            <summary>
+            Math / equation detection module
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.Estonian">
+            <summary>
+            Estonian language data
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.Basque">
+            <summary>
+            Basque language data
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.Persian">
+            <summary>
+            * Persian language data (A macrolanguage of Iran)
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.Finnish">
+            <summary>
+            Finnish language data
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.French">
+            <summary>
+            French language data
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.Frankish">
+            <summary>
+            Frankish language data
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.MiddleFrench">
+            <summary>
+            Middle French (ca. 1400-1600) language data
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.Irish">
+            <summary>
+            * Irish language data (A language of Ireland)
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.Galician">
+            <summary>
+            Galician language data
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.AncientGreek">
+            <summary>
+            Ancient Greek language data
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.Gujarati">
+            <summary>
+            * Gujarati language data (A language of India)
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.HaitianPrint">
+            <summary>
+            * Haitian language data (A language of Haiti)
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.Hebrew">
+            <summary>
+            Hebrew language data
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.Hindi">
+            <summary>
+            Hindi language data
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.Croatian">
+            <summary>
+            Croatian language data
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.Hungarian">
+            <summary>
+            Hungarian language data
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.Inuktitut">
+            <summary>
+            * Inuktitut language data (A macrolanguage of Canada)
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.Indonesian">
+            <summary>
+            Indonesian language data
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.Icelandic">
+            <summary>
+            Icelandic language data
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.Italian">
+            <summary>
+            Italian language data
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.ItalianOld">
+            <summary>
+             Italian (Old) language data
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.Javanese">
+            <summary>
+            * Javanese language data (A language of Indonesia)
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.Japanese">
+            <summary>
+            Japanese language data
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.Kannada">
+            <summary>
+            Kannada language data
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.Georgian">
+            <summary>
+            * Georgian language data (A language of Georgia)
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.GeorgianOld">
+            <summary>
+            * Georgian (Old) language data (A language of Georgia)
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.Kazakh">
+            <summary>
+            * Kazakh language data (A language of Kazakhstan)
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.Khmer">
+            <summary>
+            * Khmer (Central) language data (A language of Cambodia)
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.Kyrgyz">
+            <summary>
+            * Kyrgyz language data (A language of Kyrgyzstan)
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.Korean">
+            <summary>
+            Korean language data
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.Kurdish">
+            <summary>
+            * Kurdish language data (A macrolanguage of Iraq)
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.Laotian">
+            <summary>
+            * Laotian language data (A language of Laos)
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.Latin">
+            <summary>
+            * Latin language data (A language of Vatican State)
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.Latvian">
+            <summary>
+            Latvian language data
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.Lithuanian">
+            <summary>
+            Lithuanian language data
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.Malayalam">
+            <summary>
+            Malayalam language data
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.Maharashtra">
+            <summary>
+            * Maharashtra language data (A language of India)
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.Macedonian">
+            <summary>
+            Macedonian language data
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.Maltese">
+            <summary>
+            Maltese language data
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.Malay">
+            <summary>
+            Malay language data
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.Burmese">
+            <summary>
+            * Burmese language data (A language of Myanmar)
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.Nepali">
+            <summary>
+            * Nepali language data (A macrolanguage of Nepal)
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.Dutch">
+            <summary>
+            Dutch language data
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.Norwegian">
+            <summary>
+            Norwegian language data
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.Oriya">
+            <summary>
+            * Oriya language data (A macrolanguage of India)
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.OrientationScriptDetection">
+            <summary>
+            Orientation and Script Detection Data
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.Panjabi">
+            <summary>
+            * Panjabi (Eastern) language data (A language of India)
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.Polish">
+            <summary>
+            Polish language data
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.Portuguese">
+            <summary>
+            Portuguese language data
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.Pushto">
+            <summary>
+            * Pushto language data (A macrolanguage of Pakistan)
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.Romanian">
+            <summary>
+            Romanian language data
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.Russian">
+            <summary>
+            Russian Language Data
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.Sanskrit">
+            <summary>
+            * Sanskrit language data (A language of India)
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.Singhalese">
+            <summary>
+            * Singhalese language data (A language of Sri Lanka)
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.Slovakian">
+            <summary>
+            Slovakian language data
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.SlovakianFraktur">
+            <summary>
+            Slovakian (Fraktur) language data
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.Slovenian">
+            <summary>
+            Slovenian language data
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.Spanish">
+            <summary>
+            Spanish language data
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.SpanishOld">
+            <summary>
+            Spanish (Old) language data
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.Albanian">
+            <summary>
+            Albanian language data
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.Serbian">
+            <summary>
+            Serbian language data
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.SerbianLatin">
+            <summary>
+            Serbian (Latin) language data
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.Swahili">
+            <summary>
+            Swahili language data
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.Swedish">
+            <summary>
+            Swedish language data
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.Syriac">
+            <summary>
+            * Syriac script language data (A macrolanguage of Iraq)
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.Tamil">
+            <summary>
+            Tamil language data
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.Telugu">
+            <summary>
+            Telugu language data
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.Tajik">
+            <summary>
+            * Tajik (ISO 639-3) language data (A language of Tajikistan)
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.Tagalog">
+            <summary>
+            Tagalog language data
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.Thai">
+            <summary>
+            Thai language data
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.Tigrinya">
+            <summary>
+            * Tigrinya language data (A language of Ethiopia)
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.Turkish">
+            <summary>
+            Turkish language data
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.Uighur">
+            <summary>
+            * Uyghur (Uighur) language data (A language of China)
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.Ukrainian">
+            <summary>
+            Ukrainian language data
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.Urdu">
+            <summary>
+            * Urdu language data (A language of Pakistan)
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.Uzbek">
+            <summary>
+            * Uzbek language data (A macrolanguage of Uzbekistan)
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.UzbekCyr">
+            <summary>
+            * Uzbek (Cyrillic) language data (A macrolanguage of Uzbekistan)
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.Vietnamese">
+            <summary>
+            Vietnamese Language Data
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.Yiddish">
+            <summary>
+            * Yiddish language data (A macrolanguage of Israel)
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Languages.Last">
+            <summary>
+            The last value in the enumeration
+            </summary>
+        </member>
+        <member name="T:Patagames.Ocr.Enums.Orientation">
+            <summary>
+            Represents orientation
+            </summary>
+            <remarks>
+            Orientation Example:
+            | 1 Aaaa Aaaa Aaaa |  ====================
+            | Aaa aa aaa aa    |  To left is a diagram of some(1) English and
+            | aaaaaa A aa aaa. |  (2) Chinese text and a(3) photo credit.
+            |                2 |
+            |   #######  c c C |  Upright Latin characters are represented as A and a.
+            |   #######  c c c |  '←' represents a latin character rotated
+            | ← #######  c c c |      anti-clockwise 90 degrees.
+            | ← #######  c   c |
+            | ← #######  .   c |  Upright Chinese characters are represented C and c.
+            | 3 #######      c |
+            +------------------+  NOTA BENE: enum values here should match goodoc.proto
+            <para>If you orient your head so that "up" aligns with Orientation,
+            then the characters will appear "right side up" and readable.</para>
+            <para>In the example above, both the English and Chinese paragraphs are oriented
+            so their "up" is the top of the page (page up).  The photo credit is read
+            with one's head turned leftward ("up" is to page left).</para>
+            </remarks>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Orientation.ORIENTATION_PAGE_UP">
+            <summary>
+            Page up orientation
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Orientation.ORIENTATION_PAGE_RIGHT">
+            <summary>
+            Page right orientation
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Orientation.ORIENTATION_PAGE_DOWN">
+            <summary>
+            Page down orientation
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.Orientation.ORIENTATION_PAGE_LEFT">
+            <summary>
+            Page left orientation
+            </summary>
+        </member>
+        <member name="T:Patagames.Ocr.Enums.PageIteratorLevel">
+            <summary>
+            enum of the elements of the page hierarchy, used in ResultIterator 
+            to provide functions that operate on each level without having to
+            have 5x as many functions.
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.PageIteratorLevel.RIL_BLOCK">
+            <summary>
+            Block of text/image/separator line.
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.PageIteratorLevel.RIL_PARA">
+            <summary>
+            Paragraph within a block.
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.PageIteratorLevel.RIL_TEXTLINE">
+            <summary>
+            Line within a paragraph.
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.PageIteratorLevel.RIL_WORD">
+            <summary>
+            Word within a textline.
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.PageIteratorLevel.RIL_SYMBOL">
+            <summary>
+            Symbol/character within a word.
+            </summary>
+        </member>
+        <member name="T:Patagames.Ocr.Enums.PageSegMode">
+            <summary>
+            Represents the possible modes for page layout analysis. 
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.PageSegMode.PSM_OSD_ONLY">
+            <summary>
+            Orientation and script detection only.
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.PageSegMode.PSM_AUTO_OSD">
+            <summary>
+            Automatic page segmentation with orientation and script detection. (OSD)
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.PageSegMode.PSM_AUTO_ONLY">
+            <summary>
+            Automatic page segmentation, but no OSD, or OCR.
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.PageSegMode.PSM_AUTO">
+            <summary>
+            Fully automatic page segmentation, but no OSD.
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.PageSegMode.PSM_SINGLE_COLUMN">
+            <summary>
+            Assume a single column of text of variable sizes.
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.PageSegMode.PSM_SINGLE_BLOCK_VERT_TEXT">
+            <summary>
+            Assume a single uniform block of vertically aligned text.
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.PageSegMode.PSM_SINGLE_BLOCK">
+            <summary>
+            Assume a single uniform block of text. (Default.)
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.PageSegMode.PSM_SINGLE_LINE">
+            <summary>
+            Treat the image as a single text line.
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.PageSegMode.PSM_SINGLE_WORD">
+            <summary>
+            Treat the image as a single word.
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.PageSegMode.PSM_CIRCLE_WORD">
+            <summary>
+            Treat the image as a single word in a circle.
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.PageSegMode.PSM_SINGLE_CHAR">
+            <summary>
+            Treat the image as a single character.
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.PageSegMode.PSM_SPARSE_TEXT">
+            <summary>
+            Find as much text as possible in no particular order.
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.PageSegMode.PSM_SPARSE_TEXT_OSD">
+            <summary>
+            Sparse text with orientation and script det.
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.PageSegMode.PSM_RAW_LINE">
+            <summary>
+            Treat the image as a single text line, bypassing hacks that are Tesseract-specific.
+            </summary>
+        </member>
+        <member name="T:Patagames.Ocr.Enums.ParagraphJustification">
+            <summary>
+            Represents paragraph justification
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.ParagraphJustification.JUSTIFICATION_UNKNOWN">
+            <summary>
+            The alignment is not clearly one of the other options.  This could happen
+            for example if there are only one or two lines of text or the text looks
+            like source code or poetry.
+            </summary>
+            <remarks>
+            <note type="note">Fully justified paragraphs (text aligned to both left and right
+            margins) are marked by Tesseract with JUSTIFICATION_LEFT if their text
+            is written with a left-to-right script and with JUSTIFICATION_RIGHT if
+            their text is written in a right-to-left script.</note>
+            <para>
+            Interpretation for text read in vertical lines:
+            "Left" is wherever the starting reading position is.
+            </para>
+            </remarks>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.ParagraphJustification.JUSTIFICATION_LEFT">
+            <summary>
+            Each line, except possibly the first, is flush to the same left tab stop.
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.ParagraphJustification.JUSTIFICATION_CENTER">
+            <summary>
+            The text lines of the paragraph are centered about a line going
+            down through their middle of the text lines.
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.ParagraphJustification.JUSTIFICATION_RIGHT">
+            <summary>
+            Each line, except possibly the first, is flush to the same right tab stop.
+            </summary>
+        </member>
+        <member name="T:Patagames.Ocr.Enums.PolyBlockType">
+            <summary>
+            Possible types for a POLY_BLOCK or ColPartition.
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.PolyBlockType.PT_UNKNOWN">
+            <summary>
+            Type is not yet known. Keep as the first element.
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.PolyBlockType.PT_FLOWING_TEXT">
+            <summary>
+            Text that lives inside a column.
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.PolyBlockType.PT_HEADING_TEXT">
+            <summary>
+            Text that spans more than one column.
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.PolyBlockType.PT_PULLOUT_TEXT">
+            <summary>
+            Text that is in a cross-column pull-out region.
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.PolyBlockType.PT_EQUATION">
+            <summary>
+            Partition belonging to an equation region.
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.PolyBlockType.PT_INLINE_EQUATION">
+            <summary>
+            Partition has inline equation.
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.PolyBlockType.PT_TABLE">
+            <summary>
+            Partition belonging to a table region.
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.PolyBlockType.PT_VERTICAL_TEXT">
+            <summary>
+            Text-line runs vertically.
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.PolyBlockType.PT_CAPTION_TEXT">
+            <summary>
+            Text that belongs to an image.
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.PolyBlockType.PT_FLOWING_IMAGE">
+            <summary>
+            Image that lives inside a column.
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.PolyBlockType.PT_HEADING_IMAGE">
+            <summary>
+            Image that spans more than one column.
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.PolyBlockType.PT_PULLOUT_IMAGE">
+            <summary>
+            Image that is in a cross-column pull-out region.
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.PolyBlockType.PT_HORZ_LINE">
+            <summary>
+            Horizontal Line.
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.PolyBlockType.PT_VERT_LINE">
+            <summary>
+            Vertical Line.
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.PolyBlockType.PT_NOISE">
+            <summary>
+            Lies outside of any column.
+            </summary>
+        </member>
+        <member name="T:Patagames.Ocr.Enums.TextlineOrder">
+            <summary>
+            Represents the text lines are read in the given sequence.
+            </summary>
+            <remarks>
+            In English, the order is top-to-bottom.
+            In Chinese, vertical text lines are read right-to-left.Mongolian is
+            written in vertical columns top to bottom like Chinese, but the lines
+            order left-to right.
+            <note>Note that only some combinations make sense.For example,
+            WRITING_DIRECTION_LEFT_TO_RIGHT implies TEXTLINE_ORDER_TOP_TO_BOTTOM</note>
+            </remarks>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.TextlineOrder.TEXTLINE_ORDER_LEFT_TO_RIGHT">
+            <summary>
+            Left-to-right line order
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.TextlineOrder.TEXTLINE_ORDER_RIGHT_TO_LEFT">
+            <summary>
+            Right-to-left line order
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.TextlineOrder.TEXTLINE_ORDER_TOP_TO_BOTTOM">
+            <summary>
+            Top-to-bottom line order
+            </summary>
+        </member>
+        <member name="T:Patagames.Ocr.Enums.WritingDirection">
+            <summary>
+            The grapheme clusters within a line of text are laid out logically
+            in this direction, judged when looking at the text line rotated so that
+            its Orientation is "page up".
+            For English text, the writing direction is left-to-right.  For the
+            Chinese text in the above example, the writing direction is top-to-bottom.
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.WritingDirection.WRITING_DIRECTION_LEFT_TO_RIGHT">
+            <summary>
+            Left-to-rigth writing direction
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.WritingDirection.WRITING_DIRECTION_RIGHT_TO_LEFT">
+            <summary>
+            Right-to-left writing direction
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.WritingDirection.WRITING_DIRECTION_TOP_TO_BOTTOM">
+            <summary>
+            Top-to-bottom writing direction
+            </summary>
+        </member>
+        <member name="T:Patagames.Ocr.Enums.OcrEngineMode">
+            <summary>
+             Represents ocr engine mode
+            </summary>
+            <remarks>
+            When Tesseract/Cube is initialized we can choose to instantiate/load/run
+            only the Tesseract part, only the Cube part or both along with the combiner.
+            The preference of which engine to use is stored in tessedit_ocr_engine_mode.
+            </remarks>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.OcrEngineMode.OEM_TESSERACT_ONLY">
+            <summary>
+            Run Tesseract only - fastest
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.OcrEngineMode.OEM_CUBE_ONLY">
+            <summary>
+            Run Cube only - better accuracy, but slower
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.OcrEngineMode.OEM_TESSERACT_CUBE_COMBINED">
+            <summary>
+            Run both and combine results - best accuracy
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Enums.OcrEngineMode.OEM_DEFAULT">
+            <summary>
+            Specify this mode when calling init_*(),
+            to indicate that any of the above modes
+            should be automatically inferred from the
+            variables in the language-specific config,
+            command-line configs, or if not specified
+            in any of the above should be set to the
+            default OEM_TESSERACT_ONLY.
+            </summary>
+        </member>
+        <member name="T:Patagames.Ocr.Exceptions.CantCreateRendererException">
+            <summary>
+            The exception that is thrown when the renderer cannot be created for some reason.
+            </summary>
+        </member>
+        <member name="M:Patagames.Ocr.Exceptions.CantCreateRendererException.#ctor">
+            <summary>
+            Initializes a new instance of the CantCreateRendererException class.
+            </summary>
+        </member>
+        <member name="M:Patagames.Ocr.Exceptions.CantCreateRendererException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the CantCreateRendererException class with a specified error message.
+            </summary>
+            <param name="message">The message that describes the error. </param>
+            <remarks>
+            This constructor initializes the Message property of the new instance by using the message parameter. If the message parameter is null, this is the same as calling the Exception constructor.
+            </remarks>
+        </member>
+        <member name="T:Patagames.Ocr.Exceptions.CantGetIteratorException">
+            <summary>
+            The exception that is thrown when the iterator cannot be obtained for some reason.
+            </summary>
+        </member>
+        <member name="T:Patagames.Ocr.Exceptions.LanguageNotFoundException">
+            <summary>
+            The exception that is thrown when the requested language does not found in tessdata folder.
+            </summary>
+        </member>
+        <member name="M:Patagames.Ocr.Exceptions.LanguageNotFoundException.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the LanguageNotFoundException class.
+            </summary>
+            <param name="langName">Variable's name</param>
+            <param name="tessdataFolder">tessdata folder</param>
+        </member>
+        <member name="T:Patagames.Ocr.Exceptions.NoLicenseException">
+            <summary>
+             The exception that is thrown only in trial mode
+            </summary>
+        </member>
+        <member name="M:Patagames.Ocr.Exceptions.NoLicenseException.#ctor">
+            <summary>
+            Initializes a new instance of the NoLicenseException class.
+            </summary>
+        </member>
+        <member name="M:Patagames.Ocr.Exceptions.NoLicenseException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the NoLicenseException class.
+            </summary>
+        </member>
+        <member name="T:Patagames.Ocr.Exceptions.OcrException">
+            <summary>
+            Represents errors that occur during application execution.
+            </summary>
+        </member>
+        <member name="M:Patagames.Ocr.Exceptions.OcrException.#ctor">
+            <summary>
+            Initializes a new instance of the Exception class.
+            </summary>
+        </member>
+        <member name="M:Patagames.Ocr.Exceptions.OcrException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the Exception class with a specified error message.
+            </summary>
+            <param name="message">The message that describes the error. </param>
+            <remarks>
+            This constructor initializes the Message property of the new instance by using the message parameter. If the message parameter is null, this is the same as calling the Exception constructor.
+            </remarks>
+        </member>
+        <member name="T:Patagames.Ocr.Exceptions.CantAnalyseLayoutException">
+            <summary>
+            The exception that is thrown when the <see cref="M:Patagames.Ocr.OcrApi.AnalyseLayout"/> can't analyse page or page is empty.
+            </summary>
+        </member>
+        <member name="T:Patagames.Ocr.Exceptions.CantCopyIteratorException">
+            <summary>
+            The exception that is thrown when the iterator cannot be copied for some reason.
+            </summary>
+        </member>
+        <member name="T:Patagames.Ocr.Exceptions.CantRecognizeException">
+            <summary>
+            The exception that is thrown when the image cannot be recognized for some reason.
+            </summary>
+        </member>
+        <member name="T:Patagames.Ocr.Exceptions.ObjectNotFoundException">
+            <summary>
+            The exception that is thrown when the object does not found among appropriate collection.
+            </summary>
+        </member>
+        <member name="T:Patagames.Ocr.Exceptions.UnsupportedFormatExeption">
+            <summary>
+            The exception that is thrown when the requested operation is not supported.
+            </summary>
+        </member>
+        <member name="M:Patagames.Ocr.Exceptions.UnsupportedFormatExeption.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the UnsupportedFormatExeption class with a specified error message.
+            </summary>
+            <param name="message">The message that describes the error. </param>
+        </member>
+        <member name="T:Patagames.Ocr.Exceptions.VariableNotFoundException">
+            <summary>
+            The exception that is thrown when the variable does not found among Tesseract parameters.
+            </summary>
+        </member>
+        <member name="M:Patagames.Ocr.Exceptions.VariableNotFoundException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the VariableNotFoundException class.
+            </summary>
+            <param name="variableName">Variable's name</param>
+        </member>
+        <member name="T:Patagames.Ocr.OcrBoxa">
+            <summary>
+            Represents the leptonica-style array of boxes
+            </summary>
+        </member>
+        <member name="P:Patagames.Ocr.OcrBoxa.Boxes">
+            <summary>
+            Gets array of boxes
+            </summary>
+        </member>
+        <member name="P:Patagames.Ocr.OcrBoxa.Handle">
+            <summary>
+            Gets handle to internal tesseract object
+            </summary>
+        </member>
+        <member name="M:Patagames.Ocr.OcrBoxa.Dispose">
+            <summary>
+            Releases all resources used by this OcrBoxa
+            </summary>
+            <remarks>
+            Call Dispose when you are finished using the OcrBoxa. 
+            The Dispose method leaves the OcrBoxa in an unusable state. 
+            After calling Dispose, you must release all references to the OcrBoxa 
+            so the garbage collector can reclaim the memory that the OcrBoxa was occupying. 
+            </remarks>
+        </member>
+        <member name="T:Patagames.Ocr.OcrBoxTextRenderer">
+            <summary>
+            Create BoxText Renderer interface for rendering tesseract results into a document
+            </summary>
+            <remarks>
+            This interface is then used to inject the renderer class into 
+            tesseract when processing images.
+            <para>
+            For simplicity implementing this with tesesract version 3.01,
+            the renderer contains document state that is cleared from document
+            to document just as the TessBaseAPI is. This way the base API can just
+            delegate its rendering functionality to injected renderers, and the
+            renderers can manage the associated state needed for the specific formats
+            in addition to the heuristics for producing it.
+            </para>
+            </remarks>
+            <seealso cref="T:Patagames.Ocr.OcrTextRenderer"/>
+            <seealso cref="T:Patagames.Ocr.OcrHocrRenderer"/>
+            <seealso cref="T:Patagames.Ocr.OcrPdfRenderer"/>
+            <seealso cref="T:Patagames.Ocr.OcrUnlvRenderer"/>
+        </member>
+        <member name="M:Patagames.Ocr.OcrBoxTextRenderer.Create(System.String)">
+            <summary>
+            Create new instance of OcrBoxTextRenderer class.
+            </summary>
+            <param name="outputbase">Path to the output file without extension</param>
+            <returns>New instance of renderer. Throw exception if any errors occurs</returns>
+            <exception cref="T:Patagames.Ocr.Exceptions.CantCreateRendererException">The renderer cannot be created for some reason.</exception>
+        </member>
+        <member name="T:Patagames.Ocr.OcrChoiceIterator">
+            <summary>
+            Class to iterate over the classifier choices for a single RIL_SYMBOL.
+            </summary>
+        </member>
+        <member name="P:Patagames.Ocr.OcrChoiceIterator.Handle">
+            <summary>
+            Handle to internal tesseract iterator
+            </summary>
+        </member>
+        <member name="M:Patagames.Ocr.OcrChoiceIterator.Dispose">
+            <summary>
+            Releases all resources used by this OcrChoiceIterator
+            </summary>
+            <remarks>
+            Call Dispose when you are finished using the OcrChoiceIterator. 
+            The Dispose method leaves the OcrChoiceIterator in an unusable state. 
+            After calling Dispose, you must release all references to the OcrChoiceIterator 
+            so the garbage collector can reclaim the memory that the OcrChoiceIterator was occupying. 
+            </remarks>
+        </member>
+        <member name="M:Patagames.Ocr.OcrChoiceIterator.Next">
+            <summary>
+            Moves to the next choice for the symbol and returns false if there are none left.
+            </summary>
+            <returns>False if the end of the page was reached.</returns>
+        </member>
+        <member name="P:Patagames.Ocr.OcrChoiceIterator.Utf8Text">
+            <summary>
+            Gets the UTF-8 encoded text string for the current choice.
+            </summary>
+        </member>
+        <member name="P:Patagames.Ocr.OcrChoiceIterator.Confidence">
+            <summary>
+            Returns the confidence of the current choice.
+            The number should be interpreted as a percent probability. (0.0f-100.0f)
+            </summary>
+        </member>
+        <member name="T:Patagames.Ocr.OcrHocrRenderer">
+            <summary>
+            Create HOcr Renderer interface for rendering tesseract results into a document
+            </summary>
+            <remarks>
+            This interface is then used to inject the renderer class into 
+            tesseract when processing images.
+            <para>
+            For simplicity implementing this with tesesract version 3.01,
+            the renderer contains document state that is cleared from document
+            to document just as the TessBaseAPI is. This way the base API can just
+            delegate its rendering functionality to injected renderers, and the
+            renderers can manage the associated state needed for the specific formats
+            in addition to the heuristics for producing it.
+            </para>
+            </remarks>
+            <seealso cref="T:Patagames.Ocr.OcrTextRenderer"/>
+            <seealso cref="T:Patagames.Ocr.OcrPdfRenderer"/>
+            <seealso cref="T:Patagames.Ocr.OcrUnlvRenderer"/>
+            <seealso cref="T:Patagames.Ocr.OcrBoxTextRenderer"/>
+        </member>
+        <member name="M:Patagames.Ocr.OcrHocrRenderer.Create(System.String)">
+            <summary>
+            Create new instance of OcrHocrRenderer class.
+            </summary>
+            <param name="outputbase">Path to the output file without extension</param>
+            <returns>New instance of renderer. Throw exception if any errors occurs</returns>
+            <exception cref="T:Patagames.Ocr.Exceptions.CantCreateRendererException">The renderer connot be created for some reason.</exception>
+        </member>
+        <member name="M:Patagames.Ocr.OcrHocrRenderer.Create(System.String,System.Boolean)">
+            <summary>
+            Create new instance of OcrHocrRenderer class.
+            </summary>
+            <param name="outputbase">Path to the output file without extension</param>
+            <param name="fontInfo">Whether to print font information into output</param>
+            <returns>New instance of renderer. Throw exception if any errors occurs</returns>
+            <exception cref="T:Patagames.Ocr.Exceptions.CantCreateRendererException">The renderer cannot be created for some reason.</exception>		
+        </member>
+        <member name="T:Patagames.Ocr.OcrMutableIterator">
+            <summary>
+            Class to iterate over tesseract results, providing access to all levels of the page hierarchy.
+            </summary>
+            <remarks>
+            <note type="warning">
+            This class points to data held within the <see cref="T:Patagames.Ocr.OcrApi"/> class, and
+            therefore can only be used while the <see cref="T:Patagames.Ocr.OcrApi"/> class still exists and
+            has not been subjected to a call of <see cref="O:OcrApi.Init"/>, <see cref="O:OcrApi.SetImage"/>, <see cref="M:Patagames.Ocr.OcrApi.Recognize"/>, <see cref="M:Patagames.Ocr.OcrApi.Clear"/>, <see cref="M:Patagames.Ocr.OcrApi.Release"/>
+            or anything else that changes the internal PAGE_RES.
+            </note>
+            <see cref="T:Patagames.Ocr.OcrResultIterator"/> adds text-specific methods for access to OCR output.
+            <see cref="T:Patagames.Ocr.OcrMutableIterator"/> adds access to internal data structures.
+            </remarks>
+        </member>
+        <member name="T:Patagames.Ocr.OcrPageIterator">
+            <summary>
+            Class to iterate over tesseract results, providing access to all levels of the page hierarchy.
+            </summary>
+            <remarks>
+            <note type="warning">
+            This class points to data held within the <see cref="T:Patagames.Ocr.OcrApi"/> class, and
+            therefore can only be used while the <see cref="T:Patagames.Ocr.OcrApi"/> class still exists and
+            has not been subjected to a call of <see cref="O:OcrApi.Init"/>, <see cref="O:OcrApi.SetImage"/>, <see cref="M:Patagames.Ocr.OcrApi.Recognize"/>, <see cref="M:Patagames.Ocr.OcrApi.Clear"/>, <see cref="M:Patagames.Ocr.OcrApi.Release"/>, 
+            or anything else that changes the internal PAGE_RES.
+            </note>
+            </remarks>
+        </member>
+        <member name="P:Patagames.Ocr.OcrPageIterator.Handle">
+            <summary>
+            Handle to internal tesseract iterator
+            </summary>
+        </member>
+        <member name="P:Patagames.Ocr.OcrPageIterator.BlockType">
+            <summary>
+            Gets the type of the current block. See <see cref="T:Patagames.Ocr.Enums.PolyBlockType"/> for details.
+            </summary>
+        </member>
+        <member name="P:Patagames.Ocr.OcrPageIterator.Orientations">
+            <summary>
+            Gets orientation of the current iterator
+            </summary>
+        </member>
+        <member name="P:Patagames.Ocr.OcrPageIterator.WritingDirection">
+            <summary>
+            Gets writing direction of the current iterator
+            </summary>
+        </member>
+        <member name="P:Patagames.Ocr.OcrPageIterator.TextlineOrder">
+            <summary>
+            Gets text line order of the current iterator
+            </summary>
+        </member>
+        <member name="P:Patagames.Ocr.OcrPageIterator.DeskewAngle">
+            <summary>
+            Gets deskew angle of the current iterator
+            </summary>
+        </member>
+        <member name="P:Patagames.Ocr.OcrPageIterator.Justify">
+            <summary>
+            Get ParagraphJustification for the current paragraph, if available.
+            </summary>
+        </member>
+        <member name="P:Patagames.Ocr.OcrPageIterator.IsListItem">
+            <summary>
+            Check whether the current paragraph is a member of an ordered or unordered list
+            </summary>
+        </member>
+        <member name="P:Patagames.Ocr.OcrPageIterator.IsCrown">
+            <summary>
+            Check whether the first line of the paragraph is aligned with the other lines of the paragraph.
+            </summary>
+        </member>
+        <member name="P:Patagames.Ocr.OcrPageIterator.FirstLineIndent">
+            <summary>
+            Gets the indent of the first line of current paragraph
+            </summary>
+        </member>
+        <member name="M:Patagames.Ocr.OcrPageIterator.Dispose">
+            <summary>
+            Releases all resources used by this OcrPageIterator
+            </summary>
+            <remarks>
+            Call Dispose when you are finished using the OcrPageIterator. 
+            The Dispose method leaves the OcrPageIterator in an unusable state. 
+            After calling Dispose, you must release all references to the OcrPageIterator 
+            so the garbage collector can reclaim the memory that the OcrPageIterator was occupying. 
+            </remarks>
+        </member>
+        <member name="M:Patagames.Ocr.OcrPageIterator.Copy">
+            <summary>
+            PageIterators may be copied! This makes it possible to iterate over
+            all the objects at a lower level, while maintaining an iterator to
+            objects at a higher level.
+            </summary>
+            <returns>New instance of OcrPageIterator class if successful, throw exception otherwise</returns>
+            <exception cref="T:Patagames.Ocr.Exceptions.CantCopyIteratorException">Can't copy iterator for some reason</exception>
+        </member>
+        <member name="M:Patagames.Ocr.OcrPageIterator.Begin">
+            <summary>
+            Moves the iterator to point to the start of the page to begin an iteration
+            </summary>
+        </member>
+        <member name="M:Patagames.Ocr.OcrPageIterator.Next(Patagames.Ocr.Enums.PageIteratorLevel)">
+            <summary>
+            Moves to the start of the next object at the given level in the page hierarchy.
+            </summary>
+            <remarks>
+            <note type="note">
+            that RIL_SYMBOL will skip non-text blocks, but all other
+            <see cref="T:Patagames.Ocr.Enums.PageIteratorLevel"/> level values will visit each non-text block once.
+            Think of non text blocks as containing a single para, with a single line,
+            with a single imaginary word
+            </note>
+            <para>
+            Calls to Next with different levels may be freely intermixed.
+            </para>
+            <para>
+            This function iterates words in right-to-left scripts correctly, if
+            the appropriate language has been loaded into Tesseract.
+            </para>
+            </remarks>
+            <param name="level">Type of element of the page hierarchy.</param>
+            <returns>False if the end of the page was reached.</returns>
+        </member>
+        <member name="M:Patagames.Ocr.OcrPageIterator.IsAtBeginningOf(Patagames.Ocr.Enums.PageIteratorLevel)">
+            <summary>
+            Check whether the iterator is at the start of an object at the given level
+            </summary>
+            <param name="level">Type of element of the page hierarchy.</param>
+            <returns>true if the iterator is at the start of an object at the given level</returns>
+            <remarks>
+             For instance, suppose an iterator it is pointed to the first symbol of the
+            first word of the third line of the second paragraph of the first block in
+            a page, then:
+            <list type="bullet">
+            <listItem>it.IsAtBeginningOf(RIL_BLOCK) = false</listItem>
+            <listItem>it.IsAtBeginningOf(RIL_PARA) = false</listItem>
+            <listItem>it.IsAtBeginningOf(RIL_TEXTLINE) = true</listItem>
+            <listItem>it.IsAtBeginningOf(RIL_WORD) = true</listItem>
+            <listItem>it.IsAtBeginningOf(RIL_SYMBOL) = true</listItem>
+            </list>
+            </remarks>
+        </member>
+        <member name="M:Patagames.Ocr.OcrPageIterator.IsAtFinalElement(Patagames.Ocr.Enums.PageIteratorLevel,Patagames.Ocr.Enums.PageIteratorLevel)">
+            <summary>
+            Check whether the iterator is positioned at the last element in a given level. (e.g.the last word in a line, the last line in a block)
+            </summary>
+            <param name="level">Type of element of the page hierarchy.</param>
+            <param name="element">Type of element of the page hierarchy.</param>
+            <returns>true if the iterator is positioned at the last element in a given level</returns>
+        </member>
+        <member name="M:Patagames.Ocr.OcrPageIterator.GetBoundingBox(Patagames.Ocr.Enums.PageIteratorLevel)">
+            <summary>
+            Gets bounding rectangle of the current object at the given level.
+            </summary>
+            <param name="level">Type of element of the page hierarchy.</param>
+            <returns>Returns the bounding rectangle, or throw <see cref="T:Patagames.Ocr.Exceptions.ObjectNotFoundException"/> if there is no such object at the current position.</returns>
+            <remarks>
+            The returned bounding box is guaranteed to match the size and position
+            of the image returned by <see cref="M:Patagames.Ocr.OcrPageIterator.GetBinaryImage(Patagames.Ocr.Enums.PageIteratorLevel)"/>, but may clip foreground pixels
+            from a grey image.The padding argument to <see cref="M:Patagames.Ocr.OcrPageIterator.GetImage(Patagames.Ocr.Enums.PageIteratorLevel,System.Int32,Patagames.Ocr.OcrPix,System.Int32@,System.Int32@)"/> can be used to expand
+            the image to include more foreground pixels. See <see cref="M:Patagames.Ocr.OcrPageIterator.GetImage(Patagames.Ocr.Enums.PageIteratorLevel,System.Int32,Patagames.Ocr.OcrPix,System.Int32@,System.Int32@)"/> for details.
+            </remarks>
+            <exception cref="T:Patagames.Ocr.Exceptions.ObjectNotFoundException">Thrown if there is no such object at the current position</exception>
+        </member>
+        <member name="M:Patagames.Ocr.OcrPageIterator.GetBinaryImage(Patagames.Ocr.Enums.PageIteratorLevel)">
+            <summary>
+            Get f binary image of the current object at the given level.
+            </summary>
+            <param name="level">Type of element of the page hierarchy.</param>
+            <returns>Binary image of the current object at the given level</returns>
+            <remarks>
+            The position and size match the return from BoundingBoxInternal, and so this
+            could be upscaled with respect to the original input image.
+            The following methods are used to generate the images:
+            <list type="bullet">
+            <listItem>RIL_BLOCK: mask the page image with the block polygon.</listItem>
+            <listItem>RIL_TEXTLINE: Clip the rectangle of the line box from the page image.</listItem>
+            <listItem>TODO(rays) fix this to generate and use a line polygon.</listItem>
+            <listItem>RIL_WORD: Clip the rectangle of the word box from the page image.</listItem>
+            <listItem>RIL_SYMBOL: Render the symbol outline to an image for cblobs (prior to recognition) or the bounding box otherwise.</listItem>
+            </list>
+            A reconstruction of the original image (using xor to check for double
+            representation) should be reasonably accurate,
+            apart from removed noise, at the block level.Below the block level, the
+            reconstruction will be missing images and line separators.
+            At the symbol level, kerned characters will be invade the bounding box
+            if rendered after recognition, making an xor reconstruction inaccurate, but
+            an or construction better.Before recognition, symbol-level reconstruction
+            should be good, even with xor, since the images come from the connected
+            components.
+            </remarks>
+        </member>
+        <member name="M:Patagames.Ocr.OcrPageIterator.GetImage(Patagames.Ocr.Enums.PageIteratorLevel,System.Int32,Patagames.Ocr.OcrPix,System.Int32@,System.Int32@)">
+            <summary>
+            Get an image of the current object at the given level in greyscale if available in the input.
+            </summary>
+            <param name="level">Type of element of the page hierarchy.</param>
+            <param name="padding">Padding for original image. See remarks for detail.</param>
+            <param name="origImage">If not null, then extract from the original image instead of the binary image.</param>
+            <param name="left">Left position of returned image</param>
+            <param name="top">Top position of returned image</param>
+            <returns>an image of the current object at the given level.</returns>
+            <remarks>
+            To guarantee a binary image use <see cref="M:Patagames.Ocr.OcrPageIterator.GetBinaryImage(Patagames.Ocr.Enums.PageIteratorLevel)"/>.
+            <note type="note">
+            NOTE that in order to give the best possible image, the bounds are
+            expanded slightly over the binary connected component, by the supplied
+            padding, so the top-left position of the returned image is returned
+            in (left,top). These will most likely not match the coordinates
+            returned by <see cref="M:Patagames.Ocr.OcrPageIterator.GetBoundingBox(Patagames.Ocr.Enums.PageIteratorLevel)"/>.
+            </note>
+            If you do not supply an original image, you will get a binary one.
+            </remarks>
+        </member>
+        <member name="M:Patagames.Ocr.OcrPageIterator.GetBaseLine(Patagames.Ocr.Enums.PageIteratorLevel)">
+            <summary>
+            Get the baseline of the current object at the given level.
+            </summary>
+            <param name="level">Type of element of the page hierarchy.</param>
+            <returns>the baseline of the current object, or throw <see cref="T:Patagames.Ocr.Exceptions.ObjectNotFoundException"/> if there is no baseline at the current position.</returns>
+            <remarks>
+            <note type="warning">with vertical text, baselines may be vertical!</note>
+            </remarks>
+            <exception cref="T:Patagames.Ocr.Exceptions.ObjectNotFoundException">Thrown if there is no baseline at the current position.</exception>
+        </member>
+        <member name="M:Patagames.Ocr.OcrPageIterator.GetIteratorParams(Patagames.Ocr.Enums.Orientation@,Patagames.Ocr.Enums.WritingDirection@,Patagames.Ocr.Enums.TextlineOrder@,System.Single@)">
+            <summary>
+            Get orientation for the block the iterator points to.
+            </summary>
+            <param name="orientation">Orientation. See <see cref="T:Patagames.Ocr.Enums.Orientation"/> for details.</param>
+            <param name="writingDirection">Writing direction. See <see cref="P:Patagames.Ocr.OcrPageIterator.WritingDirection"/> for details.</param>
+            <param name="textLineOrder">Text line order. See <see cref="P:Patagames.Ocr.OcrPageIterator.TextlineOrder"/> for details.</param>
+            <param name="deskewAngle">after rotating the block so the text orientation is
+            upright, how many radians does one have to rotate the
+            block anti-clockwise for it to be level? -Pi/4 ⇐ deskew_angle ⇐ Pi/4</param>
+        </member>
+        <member name="M:Patagames.Ocr.OcrPageIterator.GetParagraphInfo(Patagames.Ocr.Enums.ParagraphJustification@,System.Boolean@,System.Boolean@,System.Int32@)">
+            <summary>
+            Get information about the current paragraph, if available.
+            </summary>
+            <param name="justification">LEFT if ragged right, or fully justified and script is left-to-right. 
+            RIGHT if ragged left, or fully justified and script is right-to-left. 
+            Unknown if it looks like source code or we have very few lines.</param>
+            <param name="isListItem">true if we believe this is a member of an ordered or unordered list.</param>
+            <param name="isCrown">true if the first line of the paragraph is aligned with the other
+            lines of the paragraph even though subsequent paragraphs have first
+            line indents.This typically indicates that this is the continuation
+            of a previous paragraph or that it is the very first paragraph in
+            the chapter.</param>
+            <param name="firstLineIndent">See remarks for details.</param>
+            <remarks>
+            first line indent - 
+            <para>
+            For LEFT aligned paragraphs, the first text line of paragraphs of
+            this kind are indented this many pixels from the left edge of the
+            rest of the paragraph.
+            </para>
+            <para>
+            for RIGHT aligned paragraphs, the first text line of paragraphs of
+            this kind are indented this many pixels from the right edge of the
+            rest of the paragraph.
+            </para>
+            <note type="note">This value may be negative.</note>
+            <note type="note">if is_crown == true, the first line of this paragraph is
+            actually flush, and first_line_indent is set to the "common"
+            first line indent for subsequent paragraphs in this block
+            of text.</note>
+            </remarks>
+        </member>
+        <member name="T:Patagames.Ocr.Pix">
+            <summary>
+            Represents the leptonica image
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Pix.Width">
+            <summary>
+            Width in pixels 
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Pix.Height">
+            <summary>
+            Height in pixels
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Pix.Bpp">
+            <summary>
+            Depth in bits
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Pix.Spp">
+            <summary>
+            Number of samples per pixel 
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Pix.Wpl">
+            <summary>
+            32-bit words per line   
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Pix.XRes">
+            <summary>
+            Image res (ppi) in x direction (use 0 if unknown)
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Pix.YRes">
+            <summary>
+            Image res (ppi) in y direction (use 0 if unknown)  
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Pix.InputFormat">
+            <summary>
+            Input file format, IFF_*
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Pix.Special">
+            <summary>
+            Special instructions for I/O, etc
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Pix.Text">
+            <summary>
+            Text string associated with pix
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Pix.ColorMap">
+            <summary>
+            Colormap (may be null)
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Pix.Data">
+            <summary>
+            The image data
+            </summary>
+        </member>
+        <member name="T:Patagames.Ocr.PixColormap">
+            <summary>
+            Represents the color map
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.PixColormap.array">
+            <summary>
+            colormap table
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.PixColormap.bpp">
+            <summary>
+            Depth of pix (1, 2, 4 or 8 bpp)   
+            </summary>
+        </member>
+        <member name="T:Patagames.Ocr.RGBA_Quad">
+            <summary>
+            The RGBA_Quad structure describes a color consisting of relative intensities of red, green, blue and alpha.
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.RGBA_Quad.Blue">
+            <summary>
+            The intensity of blue in the color.
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.RGBA_Quad.Green">
+            <summary>
+            The intensity of green in the color.
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.RGBA_Quad.Red">
+            <summary>
+            The intensity of red in the color.
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.RGBA_Quad.Alpha">
+            <summary>
+            The intensity of the opacity.
+            </summary>
+        </member>
+        <member name="T:Patagames.Ocr.Box">
+            <summary>
+            Stores a set of four integers that represent the location and size of a rectangle
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Box.X">
+            <summary>
+            The x-coordinate of the upper-left corner of this Box structure.
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Box.Y">
+            <summary>
+            The y-coordinate of the upper-left corner of this Box structure.
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Box.Width">
+            <summary>
+            The width of this Box structure.
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.Box.Height">
+            <summary>
+            The height of this Box structure.
+            </summary>
+        </member>
+        <member name="T:Patagames.Ocr.OcrPdfRenderer">
+            <summary>
+            Create PDF Renderer interface for rendering tesseract results into a document
+            </summary>
+            <remarks>
+            This interface is then used to inject the renderer class into 
+            tesseract when processing images.
+            <para>
+            For simplicity implementing this with tesesract version 3.01,
+            the renderer contains document state that is cleared from document
+            to document just as the TessBaseAPI is. This way the base API can just
+            delegate its rendering functionality to injected renderers, and the
+            renderers can manage the associated state needed for the specific formats
+            in addition to the heuristics for producing it.
+            </para>
+            </remarks>
+            <seealso cref="T:Patagames.Ocr.OcrTextRenderer"/>
+            <seealso cref="T:Patagames.Ocr.OcrHocrRenderer"/>
+            <seealso cref="T:Patagames.Ocr.OcrUnlvRenderer"/>
+            <seealso cref="T:Patagames.Ocr.OcrBoxTextRenderer"/>
+        </member>
+        <member name="M:Patagames.Ocr.OcrPdfRenderer.Create(System.String,System.String)">
+            <summary>
+            Create new instance of OcrPdfRenderer class.
+            </summary>
+            <param name="outputbase">Path to the output file without extension</param>
+            <param name="dataDir">The location of the TESSDATA. We need it because we load a custom PDF font from this location (pdf.ttf).</param>
+            <returns>New instance of renderer. Throw exception if any errors occurs</returns>
+            <exception cref="T:Patagames.Ocr.Exceptions.CantCreateRendererException">The renderer cannot be created for some reason.</exception>
+        </member>
+        <member name="T:Patagames.Ocr.OcrPix">
+            <summary>
+            Represents the leptonica-style image
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.OcrPix._pix">
+            <summary>
+            Gets leptonica image
+            </summary>
+        </member>
+        <member name="P:Patagames.Ocr.OcrPix.Bpp">
+            <summary>
+            Gets the depth in bits (bits per pixel)
+            </summary>
+        </member>
+        <member name="P:Patagames.Ocr.OcrPix.ColorMap">
+            <summary>
+            Gets the colormap (may be null)
+            </summary>
+        </member>
+        <member name="P:Patagames.Ocr.OcrPix.ColorMapBpp">
+            <summary>
+            Colr map depth in bits per pixel (1, 2, 4 or 8 bpp)
+            </summary>
+        </member>
+        <member name="P:Patagames.Ocr.OcrPix.Scan0">
+            <summary>
+            Gets the address of the first pixel data in the image. This can also be thought of as the first scan line in the image.
+            </summary>
+        </member>
+        <member name="P:Patagames.Ocr.OcrPix.Width">
+            <summary>
+            Gets the pixel width of the image. This can also be thought of as the number of pixels in one scan line. 
+            </summary>
+        </member>
+        <member name="P:Patagames.Ocr.OcrPix.Height">
+            <summary>
+            Gets the pixel height of the image. Also sometimes referred to as the number of scan lines.
+            </summary>
+        </member>
+        <member name="P:Patagames.Ocr.OcrPix.FileFormat">
+            <summary>
+            Gets input file format, IFF_*
+            </summary>
+        </member>
+        <member name="P:Patagames.Ocr.OcrPix.Special">
+            <summary>
+            Gets special instructions for I/O, etc
+            </summary>
+        </member>
+        <member name="P:Patagames.Ocr.OcrPix.Spp">
+            <summary>
+            Gets the number of samples per pixel 
+            </summary>
+        </member>
+        <member name="P:Patagames.Ocr.OcrPix.Text">
+            <summary>
+            Gets the text string associated with pix
+            </summary>
+        </member>
+        <member name="P:Patagames.Ocr.OcrPix.Stride">
+            <summary>
+            Gets the stride width (also called scan width) of the image.
+            </summary>
+        </member>
+        <member name="P:Patagames.Ocr.OcrPix.XRes">
+            <summary>
+            Gets image res (ppi) in x direction (use 0 if unknown)
+            </summary>
+        </member>
+        <member name="P:Patagames.Ocr.OcrPix.YRes">
+            <summary>
+            Gets image res (ppi) in y direction (use 0 if unknown)  
+            </summary>
+        </member>
+        <member name="P:Patagames.Ocr.OcrPix.Handle">
+            <summary>
+            Gets handle to internal tesseract object
+            </summary>
+        </member>
+        <member name="M:Patagames.Ocr.OcrPix.Dispose">
+            <summary>
+            Releases all resources used by this OcrPix
+            </summary>
+            <remarks>
+            Call Dispose when you are finished using the OcrPix. 
+            The Dispose method leaves the OcrPix in an unusable state. 
+            After calling Dispose, you must release all references to the OcrPix 
+            so the garbage collector can reclaim the memory that the OcrPix was occupying. 
+            </remarks>
+        </member>
+        <member name="M:Patagames.Ocr.OcrPix.FromFile(System.String)">
+            <summary>
+            Creates new instance of OcrPix class from file
+            </summary>
+            <param name="filename">Path to the image file</param>
+            <returns>New instance of OcrPix class from file</returns>
+            <exception cref="T:Patagames.Ocr.Exceptions.OcrException">Unable to load file</exception>
+        </member>
+        <member name="M:Patagames.Ocr.OcrPix.FromRaw(System.IntPtr,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Creates new instance of OcrPix class.
+            </summary>
+            <param name="scan0">The address of the first pixel data in the bitmap. This can also be thought of as the first scan line in the bitmap.</param>
+            <param name="bpp">Bits per Pixel</param>
+            <param name="stride">The stride width in bytes (also called scan width) of the image</param>
+            <param name="width">Width of the image.</param>
+            <param name="height">Height of the image.</param>
+            <returns>The new instance of OcrPix class.</returns>
+            <exception cref="T:Patagames.Ocr.Exceptions.UnsupportedFormatExeption">The given bpp is not supported.</exception>
+            <exception cref="T:Patagames.Ocr.Exceptions.OcrException">Unable to create image for some reason.</exception>
+            <remarks>
+            Greyscale of 8 and color of 24 or 32 bits per pixel may be given.
+            Palette color images will not work properly and must be converted to
+            24 bit.
+            Binary images of 1 bit per pixel may also be given but they must be
+            byte packed with the MSB of the first byte being the first pixel, and a
+            1 represents WHITE. For binary images set bytes_per_pixel= 0.
+            The data should be in bgr format.
+            </remarks>
+        </member>
+        <member name="M:Patagames.Ocr.OcrPix.FromBitmap(System.Drawing.Bitmap)">
+            <summary>
+            Creates new instance of OcrPix class.
+            </summary>
+            <param name="image">The image</param>
+            <returns>The new instance of OcrPix class.</returns>
+            <exception cref="T:Patagames.Ocr.Exceptions.UnsupportedFormatExeption">The given bpp is not supported.</exception>
+            <exception cref="T:Patagames.Ocr.Exceptions.OcrException">Unable to create image for some reason.</exception>
+            <remarks>
+            Greyscale of 8 and color of 24 or 32 bits per pixel may be given.
+            Palette color images will not work properly and must be converted to
+            24 bit.
+            Binary images of 1 bit per pixel may also be given but they must be
+            byte packed with the MSB of the first byte being the first pixel, and a
+            1 represents WHITE. For binary images set bytes_per_pixel= 0.
+            </remarks>
+        </member>
+        <member name="M:Patagames.Ocr.OcrPix.Save(System.String,Patagames.Ocr.Enums.ImageFileFormat)">
+            <summary>
+            Writes image into file.
+            </summary>
+            <param name="filename">Path to output file</param>
+            <param name="format">Image format.</param>
+            <remarks>
+            <para>
+            If the default image format IFF_DEFAULT is requested:
+            use the input format if known; otherwise, use a lossless format.
+            </para>
+            </remarks>
+        </member>
+        <member name="T:Patagames.Ocr.OcrPixa">
+            <summary>
+            Represents the leptonica-style array of images
+            </summary>
+        </member>
+        <member name="P:Patagames.Ocr.OcrPixa.Boxes">
+            <summary>
+            Gets array of boxes
+            </summary>
+        </member>
+        <member name="P:Patagames.Ocr.OcrPixa.Pixes">
+            <summary>
+            Gets array of leptonica-style images
+            </summary>
+        </member>
+        <member name="P:Patagames.Ocr.OcrPixa.Handle">
+            <summary>
+            Gets handle to internal tesseract object
+            </summary>
+        </member>
+        <member name="M:Patagames.Ocr.OcrPixa.Dispose">
+            <summary>
+            Releases all resources used by this OcrPixa
+            </summary>
+            <remarks>
+            Call Dispose when you are finished using the OcrPixa. 
+            The Dispose method leaves the OcrPixa in an unusable state. 
+            After calling Dispose, you must release all references to the OcrPixa 
+            so the garbage collector can reclaim the memory that the OcrPixa was occupying. 
+            </remarks>
+        </member>
+        <member name="T:Patagames.Ocr.OcrResultIterator">
+            <summary>
+            Class to iterate over tesseract results, providing access to all levels of the page hierarchy.
+            </summary>
+            <remarks>
+            <note type="warning">
+            This class points to data held within the <see cref="T:Patagames.Ocr.OcrApi"/> class, and
+            therefore can only be used while the <see cref="T:Patagames.Ocr.OcrApi"/> class still exists and
+            has not been subjected to a call of <see cref="O:OcrApi.Init"/>, <see cref="O:OcrApi.SetImage"/>, <see cref="M:Patagames.Ocr.OcrApi.Recognize"/>, <see cref="M:Patagames.Ocr.OcrApi.Clear"/>, <see cref="M:Patagames.Ocr.OcrApi.Release"/>
+            or anything else that changes the internal PAGE_RES.
+            </note>
+            <see cref="T:Patagames.Ocr.OcrResultIterator"/> adds text-specific methods for access to OCR output.
+            </remarks>	
+        </member>
+        <member name="P:Patagames.Ocr.OcrResultIterator.Handle">
+            <summary>
+            Handle to internal tesseract iterator
+            </summary>
+        </member>
+        <member name="P:Patagames.Ocr.OcrResultIterator.PageIterator">
+            <summary>
+            Gets instance of <see cref="T:Patagames.Ocr.OcrPageIterator"/> class.
+            </summary>
+        </member>
+        <member name="P:Patagames.Ocr.OcrResultIterator.ChoiceIterator">
+            <summary>
+            Gets instance of <see cref="T:Patagames.Ocr.OcrChoiceIterator"/> class.
+            </summary>
+        </member>
+        <member name="P:Patagames.Ocr.OcrResultIterator.WordRecognitionLanguage">
+            <summary>
+            Return the name of the language used to recognize this word.
+            </summary>
+        </member>
+        <member name="P:Patagames.Ocr.OcrResultIterator.WordFontName">
+            <summary>
+            Gets a font name of the word
+            </summary>
+        </member>
+        <member name="P:Patagames.Ocr.OcrResultIterator.WordIsBold">
+            <summary>
+            Check whether a font of the word is bold.
+            </summary>
+        </member>
+        <member name="P:Patagames.Ocr.OcrResultIterator.WordIsItalic">
+            <summary>
+            Check whether a font of the word is italic.
+            </summary>
+        </member>
+        <member name="P:Patagames.Ocr.OcrResultIterator.WordIsUnderlined">
+            <summary>
+            Check whether a font of the word is underlined.
+            </summary>
+        </member>
+        <member name="P:Patagames.Ocr.OcrResultIterator.WordIsMonospace">
+            <summary>
+            Check whether a font of the word is monospace.
+            </summary>
+        </member>
+        <member name="P:Patagames.Ocr.OcrResultIterator.WordIsSerif">
+            <summary>
+            Check whether a font of the word is a serif font.
+            </summary>
+        </member>
+        <member name="P:Patagames.Ocr.OcrResultIterator.WordIsSmallCaps">
+            <summary>
+            Check whether a font of the word have a small caps
+            </summary>
+        </member>
+        <member name="P:Patagames.Ocr.OcrResultIterator.WordPointSize">
+            <summary>
+            Gets the point size of the font. Pointsize is returned in printers points (1/72 inch.)
+            </summary>
+        </member>
+        <member name="P:Patagames.Ocr.OcrResultIterator.WordFontId">
+            <summary>
+            Gets the font id.
+            </summary>
+        </member>
+        <member name="P:Patagames.Ocr.OcrResultIterator.WordIsFromDictionary">
+            <summary>
+            Returns true if the current word was found in a dictionary.
+            </summary>
+        </member>
+        <member name="P:Patagames.Ocr.OcrResultIterator.WordIsNumeric">
+            <summary>
+            Returns true if the current word is numeric.
+            </summary>
+        </member>
+        <member name="P:Patagames.Ocr.OcrResultIterator.SymbolIsSuperscript">
+            <summary>
+            Returns true if the current symbol is a superscript.
+            If iterating at a higher level object than symbols, eg words, then
+            this will return the attributes of the first symbol in that word.
+            </summary>
+        </member>
+        <member name="P:Patagames.Ocr.OcrResultIterator.SymbolIsSubscript">
+            <summary>
+            Returns true if the current symbol is a subscript.
+            If iterating at a higher level object than symbols, eg words, then
+            this will return the attributes of the first symbol in that word.
+            </summary>
+        </member>
+        <member name="P:Patagames.Ocr.OcrResultIterator.SymbolIsDropcap">
+            <summary>
+            Returns true if the current symbol is a dropcap.
+            If iterating at a higher level object than symbols, eg words, then
+            this will return the attributes of the first symbol in that word.
+            </summary>
+        </member>
+        <member name="M:Patagames.Ocr.OcrResultIterator.Dispose">
+            <summary>
+            Releases all resources used by this OcrResultIterator
+            </summary>
+            <remarks>
+            Call Dispose when you are finished using the OcrResultIterator. 
+            The Dispose method leaves the OcrResultIterator in an unusable state. 
+            After calling Dispose, you must release all references to the OcrResultIterator 
+            so the garbage collector can reclaim the memory that the OcrResultIterator was occupying. 
+            </remarks>
+        </member>
+        <member name="M:Patagames.Ocr.OcrResultIterator.Copy">
+            <summary>
+            ResultIterators may be copied! This makes it possible to iterate over
+            all the objects at a lower level, while maintaining an iterator to
+            objects at a higher level.
+            </summary>
+            <returns>New instance of OcrResultIterator class if successful, throw exception otherwise</returns>
+            <exception cref="T:Patagames.Ocr.Exceptions.CantCopyIteratorException">Can't copy iterator for some reason</exception>
+        </member>
+        <member name="M:Patagames.Ocr.OcrResultIterator.Next(Patagames.Ocr.Enums.PageIteratorLevel)">
+            <summary>
+            Moves to the start of the next object at the given level in the page hierarchy in the appropriate reading order.
+            </summary>
+            <param name="level">Type of element of the page hierarchy.</param>
+            <returns>False if the end of the page was reached.</returns>
+            <remarks>
+            <note type="note">
+            that RIL_SYMBOL will skip non-text blocks, but all other
+            <see cref="T:Patagames.Ocr.Enums.PageIteratorLevel"/> level values will visit each non-text block once.
+            Think of non text blocks as containing a single para, with a single line,
+            with a single imaginary word
+            </note>
+            <para>
+            Calls to Next with different levels may be freely intermixed.
+            </para>
+            <para>
+            This function iterates words in right-to-left scripts correctly, if
+            the appropriate language has been loaded into Tesseract.
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Patagames.Ocr.OcrResultIterator.GetUtf8Text(Patagames.Ocr.Enums.PageIteratorLevel)">
+            <summary>
+            Get the UTF-8 encoded text string for the current object at the given level.
+            </summary>
+            <param name="level">Type of element of the page hierarchy.</param>
+            <returns> encoded text string for the current object at the given level</returns>
+        </member>
+        <member name="M:Patagames.Ocr.OcrResultIterator.GetConfidence(Patagames.Ocr.Enums.PageIteratorLevel)">
+            <summary>
+            Returns the mean confidence of the current object at the given level.
+            The number should be interpreted as a percent probability. (0.0f-100.0f)
+            </summary>
+            <param name="level">Type of element of the page hierarchy.</param>
+            <returns>Returns the mean confidence of the current object at the given level.</returns>
+        </member>
+        <member name="M:Patagames.Ocr.OcrResultIterator.WordFontAttributes(System.Boolean@,System.Boolean@,System.Boolean@,System.Boolean@,System.Boolean@,System.Boolean@,System.Int32@,System.Int32@)">
+            <summary>
+            Get the font attributes of the current word. If iterating at a higher
+            level object than words, eg textlines, then this will return the
+            attributes of the first word in that textline.
+            </summary>
+            <param name="isBold"></param>
+            <param name="isItalic"></param>
+            <param name="isUnderlined"></param>
+            <param name="isMonospace"></param>
+            <param name="isSerif"></param>
+            <param name="isSmallCaps"></param>
+            <param name="pointSize"></param>
+            <param name="fontId"></param>
+            <returns>A string representing a font name</returns>
+            <remarks>
+            Lifespan is the same as the iterator itself, ie rendered invalid by various members of
+            <see cref="T:Patagames.Ocr.OcrApi"/>, including <see cref="O:OcrApi.Init"/>, <see cref="O:OcrApi.SetImage"/>, <see cref="M:Patagames.Ocr.OcrApi.Release"/> or deleting the <see cref="T:Patagames.Ocr.OcrApi"/>.
+            Pointsize is returned in printers points (1/72 inch.)
+            </remarks>
+        </member>
+        <member name="T:Patagames.Ocr.OcrResultRenderer">
+            <summary>
+            The base interface for rendering tesseract results into a document, such as text,
+            HOCR or pdf. This interface is then used to inject the renderer class into
+            tesseract when processing images.
+            For simplicity implementing this with tesesract version 3.01,
+            the renderer contains document state that is cleared from document
+            to document just as the <see cref="T:Patagames.Ocr.OcrApi"/> is. This way the base API can just
+            delegate its rendering functionality to injected renderers, and the
+            renderers can manage the associated state needed for the specific formats
+            in addition to the heuristics for producing it.
+            </summary>
+        </member>
+        <member name="F:Patagames.Ocr.OcrResultRenderer.NeedDelete">
+            <summary>
+            Indicates what the native object shold be deleted on dispose
+            </summary>
+        </member>
+        <member name="P:Patagames.Ocr.OcrResultRenderer.Handle">
+            <summary>
+            Handle to internal tesseract renderer
+            </summary>
+        </member>
+        <member name="P:Patagames.Ocr.OcrResultRenderer.Extension">
+            <summary>
+            Gets renderer extension
+            </summary>
+        </member>
+        <member name="P:Patagames.Ocr.OcrResultRenderer.Title">
+            <summary>
+            Gets document title
+            </summary>
+        </member>
+        <member name="P:Patagames.Ocr.OcrResultRenderer.ImageCount">
+            <summary>
+            Gets the index of the last image given to AddImage
+            (i.e. images are incremented whether the image succeeded or not)
+            </summary>
+            <remarks>
+            This is always defined. It means either the number of the
+            current image, the last image ended, or in the completed document
+            depending on when in the document lifecycle you are looking at it.
+            Will return -1 if a document was never started.
+            </remarks>
+        </member>
+        <member name="M:Patagames.Ocr.OcrResultRenderer.Dispose">
+            <summary>
+            Releases all resources used by this OcrResultRenderer
+            </summary>
+            <remarks>
+            Call Dispose when you are finished using the OcrPixa. 
+            The Dispose method leaves the OcrResultRenderer in an unusable state. 
+            After calling Dispose, you must release all references to the OcrResultRenderer 
+            so the garbage collector can reclaim the memory that the OcrResultRenderer was occupying. 
+            </remarks>
+        </member>
+        <member name="M:Patagames.Ocr.OcrResultRenderer.Next">
+            <summary>
+            Get next rendeder.
+            </summary>
+            <returns>Returns the next renderer or NULL.</returns>
+        </member>
+        <member name="M:Patagames.Ocr.OcrResultRenderer.Insert(Patagames.Ocr.OcrResultRenderer)">
+            <summary>
+            Insert renderer
+            </summary>
+            <param name="next">The renderer, before which will be inserted the current renderer</param>
+            <remarks>
+            <note type="warning">Must be new'd instance.</note>
+            Renderers aren't ordered, but appends the sequences of next parameter
+            and existing next(). The renderers should be unique across both lists.
+            </remarks>
+        </member>
+        <member name="M:Patagames.Ocr.OcrResultRenderer.BeginDocument(System.String)">
+            <summary>
+            Starts a new document with the given title. This clears the contents of the output data.
+            </summary>
+            <param name="title">The title.</param>
+            <returns>True if successful, False otherwise.</returns>
+        </member>
+        <member name="M:Patagames.Ocr.OcrResultRenderer.EndDocument">
+            <summary>
+            Finishes the document and finalizes the output data.  Invalid if <see cref="M:Patagames.Ocr.OcrResultRenderer.BeginDocument(System.String)"/> not yet called.
+            </summary>
+            <returns>True if successful, False otherwise.</returns>
+        </member>
+        <member name="M:Patagames.Ocr.OcrResultRenderer.AddImage(Patagames.Ocr.OcrApi)">
+            <summary>
+            Adds the recognized text from the source image to the current document.
+            Invalid if BeginDocument not yet called.
+            </summary>
+            <param name="api">instance of the <see cref="T:Patagames.Ocr.OcrApi"/> class</param>
+            <returns>True if successful, False otherwise.</returns>
+            <remarks>
+            <note type="note">
+            Note that this API is a bit weird but is designed to fit into the
+            current <see cref="T:Patagames.Ocr.OcrApi"/> implementation where the api has lots of state
+            information that we might want to add in.
+            </note>
+            </remarks>
+        </member>
+        <member name="T:Patagames.Ocr.OcrTextRenderer">
+            <summary>
+            Represents UTF8 Text Renderer interface for rendering tesseract results into a document
+            </summary>
+            <remarks>
+            This interface is then used to inject the renderer class into 
+            tesseract when processing images.
+            <para>
+            For simplicity implementing this with tesesract version 3.01,
+            the renderer contains document state that is cleared from document
+            to document just as the TessBaseAPI is. This way the base API can just
+            delegate its rendering functionality to injected renderers, and the
+            renderers can manage the associated state needed for the specific formats
+            in addition to the heuristics for producing it.
+            </para>
+            </remarks>
+            <seealso cref="T:Patagames.Ocr.OcrHocrRenderer"/>
+            <seealso cref="T:Patagames.Ocr.OcrPdfRenderer"/>
+            <seealso cref="T:Patagames.Ocr.OcrUnlvRenderer"/>
+            <seealso cref="T:Patagames.Ocr.OcrBoxTextRenderer"/>
+        </member>
+        <member name="M:Patagames.Ocr.OcrTextRenderer.Create(System.String)">
+            <summary>
+            Create new instance of OcrTextRenderer class.
+            </summary>
+            <param name="outputbase">Path to the output file without extension</param>
+            <returns>New instance of renderer. Throw exception if any errors occurs</returns>
+            <exception cref="T:Patagames.Ocr.Exceptions.CantCreateRendererException">The renderer cannot be created for some reason.</exception>
+        </member>
+        <member name="T:Patagames.Ocr.OcrUnlvRenderer">
+            <summary>
+            Create UNLV Renderer interface for rendering tesseract results into a document
+            </summary>
+            <remarks>
+            This interface is then used to inject the renderer class into 
+            tesseract when processing images.
+            <para>
+            For simplicity implementing this with tesesract version 3.01,
+            the renderer contains document state that is cleared from document
+            to document just as the TessBaseAPI is. This way the base API can just
+            delegate its rendering functionality to injected renderers, and the
+            renderers can manage the associated state needed for the specific formats
+            in addition to the heuristics for producing it.
+            </para>
+            </remarks>
+            <seealso cref="T:Patagames.Ocr.OcrTextRenderer"/>
+            <seealso cref="T:Patagames.Ocr.OcrHocrRenderer"/>
+            <seealso cref="T:Patagames.Ocr.OcrPdfRenderer"/>
+            <seealso cref="T:Patagames.Ocr.OcrBoxTextRenderer"/>
+        </member>
+        <member name="M:Patagames.Ocr.OcrUnlvRenderer.Create(System.String)">
+            <summary>
+            Create new instance of OcrUnlvRenderer class.
+            </summary>
+            <param name="outputbase">Path to the output file without extension</param>
+            <returns>New instance of renderer. Throw exception if any errors occurs</returns>
+            <exception cref="T:Patagames.Ocr.Exceptions.CantCreateRendererException">The renderer cannot be created for some reason.</exception>
+        </member>
+        <member name="T:Patagames.Ocr.Properties.Error">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Patagames.Ocr.Properties.Error.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Patagames.Ocr.Properties.Error.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Patagames.Ocr.Properties.Error.err0001">
+            <summary>
+              Looks up a localized string similar to Unable to load DLL &apos;tesseract.dll&apos;: The specified module could not be found.  Please make sure that you copy it to the application folder.  Alternatively, you can specify the full path to the tesseract.dll file using specificPath parameter in the TessBaseAPICreate method.
+            </summary>
+        </member>
+        <member name="P:Patagames.Ocr.Properties.Error.err0002">
+            <summary>
+              Looks up a localized string similar to Unable to create the OCR API.
+            </summary>
+        </member>
+        <member name="P:Patagames.Ocr.Properties.Error.err0003">
+            <summary>
+              Looks up a localized string similar to Unable to initialize the OCR API.
+            </summary>
+        </member>
+        <member name="P:Patagames.Ocr.Properties.Error.err0004">
+            <summary>
+              Looks up a localized string similar to the dataPath can&apos;t be empty. The datapath must be the name of the parent directory of tessdata and must end in / . .
+            </summary>
+        </member>
+        <member name="P:Patagames.Ocr.Properties.Error.err0005">
+            <summary>
+              Looks up a localized string similar to Variable &apos;{0}&apos; not found.
+            </summary>
+        </member>
+        <member name="P:Patagames.Ocr.Properties.Error.err0006">
+            <summary>
+              Looks up a localized string similar to The image with 0, 8(grayscale), 24 or 32 bits per pixel may be given only..
+            </summary>
+        </member>
+        <member name="P:Patagames.Ocr.Properties.Error.err0007">
+            <summary>
+              Looks up a localized string similar to Renderer extension is null..
+            </summary>
+        </member>
+        <member name="P:Patagames.Ocr.Properties.Error.err0008">
+            <summary>
+              Looks up a localized string similar to Unknown renderer extension: {0}.
+            </summary>
+        </member>
+        <member name="P:Patagames.Ocr.Properties.Error.err0009">
+            <summary>
+              Looks up a localized string similar to Unable to load file: {0}.
+            </summary>
+        </member>
+        <member name="P:Patagames.Ocr.Properties.Error.err0010">
+            <summary>
+              Looks up a localized string similar to Unable to create the image..
+            </summary>
+        </member>
+        <member name="P:Patagames.Ocr.Properties.Error.err0011">
+            <summary>
+              Looks up a localized string similar to Unable to save image: {0}.
+            </summary>
+        </member>
+        <member name="P:Patagames.Ocr.Properties.Error.err0012">
+             <summary>
+               Looks up a localized string similar to 
+            This method unsupported in OEM_CUBE_ONLY mode.
+             </summary>
+        </member>
+        <member name="P:Patagames.Ocr.Properties.Error.err0013">
+            <summary>
+              Looks up a localized string similar to The requested language &apos;{0}&apos; not found in tessdata folder &apos;{1}&apos;. Please download it from http://tesseract.patagames.com/langs/ and put into the tessdata folder..
+            </summary>
+        </member>
+        <member name="P:Patagames.Ocr.Properties.Error.err0014">
+            <summary>
+              Looks up a localized string similar to Unknown language.
+            </summary>
+        </member>
+        <member name="P:Patagames.Ocr.Properties.Error.err0015">
+            <summary>
+              Looks up a localized string similar to The image with 24, 32, 48 or 64 bits per pixel may be given only..
+            </summary>
+        </member>
+        <member name="P:Patagames.Ocr.Properties.Error.TrialFileSize">
+            <summary>
+              Looks up a localized string similar to With the trial version the text files which size is smaller than 10 bytes can be loaded without any restrictions. For other files the allowed sizes is 20 - 30 bytes; 40 - 50 bytes; 60 - 70 bytes and so on..
+            </summary>
+        </member>
+        <member name="P:Patagames.Ocr.Properties.Error.TrialImageSize">
+            <summary>
+              Looks up a localized string similar to With the trial version the images which width is smaller than 500 pixels can be loaded without any restrictions. For other images the allowed widths is 500 - 550 pixels; 600 - 650 pixels; 700 - 750 pixels and so on..
+            </summary>
+        </member>
+        <member name="T:Patagames.Ocr.OcrApi">
+            <summary>
+            Base class for all tesseract APIs.
+            </summary>
+            <threadsafety static="true" instance="false"/>
+        </member>
+        <member name="P:Patagames.Ocr.OcrApi.LicenseKey">
+            <summary>
+            Gets or sets license key. Null for trial mode.
+            </summary>
+        </member>
+        <member name="P:Patagames.Ocr.OcrApi.PathToEngine">
+            <summary>
+            Gets or sets path to the tesseract.dll. Null for automatic detection. See remarks sections for detail.
+            </summary>
+            <remarks>
+            <para>In some cases, library initializer can not find tesseract.dll library to load.
+            A typical example of this situation is a Web application.
+            Web apps is running in a IIS working directory, unlike the classical apps. As a consequence, standard LoadLibrary function can not find the dll during loading process.
+            </para>
+            <para>In this case, you must explicitly specify the full path to the tesseract.dll file through this property.</para>
+            <para>
+            The initialization algorithm is as follows:
+            <list type="number">
+            <item>Attempting to load dll from the path which received through PathToEngine property.</item>
+            <item>Attempting to load dll from x64 or x86 folder.Needed folder automatically detected by based the process compilation mode and operating system.</item>
+            <item>Attempting to load dll from the working directory of the process which call initialization.</item>
+            <item>Attempting to load dll from the same directory where placed assembly which call initialization.</item>
+            <item>Otherwise, initialization error.</item>
+            </list>
+            </para>
+            </remarks>
+        </member>
+        <member name="P:Patagames.Ocr.OcrApi.Handle">
+            <summary>
+            Gets the handle to the tesseract API object
+            </summary>
+        </member>
+        <member name="P:Patagames.Ocr.OcrApi.Version">
+            <summary>
+            Gets the version identifier as a static string.
+            </summary>
+        </member>
+        <member name="P:Patagames.Ocr.OcrApi.InputName">
+            <summary>
+            Gets or sets the name of the input file. 
+            Needed for training and reading a UNLV zone file, and for searchable PDF output.
+            </summary>
+            <remarks>
+            This property are required for searchable PDF output.
+            We need our hands on the input file so that we can include
+            it in the PDF without transcoding. If that is not possible,
+            we need the original image. Finally, resolution metadata
+            is stored in the PDF so we need that as well.
+            </remarks>
+        </member>
+        <member name="P:Patagames.Ocr.OcrApi.InputImage">
+            <summary>
+            Gets or sets the input image
+            </summary>
+            <remarks>
+            This property are required for searchable PDF output.
+            We need our hands on the input file so that we can include
+            it in the PDF without transcoding. If that is not possible,
+            we need the original image. Finally, resolution metadata
+            is stored in the PDF so we need that as well.
+            </remarks>
+        </member>
+        <member name="P:Patagames.Ocr.OcrApi.SourceResolution">
+            <summary>
+            Gets or set the resolution of the source image in pixels per inch.
+            This should be setted right after <see cref="O:SetImage"/>, and will let us return
+            appropriate font sizes for the text.
+            </summary>
+        </member>
+        <member name="P:Patagames.Ocr.OcrApi.DataPath">
+            <summary>
+            Gets the path to the tessdata folder
+            </summary>
+        </member>
+        <member name="P:Patagames.Ocr.OcrApi.OutputName">
+            <summary>
+            Gets or sets the name of the output files. Needed only for debugging.
+            </summary>
+        </member>
+        <member name="P:Patagames.Ocr.OcrApi.InitLanguages">
+            <summary>
+            Gets the languages string used in the last valid initialization.
+            </summary>
+            <remarks>
+            If the last initialization specified "deu+hin" then that will be
+            returned.If hin loaded eng automatically as well, then that will
+            not be included in this list.To find the languages actually
+            loaded use <see cref="P:Patagames.Ocr.OcrApi.LoadedLanguages"/>
+            </remarks>
+        </member>
+        <member name="P:Patagames.Ocr.OcrApi.LoadedLanguages">
+            <summary>
+            Gets the loaded languages. Includes all languages loaded by the last Init, including those 
+            loaded as dependencies of other loaded languages
+            </summary>
+        </member>
+        <member name="P:Patagames.Ocr.OcrApi.AvailableLanguages">
+            <summary>
+            Gets the available languages.
+            </summary>
+        </member>
+        <member name="P:Patagames.Ocr.OcrApi.PageSegmentationMode">
+            <summary>
+            Gets or sets the current page segmentation mode.
+            </summary>
+            <remarks>
+            Defaults PSM_AUTO. The mode is stored as an IntParam so it can also be modified by
+            <see cref="M:Patagames.Ocr.OcrApi.ReadConfigFiles(System.String)"/> or <see cref="M:Patagames.Ocr.OcrApi.SetVariable(System.String,System.String,System.Boolean)"/>("tessedit_pageseg_mode", mode as string).
+            </remarks>
+        </member>
+        <member name="P:Patagames.Ocr.OcrApi.Rectangle">
+            <summary>
+            Restrict recognition to a sub-rectangle of the image. 
+            </summary>
+            <remarks>Should be sets after <see cref="O:SetImage"/>.
+            Each sets Rectangle clears the recogntion results so multiple rectangles
+            can be recognized with the same image.</remarks>
+        </member>
+        <member name="P:Patagames.Ocr.OcrApi.ThresholdedImage">
+            <summary>
+            Get a copy of the internal thresholded image from Tesseract.
+            </summary>
+        </member>
+        <member name="P:Patagames.Ocr.OcrApi.ThresholdedImageScaleFactor">
+            <summary>
+            Gets the scale factor of the thresholded image that would be returned <see cref="P:Patagames.Ocr.OcrApi.ThresholdedImage"/>
+            and the various methods that call <see cref="O:GetComponentImages"/>.
+            Equals 0 if no thresholder has been set.
+            </summary>
+        </member>
+        <member name="P:Patagames.Ocr.OcrApi.Iterator">
+            <summary>
+            Get a reading-order iterator to the results of LayoutAnalysis and/or <see cref="M:Patagames.Ocr.OcrApi.Recognize"/>.
+            </summary>
+            <remarks>
+            WARNING! This class points to data held within the <see cref="T:Patagames.Ocr.OcrApi"/> class, and
+            therefore can only be used while the <see cref="T:Patagames.Ocr.OcrApi"/> class still exists and
+            has not been subjected to a call of <see cref="O:Init"/>, <see cref="O:SetImage"/>, <see cref="M:Patagames.Ocr.OcrApi.Recognize"/>, <see cref="M:Patagames.Ocr.OcrApi.Clear"/>, <see cref="M:Patagames.Ocr.OcrApi.Release"/>,
+            or anything else that changes the internal PAGE_RES.
+            </remarks>
+            <exception cref="T:Patagames.Ocr.Exceptions.CantGetIteratorException"></exception>
+        </member>
+        <member name="P:Patagames.Ocr.OcrApi.MutableIterator">
+            <summary>
+            Get a mutable iterator to the results of LayoutAnalysis and/or <see cref="M:Patagames.Ocr.OcrApi.Recognize"/>.
+            </summary>
+            <remarks>
+            WARNING! This class points to data held within the TessBaseAPI class, and
+            therefore can only be used while the <see cref="T:Patagames.Ocr.OcrApi"/> class still exists and
+            has not been subjected to a call of <see cref="O:Init"/>, <see cref="O:SetImage"/>, <see cref="M:Patagames.Ocr.OcrApi.Recognize"/>, <see cref="M:Patagames.Ocr.OcrApi.Clear"/>, <see cref="M:Patagames.Ocr.OcrApi.Release"/>,
+            or anything else that changes the internal PAGE_RES.
+            </remarks>
+        </member>
+        <member name="P:Patagames.Ocr.OcrApi.TextConfidences">
+            <summary>
+            Gets the (average) confidence value between 0 and 100.
+            </summary>
+        </member>
+        <member name="P:Patagames.Ocr.OcrApi.AllWordConfidences">
+            <summary>
+            Returns all word confidences (between 0 and 100) in an array.
+            </summary>
+            <remarks>
+            The number of confidences should correspond to the number of space-delimited words in <see cref="M:Patagames.Ocr.OcrApi.GetUtf8Text"/>.
+            </remarks>
+        </member>
+        <member name="M:Patagames.Ocr.OcrApi.Dispose">
+            <summary>
+            Releases all resources used by this OcrApi
+            </summary>
+            <remarks>
+            Call Dispose when you are finished using the OcrApi. 
+            The Dispose method leaves the OcrApi in an unusable state. 
+            After calling Dispose, you must release all references to the OcrApi 
+            so the garbage collector can reclaim the memory that the OcrApi was occupying. 
+            </remarks>        
+        </member>
+        <member name="M:Patagames.Ocr.OcrApi.Create">
+            <summary>
+            Create handle to base APIs interface
+            </summary>
+            <returns>Handle to created base APIs interface</returns>
+            <remarks>
+            <para>In some cases, library initializer can not find tesseract.dll library to load.
+            A typical example of this situation is a Web application.
+            Web apps is running in a IIS working directory, unlike the classical apps. As a consequence, standard LoadLibrary function can not find the dll during loading process.
+            </para>
+            <para>In this case, you must explicitly specify the full path to the tesseract.dll file through <see cref="P:Patagames.Ocr.OcrApi.PathToEngine"/> property.</para>
+            <para>
+            The initialization algorithm is as follows:
+            <list type="number">
+            <item>Attempting to load dll from the path which received through <see cref="P:Patagames.Ocr.OcrApi.PathToEngine"/> property.</item>
+            <item>Attempting to load dll from x64 or x86 folder.Needed folder automatically detected by based the process compilation mode and operating system.</item>
+            <item>Attempting to load dll from the working directory of the process which call initialization.</item>
+            <item>Attempting to load dll from the same directory where placed assembly which call initialization.</item>
+            <item>Otherwise, initialization error.</item>
+            </list>
+            </para>
+            </remarks>
+        </member>
+        <member name="M:Patagames.Ocr.OcrApi.Init(System.String,System.String,Patagames.Ocr.Enums.OcrEngineMode,System.String[],System.String[],System.String[],System.Boolean,System.Boolean)">
+            <summary>
+            Initialize the OCR SDK library
+            </summary>
+            <param name="dataPath">The datapath must be the name of the parent directory of tessdata and must end in / . Any name after the last / will be stripped. NULL will default to current folder.</param>
+            <param name="language">The language is (usually) an ISO 639-3 string or NULL will default to eng.</param>
+            <param name="oem">Ocr engine mode. See <see cref="T:Patagames.Ocr.Enums.OcrEngineMode"/> for detail</param>
+            <param name="configs">An array of names of configuration files. Configuration file must be placed in configs or tessconfigs subfolders in dataPath</param>
+            <param name="varsVec">An array of variables (names)</param>
+            <param name="varsValues">An array of variables (values)</param>
+            <param name="setOnlyNonDebugParams">If true, only params that do not contain "debug" in the name will be set</param>
+            <param name="checkLanguage">If true then engine will check the availability of requested language prior initialization.</param>
+            <remarks>
+            <note type="note">
+            Instances are mostly thread-safe and totally independent,
+            but some global parameters remain. Basically it is safe to use multiple
+            OcrApis in different threads in parallel, UNLESS:
+            you use <see cref="M:Patagames.Ocr.OcrApi.SetVariable(System.String,System.String,System.Boolean)"/> on some of the Params in classify and textord.
+            If you do, then the effect will be to change it for all your instances.
+            </note>
+            
+            <para>For full list of tesseract variables see this article: <conceptualLink target="b4effc4b-310d-4f1f-99a0-65bc001cd765" /> </para>
+            That the only members that may be called before Init are those listed below:
+            <list type="bullet">
+            <item><see cref="M:Patagames.Ocr.OcrApi.PrintVariablesToFile(System.String)"/></item>
+            <item><see cref="M:Patagames.Ocr.OcrApi.GetStringVariable(System.String)"/></item>
+            <item><see cref="M:Patagames.Ocr.OcrApi.GetDoubleVariable(System.String)"/></item>
+            <item><see cref="P:Patagames.Ocr.OcrApi.SourceResolution"/></item>
+            <item><see cref="M:Patagames.Ocr.OcrApi.GetBoolVariable(System.String)"/></item>
+            <item><see cref="M:Patagames.Ocr.OcrApi.GetIntVariable(System.String)"/></item>
+            <item><see cref="M:Patagames.Ocr.OcrApi.SetVariable(System.String,System.String,System.Boolean)"/></item>
+            <item><see cref="P:Patagames.Ocr.OcrApi.InputImage"/></item>
+            <item><see cref="P:Patagames.Ocr.OcrApi.OutputName"/></item>
+            <item><see cref="P:Patagames.Ocr.OcrApi.InputName"/></item>
+            <item><see cref="P:Patagames.Ocr.OcrApi.DataPath"/></item>
+            <item><see cref="P:Patagames.Ocr.OcrApi.Version"/></item>
+            </list>
+            <para>
+            It is entirely safe (and eventually will be efficient too) to call 
+            Init multiple times on the same instance to change language, or just
+            to reset the classifier.
+            </para>
+            <para>
+            The language may be a string of the form [~]lang[+[~]lang]* indicating
+            that multiple languages are to be loaded.Eg hin+eng will load Hindi and
+            English.Languages may specify internally that they want to be loaded
+            with one or more other languages, so the ~sign is available to override
+            that.Eg if hin were set to load eng by default, then hin+~eng would force
+            loading only hin.The number of loaded languages is limited only by
+            memory, with the caveat that loading additional languages will impact
+            both speed and accuracy, as there is more work to do to decide on the
+            applicable language, and there is more chance of hallucinating incorrect words.
+            </para>
+            <note>
+            WARNING: On changing languages, all Tesseract parameters are reset
+            back to their default values. (Which may vary between languages.)
+            If you have a rare need to set a Variable that controls
+            initialization for a second call to Init you should explicitly
+            call <see cref="M:Patagames.Ocr.OcrApi.Release"/> and then use SetVariable before Init.This is only a very
+            rare use case, since there are very few uses that require any parameters
+            to be set before Init.        
+            </note>
+            </remarks>
+        </member>
+        <member name="M:Patagames.Ocr.OcrApi.Init(Patagames.Ocr.Enums.Languages[],System.String,Patagames.Ocr.Enums.OcrEngineMode,System.String[],System.String[],System.String[],System.Boolean)">
+            <summary>
+            Initialize the OCR SDK library
+            </summary>
+            <param name="language">The language.</param>
+            <param name="dataPath">The datapath must be the name of the parent directory of tessdata and must end in / . Any name after the last / will be stripped. NULL will default to current folder.</param>
+            <param name="oem">Ocr engine mode. See <see cref="T:Patagames.Ocr.Enums.OcrEngineMode"/> for detail</param>
+            <param name="configs">An array of names of configuration files. Configuration file must be placed in configs or tessconfigs subfolders in dataPath</param>
+            <param name="varsVec">An array of variables (names)</param>
+            <param name="varsValues">An array of variables (values)</param>
+            <param name="setOnlyNonDebugParams">If true, only params that do not contain "debug" in the name will be set</param>
+            <remarks>
+            <note type="note">
+            Instances are mostly thread-safe and totally independent,
+            but some global parameters remain. Basically it is safe to use multiple
+            OcrApis in different threads in parallel, UNLESS:
+            you use <see cref="M:Patagames.Ocr.OcrApi.SetVariable(System.String,System.String,System.Boolean)"/> on some of the Params in classify and textord.
+            If you do, then the effect will be to change it for all your instances.
+            </note>
+            
+            <para>For full list of tesseract variables see this article: <conceptualLink target="b4effc4b-310d-4f1f-99a0-65bc001cd765" /> </para>
+            That the only members that may be called before Init are those listed below:
+            <list type="bullet">
+            <item><see cref="M:Patagames.Ocr.OcrApi.PrintVariablesToFile(System.String)"/></item>
+            <item><see cref="M:Patagames.Ocr.OcrApi.GetStringVariable(System.String)"/></item>
+            <item><see cref="M:Patagames.Ocr.OcrApi.GetDoubleVariable(System.String)"/></item>
+            <item><see cref="P:Patagames.Ocr.OcrApi.SourceResolution"/></item>
+            <item><see cref="M:Patagames.Ocr.OcrApi.GetBoolVariable(System.String)"/></item>
+            <item><see cref="M:Patagames.Ocr.OcrApi.GetIntVariable(System.String)"/></item>
+            <item><see cref="M:Patagames.Ocr.OcrApi.SetVariable(System.String,System.String,System.Boolean)"/></item>
+            <item><see cref="P:Patagames.Ocr.OcrApi.InputImage"/></item>
+            <item><see cref="P:Patagames.Ocr.OcrApi.OutputName"/></item>
+            <item><see cref="P:Patagames.Ocr.OcrApi.InputName"/></item>
+            <item><see cref="P:Patagames.Ocr.OcrApi.DataPath"/></item>
+            <item><see cref="P:Patagames.Ocr.OcrApi.Version"/></item>
+            </list>
+            <para>
+            It is entirely safe (and eventually will be efficient too) to call 
+            Init multiple times on the same instance to change language, or just
+            to reset the classifier.
+            </para>
+            <para>
+            The language may be a string of the form [~]lang[+[~]lang]* indicating
+            that multiple languages are to be loaded.Eg hin+eng will load Hindi and
+            English.Languages may specify internally that they want to be loaded
+            with one or more other languages, so the ~sign is available to override
+            that.Eg if hin were set to load eng by default, then hin+~eng would force
+            loading only hin.The number of loaded languages is limited only by
+            memory, with the caveat that loading additional languages will impact
+            both speed and accuracy, as there is more work to do to decide on the
+            applicable language, and there is more chance of hallucinating incorrect words.
+            </para>
+            <note>
+            WARNING: On changing languages, all Tesseract parameters are reset
+            back to their default values. (Which may vary between languages.)
+            If you have a rare need to set a Variable that controls
+            initialization for a second call to Init you should explicitly
+            call <see cref="M:Patagames.Ocr.OcrApi.Release"/> and then use SetVariable before Init.This is only a very
+            rare use case, since there are very few uses that require any parameters
+            to be set before Init.        
+            </note>
+            </remarks>
+        </member>
+        <member name="M:Patagames.Ocr.OcrApi.Init(Patagames.Ocr.Enums.Languages,System.String,Patagames.Ocr.Enums.OcrEngineMode,System.String[],System.String[],System.String[],System.Boolean)">
+            <summary>
+            Initialize the OCR SDK library
+            </summary>
+            <param name="language">The language.</param>
+            <param name="dataPath">The datapath must be the name of the parent directory of tessdata and must end in / . Any name after the last / will be stripped. NULL will default to current folder.</param>
+            <param name="oem">Ocr engine mode. See <see cref="T:Patagames.Ocr.Enums.OcrEngineMode"/> for detail</param>
+            <param name="configs">An array of names of configuration files. Configuration file must be placed in configs or tessconfigs subfolders in dataPath</param>
+            <param name="varsVec">An array of variables (names)</param>
+            <param name="varsValues">An array of variables (values)</param>
+            <param name="setOnlyNonDebugParams">If true, only params that do not contain "debug" in the name will be set</param>
+            <remarks>
+            <note type="note">
+            Instances are mostly thread-safe and totally independent,
+            but some global parameters remain. Basically it is safe to use multiple
+            OcrApis in different threads in parallel, UNLESS:
+            you use <see cref="M:Patagames.Ocr.OcrApi.SetVariable(System.String,System.String,System.Boolean)"/> on some of the Params in classify and textord.
+            If you do, then the effect will be to change it for all your instances.
+            </note>
+            
+            <para>For full list of tesseract variables see this article: <conceptualLink target="b4effc4b-310d-4f1f-99a0-65bc001cd765" /> </para>
+            That the only members that may be called before Init are those listed below:
+            <list type="bullet">
+            <item><see cref="M:Patagames.Ocr.OcrApi.PrintVariablesToFile(System.String)"/></item>
+            <item><see cref="M:Patagames.Ocr.OcrApi.GetStringVariable(System.String)"/></item>
+            <item><see cref="M:Patagames.Ocr.OcrApi.GetDoubleVariable(System.String)"/></item>
+            <item><see cref="P:Patagames.Ocr.OcrApi.SourceResolution"/></item>
+            <item><see cref="M:Patagames.Ocr.OcrApi.GetBoolVariable(System.String)"/></item>
+            <item><see cref="M:Patagames.Ocr.OcrApi.GetIntVariable(System.String)"/></item>
+            <item><see cref="M:Patagames.Ocr.OcrApi.SetVariable(System.String,System.String,System.Boolean)"/></item>
+            <item><see cref="P:Patagames.Ocr.OcrApi.InputImage"/></item>
+            <item><see cref="P:Patagames.Ocr.OcrApi.OutputName"/></item>
+            <item><see cref="P:Patagames.Ocr.OcrApi.InputName"/></item>
+            <item><see cref="P:Patagames.Ocr.OcrApi.DataPath"/></item>
+            <item><see cref="P:Patagames.Ocr.OcrApi.Version"/></item>
+            </list>
+            <para>
+            It is entirely safe (and eventually will be efficient too) to call 
+            Init multiple times on the same instance to change language, or just
+            to reset the classifier.
+            </para>
+            <para>
+            The language may be a string of the form [~]lang[+[~]lang]* indicating
+            that multiple languages are to be loaded.Eg hin+eng will load Hindi and
+            English.Languages may specify internally that they want to be loaded
+            with one or more other languages, so the ~sign is available to override
+            that.Eg if hin were set to load eng by default, then hin+~eng would force
+            loading only hin.The number of loaded languages is limited only by
+            memory, with the caveat that loading additional languages will impact
+            both speed and accuracy, as there is more work to do to decide on the
+            applicable language, and there is more chance of hallucinating incorrect words.
+            </para>
+            <note>
+            WARNING: On changing languages, all Tesseract parameters are reset
+            back to their default values. (Which may vary between languages.)
+            If you have a rare need to set a Variable that controls
+            initialization for a second call to Init you should explicitly
+            call <see cref="M:Patagames.Ocr.OcrApi.Release"/> and then use SetVariable before Init.This is only a very
+            rare use case, since there are very few uses that require any parameters
+            to be set before Init.        
+            </note>
+            </remarks>
+        </member>
+        <member name="M:Patagames.Ocr.OcrApi.InitLang(System.String,System.String)">
+            <summary>
+            Init only the lang model component of Tesseract.
+            </summary>
+            <param name="dataPath">The datapath must be the name of the parent directory of tessdata and must end in / . Any name after the last / will be stripped.</param>
+            <param name="language">The language is (usually) an ISO 639-3 string or NULL will default to eng.</param>
+            <remarks>
+            The only functions that work after this init are 
+            <see cref="M:Patagames.Ocr.OcrApi.SetVariable(System.String,System.String,System.Boolean)"/> and <see cref="M:Patagames.Ocr.OcrApi.IsValidWord(System.String)"/>.
+            </remarks>
+        </member>
+        <member name="M:Patagames.Ocr.OcrApi.InitForAnalysePage">
+            <summary>
+            Init only for page layout analysis.
+            </summary>
+            <remarks>
+            Use only for calls to <see cref="O:SetImage"/> and <see cref="M:Patagames.Ocr.OcrApi.AnalyseLayout"/>. Calls that attempt recognition will generate an error.
+            </remarks>
+        </member>
+        <member name="M:Patagames.Ocr.OcrApi.Release">
+            <summary>
+            Close down tesseract and free up all memory.
+            Once Release() has been used, none of the other API functions may be used
+            other than <see cref="O:Init"/>.
+            </summary>
+        </member>
+        <member name="M:Patagames.Ocr.OcrApi.Clear">
+            <summary>
+            Free up recognition results and any stored image data, without actually 
+            freeing any recognition data that would be time-consuming to reload.
+            Afterwards, you must call <see cref="O:SetImage"/> or <see cref="O:GetTextFromImage"/> before doing
+            any <see cref="M:Patagames.Ocr.OcrApi.Recognize"/> or Get* operation.
+            </summary>
+        </member>
+        <member name="M:Patagames.Ocr.OcrApi.ClearAdaptiveClassifier">
+            <summary>
+            Call between pages or documents etc to free up memory and forget adaptive data.
+            </summary>
+        </member>
+        <member name="M:Patagames.Ocr.OcrApi.SetVariable(System.String,System.String,System.Boolean)">
+            <summary>
+            Set the value of an internal "parameter."
+            </summary>
+            <param name="name">The name of the parameter</param>
+            <param name="value">The value of the parameter</param>
+            <param name="isDebug">True for debug variable</param>
+            <returns>False if the name lookup failed.</returns>
+            <remarks>
+            <para>Supply the name of the parameter and the value as a string, just as you would in a config file.
+            Eg SetVariable("tessedit_char_blacklist", "xyz"); to ignore x, y and z. 
+            Or SetVariable("classify_bln_numeric_mode", "1"); to set numeric-only mode.
+            </para>
+            <para>
+            SetVariable may be used before <see cref="O:Init"/>, but settings will revert to
+            defaults on <see cref="M:Patagames.Ocr.OcrApi.Release"/>.
+            </para>
+            <note>
+            Must be called after <see cref="O:Init"/>. Only works for non-init variables 
+            (init variables should be passed to <see cref="O:Init"/>).
+            </note>
+            <para>For full list of tesseract variables see this article: <conceptualLink target="b4effc4b-310d-4f1f-99a0-65bc001cd765" /> </para>
+            </remarks>
+        </member>
+        <member name="M:Patagames.Ocr.OcrApi.GetStringVariable(System.String)">
+            <summary>
+            Get the value of an internal "parameter."
+            </summary>
+            <param name="name">The name of the parameter.</param>
+            <returns>the string that represents the value of the parameter if it was found among Tesseract parameters. Throw <see cref="T:Patagames.Ocr.Exceptions.VariableNotFoundException"/> otherwise.</returns>
+            <remarks>
+            <para>For full list of tesseract variables see this article: <conceptualLink target="b4effc4b-310d-4f1f-99a0-65bc001cd765" /> </para>
+            </remarks>
+        </member>
+        <member name="M:Patagames.Ocr.OcrApi.GetIntVariable(System.String)">
+            <summary>
+            Get the value of an internal "parameter."
+            </summary>
+            <param name="name">The name of the parameter.</param>
+            <returns>The value of the parameter if it was found among Tesseract parameters. Throw <see cref="T:Patagames.Ocr.Exceptions.VariableNotFoundException"/> otherwise.</returns>
+            <remarks>
+            <para>For full list of tesseract variables see this article: <conceptualLink target="b4effc4b-310d-4f1f-99a0-65bc001cd765" /> </para>
+            </remarks>
+        </member>
+        <member name="M:Patagames.Ocr.OcrApi.GetBoolVariable(System.String)">
+            <summary>
+            Get the value of an internal "parameter."
+            </summary>
+            <param name="name">The name of the parameter.</param>
+            <returns>The value of the parameter if it was found among Tesseract parameters. Throw <see cref="T:Patagames.Ocr.Exceptions.VariableNotFoundException"/> otherwise.</returns>
+            <remarks>
+            <para>For full list of tesseract variables see this article: <conceptualLink target="b4effc4b-310d-4f1f-99a0-65bc001cd765" /> </para>
+            </remarks>
+        </member>
+        <member name="M:Patagames.Ocr.OcrApi.GetDoubleVariable(System.String)">
+            <summary>
+            Get the value of an internal "parameter."
+            </summary>
+            <param name="name">The name of the parameter.</param>
+            <returns>The value of the parameter if it was found among Tesseract parameters. Throw <see cref="T:Patagames.Ocr.Exceptions.VariableNotFoundException"/> otherwise.</returns>
+            <remarks>
+            <para>For full list of tesseract variables see this article: <conceptualLink target="b4effc4b-310d-4f1f-99a0-65bc001cd765" /> </para>
+            </remarks>
+        </member>
+        <member name="M:Patagames.Ocr.OcrApi.PrintVariablesToFile(System.String)">
+            <summary>
+            Print Tesseract parameters to the given file.
+            </summary>
+            <param name="filePath">Path to the file.</param>
+            <returns>True if successful, False otherwise.</returns>
+            <remarks>
+            <para>For full list of tesseract variables see this article: <conceptualLink target="b4effc4b-310d-4f1f-99a0-65bc001cd765" /> </para>
+            </remarks>
+        </member>
+        <member name="M:Patagames.Ocr.OcrApi.ReadConfigFiles(System.String)">
+            <summary>
+            Read a "config" file containing a set of parameter name, value pairs.
+            </summary>
+            <param name="fileName">File name or path to config file</param>
+            <remarks>Searches the standard places: tessdata/configs, tessdata/tessconfigs
+            and also accepts a relative or absolute path name.</remarks>
+            <remarks>
+            <para>For full list of tesseract variables see this article: <conceptualLink target="b4effc4b-310d-4f1f-99a0-65bc001cd765" /> </para>
+            </remarks>
+        </member>
+        <member name="M:Patagames.Ocr.OcrApi.ReadDebugConfigFiles(System.String)">
+            <summary>
+            Same as <see cref="M:Patagames.Ocr.OcrApi.ReadConfigFiles(System.String)"/>, but only set debug params from the given config file.
+            </summary>
+            <param name="fileName">File name or path to config file</param>
+            <remarks>Searches the standard places: tessdata/configs, tessdata/tessconfigs
+            and also accepts a relative or absolute path name.</remarks>
+            <remarks>
+            <para>For full list of tesseract variables see this article: <conceptualLink target="b4effc4b-310d-4f1f-99a0-65bc001cd765" /> </para>
+            </remarks>
+        </member>
+        <member name="M:Patagames.Ocr.OcrApi.GetTextFromImage(System.String)">
+            <summary>
+            Recognize a rectangle from an image and return the result as a string.
+            </summary>
+            <param name="filename">Parth to image file</param>
+            <returns>The recognized text which is coded as UTF8.</returns>
+            <remarks>
+            May be called many times for a single Init.
+            Currently has no error checking.
+            Greyscale of 8 and color of 24 or 32 bits per pixel may be given.
+            Palette color images will not work properly and must be converted to
+            24 bit.
+            Binary images of 1 bit per pixel may also be given but they must be
+            byte packed with the MSB of the first byte being the first pixel, and a
+            1 represents WHITE. For binary images set bytes_per_pixel= 0.
+            <note>
+            Note that TesseractRect is the simplified convenience interface.
+            For advanced uses, use <see cref="O:SetImage"/>, (optionally)<see cref="O:SetRectangle"/>, <see cref="M:Patagames.Ocr.OcrApi.Recognize"/>,
+            and one or more of the Get*Text functions.
+            </note>
+            </remarks>
+        </member>
+        <member name="M:Patagames.Ocr.OcrApi.GetTextFromImage(System.String,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Recognize a rectangle from an image and return the result as a string.
+            </summary>
+            <param name="filename">Parth to image file</param>
+            <param name="left">Left point of the rectangle.</param>
+            <param name="top">Top point of the rectangle.</param>
+            <param name="width">Width of the rectangle.</param>
+            <param name="height">Height of the rectangle.</param>
+            <returns>The recognized text which is coded as UTF8.</returns>
+            <remarks>
+            May be called many times for a single Init.
+            Currently has no error checking.
+            Greyscale of 8 and color of 24 or 32 bits per pixel may be given.
+            Palette color images will not work properly and must be converted to
+            24 bit.
+            Binary images of 1 bit per pixel may also be given but they must be
+            byte packed with the MSB of the first byte being the first pixel, and a
+            1 represents WHITE. For binary images set bytes_per_pixel= 0.
+            <note>
+            Note that TesseractRect is the simplified convenience interface.
+            For advanced uses, use <see cref="O:SetImage"/>, (optionally)<see cref="O:SetRectangle"/>, <see cref="M:Patagames.Ocr.OcrApi.Recognize"/>,
+            and one or more of the Get*Text functions.
+            </note>
+            </remarks>
+        </member>
+        <member name="M:Patagames.Ocr.OcrApi.GetTextFromImage(System.String,System.Drawing.Point,System.Drawing.Size)">
+            <summary>
+            Recognize a rectangle from an image and return the result as a string.
+            </summary>
+            <param name="filename">Parth to image file</param>
+            <param name="location">LeftTop corner of the rectangle.</param>
+            <param name="size">Size of the rectangle.</param>
+            <returns>The recognized text which is coded as UTF8.</returns>
+            <remarks>
+            May be called many times for a single Init.
+            Currently has no error checking.
+            Greyscale of 8 and color of 24 or 32 bits per pixel may be given.
+            Palette color images will not work properly and must be converted to
+            24 bit.
+            Binary images of 1 bit per pixel may also be given but they must be
+            byte packed with the MSB of the first byte being the first pixel, and a
+            1 represents WHITE. For binary images set bytes_per_pixel= 0.
+            <note>
+            Note that TesseractRect is the simplified convenience interface.
+            For advanced uses, use <see cref="O:SetImage"/>, (optionally)<see cref="O:SetRectangle"/>, <see cref="M:Patagames.Ocr.OcrApi.Recognize"/>,
+            and one or more of the Get*Text functions.
+            </note>
+            </remarks>
+        </member>
+        <member name="M:Patagames.Ocr.OcrApi.GetTextFromImage(System.String,System.Drawing.Rectangle)">
+            <summary>
+            Recognize a rectangle from an image and return the result as a string.
+            </summary>
+            <param name="filename">Parth to image file</param>
+            <param name="rect">The rectangle.</param>
+            <returns>The recognized text which is coded as UTF8.</returns>
+            <remarks>
+            May be called many times for a single Init.
+            Currently has no error checking.
+            Greyscale of 8 and color of 24 or 32 bits per pixel may be given.
+            Palette color images will not work properly and must be converted to
+            24 bit.
+            Binary images of 1 bit per pixel may also be given but they must be
+            byte packed with the MSB of the first byte being the first pixel, and a
+            1 represents WHITE. For binary images set bytes_per_pixel= 0.
+            <note>
+            Note that TesseractRect is the simplified convenience interface.
+            For advanced uses, use <see cref="O:SetImage"/>, (optionally)<see cref="O:SetRectangle"/>, <see cref="M:Patagames.Ocr.OcrApi.Recognize"/>,
+            and one or more of the Get*Text functions.
+            </note>
+            </remarks>
+        </member>
+        <member name="M:Patagames.Ocr.OcrApi.GetTextFromImage(Patagames.Ocr.OcrPix)">
+            <summary>
+            Recognize a rectangle from an image and return the result as a string.
+            </summary>
+            <param name="pix">The leptonica image</param>
+            <returns>The recognized text which is coded as UTF8.</returns>
+            <remarks>
+            May be called many times for a single Init.
+            Currently has no error checking.
+            Greyscale of 8 and color of 24 or 32 bits per pixel may be given.
+            Palette color images will not work properly and must be converted to
+            24 bit.
+            Binary images of 1 bit per pixel may also be given but they must be
+            byte packed with the MSB of the first byte being the first pixel, and a
+            1 represents WHITE. For binary images set bytes_per_pixel= 0.
+            <note>
+            Note that TesseractRect is the simplified convenience interface.
+            For advanced uses, use <see cref="O:SetImage"/>, (optionally)<see cref="O:SetRectangle"/>, <see cref="M:Patagames.Ocr.OcrApi.Recognize"/>,
+            and one or more of the Get*Text functions.
+            </note>
+            </remarks>
+        </member>
+        <member name="M:Patagames.Ocr.OcrApi.GetTextFromImage(Patagames.Ocr.OcrPix,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Recognize a rectangle from an image and return the result as a string.
+            </summary>
+            <param name="pix">The leptonica image</param>
+            <param name="left">Left point of the rectangle.</param>
+            <param name="top">Top point of the rectangle.</param>
+            <param name="width">Width of the rectangle.</param>
+            <param name="height">Height of the rectangle.</param>
+            <returns>The recognized text which is coded as UTF8.</returns>
+            <remarks>
+            May be called many times for a single Init.
+            Currently has no error checking.
+            Greyscale of 8 and color of 24 or 32 bits per pixel may be given.
+            Palette color images will not work properly and must be converted to
+            24 bit.
+            Binary images of 1 bit per pixel may also be given but they must be
+            byte packed with the MSB of the first byte being the first pixel, and a
+            1 represents WHITE. For binary images set bytes_per_pixel= 0.
+            <note>
+            Note that TesseractRect is the simplified convenience interface.
+            For advanced uses, use <see cref="O:SetImage"/>, (optionally)<see cref="O:SetRectangle"/>, <see cref="M:Patagames.Ocr.OcrApi.Recognize"/>,
+            and one or more of the Get*Text functions.
+            </note>
+            </remarks>
+        </member>
+        <member name="M:Patagames.Ocr.OcrApi.GetTextFromImage(Patagames.Ocr.OcrPix,System.Drawing.Point,System.Drawing.Size)">
+            <summary>
+            Recognize a rectangle from an image and return the result as a string.
+            </summary>
+            <param name="pix">The leptonica image</param>
+            <param name="location">LeftTop corner of the rectangle.</param>
+            <param name="size">Size of the rectangle.</param>
+            <returns>The recognized text which is coded as UTF8.</returns>
+            <remarks>
+            May be called many times for a single Init.
+            Currently has no error checking.
+            Greyscale of 8 and color of 24 or 32 bits per pixel may be given.
+            Palette color images will not work properly and must be converted to
+            24 bit.
+            Binary images of 1 bit per pixel may also be given but they must be
+            byte packed with the MSB of the first byte being the first pixel, and a
+            1 represents WHITE. For binary images set bytes_per_pixel= 0.
+            <note>
+            Note that TesseractRect is the simplified convenience interface.
+            For advanced uses, use <see cref="O:SetImage"/>, (optionally)<see cref="O:SetRectangle"/>, <see cref="M:Patagames.Ocr.OcrApi.Recognize"/>,
+            and one or more of the Get*Text functions.
+            </note>
+            </remarks>
+        </member>
+        <member name="M:Patagames.Ocr.OcrApi.GetTextFromImage(Patagames.Ocr.OcrPix,System.Drawing.Rectangle)">
+            <summary>
+            Recognize a rectangle from an image and return the result as a string.
+            </summary>
+            <param name="pix">The leptonica image</param>
+            <param name="rect">The rectangle.</param>
+            <returns>The recognized text which is coded as UTF8.</returns>
+            <remarks>
+            May be called many times for a single Init.
+            Currently has no error checking.
+            Greyscale of 8 and color of 24 or 32 bits per pixel may be given.
+            Palette color images will not work properly and must be converted to
+            24 bit.
+            Binary images of 1 bit per pixel may also be given but they must be
+            byte packed with the MSB of the first byte being the first pixel, and a
+            1 represents WHITE. For binary images set bytes_per_pixel= 0.
+            <note>
+            Note that TesseractRect is the simplified convenience interface.
+            For advanced uses, use <see cref="O:SetImage"/>, (optionally)<see cref="O:SetRectangle"/>, <see cref="M:Patagames.Ocr.OcrApi.Recognize"/>,
+            and one or more of the Get*Text functions.
+            </note>
+            </remarks>
+        </member>
+        <member name="M:Patagames.Ocr.OcrApi.GetTextFromImage(System.Drawing.Bitmap)">
+            <summary>
+            Recognize a rectangle from an image and return the result as a string.
+            </summary>
+            <param name="bitmap">The image</param>
+            <returns>The recognized text which is coded as UTF8.</returns>
+            <remarks>
+            May be called many times for a single Init.
+            Currently has no error checking.
+            Greyscale of 8 and color of 24 or 32 bits per pixel may be given.
+            Palette color images will not work properly and must be converted to
+            24 bit.
+            Binary images of 1 bit per pixel may also be given but they must be
+            byte packed with the MSB of the first byte being the first pixel, and a
+            1 represents WHITE. For binary images set bytes_per_pixel= 0.
+            <note>
+            Note that TesseractRect is the simplified convenience interface.
+            For advanced uses, use <see cref="O:SetImage"/>, (optionally)<see cref="O:SetRectangle"/>, <see cref="M:Patagames.Ocr.OcrApi.Recognize"/>,
+            and one or more of the Get*Text functions.
+            </note>
+            </remarks>
+        </member>
+        <member name="M:Patagames.Ocr.OcrApi.GetTextFromImage(System.Drawing.Bitmap,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Recognize a rectangle from an image and return the result as a string.
+            </summary>
+            <param name="bitmap">The image</param>
+            <param name="left">Left point of the rectangle.</param>
+            <param name="top">Top point of the rectangle.</param>
+            <param name="width">Width of the rectangle.</param>
+            <param name="height">Height of the rectangle.</param>
+            <returns>The recognized text which is coded as UTF8.</returns>
+            <remarks>
+            May be called many times for a single Init.
+            Currently has no error checking.
+            Greyscale of 8 and color of 24 or 32 bits per pixel may be given.
+            Palette color images will not work properly and must be converted to
+            24 bit.
+            Binary images of 1 bit per pixel may also be given but they must be
+            byte packed with the MSB of the first byte being the first pixel, and a
+            1 represents WHITE. For binary images set bytes_per_pixel= 0.
+            <note>
+            Note that TesseractRect is the simplified convenience interface.
+            For advanced uses, use <see cref="O:SetImage"/>, (optionally)<see cref="O:SetRectangle"/>, <see cref="M:Patagames.Ocr.OcrApi.Recognize"/>,
+            and one or more of the Get*Text functions.
+            </note>
+            </remarks>
+        </member>
+        <member name="M:Patagames.Ocr.OcrApi.GetTextFromImage(System.Drawing.Bitmap,System.Drawing.Point,System.Drawing.Size)">
+            <summary>
+            Recognize a rectangle from an image and return the result as a string.
+            </summary>
+            <param name="bitmap">The image</param>
+            <param name="location">LeftTop corner of the rectangle.</param>
+            <param name="size">Size of the rectangle.</param>
+            <returns>The recognized text which is coded as UTF8.</returns>
+            <remarks>
+            May be called many times for a single Init.
+            Currently has no error checking.
+            Greyscale of 8 and color of 24 or 32 bits per pixel may be given.
+            Palette color images will not work properly and must be converted to
+            24 bit.
+            Binary images of 1 bit per pixel may also be given but they must be
+            byte packed with the MSB of the first byte being the first pixel, and a
+            1 represents WHITE. For binary images set bytes_per_pixel= 0.
+            <note>
+            Note that TesseractRect is the simplified convenience interface.
+            For advanced uses, use <see cref="O:SetImage"/>, (optionally)<see cref="O:SetRectangle"/>, <see cref="M:Patagames.Ocr.OcrApi.Recognize"/>,
+            and one or more of the Get*Text functions.
+            </note>
+            </remarks>
+        </member>
+        <member name="M:Patagames.Ocr.OcrApi.GetTextFromImage(System.Drawing.Bitmap,System.Drawing.Rectangle)">
+            <summary>
+            Recognize a rectangle from an image and return the result as a string.
+            </summary>
+            <param name="bitmap">The image</param>
+            <param name="rect">The rectangle.</param>
+            <returns>The recognized text which is coded as UTF8.</returns>
+            <remarks>
+            May be called many times for a single Init.
+            Currently has no error checking.
+            Greyscale of 8 and color of 24 or 32 bits per pixel may be given.
+            Palette color images will not work properly and must be converted to
+            24 bit.
+            Binary images of 1 bit per pixel may also be given but they must be
+            byte packed with the MSB of the first byte being the first pixel, and a
+            1 represents WHITE. For binary images set bytes_per_pixel= 0.
+            <note>
+            Note that TesseractRect is the simplified convenience interface.
+            For advanced uses, use <see cref="O:SetImage"/>, (optionally)<see cref="O:SetRectangle"/>, <see cref="M:Patagames.Ocr.OcrApi.Recognize"/>,
+            and one or more of the Get*Text functions.
+            </note>
+            </remarks>
+        </member>
+        <member name="M:Patagames.Ocr.OcrApi.GetTextFromImage(System.IntPtr,System.Int32,System.Int32,System.Drawing.Rectangle)">
+            <summary>
+            Recognize a rectangle from an image and return the result as a string.
+            </summary>
+            <param name="imageData">The address of the first pixel data in the bitmap. This can also be thought of as the first scan line in the bitmap.</param>
+            <param name="bpp">Bits per Pixel</param>
+            <param name="bytesPerLine">The stride width in bytes (also called scan width) of the image</param>
+            <param name="rect">The rectangle.</param>
+            <returns>The recognized text which is coded as UTF8.</returns>
+            <remarks>
+            May be called many times for a single Init.
+            Currently has no error checking.
+            Greyscale of 8 and color of 24 or 32 bits per pixel may be given.
+            Palette color images will not work properly and must be converted to
+            24 bit.
+            Binary images of 1 bit per pixel may also be given but they must be
+            byte packed with the MSB of the first byte being the first pixel, and a
+            1 represents WHITE. For binary images set bytes_per_pixel= 0.
+            <note>
+            Note that TesseractRect is the simplified convenience interface.
+            For advanced uses, use <see cref="O:SetImage"/>, (optionally)<see cref="O:SetRectangle"/>, <see cref="M:Patagames.Ocr.OcrApi.Recognize"/>,
+            and one or more of the Get*Text functions.
+            </note>
+            </remarks>
+        </member>
+        <member name="M:Patagames.Ocr.OcrApi.GetTextFromImage(System.IntPtr,System.Int32,System.Int32,System.Drawing.Point,System.Drawing.Size)">
+            <summary>
+            Recognize a rectangle from an image and return the result as a string.
+            </summary>
+            <param name="imageData">The address of the first pixel data in the bitmap. This can also be thought of as the first scan line in the bitmap.</param>
+            <param name="bpp">Bits per Pixel</param>
+            <param name="bytesPerLine">The stride width in bytes (also called scan width) of the image</param>
+            <param name="location">LeftTop corner of the rectangle.</param>
+            <param name="size">Size of the rectangle.</param>
+            <returns>The recognized text which is coded as UTF8.</returns>
+            <remarks>
+            May be called many times for a single Init.
+            Currently has no error checking.
+            Greyscale of 8 and color of 24 or 32 bits per pixel may be given.
+            Palette color images will not work properly and must be converted to
+            24 bit.
+            Binary images of 1 bit per pixel may also be given but they must be
+            byte packed with the MSB of the first byte being the first pixel, and a
+            1 represents WHITE. For binary images set bytes_per_pixel= 0.
+            <note>
+            Note that TesseractRect is the simplified convenience interface.
+            For advanced uses, use <see cref="O:SetImage"/>, (optionally)<see cref="O:SetRectangle"/>, <see cref="M:Patagames.Ocr.OcrApi.Recognize"/>,
+            and one or more of the Get*Text functions.
+            </note>
+            </remarks>
+        </member>
+        <member name="M:Patagames.Ocr.OcrApi.GetTextFromImage(System.IntPtr,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Recognize a rectangle from an image and return the result as a string.
+            </summary>
+            <param name="imageData">The address of the first pixel data in the bitmap. This can also be thought of as the first scan line in the bitmap.</param>
+            <param name="bpp">Bits per Pixel</param>
+            <param name="bytesPerLine">The stride width in bytes (also called scan width) of the image</param>
+            <param name="left">Left point of the rectangle.</param>
+            <param name="top">Top point of the rectangle.</param>
+            <param name="width">Width of the rectangle.</param>
+            <param name="height">Height of the rectangle.</param>
+            <returns>The recognized text which is coded as UTF8.</returns>
+            <remarks>
+            May be called many times for a single Init.
+            Currently has no error checking.
+            Greyscale of 8 and color of 24 or 32 bits per pixel may be given.
+            Palette color images will not work properly and must be converted to
+            24 bit.
+            Binary images of 1 bit per pixel may also be given but they must be
+            byte packed with the MSB of the first byte being the first pixel, and a
+            1 represents WHITE. For binary images set bytes_per_pixel= 0.
+            <note>
+            Note that TesseractRect is the simplified convenience interface.
+            For advanced uses, use <see cref="O:SetImage"/>, (optionally)<see cref="O:SetRectangle"/>, <see cref="M:Patagames.Ocr.OcrApi.Recognize"/>,
+            and one or more of the Get*Text functions.
+            </note>
+            </remarks>
+        </member>
+        <member name="M:Patagames.Ocr.OcrApi.SetImage(Patagames.Ocr.OcrPix)">
+            <summary>
+            Provide an image for Tesseract to recognize.
+            </summary>
+            <param name="pix">Source leptonica image</param>
+            <remarks>
+            <para>Format of image is as <see cref="M:Patagames.Ocr.OcrApi.GetTextFromImage(Patagames.Ocr.OcrPix)"/>.</para>
+            <para>Does not copy the image buffer, or take ownership</para>
+            <para>The source image may be destroyed after <see cref="M:Patagames.Ocr.OcrApi.Recognize"/> is called,
+            either explicitly or implicitly via one of the Get* Text functions.
+            SetImage clears all recognition results, and sets the rectangle to the
+            full image, so it may be followed immediately by a <see cref="M:Patagames.Ocr.OcrApi.GetUtf8Text"/>, and it
+            will automatically perform recognition.</para>
+            </remarks>
+        </member>
+        <member name="M:Patagames.Ocr.OcrApi.SetImage(System.Drawing.Bitmap)">
+            <summary>
+            Provide an image for Tesseract to recognize.
+            </summary>
+            <param name="bitmap">Source bitmap</param>
+            <remarks>
+            <para>Format of image is as <see cref="M:Patagames.Ocr.OcrApi.GetTextFromImage(System.Drawing.Bitmap)"/>.</para>
+            <para>Does not copy the image buffer, or take ownership</para>
+            <para>The source image may be destroyed after <see cref="M:Patagames.Ocr.OcrApi.Recognize"/> is called,
+            either explicitly or implicitly via one of the Get* Text functions.
+            SetImage clears all recognition results, and sets the rectangle to the
+            full image, so it may be followed immediately by a <see cref="M:Patagames.Ocr.OcrApi.GetUtf8Text"/>, and it
+            will automatically perform recognition.</para>
+            </remarks>
+        </member>
+        <member name="M:Patagames.Ocr.OcrApi.SetImage(System.IntPtr,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Provide an image for Tesseract to recognize.
+            </summary>
+            <param name="imageData">The address of the first pixel data in the bitmap. This can also be thought of as the first scan line in the bitmap.</param>
+            <param name="width">Image width.</param>
+            <param name="height">Image height.</param>
+            <param name="bpp">Bits per Pixel</param>
+            <param name="bytesPerLine">The stride width in bytes (also called scan width) of the image</param>
+            <remarks>
+            <para>Format of image is as <see cref="M:Patagames.Ocr.OcrApi.GetTextFromImage(System.Drawing.Bitmap)"/>.</para>
+            <para>Does not copy the image buffer, or take ownership</para>
+            <para>The source image may be destroyed after <see cref="M:Patagames.Ocr.OcrApi.Recognize"/> is called,
+            either explicitly or implicitly via one of the Get* Text functions.
+            SetImage clears all recognition results, and sets the rectangle to the
+            full image, so it may be followed immediately by a <see cref="M:Patagames.Ocr.OcrApi.GetUtf8Text"/>, and it
+            will automatically perform recognition.</para>
+            </remarks>
+        </member>
+        <member name="M:Patagames.Ocr.OcrApi.GetRegions(Patagames.Ocr.OcrBoxa@,Patagames.Ocr.OcrPixa@)">
+            <summary>
+            Get the result of page layout analysis as a leptonica-style Boxa, Pixa pair, in reading order.
+            </summary>
+            <param name="boxa">Array ob boxes</param>
+            <param name="pixa">Array of lepronica pictures</param>
+            <remarks>Can be called before or after <see cref="M:Patagames.Ocr.OcrApi.Recognize"/>.</remarks>
+        </member>
+        <member name="M:Patagames.Ocr.OcrApi.GetTextlines(Patagames.Ocr.OcrBoxa@,Patagames.Ocr.OcrPixa@,System.Int32[]@)">
+            <summary>
+            Get the textlines as a leptonica-style Boxa, Pixa pair, in reading order.
+            </summary>
+            <param name="boxa">The array ob boxes</param>
+            <param name="pixa">The array of lepronica pictures</param>
+            <param name="blockIds">The array of block-id of each line</param>
+            <remarks>
+            Can be called before or after <see cref="M:Patagames.Ocr.OcrApi.Recognize"/>.
+            </remarks>
+        </member>
+        <member name="M:Patagames.Ocr.OcrApi.GetTextlines(System.Boolean,System.Int32,Patagames.Ocr.OcrBoxa@,Patagames.Ocr.OcrPixa@,System.Int32[]@,System.Int32[]@)">
+            <summary>
+            Get the textlines as a leptonica-style Boxa, Pixa pair, in reading order.
+            </summary>
+            <param name="isRawImage">If true, then extract from the original image instead of the thresholded image and pad by rawPadding pixels</param>
+            <param name="rawPadding">If isRawImage is true, then extract from the original image and pad by rawPadding pixels.</param>
+            <param name="boxa">The array ob boxes</param>
+            <param name="pixa">The array of lepronica pictures</param>
+            <param name="blockIds">The array of block-id of each line</param>
+            <param name="paraIds">The array of paragraph-id of each line within its block.</param>
+            <remarks>
+            Can be called before or after <see cref="M:Patagames.Ocr.OcrApi.Recognize"/>.
+            </remarks>
+        </member>
+        <member name="M:Patagames.Ocr.OcrApi.GetStrips(Patagames.Ocr.OcrBoxa@,Patagames.Ocr.OcrPixa@,System.Int32[]@)">
+            <summary>
+             Get textlines and strips of image regions as a leptonica-style Boxa, Pixa pair, in reading order.Enables downstream handling of non-rectangular regions.
+            </summary>
+            <param name="boxa">The array ob boxes</param>
+            <param name="pixa">The array of lepronica pictures</param>
+            <param name="blockIds">The array of block-id of each line</param>
+            <remarks>
+            Can be called before or after <see cref="M:Patagames.Ocr.OcrApi.Recognize"/>.
+            </remarks>
+        </member>
+        <member name="M:Patagames.Ocr.OcrApi.GetWords(Patagames.Ocr.OcrBoxa@,Patagames.Ocr.OcrPixa@)">
+            <summary>
+            Get the words as a leptonica-style Boxa, Pixa pair, in reading order.
+            </summary>
+            <param name="boxa">The array ob boxes</param>
+            <param name="pixa">The array of lepronica pictures</param>
+            <remarks>
+            Can be called before or after <see cref="M:Patagames.Ocr.OcrApi.Recognize"/>.
+            </remarks>
+        </member>
+        <member name="M:Patagames.Ocr.OcrApi.GetSymbols(Patagames.Ocr.OcrBoxa@,Patagames.Ocr.OcrPixa@)">
+            <summary>
+            Get the symbols as a leptonica-style Boxa, Pixa pair, in reading order.
+            </summary>
+            <param name="boxa">The array ob boxes</param>
+            <param name="pixa">The array of lepronica pictures</param>
+            <remarks>
+            Can be called before or after <see cref="M:Patagames.Ocr.OcrApi.Recognize"/>.
+            </remarks>
+        </member>
+        <member name="M:Patagames.Ocr.OcrApi.GetComponentImages(Patagames.Ocr.Enums.PageIteratorLevel,System.Boolean,Patagames.Ocr.OcrBoxa@,Patagames.Ocr.OcrPixa@,System.Int32[]@)">
+            <summary>
+            Get the given level kind of components (block, textline, word etc.) as a leptonica-style Boxa, Pixa pair, in reading order.
+            </summary>
+            <param name="level">Page iterator level</param>
+            <param name="isTextOnly">If true, then only text components are returned.</param>
+            <param name="boxa">The array ob boxes</param>
+            <param name="pixa">The array of lepronica pictures</param>
+            <param name="blockIds">The array of block-id of each line</param>
+            <remarks>
+            Can be called before or after <see cref="M:Patagames.Ocr.OcrApi.Recognize"/>.
+            </remarks>
+        </member>
+        <member name="M:Patagames.Ocr.OcrApi.GetComponentImages(Patagames.Ocr.Enums.PageIteratorLevel,System.Boolean,System.Boolean,System.Int32,Patagames.Ocr.OcrBoxa@,Patagames.Ocr.OcrPixa@,System.Int32[]@,System.Int32[]@)">
+            <summary>
+            Get the given level kind of components (block, textline, word etc.) as a leptonica-style Boxa, Pixa pair, in reading order.
+            </summary>
+            <param name="level">Page iterator level</param>
+            <param name="isTextOnly">If true, then only text components are returned.</param>
+            <param name="isRawImage">If true, then extract from the original image instead of the thresholded image and pad by rawPadding pixels</param>
+            <param name="rawPadding">If isRawImage is true, then extract from the original image and pad by rawPadding pixels.</param>
+            <param name="boxa">The array ob boxes</param>
+            <param name="pixa">The array of lepronica pictures</param>
+            <param name="blockIds">The array of block-id of each line</param>
+            <param name="paraIds">The array of paragraph-id of each line within its block.</param>
+            <remarks>
+            Can be called before or after <see cref="M:Patagames.Ocr.OcrApi.Recognize"/>.
+            </remarks>
+        </member>
+        <member name="M:Patagames.Ocr.OcrApi.AnalyseLayout">
+            <summary>
+            Runs page layout analysis in the mode set by <see cref="P:Patagames.Ocr.OcrApi.PageSegmentationMode"/>.
+            </summary>
+            <returns>Returns an iterator to the results or throw an exception on any error or an empty page.</returns>
+            <remarks>
+            May optionally be called prior to Recognize to get access to just 
+            the page layout results.
+            If merge_similar_words is true, words are combined where suitable for use
+            with a line recognizer.Use if you want to use AnalyseLayout to find the
+            textlines, and then want to process textline fragments with an external
+            line recognizer.
+            <note>
+            WARNING! This class points to data held within the TessBaseAPI class, and
+            therefore can only be used while the TessBaseAPI class still exists and
+            has not been subjected to a call of <see cref="O:Init"/>, <see cref="O:SetImage"/>, <see cref="M:Patagames.Ocr.OcrApi.Recognize"/>, <see cref="M:Patagames.Ocr.OcrApi.Clear"/>, <see cref="M:Patagames.Ocr.OcrApi.Release"/>
+             or anything else that changes the internal PAGE_RES.
+            </note>
+            </remarks>
+        </member>
+        <member name="M:Patagames.Ocr.OcrApi.Recognize">
+            <summary>
+            Recognize the image from  <see cref="O:SetImage"/>, generating Tesseract internal structures.
+            </summary>
+            <remarks>
+            Optional. The Get*Text functions will call Recognize if needed.
+            After Recognize, the output is kept internally until the next <see cref="O:SetImage"/>.
+            </remarks>
+        </member>
+        <member name="M:Patagames.Ocr.OcrApi.RecognizeForChopTest">
+            <summary>
+            Variant on Recognize used for testing chopper
+            </summary>
+        </member>
+        <member name="M:Patagames.Ocr.OcrApi.ProcessPages(System.String,System.String,System.Int32,Patagames.Ocr.OcrResultRenderer)">
+            <summary>
+            Turns images into symbolic text.
+            </summary>
+            <param name="filename">filename can point to a single image, a multi-page TIFF, or a text file which contain plain text list of image filenames.</param>
+            <param name="retryConfig">retryConfig is useful for debugging. If not NULL, you can fall back to an alternate configuration if a page fails for some reason.</param>
+            <param name="timeout">timeout(milliseconds) terminates processing if any single page takes too long. Set to 0 for unlimited time.</param>
+            <param name="renderer">renderer is responible for creating the output. For example, use the <see cref="T:Patagames.Ocr.OcrTextRenderer"/> if you want plaintext output, or the <see cref="T:Patagames.Ocr.OcrPdfRenderer"/> to produce searchable PDF.</param>
+        </member>
+        <member name="M:Patagames.Ocr.OcrApi.ProcessPage(Patagames.Ocr.OcrPix,System.String,System.Int32,Patagames.Ocr.OcrResultRenderer)">
+            <summary>
+            Turn a single image into symbolic text.
+            </summary>
+            <param name="pix">The pix is the image processed.</param>
+            <param name="retryConfig">retryConfig is useful for debugging. If not NULL, you can fall back to an alternate configuration if a page fails for some reason.</param>
+            <param name="timeout">timeout(milliseconds) terminates processing if any single page takes too long. Set to 0 for unlimited time.</param>
+            <param name="renderer">renderer is responible for creating the output. For example, use the <see cref="T:Patagames.Ocr.OcrTextRenderer"/> if you want plaintext output, or the <see cref="T:Patagames.Ocr.OcrPdfRenderer"/> to produce searchable PDF.</param>
+        </member>
+        <member name="M:Patagames.Ocr.OcrApi.GetUtf8Text">
+            <summary>
+            The recognized text is returned as a string which is coded as UTF8
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Patagames.Ocr.OcrApi.GetHOCRText(System.Int32)">
+            <summary>
+            Make a HTML-formatted string with hOCR markup from the internal data structures.
+            </summary>
+            <param name="pageNumber">pageNumber is 0-based but will appear in the output as 1-based.</param>
+            <returns>The recognized text</returns>
+            <remarks>
+            Image name/input file can be set by <see cref="P:Patagames.Ocr.OcrApi.InputName"/> before calling GetHOCRText
+            </remarks>
+        </member>
+        <member name="M:Patagames.Ocr.OcrApi.GetBoxText(System.Int32)">
+            <summary>
+            The recognized text is returned as a char* which is coded in the same format as a box file used in training.
+            </summary>
+            <param name="pageNumber">pageNumber is a 0-based page index that will appear in the box file.</param>
+            <returns>The recognized text</returns>
+            <remarks>
+            Constructs coordinates in the original image - not just the rectangle.
+            </remarks>
+        </member>
+        <member name="M:Patagames.Ocr.OcrApi.GetUNLVText">
+            <summary>
+            The recognized text is returned as a char* which is coded as UNLV format Latin-1 with specific reject and suspect codes
+            </summary>
+            <returns>The recognized text</returns>
+        </member>
+        <member name="M:Patagames.Ocr.OcrApi.DumpToPGM(System.String)">
+            <summary>
+            Dump the internal binary image to a PGM file.
+            </summary>
+            <param name="fileName"></param>
+        </member>
+        <member name="M:Patagames.Ocr.OcrApi.AdaptToWordStr(Patagames.Ocr.Enums.PageSegMode,System.String)">
+            <summary>
+            Applies the given word to the adaptive classifier if possible
+            </summary>
+            <param name="mode">PageSegMode should be PSM_SINGLE_WORD or PSM_CIRCLE_WORD</param>
+            <param name="word">The word must be SPACE-DELIMITED l i k e t h i s</param>
+            <returns>false if adaption was not possible for some reason</returns>
+            <remarks>
+            The word must be SPACE-DELIMITED UTF-8 - l i k e t h i s , so it can tell the boundaries of the graphemes.
+             Assumes that <see cref="O:SetImage"/>/<see cref="P:Patagames.Ocr.OcrApi.Rectangle"/> have been used to set the image
+            to the given word.The mode arg should be PSM_SINGLE_WORD or
+            PSM_CIRCLE_WORD, as that will be used to control layout analysis.
+            The currently set PageSegMode is preserved.
+            </remarks>
+        </member>
+        <member name="M:Patagames.Ocr.OcrApi.IsValidWord(System.String)">
+            <summary>
+            Check whether a word is valid according to Tesseract's language model
+            </summary>
+            <param name="word"></param>
+            <returns>False if the word is invalid, true if valid.</returns>
+        </member>
+    </members>
+</doc>

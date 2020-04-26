@@ -1,0 +1,541 @@
+﻿<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Vintasoft.Shared</name>
+    </assembly>
+    <members>
+        <member name="T:Vintasoft.Data.CloneableObjectStorageInMemory">
+            <summary>
+            A data storage that allows to store objects, which implement the <see cref="T:System.ICloneable" /> interface,
+            in memory.
+            </summary>
+        </member>
+        <member name="M:Vintasoft.Data.CloneableObjectStorageInMemory.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Vintasoft.Data.CloneableObjectStorageInMemory" /> class.
+            </summary>
+        </member>
+        <member name="P:Vintasoft.Data.CloneableObjectStorageInMemory.IsDisposed">
+            <summary>
+            Gets a value indicating whether this instance is disposed.
+            </summary>
+            <value>
+            <b>true</b> if this instance is disposed; otherwise, <b>false</b>.
+            </value>
+        </member>
+        <member name="P:Vintasoft.Data.CloneableObjectStorageInMemory.Items">
+            <summary>
+            Gets a dictionary, which maps item keys into items.
+            </summary>
+        </member>
+        <member name="M:Vintasoft.Data.CloneableObjectStorageInMemory.GetKeys">
+            <summary>
+            Returns the keys of all items from data storage.
+            </summary>
+            <returns>The keys of all items from data storage.</returns>
+        </member>
+        <member name="M:Vintasoft.Data.CloneableObjectStorageInMemory.AddItem(System.String,System.Object)">
+            <summary>
+            Adds new item to the data storage.
+            </summary>
+            <param name="key">The item identifier.</param>
+            <param name="item">The item data.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown if <i>key</i> is <b>null</b> or empty.</exception>
+            <exception cref="T:System.ObjectDisposedException">Thrown if this instance is disposed.</exception>
+            <exception cref="T:System.ArgumentException">Thrown if <i>key</i> exists already.</exception>
+            <exception cref="T:System.ArgumentException">Thrown if storage can't store specified item.</exception>       
+        </member>
+        <member name="M:Vintasoft.Data.CloneableObjectStorageInMemory.SetItem(System.String,System.Object)">
+            <summary>
+            Sets the existing item in the data storage.
+            </summary>
+            <param name="key">The item identifier.</param>
+            <param name="item">The item data.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown if <i>key</i> is <b>null</b> or empty.</exception>
+            <exception cref="T:System.ObjectDisposedException">Thrown if this instance is disposed.</exception>
+            <exception cref="T:System.ArgumentException">Thrown if storage can't store specified item.</exception>
+            <exception cref="T:System.InvalidOperationException">Thrown if item with specified <paramref name="key" /> is locked.</exception>
+        </member>
+        <member name="M:Vintasoft.Data.CloneableObjectStorageInMemory.GetItemCopy(System.String)">
+            <summary>
+            Returns an item copy from the data storage.
+            </summary>
+            <param name="key">The item identifier.</param>
+            <returns>
+            The copy (clone) of item data.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">Thrown if <i>key</i> is <b>null</b> or empty.</exception>
+            <exception cref="T:System.ObjectDisposedException">Thrown if this instance is disposed.</exception>
+            <exception cref="T:System.ArgumentException">Thrown if <i>key</i> is not found.</exception>
+            <exception cref="T:System.InvalidOperationException">Thrown if item with specified <paramref name="key" /> is locked.</exception>
+        </member>
+        <member name="M:Vintasoft.Data.CloneableObjectStorageInMemory.DeleteItem(System.String)">
+            <summary>
+            Deletes the item from the data storage.
+            </summary>
+            <param name="key">The item identifier.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown if <i>key</i> is <b>null</b> or empty.</exception>
+            <exception cref="T:System.ObjectDisposedException">Thrown if this instance is disposed.</exception>
+            <exception cref="T:System.InvalidOperationException">Thrown if
+            item with specified <paramref name="key" /> is locked.</exception>
+            <remarks>
+            This method invokes the <see cref="M:System.IDisposable.Dispose" /> of the removed object
+            if removed object implements the <see cref="T:System.IDisposable" /> interface.
+            </remarks>
+        </member>
+        <member name="M:Vintasoft.Data.CloneableObjectStorageInMemory.Contains(System.String)">
+            <summary>
+            Determines whether the data storage contains an item with the specified identifier.
+            </summary>
+            <param name="key">The item identifier.</param>
+            <returns>
+            <b>True</b> - the data storage contains an item with the specified identifier;
+            <b>false</b> - the data storage does NOT contain an item with the specified identifier.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">Thrown if <i>key</i> is <b>null</b> or empty.</exception>
+            <exception cref="T:System.ObjectDisposedException">Thrown if this instance is disposed.</exception>
+        </member>
+        <member name="M:Vintasoft.Data.CloneableObjectStorageInMemory.LockItem(System.String)">
+            <summary>
+            Locks an item in data storage and returns the item.
+            </summary>
+            <param name="key">The item key.</param>
+            <returns>The locked item from data storage.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown if <paramref name="key" /> is <b>null</b> or empty.</exception>
+            <exception cref="T:System.ObjectDisposedException">Thrown if this instance is disposed.</exception>
+            <exception cref="T:System.ArgumentException">Thrown if item with specified <paramref name="key" /> does not exist.</exception>
+            <exception cref="T:System.InvalidOperationException">Thrown if
+            item with specified <paramref name="key" /> is already locked.</exception>
+        </member>
+        <member name="M:Vintasoft.Data.CloneableObjectStorageInMemory.UnlockItem(System.String,System.Object)">
+            <summary>
+            Unlocks the locked item in data storage.
+            </summary>
+            <param name="key">The item key.</param>
+            <param name="item">Locked item.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown if <paramref name="key" /> is <b>null</b> or empty.</exception>
+            <exception cref="T:System.ArgumentException">Thrown if storage can't store specified item.</exception>
+            <exception cref="T:System.ObjectDisposedException">Thrown if this instance is disposed.</exception>
+            <exception cref="T:System.ArgumentException">Thrown if item with specified <paramref name="key" /> does not exist.</exception>
+            <exception cref="T:System.InvalidOperationException">Thrown if
+            item with specified <paramref name="key" /> is not locked.</exception>
+        </member>
+        <member name="M:Vintasoft.Data.CloneableObjectStorageInMemory.Dispose">
+            <summary>
+            Releases all resources used by the <see cref="T:Vintasoft.Data.CloneableObjectStorageInMemory" />.
+            </summary>
+        </member>
+        <member name="M:Vintasoft.Data.CloneableObjectStorageInMemory.CanStore(System.Type)">
+            <summary>
+            Determines whether the data of specified type can be stored in the data storage.
+            </summary>
+            <param name="type">The type of data.</param>
+        </member>
+        <member name="M:Vintasoft.Data.CloneableObjectStorageInMemory.CheckDataType(System.Object)">
+            <summary>
+            Checks the type of the item.
+            </summary>
+            <param name="item">The data.</param>
+            <exception cref="T:System.ArgumentException">Thrown if storage can't store specified item.</exception>
+        </member>
+        <member name="T:Vintasoft.Data.CompositeDataStorage">
+            <summary>
+            A data storage that allows to work with several data storages.
+            </summary>
+        </member>
+        <member name="M:Vintasoft.Data.CompositeDataStorage.#ctor(Vintasoft.Data.IDataStorage[])">
+            <summary>
+            Initializes a new instance of <see cref="T:Vintasoft.Data.CompositeDataStorage" /> class.
+            </summary>
+            <param name="dataStorages">A collection of  data storages.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown if <paramref name="dataStorages" /> is <b>null</b>.</exception>
+        </member>
+        <member name="M:Vintasoft.Data.CompositeDataStorage.#ctor(System.Collections.Generic.IList{Vintasoft.Data.IDataStorage})">
+            <summary>
+            Initializes a new instance of <see cref="T:Vintasoft.Data.CompositeDataStorage" /> class.
+            </summary>
+            <param name="dataStorages">A collection of  data storages.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown if <paramref name="dataStorages" /> is <b>null</b>.</exception>
+        </member>
+        <member name="P:Vintasoft.Data.CompositeDataStorage.Storages">
+            <summary>
+            Gets the list of data storages.
+            </summary>
+        </member>
+        <member name="P:Vintasoft.Data.CompositeDataStorage.IsDisposed">
+            <summary>
+            Gets a value indicating whether this instance is disposed.
+            </summary>
+            <value>
+            <b>true</b> if this instance is disposed; otherwise, <b>false</b>.
+            </value>
+        </member>
+        <member name="M:Vintasoft.Data.CompositeDataStorage.AddItem(System.String,System.Object)">
+            <summary>
+            Adds new item to the data storage.
+            </summary>
+            <param name="key">The item key.</param>
+            <param name="item">The item data.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown if <paramref name="key" /> is <b>null</b> or empty.</exception>
+            <exception cref="T:System.ObjectDisposedException">Thrown if this instance is disposed.</exception>
+            <exception cref="T:System.ArgumentException">Thrown if an element with the same key already exists in the data storage.</exception>
+            <exception cref="T:System.ArgumentException">Thrown if data storage cannot store <paramref name="item" /> object.</exception>
+        </member>
+        <member name="M:Vintasoft.Data.CompositeDataStorage.CanStore(System.Type)">
+            <summary>
+            Determines whether the data storage can store data of specified type.
+            </summary>
+            <param name="type">The type of data.</param>
+            <returns>
+            <b>true</b> if data storage can store data of this type.
+            <b>false</b> if data storage cannot store data of this type.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">Thrown if <paramref name="type" /> is <b>null</b>.</exception>
+            <exception cref="T:System.ObjectDisposedException">Thrown if this instance is disposed.</exception>
+        </member>
+        <member name="M:Vintasoft.Data.CompositeDataStorage.Contains(System.String)">
+            <summary>
+            Determines whether the data storage contains an item with the specified identifier.
+            </summary>
+            <param name="key">The item key.</param>
+            <returns>
+            <b>true</b> if data storage contains this item.
+            <b>false</b> if data storage not contains this item.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">Thrown if <paramref name="key" /> is <b>null</b> or empty.</exception>
+            <exception cref="T:System.ObjectDisposedException">Thrown if this instance is disposed.</exception>
+        </member>
+        <member name="M:Vintasoft.Data.CompositeDataStorage.Dispose">
+            <summary>
+            Releases all resources used by the <see cref="T:Vintasoft.Data.CompositeDataStorage" />.
+            </summary>
+        </member>
+        <member name="M:Vintasoft.Data.CompositeDataStorage.DeleteItem(System.String)">
+            <summary>
+            Deletes the item from the data storage.
+            </summary>
+            <param name="key">The item key.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown if <paramref name="key" /> is <b>null</b> or empty.</exception>
+            <exception cref="T:System.ObjectDisposedException">Thrown if this instance is disposed.</exception>
+            <exception cref="T:System.InvalidOperationException">Thrown if item with specified <paramref name="key" /> is locked.</exception>
+        </member>
+        <member name="M:Vintasoft.Data.CompositeDataStorage.GetItemCopy(System.String)">
+            <summary>
+            Returns an item copy from the data storage.
+            </summary>
+            <param name="key">The item key.</param>
+            <returns>The copy (clone) of item data.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown if <paramref name="key" /> is <b>null</b> or empty.</exception>
+            <exception cref="T:System.ObjectDisposedException">Thrown if this instance is disposed.</exception>
+            <exception cref="T:System.InvalidOperationException">Thrown if item with specified <paramref name="key" /> is locked.</exception>
+            <exception cref="T:System.ArgumentException">Thrown if <paramref name="key" /> is not found.</exception>
+        </member>
+        <member name="M:Vintasoft.Data.CompositeDataStorage.SetItem(System.String,System.Object)">
+            <summary>
+            Sets the existing item in the data storage.
+            </summary>
+            <param name="key">The item key.</param>
+            <param name="item">The item data.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown if <paramref name="key" /> is <b>null</b> or empty.</exception>
+            <exception cref="T:System.ObjectDisposedException">Thrown if this instance is disposed.</exception>
+            <exception cref="T:System.InvalidOperationException">Thrown if item with specified <paramref name="key" /> is locked.</exception>
+        </member>
+        <member name="M:Vintasoft.Data.CompositeDataStorage.LockItem(System.String)">
+            <summary> 
+            Locks an item in data storage and returns the item.
+            </summary>
+            <param name="key">The item key.</param>
+            <returns>The locked item from data storage.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown if <paramref name="key" /> is <b>null</b> or empty.</exception>
+            <exception cref="T:System.ObjectDisposedException">Thrown if this instance is disposed.</exception>
+            <exception cref="T:System.InvalidOperationException">Thrown if item with specified <paramref name="key" /> is already locked.</exception>
+            <exception cref="T:System.ArgumentException">Thrown if item with specified <paramref name="key" /> does not exist.</exception>        
+        </member>
+        <member name="M:Vintasoft.Data.CompositeDataStorage.UnlockItem(System.String,System.Object)">
+            <summary>
+            Unlock the locked item in data storage.
+            </summary>
+            <param name="key">The item key.</param>
+            <param name="item">Locked item.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown if <paramref name="key" /> is <b>null</b>.</exception>
+            <exception cref="T:System.ObjectDisposedException">Thrown if this instance is disposed.</exception>
+            <exception cref="T:System.InvalidOperationException">Thrown if item with specified <paramref name="key" /> is not locked.</exception>
+            <exception cref="T:System.ArgumentException">Thrown if item with specified <paramref name="key" /> does not exist.</exception>
+        </member>
+        <member name="M:Vintasoft.Data.CompositeDataStorage.GetKeys">
+            <summary>
+            Returns the keys of all items from data storage.
+            </summary>
+            <returns>The keys of all items from data storage.</returns>
+        </member>
+        <member name="T:Vintasoft.Data.IDataStorage">
+            <summary>
+            Provides a mechanism for storing data in data storage.
+            </summary>
+        </member>
+        <member name="M:Vintasoft.Data.IDataStorage.AddItem(System.String,System.Object)">
+            <summary>
+            Adds new item to the data storage.
+            </summary>
+            <param name="key">The item key.</param>
+            <param name="item">The item data.</param>
+            <exception cref="T:System.ArgumentNullException">If <paramref name="key" /> is <b>null</b>.</exception>
+            <exception cref="T:System.ArgumentException">An element with the same key already exists in the data storage.</exception>
+        </member>
+        <member name="M:Vintasoft.Data.IDataStorage.SetItem(System.String,System.Object)">
+            <summary>
+            Sets the existing item in the data storage.
+            </summary>
+            <param name="key">The item key.</param>
+            <param name="item">The item data.</param>
+            <exception cref="T:System.ArgumentNullException">If <paramref name="key" /> is <b>null</b>.</exception>
+            <exception cref="T:System.InvalidOperationException">If item with specified <paramref name="key" /> is locked.</exception>
+        </member>
+        <member name="M:Vintasoft.Data.IDataStorage.GetItemCopy(System.String)">
+            <summary>
+            Returns an item copy from the data storage.
+            </summary>
+            <param name="key">The item key.</param>
+            <returns>The copy (clone) of item data.</returns>
+            <exception cref="T:System.ArgumentNullException">If <paramref name="key" /> is <b>null</b>.</exception>
+            <exception cref="T:System.ArgumentException">Thrown if <paramref name="key" /> is not found.</exception>
+            <exception cref="T:System.InvalidOperationException">If item with specified <paramref name="key" /> is locked.</exception>
+        </member>
+        <member name="M:Vintasoft.Data.IDataStorage.LockItem(System.String)">
+            <summary>
+            Locks an item in data storage and returns the item.
+            </summary>
+            <param name="key">The item key.</param>
+            <returns>The locked item from data storage.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown if <paramref name="key" /> is <b>null</b>.</exception>
+            <exception cref="T:System.InvalidOperationException">Thrown if item with specified <paramref name="key" /> is already locked.</exception>
+            <seealso cref="M:Vintasoft.Data.IDataStorage.UnlockItem(System.String,System.Object)" />
+        </member>
+        <member name="M:Vintasoft.Data.IDataStorage.UnlockItem(System.String,System.Object)">
+            <summary>
+            Unlock the locked item in data storage.
+            </summary>
+            <param name="key">The item key.</param>
+            <param name="item">Locked item.<br />
+            The item will be overrwritten if item differs from the item returned by the <see cref="M:Vintasoft.Data.IDataStorage.LockItem(System.String)" /> method.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown if <paramref name="key" /> is <b>null</b>.</exception>
+            <exception cref="T:System.InvalidOperationException">Thrown if item with specified <paramref name="key" /> is not locked.</exception>
+            <seealso cref="M:Vintasoft.Data.IDataStorage.LockItem(System.String)" />
+        </member>
+        <member name="M:Vintasoft.Data.IDataStorage.DeleteItem(System.String)">
+            <summary>
+            Deletes the item from the data storage.
+            </summary>
+            <param name="key">The item key.</param>
+            <exception cref="T:System.ArgumentNullException">If <paramref name="key" /> is <b>null</b>.</exception>
+            <exception cref="T:System.InvalidOperationException">If item with specified <paramref name="key" /> is locked.</exception>
+        </member>
+        <member name="M:Vintasoft.Data.IDataStorage.GetKeys">
+            <summary>
+            Returns the keys of all items from data storage.
+            </summary>
+            <returns>The keys of all items from data storage.</returns>
+        </member>
+        <member name="M:Vintasoft.Data.IDataStorage.Contains(System.String)">
+            <summary>
+            Determines whether the data storage contains an item with the specified identifier.
+            </summary>
+            <param name="key">The item key.</param>
+            <returns>
+            <b>True</b> - the data storage contains an item with the specified identifier;
+            <b>false</b> - the data storage does NOT contain an item with the specified identifier.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">If <paramref name="key" /> is <b>null</b>.</exception>
+        </member>
+        <member name="M:Vintasoft.Data.IDataStorage.CanStore(System.Type)">
+            <summary>
+            Determines whether the data storage can store data of specified type.
+            </summary>
+            <param name="type">The type of data.</param>
+            <returns>
+            <b>True</b> if data storage can store data of specified type;
+            otherwise, <b>false</b>.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">If <paramref name="type" /> is <b>null</b>.</exception>
+        </member>
+        <member name="T:Vintasoft.Data.StreamDataStorageOnDisk">
+            <summary>
+            A data storage that stores streams in files on disk.
+            </summary>
+        </member>
+        <member name="M:Vintasoft.Data.StreamDataStorageOnDisk.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Vintasoft.Data.StreamDataStorageOnDisk" /> class.
+            </summary>
+            <param name="storagePath">An absolute path to the directory,
+            where storage must store files.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown if
+            <i>storagePath</i> is <b>null</b> or empty.
+            </exception>
+            <exception cref="T:System.FormatException">Thrown if 
+            <i>storagePath</i> contains invalid characters.
+            </exception>
+            <exception cref="T:System.IO.DirectoryNotFoundException">Thrown if
+            <i>storagePath</i> does not exist.
+            </exception>
+        </member>
+        <member name="P:Vintasoft.Data.StreamDataStorageOnDisk.OpenFileTimeout">
+            <summary>
+            Gets or sets a timeout, in milliseconds, for opening the file stream.
+            </summary>
+            <value>
+            Default value is 100. Minimum value is 100, maximum value is 360000.
+            </value>
+        </member>
+        <member name="M:Vintasoft.Data.StreamDataStorageOnDisk.AddItem(System.String,System.Object)">
+            <summary>
+            Adds a stream to the data storage.
+            </summary>
+            <param name="key">The stream filename.</param>
+            <param name="item">The stream data.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown if
+            <i>key</i> is <b>null</b> or empty.</exception>
+            <remarks>
+            Method creates new file in data storage, writes data into the file and
+            closes the file.
+            </remarks>
+        </member>
+        <member name="M:Vintasoft.Data.StreamDataStorageOnDisk.SetItem(System.String,System.Object)">
+            <summary>
+            Sets a stream in data storage.
+            </summary>
+            <param name="key">The stream filename.</param>
+            <param name="item">The stream data.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown if
+            <i>key</i> is <b>null</b> or empty.</exception>
+            <remarks>
+            Method opens a file in read-write mode, writes new data into the file and
+            closes the file.
+            </remarks>
+        </member>
+        <member name="M:Vintasoft.Data.StreamDataStorageOnDisk.GetItemCopy(System.String)">
+            <summary>
+            Returns a stream from data storage.
+            </summary>
+            <param name="key">The stream filename.</param>
+            <returns>
+            The stream, which was opened in read-only mode with ability to share a file.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">Thrown if
+            <i>key</i> is <b>null</b> or empty.</exception>
+        </member>
+        <member name="M:Vintasoft.Data.StreamDataStorageOnDisk.LockItem(System.String)">
+            <summary>
+            Locks the stream in data storage and
+            returns the locked stream.
+            </summary>
+            <param name="key">The stream filename.</param>
+            <returns>The stream, which was opened in read-write mode and
+            without ability to share the file.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown if
+            <i>key</i> is <b>null</b> or empty.</exception>
+            <remarks>
+            Method creates a file if file does not exist.
+            </remarks>
+        </member>
+        <member name="M:Vintasoft.Data.StreamDataStorageOnDisk.UnlockItem(System.String,System.Object)">
+            <summary>
+            Unlocks the locked stream in data storage.
+            </summary>
+            <param name="key">The stream filename.</param>
+            <param name="item">The stream data.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown if
+            <i>key</i> is <b>null</b> or empty.</exception>
+            <exception cref="T:System.InvalidOperationException">Thrown if
+            <b>item</b> was not previously locked.</exception>
+            <remarks>
+            Method closes the file, which was previously opened in read-write mode
+            and without ability to share the file.
+            </remarks>
+        </member>
+        <member name="M:Vintasoft.Data.StreamDataStorageOnDisk.DeleteItem(System.String)">
+            <summary>
+            Deletes the strean from data storage.
+            </summary>
+            <param name="key">The stream filename.</param>
+        </member>
+        <member name="M:Vintasoft.Data.StreamDataStorageOnDisk.GetKeys">
+            <summary>
+            Returns the filenames of all streams from data storage.
+            </summary>
+            <returns>The filenames of all streams from data storage.</returns>
+        </member>
+        <member name="M:Vintasoft.Data.StreamDataStorageOnDisk.Contains(System.String)">
+            <summary>
+            Determines whether the data storage contains an item with the specified key.
+            </summary>
+            <param name="key">The key of the item.</param>
+            <returns>
+            <b>True</b> - the data storage contains an item with the specified key;
+            <b>false</b> - the data storage does NOT contain an item with the specified key.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">Thrown if
+            <i>key</i> is <b>null</b> or empty.</exception>
+        </member>
+        <member name="M:Vintasoft.Data.StreamDataStorageOnDisk.CanStore(System.Type)">
+            <summary>
+            Determines whether the data of specified type can be stored in the data storage.
+            </summary>
+            <param name="type">The type of data.</param>
+            <returns>
+            <b>True</b> - data storage can store the specified type;
+            <b>false</b> - data storage cannot store the specified type.
+            </returns>
+        </member>
+        <member name="M:Vintasoft.Data.StreamDataStorageOnDisk.Dispose">
+            <summary>
+            Releases all resources used by the <see cref="T:Vintasoft.Data.StreamDataStorageOnDisk" />.
+            </summary>
+        </member>
+        <member name="T:Vintasoft.Data.FileManager">
+            <summary>
+            Static manager that allows to open/close files.
+            </summary>
+        </member>
+        <member name="P:Vintasoft.Data.FileManager.OpenFileTimeout">
+            <summary>
+            Gets or sets the timeout, in milliseconds, for <see cref="M:Vintasoft.Data.FileManager.OpenFile(System.String,System.IO.FileAccess)" /> method.
+            </summary>
+            <value>
+            Default value is 100. Minimum value is 100, maximum value is 360000.
+            </value>
+        </member>
+        <member name="M:Vintasoft.Data.FileManager.OpenFile(System.String,System.IO.FileAccess)">
+            <summary>
+            Opens an existing file with the specified access mode.
+            </summary>
+            <param name="filePath">An absolute path to a file.</param>
+            <param name="fileAccess">A constant that defines how the file can be accessed.</param>
+            <returns>
+            File stream.
+            </returns>
+            <remarks>
+            The method will create new file if <i>fileAccess</i> is set to <see cref="T:System.IO.FileAccess" />.Write;
+            otherwise, the method will open a file.
+            </remarks>
+            <exception cref="T:System.IO.FileNotFoundException">Thrown if
+            file must be opened but file is not found.</exception>
+            <exception cref="T:System.InvalidOperationException">Thrown if
+            file must be created but file exists already.
+            </exception>
+            <exception cref="T:System.TimeoutException">Thrown if
+            file is locked.
+            </exception>
+        </member>
+        <member name="M:Vintasoft.Data.FileManager.CloseFile(System.String,System.IO.FileAccess,System.IO.FileStream)">
+            <summary>
+            Unlocks file after the file is closed.
+            </summary>
+            <param name="filename">An absolute path to a file.</param>
+            <param name="access">A constant that defines how the file can be accessed.</param>
+            <param name="stream">Stream to close.</param>
+            <exception cref="T:System.IO.FileLoadException">Thrown if
+            file is not unlocked.</exception>
+        </member>
+    </members>
+</doc>

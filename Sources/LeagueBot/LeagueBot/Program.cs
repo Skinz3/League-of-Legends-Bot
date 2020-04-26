@@ -36,7 +36,7 @@ namespace LeagueBot
 
             PixelCache.Initialize();
 
-            ImageOCR.Initialize();
+            TextRecognition.Initialize();
 
             try
             {
