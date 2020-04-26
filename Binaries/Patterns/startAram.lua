@@ -24,6 +24,7 @@ function Execute()
 
     win:log("Client Loaded.");
 
+    win:leftClick(306,139); -- Click 'play' button
     win:wait(2000);
     win:leftClick(624,373); -- Click 'aram' button
     win:wait(2000);
