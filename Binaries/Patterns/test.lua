@@ -13,6 +13,8 @@ INTERMEDIATE_BUTTON = {"Client\\intermediateNormal.png","Client\\intermediateHov
 
 CONFIRM_BUTTON = {"Client\\confirmNormal.png","Client\\confirmHover.png"}
 
+FINDMATCH_BUTTON = {"Client\\findNormal.png","Client\\findHover.png"}
+
 --------
 
 function Execute()
@@ -47,8 +49,12 @@ function Execute()
 	img:waitForButton(INTERMEDIATE_BUTTON[1],INTERMEDIATE_BUTTON[2]);
 	img:leftClickButton(INTERMEDIATE_BUTTON[1],INTERMEDIATE_BUTTON[2]);
 
+	
 	img:waitForButton(CONFIRM_BUTTON[1],CONFIRM_BUTTON[2]);
 	img:leftClickButton(CONFIRM_BUTTON[1],CONFIRM_BUTTON[2]);
+
+	img:waitForButton(FINDMATCH_BUTTON[1],FINDMATCH_BUTTON[2]);
+	img:leftClickButton(FINDMATCH_BUTTON[1],FINDMATCH_BUTTON[2]);
 	
 	
 end
