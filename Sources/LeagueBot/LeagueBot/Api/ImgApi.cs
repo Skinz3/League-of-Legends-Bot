@@ -27,6 +27,7 @@ namespace LeagueBot.Api
         {
             this.WinApi = winApi;
         }
+
         public void waitForImage(string image)
         {
             bool exists = ImageRecognition.ImageExists(image);
@@ -49,6 +50,12 @@ namespace LeagueBot.Api
 
         }
 
+        public void findText()
+        {
+
+            TextRecognition.FindWords();
+
+        }
 
     }
 }
