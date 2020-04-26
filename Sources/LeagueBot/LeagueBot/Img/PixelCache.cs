@@ -59,30 +59,22 @@ namespace LeagueBot.Img
             return ImagePixels.ContainsKey(key);
         }
 
+        public static Bitmap GetScreenshot()
+        {
+
+            TakeScreenshot();
+            return CurrentScreenshot;
+
+        }
+
+
+
         public static int[] GetPixels(string filename)
         {
             if (filename == SCREENSHOT_IMAGE_NAME)
             {
-                if (ImageHelper.ImageTimestampExpired(SCREENSHOT_IMAGE_NAME, STEP))
-                {
-
-                    //Clear image from memory
-                    if( CurrentScreenshot != null ) CurrentScreenshot.Dispose();
-
-                    //Get a screen capture
-                    CurrentScreenshot = ImageHelper.TakeScreenCapture();
-
-                    //Save the screenshot pixels
-                    ImagePixels[SCREENSHOT_IMAGE_NAME] = ConvertImage(CurrentScreenshot);
-
-                    //Set width and height
-                    ImageWidth[SCREENSHOT_IMAGE_NAME] = CurrentScreenshot.Width;
-                    ImageHeigth[SCREENSHOT_IMAGE_NAME] = CurrentScreenshot.Height;
-                    
-                    //Set new image screenshot time
-                    ImageHelper.UpdateImageTimestamp(SCREENSHOT_IMAGE_NAME);
-
-                }
+                
+                TakeScreenshot();
 
             }
 
@@ -103,6 +95,33 @@ namespace LeagueBot.Img
         public static int GetLength(string filename)
         {
             return ImagePixels[filename].Length;
+
+        }
+
+
+        private static void TakeScreenshot()
+        {
+
+            if (ImageHelper.ImageTimestampExpired(SCREENSHOT_IMAGE_NAME, STEP))
+            {
+
+                //Clear image from memory
+                if( CurrentScreenshot != null ) CurrentScreenshot.Dispose();
+
+                //Get a screen capture
+                CurrentScreenshot = ImageHelper.TakeScreenCapture();
+
+                //Save the screenshot pixels
+                ImagePixels[SCREENSHOT_IMAGE_NAME] = ConvertImage(CurrentScreenshot);
+
+                //Set width and height
+                ImageWidth[SCREENSHOT_IMAGE_NAME] = CurrentScreenshot.Width;
+                ImageHeigth[SCREENSHOT_IMAGE_NAME] = CurrentScreenshot.Height;
+                
+                //Set new image screenshot time
+                ImageHelper.UpdateImageTimestamp(SCREENSHOT_IMAGE_NAME);
+
+            }
 
         }
 
