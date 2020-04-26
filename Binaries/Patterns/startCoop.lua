@@ -36,22 +36,37 @@ function Execute()
 
     win:log("Finding match...");
 
-    while win:getColor(1032,816) ~= "#1E2328" do -- while match not founded, accept match
-        win:leftClick(947,780);
-        win:wait(3000);
+    while not(win:isProcessOpen(GAME_PROCESS_NAME)) do -- Until process open, it's always possible that we fall back to match found screen
+        while IsMatchFoundScreen() do
+            win:log("Match founded");
+            AcceptMatch()
+        end
+        win:wait(4000);
     end
 
-    win:log("Match founded");
+    win:executePattern("coop");
+end
 
+function IsMatchFoundScreen()
+    return win:getColor(932,580) == "#F2E5D1"
+end
+
+function SelectChampion()
     win:leftClick(645,275);  -- Select first champ
-
     win:wait(1000);
 
     win:leftClick(959,831);  -- Click 'lock in'
+    win:log("Waiting for league of legends process...");
+end
 
-    win:executePattern("coop");
-    
+function AcceptMatch()
+    while win:getColor(1661,941) ~= "#CFBC91" do -- while not in champ selection screen, try accept match and wait
+        win:leftClick(947,780);
+        win:wait(2000);
+    end
 
+    win:log("Selecting Champion"); -- in champ selection screen
+    SelectChampion()
 end
 
 
