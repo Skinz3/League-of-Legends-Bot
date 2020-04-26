@@ -41,6 +41,7 @@
     <Compile Include="Game\Enums\GameType.cs" />
     <Compile Include="Game\LeagueManager.cs" />
     <Compile Include="Img\ImageHelper.cs" />
+    <Compile Include="Img\ImageOCR.cs" />
     <Compile Include="Img\PixelCache.cs" />
     <Compile Include="Img\ImageValues.cs" />
     <Compile Include="IO\Json.cs" />

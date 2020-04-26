@@ -36,6 +36,8 @@ namespace LeagueBot
 
             PixelCache.Initialize();
 
+            ImageOCR.Initialize();
+
             try
             {
                 LeagueManager.ApplySettings();

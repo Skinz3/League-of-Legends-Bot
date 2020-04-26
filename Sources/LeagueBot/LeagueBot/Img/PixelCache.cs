@@ -32,7 +32,7 @@ namespace LeagueBot.Img
         private static Dictionary<string, int> ImageWidth = new Dictionary<string, int>();
 
         private static Bitmap CurrentScreenshot;
-    
+
         public static void Initialize()
         {
             string dir = Path.Combine(Environment.CurrentDirectory, PATH);
@@ -47,7 +47,6 @@ namespace LeagueBot.Img
                     ImagePixels.Add(key, ConvertImage(image));
                     ImageHeigth.Add(key, image.Height);
                     ImageWidth.Add(key, image.Width);
-
                     image.Dispose();
                 }
 
@@ -61,7 +60,6 @@ namespace LeagueBot.Img
 
         public static Bitmap GetScreenshot()
         {
-
             TakeScreenshot();
             return CurrentScreenshot;
 
@@ -73,7 +71,6 @@ namespace LeagueBot.Img
         {
             if (filename == SCREENSHOT_IMAGE_NAME)
             {
-                
                 TakeScreenshot();
 
             }
@@ -106,7 +103,7 @@ namespace LeagueBot.Img
             {
 
                 //Clear image from memory
-                if( CurrentScreenshot != null ) CurrentScreenshot.Dispose();
+                if (CurrentScreenshot != null) CurrentScreenshot.Dispose();
 
                 //Get a screen capture
                 CurrentScreenshot = ImageHelper.TakeScreenCapture();
@@ -117,7 +114,7 @@ namespace LeagueBot.Img
                 //Set width and height
                 ImageWidth[SCREENSHOT_IMAGE_NAME] = CurrentScreenshot.Width;
                 ImageHeigth[SCREENSHOT_IMAGE_NAME] = CurrentScreenshot.Height;
-                
+
                 //Set new image screenshot time
                 ImageHelper.UpdateImageTimestamp(SCREENSHOT_IMAGE_NAME);
 
