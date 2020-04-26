@@ -28,41 +28,6 @@ namespace LeagueBot.Api
         {
             this.WinApi = winApi;
         }
-        /* 
-         * Wait for the client by detecting when the button is displayed
-         */
-        public void waitForButton(string normalImage,string hoverImage)
-        {
-            bool normal = ImageRecognition.ImageExists(normalImage);
-            bool hover = ImageRecognition.ImageExists(normalImage);
-
-            while (!normal && !hover)
-            {
-                normal = ImageRecognition.ImageExists(normalImage);
-                hover = ImageRecognition.ImageExists(hoverImage);
-                Thread.Sleep(1000);
-            }
-        }
-
-
-        public void leftClickButton(string normalImage,string hoverImage)
-        {
-            if (ImageRecognition.ImageExists(normalImage))
-            {
-
-                Point coords = ImageRecognition.ImageCoords(normalImage);
-                Mouse.Move(coords.X + (PixelCache.GetWidth(normalImage) / 2), coords.Y + (PixelCache.GetHeight(hoverImage) / 2));
-                Mouse.PressButton(Mouse.MouseKeys.Left, 150);
-
-            }
-            else if (ImageRecognition.ImageExists(hoverImage))
-            {
-
-                Point coords = ImageRecognition.ImageCoords(hoverImage);
-                Mouse.Move(coords.X + (PixelCache.GetWidth(hoverImage) / 2), coords.Y + (PixelCache.GetHeight(hoverImage) / 2));
-                Mouse.PressButton(Mouse.MouseKeys.Left, 150);
-            }
-        }
         public void waitForImage(string image)
         {
             bool exists = ImageRecognition.ImageExists(image);

@@ -22,9 +22,6 @@ namespace LeagueBot.Api
         {
             this.WinApi = winApi;
         }
-
-
-
         public int getHealthPercent()
         {
             int value = ImageValues.Health();
