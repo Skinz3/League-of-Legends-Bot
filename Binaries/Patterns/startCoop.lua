@@ -60,6 +60,7 @@ function SelectChampion()
 end
 
 function AcceptMatch()
+    -- while win:getColor(1032,816) ~= "#1E2328" do -- Test condition backup 
     while win:getColor(1661,941) ~= "#CFBC91" do -- while not in champ selection screen, try accept match and wait
         win:leftClick(947,780);
         win:wait(2000);
