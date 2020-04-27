@@ -38,11 +38,11 @@
 
    Join the discord server : [![Discord](https://discordapp.com/api/guilds/700654362841579571/widget.png)](https://discord.gg/cB8qtcE)
 
+# LeagueBot Wiki
+
+   [Here is the wiki](https://github.com/Skinz3/League-Of-Legends-BOT/wiki) 
+
 # Authors
 
    * **Skinz** - *Initial work* [Skinz3](https://github.com/Skinz3)
    * **Forerunner**  [Glenndilen](https://github.com/glenndilen)
-
-# LeagueBot Wiki
-
-   [Here is the wiki](https://github.com/Skinz3/League-Of-Legends-BOT/wiki) 
