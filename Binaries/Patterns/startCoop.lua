@@ -7,6 +7,12 @@ Description = "This pattern script start an Coop against AI Game."
 
 function Execute()
 
+
+
+    
+
+
+
     win:log("Waiting for league client process... Ensure League client window size is 1600x900");
   
     win:waitProcessOpen(CLIENT_PROCESS_NAME);
@@ -36,7 +42,8 @@ function Execute()
 
     win:log("Finding match...");
 
-    while win:getColor(1032,816) ~= "#1E2328" do -- while match not founded, accept match
+    
+    while img:waitForText2(CLIENT_PROCESS_NAME,"CHOOSE YOUR CHAMPION") == false do -- while match not founded, accept match
         win:leftClick(947,780);
         win:wait(3000);
     end
