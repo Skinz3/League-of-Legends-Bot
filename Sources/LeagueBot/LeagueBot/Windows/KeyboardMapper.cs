@@ -39,6 +39,8 @@ namespace LeagueBot.Windows
                     return Keys.L;
                 case "m":
                     return Keys.M;
+                case "n":
+                    return Keys.N;
                 case "o":
                     return Keys.O;
                 case "p":
