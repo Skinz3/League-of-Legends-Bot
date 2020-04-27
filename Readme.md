@@ -40,7 +40,7 @@
 
 # LeagueBot Wiki
 
-   FAQ, Api Documentation for developpers... some good stuff :wink:
+   FAQ, Api documentation... some good stuff :wink:
 
    [Here is the wiki](https://github.com/Skinz3/League-Of-Legends-BOT/wiki) 
 
