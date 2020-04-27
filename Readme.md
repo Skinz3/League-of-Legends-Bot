@@ -13,10 +13,6 @@
 
   [<p align="center"><img src="discord.png"></p>](https://discord.gg/cB8qtcE)
 
-  
-
-
-
 
 ## Installation
 
@@ -28,7 +24,7 @@
 
    Before launch the bot, you need to follow setup instructions bellow : 
 
-   ### [Setup instructions](https://github.com/Skinz3/League-Of-Legends-BOT/wiki/How-to-make-it-work)
+   [Setup instructions](https://github.com/Skinz3/League-Of-Legends-BOT/wiki/How-to-make-it-work)
 
   
 	 
