@@ -62,8 +62,6 @@ namespace LeagueBot.Img
 
             capture.Dispose();
 
-            Logger.Write("Text recognition performed in " + st.ElapsedMilliseconds + "ms");
-
             page.Dispose();
 
             return text.Contains(phrase);
