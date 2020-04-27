@@ -17,6 +17,19 @@ namespace LeagueBot.Api
 {
     public class WinApi
     {
+        public void inputWords(string message)
+        {
+            wait(100);
+
+            foreach (var character in message)
+            {
+                Keys key = KeyboardMapper.GetKey(character);
+                Keyboard.KeyPress(key, 150);
+                wait(100);
+            }
+
+            wait(100);
+        }
         public void keyUp(string key)
         {
             Keyboard.KeyUp((Keys)Enum.Parse(typeof(Keys), key));

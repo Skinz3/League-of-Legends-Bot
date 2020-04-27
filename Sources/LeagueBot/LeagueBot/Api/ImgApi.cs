@@ -71,6 +71,10 @@ namespace LeagueBot.Api
             }
 
         }
+        public bool textExists(string processName, string text)
+        {
+            return TextRecognition.TextExists2(processName, text); 
+        }
         public void leftClickText(string text)
         {
             if (TextRecognition.TextExists(text))

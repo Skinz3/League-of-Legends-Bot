@@ -80,8 +80,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LeagueBot\LeagueBot.csproj">
+      <Project>{35eaa17f-8451-48a4-b260-b7ba0896e2d3}</Project>
+      <Name>LeagueBot</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Target Name="BeforeBuild">
-    <NugetContentRestoreTask SolutionDir="$(SolutionDir)" ProjectDir="$(ProjectDir)" />
-  </Target>
+  
 </Project>
