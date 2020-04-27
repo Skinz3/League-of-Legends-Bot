@@ -47,7 +47,7 @@ function Execute()
 
     win:leftClick(1109,219); -- Search Champ
 
-    win:inputWords(CHAMPION); -- Search garen
+    win:inputWords(SELECTED_CHAMPION); -- Search garen
     
     win:leftClick(645,275);  -- Select first champ
 
