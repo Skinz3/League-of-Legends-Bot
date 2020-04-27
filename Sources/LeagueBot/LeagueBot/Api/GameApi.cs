@@ -83,6 +83,8 @@ namespace LeagueBot.Api
             WinApi.wait(100);
             Keyboard.KeyPress(Keys.Enter, 150);
 
+            WinApi.wait(200);
+
         }
 
     }

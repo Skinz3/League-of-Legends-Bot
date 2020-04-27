@@ -49,7 +49,7 @@ function Execute()
     UpgradeSummonerSpell1();
 
     game:talk("Hello world");
-
+    
     ToogleShop();
     BuyItem1();
     BuyItem2();
