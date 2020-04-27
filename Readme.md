@@ -26,11 +26,9 @@
    * a monitor with a **1920 * 1080** screen resolution.
    * .NET framework 4.7 installed on computer.
 
-   ### How to make it work ?
+   Before launch the bot, you need to follow setup instructions bellow : 
 
-   The link bellow explain you how to setup the bot.
-
-   ### [How to make it work](https://github.com/Skinz3/League-Of-Legends-BOT/wiki/How-to-make-it-work)
+   ### [Setup instructions](https://github.com/Skinz3/League-Of-Legends-BOT/wiki/How-to-make-it-work)
 
   
 	 
