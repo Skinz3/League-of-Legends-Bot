@@ -49,13 +49,13 @@ function Execute()
     UpgradeSummonerSpell1();
 
     game:talk("Hello world");
-    
+
     ToogleShop();
     BuyItem1();
     BuyItem2();
     ToogleShop();
 
-    LockAlly2();
+    LockAlly3();
 
 
     while win:isProcessOpen(GAME_PROCESS_NAME) do
@@ -63,25 +63,25 @@ function Execute()
         win:bringProcessToFront(GAME_PROCESS_NAME);
         win:centerProcess(GAME_PROCESS_NAME)
 
-        MoveToAlly2();
+        MoveToAlly();
 
         game:castSpell(1,CAST_SPELL_TARGET[1],CAST_SPELL_TARGET[2])
         
         win:wait(1000);
 
-        MoveToAlly2();
+        MoveToAlly();
 
         game:castSpell(2,CAST_SPELL_TARGET[1],CAST_SPELL_TARGET[2])
 
         win:wait(1000);
 
-        MoveToAlly2();
+        MoveToAlly();
 
         game:castSpell(3,CAST_SPELL_TARGET[1],CAST_SPELL_TARGET[2])
 
         win:wait(1000);
 
-        MoveToAlly2();
+        MoveToAlly();
 
         game:castSpell(4,CAST_SPELL_TARGET[1],CAST_SPELL_TARGET[2])
       
@@ -133,16 +133,16 @@ end
 
 
 
-function LockAlly2()
-    win:keyUp("F2");
+function LockAlly3()
+    win:keyUp("F3");
     win:wait(500);
-    win:keyDown("F2");
+    win:keyDown("F3");
     win:wait(500);
 end
 
 
 
-function MoveToAlly2()
+function MoveToAlly()
     win:rightClick(886,521);
     win:wait(200);
 end

@@ -64,6 +64,11 @@ namespace LeagueBot.Windows
         {
             Process process = Process.GetProcessesByName(name).FirstOrDefault();
 
+            if (process == null || process.HasExited)
+            {
+                return;
+            }
+
             while (process.MainWindowHandle == IntPtr.Zero)
                 process.Refresh();
 
@@ -183,7 +188,14 @@ namespace LeagueBot.Windows
 
         public static void BringWindowToFront(string processName)
         {
-            IntPtr wdwIntPtr = Process.GetProcessesByName(processName).FirstOrDefault().MainWindowHandle;
+            var process = Process.GetProcessesByName(processName).FirstOrDefault();
+
+            if (process == null || process.HasExited)
+            {
+                return;
+            }
+
+            IntPtr wdwIntPtr = process.MainWindowHandle;
 
             ShowWindow(wdwIntPtr, (int)ShowWindowEnum.Restore);
 
