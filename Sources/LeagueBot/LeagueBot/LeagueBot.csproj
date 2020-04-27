@@ -43,6 +43,7 @@
     <Compile Include="Game\Enums\ChampionEnum.cs" />
     <Compile Include="Game\Enums\GameType.cs" />
     <Compile Include="Game\LeagueManager.cs" />
+    <Compile Include="Img\TextHelper.cs" />
     <Compile Include="Img\ImageHelper.cs" />
     <Compile Include="Img\TextCache.cs" />
     <Compile Include="Img\PixelCache.cs" />

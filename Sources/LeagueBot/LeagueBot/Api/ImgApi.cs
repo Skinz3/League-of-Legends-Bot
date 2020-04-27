@@ -50,12 +50,29 @@ namespace LeagueBot.Api
 
         }
 
-        public void findText()
-        {
 
-            TextRecognition.FindWords();
+        public void waitForText(string text)
+        {
+            bool exists = TextRecognition.TextExists(text);
+            while (!exists)
+            {
+                exists = TextRecognition.TextExists(text);
+                Thread.Sleep(1000);
+            }
 
         }
+        public void leftClickText(string text)
+        {
+            if (TextRecognition.TextExists(text))
+            {
+                Point coords = TextRecognition.TextCoords(text);
+
+                Mouse.Move(coords.X, coords.Y);
+                Mouse.PressButton(Mouse.MouseKeys.Left, 150);
+            }
+
+        }
+       
 
     }
 }

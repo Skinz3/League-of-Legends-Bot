@@ -18,14 +18,8 @@ namespace LeagueBot.Img
     
         public const int STEP = 250;
 
-        private static Dictionary<string, int[]> ImagePixels = new Dictionary<string, int[]>();
-        private static Dictionary<string, int>   ImageHeigth = new Dictionary<string, int>();
-        private static Dictionary<string, int>   ImageWidth = new Dictionary<string, int>();
-
-      
-  
-
-
+        private static Dictionary<string, int> TextCoords = new Dictionary<string, int>();
+        
 
       
         

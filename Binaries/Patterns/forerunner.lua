@@ -9,20 +9,20 @@ Description = "This is a test pattern."
 
 function Execute()
 	
-	count = 0;
+	img:waitForText( "COLLECTION" );
+	img:leftClickText( "COLLECTION" );
 	
-	while true do
-		
-		if count == 100 then
-		
-			img:findText();
-			count = 0;
-			
-		end
+	img:waitForText( "PROFILE" );
+	img:leftClickText( "PROFILE" );
 	
-		count = count + 1;
+	img:waitForText( "PLAY" );
+	img:leftClickText( "PLAY" );
 	
-	end
+	img:waitForText( "TRAINING" );
+	img:leftClickText( "TRAINING" );
+	
+	img:waitForText( "PVP" );
+	img:leftClickText( "PVP" );
 	
 end
 

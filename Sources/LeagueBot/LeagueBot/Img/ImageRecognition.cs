@@ -151,7 +151,7 @@ namespace LeagueBot.Img
             int[] pixels = PixelCache.GetPixels(PixelCache.SCREENSHOT_IMAGE_NAME);
             int[] search = PixelCache.GetPixels(filename);
 
-            ;
+         
 
             //Set X and Y pointer for search
             int x = 1;
@@ -263,34 +263,6 @@ namespace LeagueBot.Img
 
 
         //FIX ME, downsize images correctly for pixel to pixel matching
-        private static Bitmap ScaleImage(Image image, Double scale)
-        {
-
-            var newWidth = Convert.ToInt32(image.Width * scale);
-            var newHeight = Convert.ToInt32(image.Height * scale);
-
-
-            var destRect = new Rectangle(0, 0, newWidth, newHeight);
-            var destImage = new Bitmap(newWidth, newHeight);
-
-            destImage.SetResolution(image.HorizontalResolution, image.VerticalResolution);
-
-            using (var graphics = Graphics.FromImage(destImage))
-            {
-                graphics.CompositingMode = CompositingMode.SourceCopy;
-                graphics.CompositingQuality = CompositingQuality.HighQuality;
-                graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
-                graphics.SmoothingMode = SmoothingMode.HighQuality;
-                graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
-
-                using (var wrapMode = new ImageAttributes())
-                {
-                    wrapMode.SetWrapMode(WrapMode.Tile);
-                    graphics.DrawImage(image, destRect, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, wrapMode);
-                }
-            }
-
-            return destImage;
-        }
+        
     }
 }
