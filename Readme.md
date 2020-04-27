@@ -20,8 +20,12 @@
 
 ## Installation
 
-   Requirements : League Of Legends (a League of legends account), a monitor with a **1920 * 1080** screen Resolution. 
-   .NET 4.7 framework.
+   Requirements :
+   * League Of Legends client
+   * a League of legends account
+   * a monitor with a **1920 * 1080** screen resolution.
+   * .NET framework 4.7 installed on computer.
+   
   
 ## How to make it work?
 
