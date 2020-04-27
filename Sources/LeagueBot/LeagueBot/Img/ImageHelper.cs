@@ -64,62 +64,54 @@ namespace LeagueBot.Img
             var newHeight = Convert.ToInt32(image.Height * scale);
 
 
-            var destRect = new Rectangle(0, 0, newWidth, newHeight);
-            var destImage = new Bitmap(newWidth, newHeight);
-
-            destImage.SetResolution(image.HorizontalResolution, image.VerticalResolution);
-
-            using (var graphics = Graphics.FromImage(destImage))
+            Bitmap newImage = new Bitmap(newWidth, newHeight);
+            using (Graphics gr = Graphics.FromImage(newImage))
             {
-                graphics.CompositingMode = CompositingMode.SourceCopy;
-                graphics.CompositingQuality = CompositingQuality.HighQuality;
-                graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
-                graphics.SmoothingMode = SmoothingMode.HighQuality;
-                graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
-
-                using (var wrapMode = new ImageAttributes())
-                {
-                    wrapMode.SetWrapMode(WrapMode.Tile);
-                    graphics.DrawImage(image, destRect, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, wrapMode);
-                }
+                gr.SmoothingMode = SmoothingMode.HighQuality;
+                gr.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                gr.PixelOffsetMode = PixelOffsetMode.HighQuality;
+                gr.DrawImage(image, new Rectangle(0, 0, newWidth, newHeight));
             }
 
-            return destImage;
+            return newImage;
         }
 
+
+
+
         public static Bitmap DesaturateImage(Bitmap original)
-{
-   //create a blank bitmap the same size as original
-   Bitmap newBitmap = new Bitmap(original.Width, original.Height);
+        {
+           //create a blank bitmap the same size as original
+           Bitmap newBitmap = new Bitmap(original.Width, original.Height);
 
-   //get a graphics object from the new image
-   using(Graphics g = Graphics.FromImage(newBitmap)){
+           //get a graphics object from the new image
+           using(Graphics g = Graphics.FromImage(newBitmap)){
 
-       //create the grayscale ColorMatrix
-       ColorMatrix colorMatrix = new ColorMatrix(
-          new float[][] 
-          {
-             new float[] {.3f, .3f, .3f, 0, 0},
-             new float[] {.59f, .59f, .59f, 0, 0},
-             new float[] {.11f, .11f, .11f, 0, 0},
-             new float[] {0, 0, 0, 1, 0},
-             new float[] {0, 0, 0, 0, 1}
-          });
+               //create the grayscale ColorMatrix
+               ColorMatrix colorMatrix = new ColorMatrix(
+                  new float[][] 
+                  {
+                     new float[] {.3f, .3f, .3f, 0, 0},
+                     new float[] {.59f, .59f, .59f, 0, 0},
+                     new float[] {.11f, .11f, .11f, 0, 0},
+                     new float[] {0, 0, 0, 1, 0},
+                     new float[] {0, 0, 0, 0, 1}
+                  });
 
-       //create some image attributes
-       using(ImageAttributes attributes = new ImageAttributes()){
+               //create some image attributes
+               using(ImageAttributes attributes = new ImageAttributes()){
 
-           //set the color matrix attribute
-           attributes.SetColorMatrix(colorMatrix);
+                   //set the color matrix attribute
+                   attributes.SetColorMatrix(colorMatrix);
 
-           //draw the original image on the new image
-           //using the grayscale color matrix
-           g.DrawImage(original, new Rectangle(0, 0, original.Width, original.Height),
-                       0, 0, original.Width, original.Height, GraphicsUnit.Pixel, attributes);
-       }
-   }
-   return newBitmap;
-}
+                   //draw the original image on the new image
+                   //using the grayscale color matrix
+                   g.DrawImage(original, new Rectangle(0, 0, original.Width, original.Height),
+                               0, 0, original.Width, original.Height, GraphicsUnit.Pixel, attributes);
+               }
+           }
+           return newBitmap;
+        }
 
 
 

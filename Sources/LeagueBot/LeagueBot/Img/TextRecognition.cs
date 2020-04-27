@@ -36,7 +36,7 @@ namespace LeagueBot.Img
         public static Point TextCoords( string phrase )
         {
 
-            if ( TextHelper.TextTimestampExpired( phrase, 3000 ) )
+            if ( TextHelper.TextTimestampExpired( phrase, 2000 ) )
             {
                 ReadText();
                 TextHelper.UpdateTextTimestamp(phrase);
@@ -53,7 +53,7 @@ namespace LeagueBot.Img
         public static bool TextExists( string phrase )
         {
 
-            if ( TextHelper.TextTimestampExpired( phrase, 3000 ) )
+            if ( TextHelper.TextTimestampExpired( phrase, 2000 ) )
             {
                 ReadText();
                 TextHelper.UpdateTextTimestamp(phrase);
@@ -84,7 +84,7 @@ namespace LeagueBot.Img
         public static void ReadText()
         {
             
-            Console.WriteLine( "Reading text...");
+            Console.WriteLine( "Image Preprocessing...");
 
             List< string >    WLines = new List<string>();
             List< Rectangle > WRects = new List<Rectangle>();
@@ -92,16 +92,19 @@ namespace LeagueBot.Img
             List< string >    PLines = new List<string>();
             List< Rectangle > PRects = new List<Rectangle>();
             
+            //Bitmap screenshot = PixelCache.GetScreenshot();
 
-            Bitmap screenshot = ImageHelper.InvertImage( 
-                ImageHelper.ContrastImage(
-                    ImageHelper.DesaturateImage( 
-                        PixelCache.GetScreenshot() 
-                    )
-                , 25 )
-            );
+            Bitmap screenshot =  
+               
+                    ImageHelper.InvertImage( 
+                        ImageHelper.ContrastImage(
+                          ImageHelper.DesaturateImage( 
+                            PixelCache.GetScreenshot() 
+            
+                            )
+                         , 25) );
 
-
+            Console.WriteLine( "Engine Processing...");
             var data = Engine.Process( screenshot, PageSegMode.SparseText
                 );
             WRects = data.GetSegmentedRegions( PageIteratorLevel.Word );
@@ -109,6 +112,9 @@ namespace LeagueBot.Img
                
             //Clear text coords only after we've done engine work
             TextCache.Clear();
+            PhraseCache.Clear();
+
+            Console.WriteLine( "Extracting Words...");
 
             using( var iterator = data.GetIterator() )
             {
@@ -152,7 +158,7 @@ namespace LeagueBot.Img
 
             data.Dispose();
             screenshot.Dispose();
-            
+             Console.WriteLine( "Saving results...");
 
             for( int i = 0; i < WLines.Count; ++i)
             {
@@ -161,8 +167,8 @@ namespace LeagueBot.Img
                     TextCache.Add( 
                         WLines[ i ], 
                         new Point( 
-                            WRects[ i ].X + ( WRects[ i ].Width / 2 ), 
-                            WRects[ i ].Y + ( WRects[ i ].Height / 2 )  
+                             Convert.ToInt32( ( WRects[ i ].X + ( WRects[ i ].Width / 2 ) ) * 1 ), 
+                           Convert.ToInt32( ( WRects[ i ].Y + ( WRects[ i ].Height / 2 ) ) * 1 )
                         )
                     );
                 
@@ -176,15 +182,16 @@ namespace LeagueBot.Img
                     PhraseCache.Add( 
                         PLines[ i ], 
                         new Point( 
-                            PRects[ i ].X + ( PRects[ i ].Width / 2 ), 
-                            PRects[ i ].Y + ( PRects[ i ].Height / 2 )  
+                           Convert.ToInt32( ( PRects[ i ].X + ( PRects[ i ].Width / 2 ) ) * 1 ), 
+                           Convert.ToInt32( ( PRects[ i ].Y + ( PRects[ i ].Height / 2 ) ) * 1 )
                         )
                     );
                 
                     }
             }
 
-             Console.WriteLine( "Read items...");
+             Console.WriteLine( "Read Complete.");
+             Console.WriteLine( "-----------------------");
         
         }
 
