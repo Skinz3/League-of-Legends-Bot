@@ -25,18 +25,14 @@
    * a League of legends account
    * a monitor with a **1920 * 1080** screen resolution.
    * .NET framework 4.7 installed on computer.
-   
-  
-## How to make it work?
 
-   ### Ensure your display settings are configured correctly
-   ![alt text](https://i.imgur.com/h3BZVJX.png)  
-   ### Then go to league of legends client and set windows size to 1600 * 900
-   ![alt text](https://puu.sh/FyhQs/e8a84b1ad9.png) </br>
-   ### Now go to this screen: 
-   ![alt text](https://puu.sh/FyhP1/9c3a9c8aac.png) </br>
-   ### Start \Binaries\LeagueBot.exe as Administrator.
-   ### Type 'startAram' or 'startCoop'
+   ### How to make it work ?
+
+   The link bellow explain you how to setup the bot.
+
+   ### [How to make it work](https://github.com/Skinz3/League-Of-Legends-BOT/wiki/How-to-make-it-work)
+
+  
 	 
 # Contact
 
