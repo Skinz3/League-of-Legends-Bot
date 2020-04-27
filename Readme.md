@@ -45,4 +45,4 @@
 
 # LeagueBot Wiki
 
-   Here is the wiki : [https://github.com/Skinz3/League-Of-Legends-BOT/wiki](https://github.com/Skinz3/League-Of-Legends-BOT/wiki) 
+   [Here is the wiki](https://github.com/Skinz3/League-Of-Legends-BOT/wiki) 
