@@ -46,11 +46,9 @@ function Execute()
         win:log("We are red side!");   
     end
 
-  --  LockCamera();
-    
     UpgradeSummonerSpell1();
-    UpgradeSummonerSpell2();
-    UpgradeSummonerSpell3();
+
+    game:talk("Hello world");
 
     ToogleShop();
     BuyItem1();
@@ -58,35 +56,34 @@ function Execute()
     ToogleShop();
 
     LockAlly2();
-    
-  --  game:talk("Hello world");
+
 
     while win:isProcessOpen(GAME_PROCESS_NAME) do
 
         win:bringProcessToFront(GAME_PROCESS_NAME);
         win:centerProcess(GAME_PROCESS_NAME)
+
+        MoveToAlly2();
+
+        game:castSpell(1,CAST_SPELL_TARGET[1],CAST_SPELL_TARGET[2])
         
+        win:wait(1000);
+
         MoveToAlly2();
 
-        CastSpell1();
+        game:castSpell(2,CAST_SPELL_TARGET[1],CAST_SPELL_TARGET[2])
 
         win:wait(1000);
 
         MoveToAlly2();
 
-        CastSpell2();
+        game:castSpell(3,CAST_SPELL_TARGET[1],CAST_SPELL_TARGET[2])
 
         win:wait(1000);
 
         MoveToAlly2();
 
-        CastSpell3();
-
-        win:wait(1000);
-
-        MoveToAlly2();
-
-        CastSpell4();
+        game:castSpell(4,CAST_SPELL_TARGET[1],CAST_SPELL_TARGET[2])
       
     end
 
@@ -134,10 +131,7 @@ function WaitForGameToStart()
     win:waitForColor(997,904,"#00D304");
 end
 
-function LockCamera()
-    win:leftClick(1241,920); 
-    win:wait(200);
-end
+
 
 function LockAlly2()
     win:keyUp("F2");
@@ -146,29 +140,7 @@ function LockAlly2()
     win:wait(500);
 end
 
-function CastSpell1(x,y)
-    win:moveMouse(CAST_SPELL_TARGET[1],CAST_SPELL_TARGET[2]);
-    win:pressKey("D1");
-    win:wait(200);
-end
 
-function CastSpell2(x,y)
-    win:moveMouse(CAST_SPELL_TARGET[1],CAST_SPELL_TARGET[2]);
-    win:pressKey("D2");
-    win:wait(200);
-end
-
-function CastSpell3(x,y)
-    win:moveMouse(CAST_SPELL_TARGET[1],CAST_SPELL_TARGET[2]);
-    win:pressKey("D3");
-    win:wait(200);
-end
-
-function CastSpell4(x,y)
-    win:moveMouse(CAST_SPELL_TARGET[1],CAST_SPELL_TARGET[2]);
-    win:pressKey("D4");
-    win:wait(200);
-end
 
 function MoveToAlly2()
     win:rightClick(886,521);
@@ -191,6 +163,3 @@ function BuyItem2()
     win:wait(200);
 end
 
-function IsAlive()
-    return win:getColor(765,904) == "#07140E";
-end

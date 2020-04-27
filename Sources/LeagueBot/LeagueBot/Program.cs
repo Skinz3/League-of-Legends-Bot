@@ -30,6 +30,8 @@ namespace LeagueBot
         {
             Logger.OnStartup();
 
+            Logger.Write("Loading LeagueBot...");
+
             Configuration.LoadConfig();
 
             PatternsManager.Initialize();

@@ -61,6 +61,20 @@ namespace LeagueBot.Api
             }
 
         }
+        public void waitForText2(string processName, string text)
+        {
+            bool exists = TextRecognition.TextExists2(processName, text);
+            while (!exists)
+            {
+                Thread.Sleep(1000);
+                exists = TextRecognition.TextExists2(processName, text);
+            }
+
+        }
+        public bool textExists(string processName, string text)
+        {
+            return TextRecognition.TextExists2(processName, text); 
+        }
         public void leftClickText(string text)
         {
             if (TextRecognition.TextExists(text))
@@ -72,7 +86,7 @@ namespace LeagueBot.Api
             }
 
         }
-       
+
 
     }
 }

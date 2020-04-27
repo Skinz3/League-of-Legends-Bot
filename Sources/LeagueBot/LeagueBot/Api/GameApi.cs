@@ -1,8 +1,10 @@
 ﻿using InputManager;
 using LeagueBot.Img;
+using LeagueBot.IO;
 using LeagueBot.Windows;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,6 +24,13 @@ namespace LeagueBot.Api
         {
             this.WinApi = winApi;
         }
+        public void castSpell(int indice, int x, int y)
+        {
+            string key = "D" + indice;
+            WinApi.moveMouse(x, y);
+            WinApi.pressKey(key);
+            WinApi.wait(200);
+        }
         public int getHealthPercent()
         {
             int value = ImageValues.Health();
@@ -33,6 +42,31 @@ namespace LeagueBot.Api
             int value = ImageValues.Mana();
             WinApi.log("Mana is " + value);
             return value;
+        }
+        public bool playerAlive()
+        {
+            return WinApi.getColor(765, 904) == "#07140E";
+        }
+        public void toggleCamera()
+        {
+            WinApi.leftClick(1241, 920);
+            WinApi.wait(200);
+        }
+        public int[] getNearestMinion()
+        {
+            Logger.Write("getNearestMinion is not implemented yet.");
+            return new int[2];
+
+            var pt = ImageValues.GetNearestMinion();
+
+            if (pt == Point.Empty)
+            {
+                return null;
+            }
+            else
+            {
+                return new int[] { pt.X, pt.Y };
+            }
         }
         public void talk(string message)
         {
@@ -50,6 +84,6 @@ namespace LeagueBot.Api
             Keyboard.KeyPress(Keys.Enter, 150);
 
         }
-        
+
     }
 }

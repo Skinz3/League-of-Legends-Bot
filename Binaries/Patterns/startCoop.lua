@@ -3,6 +3,8 @@
 CLIENT_PROCESS_NAME = "LeagueClientUX"
 GAME_PROCESS_NAME = "League of Legends"
 Description = "This pattern script start an Coop against AI Game."
+
+SELECTED_CHAMPION = "garen"
 --------
 
 function Execute()
@@ -36,16 +38,20 @@ function Execute()
 
     win:log("Finding match...");
 
-    while win:getColor(1032,816) ~= "#1E2328" do -- while match not founded, accept match
+    while img:textExists(CLIENT_PROCESS_NAME,"CHOOSE YOUR CHAMPION") == false do -- while match not founded, accept match
         win:leftClick(947,780);
         win:wait(3000);
     end
 
     win:log("Match founded");
 
+    win:leftClick(1109,219); -- Search Champ
+
+    win:inputWords(SELECTED_CHAMPION); -- Search garen
+    
     win:leftClick(645,275);  -- Select first champ
 
-    win:wait(1000);
+    win:wait(2000);
 
     win:leftClick(959,831);  -- Click 'lock in'
 

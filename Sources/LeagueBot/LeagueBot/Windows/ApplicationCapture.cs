@@ -15,6 +15,7 @@ namespace LeagueBot.Windows
         public static Bitmap CaptureApplication(string procName)
         {
             var proc = Process.GetProcessesByName(procName)[0];
+            Interop.BringWindowToFront(procName);
             var rect = new User32.Rect();
             User32.GetWindowRect(proc.MainWindowHandle, ref rect);
 

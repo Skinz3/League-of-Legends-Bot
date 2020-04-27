@@ -41,7 +41,7 @@ namespace LeagueBot.Img
             {
                 if (EXTENSIONS.Contains(Path.GetExtension(file)))
                 {
-                    string key = file.Replace(dir, string.Empty);
+                    string key = file.Replace(dir, string.Empty).Replace("\\", "/");
 
                     Bitmap image = (Bitmap)Bitmap.FromFile(file);
                     ImagePixels.Add(key, ConvertImage(image));
