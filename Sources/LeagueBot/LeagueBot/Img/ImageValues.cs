@@ -16,17 +16,22 @@ namespace LeagueBot.Img
     public class ImageValues
     {
 
+        public static Point GetNearestMinion()
+        {
+            var position = ImageRecognition.FindImagePosition("Game/minionHealthBar.png");
+            return position;
+        }
         //Return health value percentage
         public static int Health()
         {
             //Get matching x pixels of the health bar
-            int value = ImageRecognition.MatchingXPixels("health.png", 15);
+            int value = ImageRecognition.MatchingXPixels("Game/health.png", 15);
 
             //Get total pixels of health bar
-            int total = PixelCache.GetWidth("health.png");
+            int total = PixelCache.GetWidth("Game/health.png");
 
             //Get percentage of 100
-            return (int)Math.Round((double)(100 * value) / total);
+            return (int)Math.Round(100d * value / total);
 
         }
 
@@ -35,10 +40,10 @@ namespace LeagueBot.Img
         public static int Mana()
         {
             //Get matching x pixels of the health bar
-            int value = ImageRecognition.MatchingXPixels("mana.png", 15);
+            int value = ImageRecognition.MatchingXPixels("Game/mana.png", 15);
 
             //Get total pixels of health bar
-            int total = PixelCache.GetWidth("mana.png");
+            int total = PixelCache.GetWidth("Game/mana.png");
 
             //Get percentage of 100
             return (int)Math.Round((double)(100 * value) / total);

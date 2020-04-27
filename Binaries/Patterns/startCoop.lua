@@ -9,8 +9,6 @@ SELECTED_CHAMPION = "garen"
 
 function Execute()
 
-
-    win:log(arg[1]);
     win:log("Waiting for league client process... Ensure League client window size is 1600x900");
   
     win:waitProcessOpen(CLIENT_PROCESS_NAME);

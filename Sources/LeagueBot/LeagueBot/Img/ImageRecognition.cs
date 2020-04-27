@@ -122,7 +122,6 @@ namespace LeagueBot.Img
                         //Loop through each pixel in the first row of our loaded image
                         for (int i = 0; i < PixelCache.GetWidth(filename); ++i)
                         {
-
                             //If this pixel matches, increment our value
                             if (pixels[key + i] == search[i]) value++;
 
@@ -144,7 +143,7 @@ namespace LeagueBot.Img
 
 
         //Find X/Y coords of an image on screen
-        private static Point FindImagePosition(string filename, int resolution = 3 )
+        public static Point FindImagePosition(string filename, int resolution = 3 )
         {
 
             //Convert images to pixel arrays
@@ -180,12 +179,9 @@ namespace LeagueBot.Img
                     //If the first resolution is matched, move on
                     if( matched )
                     {
-
-
                         //Foreach Y pixel in our resolution
                         for (int i = 1; i < resolution; ++i)
                         {
-
                             //If the pixel does not match, unset the matched variable
                             if (pixels[key + (PixelCache.GetWidth(PixelCache.SCREENSHOT_IMAGE_NAME) * i)] != search[(PixelCache.GetWidth(filename) * i)]) matched = false;
 
