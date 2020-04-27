@@ -62,9 +62,7 @@ function Execute()
 
         win:bringProcessToFront(GAME_PROCESS_NAME);
         win:centerProcess(GAME_PROCESS_NAME)
-        
-        game:getNearestMinion();
-        
+
         MoveToAlly2();
 
         game:castSpell(1,CAST_SPELL_TARGET[1],CAST_SPELL_TARGET[2])
@@ -86,8 +84,6 @@ function Execute()
         MoveToAlly2();
 
         game:castSpell(4,CAST_SPELL_TARGET[1],CAST_SPELL_TARGET[2])
-
-        
       
     end
 
