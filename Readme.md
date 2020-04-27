@@ -5,7 +5,7 @@
 
 # What is League of Legends Bot
 
-  * League of legends bot is a pixel bot, written in C# .NET using System.Interop, PVInvoke and NLua. 
+  * League of legends bot is a pixel bot for League Of Legends 10.8, written in C# .NET using image processing (image & text recognition), Interop and Lua scriptting.
   * This software is opensource and free.
   * It's a good way to raise your account level 30 without having to play or simply to win blue essences.
 
