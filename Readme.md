@@ -43,36 +43,6 @@
    * **Skinz** - *Initial work* [Skinz3](https://github.com/Skinz3)
    * **Forerunner**  [Glenndilen](https://github.com/glenndilen)
 
-# API References
+# LeagueBot Wiki
 
-* Win Api
-
-| Function | Return Type | Description |
-| :--- | :--- | :--- |
-| `keyUp` | `void` |  `(string key)` Release a keyboard key |
-| `keyDown` | `void` | `(string key)`  Sink a keyboard key |
-| `pressKey` | `void` | `(string key)`  Press a keyboard key |
-| `moveMouse` | `void` |  `(int x,int y)` Mouve mouse |
-| `rightClick` | `void` |  `(int x,int y)` Mouse right click |
-| `leftClick` | `void` |  `(int x,int y)` Mouse left click |
-| `getColor` | `string` |  `(int x,int y)` Get Hexadecimal color |
-| `waitForColor` | `void` |  `(int x,int y,string colorHex)` Stop bot until hex color exists at position |
-| `waitUntilProcessBounds` | `void` |  `(string processName,int width,int height)` Pause bot until process rect bounds is width * heigth |
-| `isProcessOpen` | `bool` |  `(string processName)` Return state of the process |
-| `centerProcess` | `void` |  `(string processName)` Center process windows relatively to screen size |
-| `bringProcessToFront` | `void` |  `(string processName)` Bring process window to front |
-| `waitProcessOpen` | `void` |  `(string processName)` Pause bot until the process open |
-| `centerProcess` | `void` |  `(string processName)` Center process windows relatively to screen size |
-| `executePattern` | `void` |  `(string patternName)` Execute pattern **pattern name** |
-| `log` | `void` |  `(string message)` Log **message** in the console |
-| `wait` | `void` |  `(int duration)` Wait (**duration** is in milliseconds) |
-| `waitForImage` | `void` |  `(string image)` Wait util the **image** is displayed on screen (**image** must exists in `/Binaries/Images/`) |
-| `leftClickImage` | `void` |  `(string image)` Right click the first **image** founded on screen (**image** must exists in `/Binaries/Images/`) |
-
-* Game Api (Beta)
-
-| Function | Return Type | Description |
-| :--- | :--- | :--- |
-| `getHealthPercent` | `int` |  Return your player health percentage |
-| `getManaPercent` | `int` |  Return your player mana percentage |
-| `talk` | `void` |  `(string message)` Talk in ally chat channel |
+   Here is the wiki : [https://github.com/Skinz3/League-Of-Legends-BOT/wiki](https://github.com/Skinz3/League-Of-Legends-BOT/wiki) 
