@@ -38,6 +38,7 @@ namespace LeagueBot.Img
         {
 
             if ( TextHelper.TextTimestampExpired( phrase, 2000 ) )
+            { 
 
 
                 ReadText();
@@ -222,13 +223,7 @@ namespace LeagueBot.Img
         }
 
 
-                }
-            }
-
-            Console.WriteLine("Read items...");
-
-        }
-
+   
 
     }
 }
