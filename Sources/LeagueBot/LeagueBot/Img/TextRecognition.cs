@@ -15,7 +15,7 @@ namespace LeagueBot.Img
     public class TextRecognition
     {
         public const string TESS_PATH = "tessdata/";
-        public const string TESS_LANGUAGE = "eng2";
+        public const string TESS_LANGUAGE = "eng";
 
         private static Dictionary<string, Point> TextCache = new Dictionary<string, Point>();
         private static Dictionary<string, Point> PhraseCache = new Dictionary<string, Point>();
