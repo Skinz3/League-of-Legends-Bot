@@ -128,13 +128,6 @@ namespace LeagueBot.Api
             }
 
         }
-        public void callAsync(string functionName)
-        {
-            Task.Run(() =>
-            {
-                Lua.GetFunction(functionName).Call();
-            });
-        }
         public void executePattern(string filename)
         {
             PatternsManager.Execute(filename);
