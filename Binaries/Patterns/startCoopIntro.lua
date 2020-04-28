@@ -55,7 +55,7 @@ function Execute()
 
     win:leftClick(959,831);  -- Click 'lock in'
 
-    win:executePattern("coop");
+    win:executePattern("coopIntro");
     
 
 end
