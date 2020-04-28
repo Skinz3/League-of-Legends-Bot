@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace LeagueBot.Patterns
@@ -31,7 +32,7 @@ namespace LeagueBot.Patterns
         {
             this.Filename = fileName;
 
-            var winApi = new WinApi();
+            var winApi = new WinApi(lua);
 
             lua["win"] = winApi;
             lua["img"] = new ImgApi(winApi);

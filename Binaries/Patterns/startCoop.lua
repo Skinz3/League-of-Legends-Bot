@@ -7,8 +7,18 @@ Description = "This pattern script start an Coop against AI Game."
 SELECTED_CHAMPION = "garen"
 --------
 
+function Test()
+
+    while true do
+        win:wait(3000);
+        win:log("testing...");
+    end
+end
+
 function Execute()
 
+    win:callAsync("Test");
+    
     win:log("Waiting for league client process... Ensure League client window size is 1600x900");
   
     win:waitProcessOpen(CLIENT_PROCESS_NAME);
