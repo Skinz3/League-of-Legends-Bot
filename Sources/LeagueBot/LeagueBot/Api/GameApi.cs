@@ -50,10 +50,6 @@ namespace LeagueBot.Api
         {
             return ImageHelper.GetColor(765, 904) == "#07140E";
         }
-        public bool victory()
-        {
-            return ImageRecognition.ImageExists("Game/victory.png");
-        }
         #endregion
 
         #region Stats
@@ -153,7 +149,7 @@ namespace LeagueBot.Api
         #endregion
 
         #region Minions
-        public int[] getNearestMinion()
+        public int[] getFirstMinion()
         {
             Logger.Write("getNearestMinion is not implemented yet.");
             return new int[2];
