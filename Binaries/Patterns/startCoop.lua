@@ -12,12 +12,8 @@ function Execute()
     win:log("Waiting for league client process... Ensure League client window size is 1600x900");
   
     win:waitProcessOpen(CLIENT_PROCESS_NAME);
-    win:waitUntilProcessBounds(CLIENT_PROCESS_NAME,1600,900);
-    
-
-    win:log("Waiting for game to load.");
-
     win:bringProcessToFront(CLIENT_PROCESS_NAME);
+    win:waitUntilProcessBounds(CLIENT_PROCESS_NAME,1600,900);
     win:centerProcess(CLIENT_PROCESS_NAME)
 
     win:wait(2000); -- Wait for an UI element of the client to be displayed 

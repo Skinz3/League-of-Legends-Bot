@@ -1,11 +1,11 @@
 
 <p align="center">
-  <img  src="icon.jpg">
+  <img  src="icon.png">
 </p>
 
-# What is League of Legends Bot
+# Welcome to LeagueBot
 
-  * League of legends bot is a pixel bot, written in C# .NET using System.Interop, PVInvoke and NLua. 
+  * League of legends bot is a pixel bot for League Of Legends 10.8, written in C# .NET using image processing (image & text recognition), Interop and Lua scriptting.
   * This software is opensource and free.
   * It's a good way to raise your account level 30 without having to play or simply to win blue essences.
 
@@ -13,32 +13,30 @@
 
   [<p align="center"><img src="discord.png"></p>](https://discord.gg/cB8qtcE)
 
-  
-
-
-
+## Downloads
+   * For non developpers, You can download LeagueBot updater [here](https://github.com/Skinz3/League-Of-Legends-BOT/raw/master/LeagueBot.Updater.zip) so you don't have to redownload the binaries on the git.
 
 ## Installation
 
-   Requirements : League Of Legends (a League of legends account), a monitor with a **1920 * 1080** screen Resolution. 
-   .NET 4.7 framework.
-  
-## How to make it work?
+   Requirements :
+   * League Of Legends client
+   * a League of legends account
+   * a monitor with a **1920 * 1080** screen resolution.
+   * .NET framework 4.7 installed on computer.
 
-   ### Ensure your display settings are configured correctly
-   ![alt text](https://i.imgur.com/h3BZVJX.png)  
-   ### Then go to league of legends client and set windows size to 1600 * 900
-   ![alt text](https://puu.sh/FyhQs/e8a84b1ad9.png) </br>
-   ### Now go to this screen: 
-   ![alt text](https://puu.sh/FyhP1/9c3a9c8aac.png) </br>
-   ### Start \Binaries\LeagueBot.exe as Administrator.
-   ### Type 'startAram' or 'startCoop'
+   Before launch the bot, you need to follow setup instructions bellow : 
+
+   [Setup instructions](https://github.com/Skinz3/League-Of-Legends-BOT/wiki/How-to-make-it-work)
+
+  
 	 
 # Contact
 
    Join the discord server : [![Discord](https://discordapp.com/api/guilds/700654362841579571/widget.png)](https://discord.gg/cB8qtcE)
 
 # LeagueBot Wiki
+
+   FAQ, Api documentation... some good stuff :wink:
 
    [Here is the wiki](https://github.com/Skinz3/League-Of-Legends-BOT/wiki) 
 

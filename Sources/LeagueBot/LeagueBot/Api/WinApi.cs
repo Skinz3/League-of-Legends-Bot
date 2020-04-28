@@ -3,6 +3,7 @@ using LeagueBot.Img;
 using LeagueBot.IO;
 using LeagueBot.Patterns;
 using LeagueBot.Windows;
+using NLua;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -10,6 +11,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using static LeagueBot.Windows.Interop;
 
@@ -17,6 +19,15 @@ namespace LeagueBot.Api
 {
     public class WinApi
     {
+        private Lua Lua
+        {
+            get;
+            set;
+        }
+        public WinApi(Lua lua)
+        {
+            this.Lua = lua;
+        }
         public void inputWords(string message)
         {
             wait(100);
@@ -71,7 +82,7 @@ namespace LeagueBot.Api
                 Thread.Sleep(1000);
             }
         }
-        
+
         public void waitUntilProcessBounds(string processName, int boundsX, int boundsY)
         {
             RECT rect = new RECT();
@@ -133,7 +144,7 @@ namespace LeagueBot.Api
          * Wait an image to be displayed on screen.
          */
 
-       
+
 
     }
 }
