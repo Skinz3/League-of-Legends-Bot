@@ -1,6 +1,6 @@
 
 <p align="center">
-  <img  src="icon.jpg">
+  <img  src="icon.png">
 </p>
 
 # Welcome to LeagueBot
