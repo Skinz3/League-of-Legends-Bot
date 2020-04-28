@@ -23,16 +23,10 @@ namespace LeagueBot.Img
 
         private static TesseractEngine Engine;
 
-
-
-
         public static void Initialize()
         {
             Engine = new TesseractEngine(TESS_PATH, TESS_LANGUAGE);
         }
-
-
-
 
         public static Point TextCoords(string phrase)
         {
