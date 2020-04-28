@@ -48,7 +48,16 @@ namespace ColorViewer
         }
         private string GetColorDescription(Color color)
         {
+            return GetHex(color);
+        }
+
+        private string GetHex(Color color)
+        {
             return ColorTranslator.ToHtml(Color.FromArgb(color.ToArgb()));
+        }
+        private string GetRGB(Color color)
+        {
+            return string.Format("R={0} G={1} B={2}", color.R, color.G, color.B);
         }
     }
 }
