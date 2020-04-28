@@ -24,7 +24,7 @@ function Execute()
     win:wait(2000);
     win:leftClick(336,213); -- Click 'coop vs ai' button
     win:wait(2000);
-    win:leftClick(733,709); -- Click 'intro' button
+    win:leftClick(755,790); -- Click 'intermediate' button
     win:wait(2000);
     win:leftClick(832,949);  -- Click 'confirm' button
 
@@ -51,7 +51,7 @@ function Execute()
 
     win:leftClick(959,831);  -- Click 'lock in'
 
-    win:executePattern("coopIntro");
+    win:executePattern("coop");
     
 
 end
