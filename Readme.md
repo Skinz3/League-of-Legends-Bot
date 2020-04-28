@@ -13,6 +13,8 @@
 
   [<p align="center"><img src="discord.png"></p>](https://discord.gg/cB8qtcE)
 
+## Downloads
+   * For non developpers, You can download LeagueBot updater [here](LeagueBot.Updater.zip) so you don't have to redownload the binaries on the git.
 
 ## Installation
 
