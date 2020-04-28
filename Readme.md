@@ -11,7 +11,11 @@
 
   > Version: League of Legends 10.8
 
+  This product is used to work with other program/service (League of Legends) so you take full responsibility for breaking their Terms of Service and full responsibility for the accounts that you’re using with this bot and agree to use it at your own risk.
+
   [<p align="center"><img src="discord.png"></p>](https://discord.gg/cB8qtcE)
+
+
 
 ## Downloads
    * For non developpers, You can download LeagueBot updater [here](https://github.com/Skinz3/League-Of-Legends-BOT/raw/master/LeagueBot.Updater.zip) so you don't have to redownload the binaries on the git.
