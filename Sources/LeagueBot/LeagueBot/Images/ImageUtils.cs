@@ -11,9 +11,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace LeagueBot.Img
+namespace LeagueBot.Image
 {
-    public class ImageHelper
+    public class ImageUtils
     {
         private static Dictionary<string, long> ImageTimestamps = new Dictionary<string, long>();
 
@@ -57,7 +57,7 @@ namespace LeagueBot.Img
         }
 
 
-        public static Bitmap ScaleImage(Image image, Double scale)
+        public static Bitmap ScaleImage(System.Drawing.Image image, Double scale)
         {
 
             var newWidth = Convert.ToInt32(image.Width * scale);

@@ -9,9 +9,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace LeagueBot.Patterns
+namespace LeagueBot.Scripting.Patterns
 {
-    public class PatternScript
+    public class Script
     {
         public string Filename
         {
@@ -28,23 +28,25 @@ namespace LeagueBot.Patterns
             get;
             set;
         }
-        public PatternScript(string fileName, Lua lua)
+        public Script(string fileName, Lua lua)
         {
             this.Filename = fileName;
 
-            lua["bot"] = new BotApi();
-            lua["client"] = new ClientApi();
-            lua["game"] = new GameApi();
+            var winApi = new WinApi(lua);
+
+            lua["win"] = winApi;
+            lua["img"] = new ImgApi(winApi);
+            lua["game"] = new GameApi(winApi);
 
             this.Description = lua.GetString("Description");
             this.Lua = lua;
         }
 
-        public void Execute()
+        public void Execute(params object[] param)
         {
             Logger.Write("Running " + Filename);
             LuaFunction functionMain = Lua.GetFunction("Execute");
-            functionMain.Call();
+            functionMain.Call(param);
         }
         public override string ToString()
         {

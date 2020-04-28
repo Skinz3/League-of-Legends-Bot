@@ -1,8 +1,9 @@
 ﻿using LeagueBot.Game;
 using LeagueBot.Game.Enums;
-using LeagueBot.Img;
+using LeagueBot.Image;
 using LeagueBot.IO;
 using LeagueBot.Patterns;
+using LeagueBot.Texts;
 using LeagueBot.Windows;
 using NLua;
 using System;
@@ -54,7 +55,6 @@ namespace LeagueBot
 
             Console.Read();
         }
-
         static void HandleCommand()
         {
             Logger.Write("Enter a pattern filename, type 'help' for help.");

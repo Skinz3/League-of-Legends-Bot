@@ -4,54 +4,62 @@ CLIENT_PROCESS_NAME = "LeagueClientUX"
 GAME_PROCESS_NAME = "League of Legends"
 Description = "This pattern script start an Coop against AI Game."
 
-SELECTED_CHAMPION = "garen"
+SELECTED_CHAMPION = "garen" 
+MODE = "intro" -- Modes : (intermediate,intro)
 --------
 
 function Execute()
 
-    win:log("Waiting for league client process... Ensure League client window size is 1600x900");
+    bot:log("Waiting for league client process... Ensure League client window size is 1600x900");
   
-    win:waitProcessOpen(CLIENT_PROCESS_NAME);
-    win:bringProcessToFront(CLIENT_PROCESS_NAME);
-    win:waitUntilProcessBounds(CLIENT_PROCESS_NAME,1600,900);
-    win:centerProcess(CLIENT_PROCESS_NAME)
+    bot:waitProcessOpen(CLIENT_PROCESS_NAME);
+    bot:bringProcessToFront(CLIENT_PROCESS_NAME);
+    bot:waitUntilProcessBounds(CLIENT_PROCESS_NAME,1600,900);
+    bot:centerProcess(CLIENT_PROCESS_NAME)
 
-    win:wait(2000); -- Wait for an UI element of the client to be displayed 
-
-    win:log("Client Loaded.");
+    bot:log("Client ready.");
     
-    win:leftClick(306,139); -- Click 'play' button
-    win:wait(2000);
-    win:leftClick(336,213); -- Click 'coop vs ai' button
-    win:wait(2000);
-    win:leftClick(755,790); -- Click 'intermediate' button
-    win:wait(2000);
-    win:leftClick(832,949);  -- Click 'confirm' button
+    client:clickPlayButton(); -- Click 'play' button
+    bot:wait(2000);
+    client:clickCoopvsIAText(); -- Click 'coop vs ai' button
+    bot:wait(2000);
 
-    win:wait(5000); -- Wait for aram background to be displayed (client can be laggy)
 
-    win:leftClick(832,949);  -- Click 'Find match' button
-
-    win:log("Finding match...");
-
-    while img:textExists(CLIENT_PROCESS_NAME,"CHOOSE YOUR CHAMPION") == false do -- while match not founded, accept match
-        win:leftClick(947,780);
-        win:wait(3000);
+    if MODE == "intermediate" then
+        client:clickIntermediateText(); 
+    elseif MODE == "intro" then
+        client:clickIntroText();
     end
 
-    win:log("Match founded");
+  
 
-    win:leftClick(1109,219); -- Search Champ
+    bot:wait(2000);
+    client:clickConfirmButton();  -- Click 'confirm' button
 
-    win:inputWords(SELECTED_CHAMPION); -- Search garen
+    bot:wait(5000); -- Wait for aram background to be displayed (client can be laggy)
+
+    client:clickFindMatchButton();  -- Click 'Find match' button
+
+    bot:log("Finding match...");
+
+    while client:mustSelectChamp() == false do -- while match not founded, accept match
+        client:acceptMatch();
+        bot:wait(3000);
+    end
+
+    bot:log("Match founded");
+
+    client:clickChampSearch(); -- Search Champ
+
+    bot:inputWords(SELECTED_CHAMPION); -- Search garen
     
-    win:leftClick(645,275);  -- Select first champ
+    client:selectFirstChampion();  -- Select first champ
 
-    win:wait(2000);
+    bot:wait(2000);
 
-    win:leftClick(959,831);  -- Click 'lock in'
+    client:lockChampion();  -- Click 'lock in'
 
-    win:executePattern("coop");
+    bot:executePattern("coop");
     
 
 end

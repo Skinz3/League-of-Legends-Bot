@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace LeagueBot.Patterns
+namespace LeagueBot.Scripting.Patterns
 {
     class PatternsManager
     {
@@ -18,7 +18,7 @@ namespace LeagueBot.Patterns
 
         public const string EXTENSION = ".lua";
 
-        static Dictionary<string, PatternScript> Scripts = new Dictionary<string, PatternScript>();
+        static Dictionary<string, Script> Scripts = new Dictionary<string, Script>();
 
         public static void Initialize()
         {
@@ -29,7 +29,7 @@ namespace LeagueBot.Patterns
                     string filename = Path.GetFileName(file);
                     Lua lua = new Lua();
                     lua.DoFile(file);
-                    Scripts.Add(Path.GetFileNameWithoutExtension(filename), new PatternScript(filename, lua));
+                    Scripts.Add(Path.GetFileNameWithoutExtension(filename), new Script(filename, lua));
                 }
             }
         }
@@ -39,14 +39,7 @@ namespace LeagueBot.Patterns
         }
         public static void Execute(string name)
         {
-            if (!Scripts.ContainsKey(name))
-            {
-                Logger.Write("Unable to execute " + name + EXTENSION + ". Script not found.");
-            }
-            else
-            {
-                Scripts[name].Execute();
-            }
+            Scripts[name].Execute();
         }
         public static string ToString()
         {

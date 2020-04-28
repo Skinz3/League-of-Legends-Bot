@@ -11,9 +11,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace LeagueBot.Img
+namespace LeagueBot.Texts
 {
-    public class TextHelper
+    public class TextUtils
     {
         private static Dictionary<string, long> TextTimestamps = new Dictionary<string, long>();
 

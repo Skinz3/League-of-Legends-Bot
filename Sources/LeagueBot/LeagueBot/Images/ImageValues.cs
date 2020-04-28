@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace LeagueBot.Img
+namespace LeagueBot.Image
 {
 
     //Use image recognition to find game values

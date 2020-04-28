@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace LeagueBot.Img
+namespace LeagueBot.Image
 {
     public class PixelCache
     {
@@ -99,14 +99,14 @@ namespace LeagueBot.Img
         private static void TakeScreenshot()
         {
 
-            if (ImageHelper.ImageTimestampExpired(SCREENSHOT_IMAGE_NAME, STEP))
+            if (ImageUtils.ImageTimestampExpired(SCREENSHOT_IMAGE_NAME, STEP))
             {
 
                 //Clear image from memory
                 if (CurrentScreenshot != null) CurrentScreenshot.Dispose();
 
                 //Get a screen capture
-                CurrentScreenshot = ImageHelper.TakeScreenCapture();
+                CurrentScreenshot = ImageUtils.TakeScreenCapture();
 
                 //Save the screenshot pixels
                 ImagePixels[SCREENSHOT_IMAGE_NAME] = ConvertImage(CurrentScreenshot);
@@ -116,7 +116,7 @@ namespace LeagueBot.Img
                 ImageHeigth[SCREENSHOT_IMAGE_NAME] = CurrentScreenshot.Height;
 
                 //Set new image screenshot time
-                ImageHelper.UpdateImageTimestamp(SCREENSHOT_IMAGE_NAME);
+                ImageUtils.UpdateImageTimestamp(SCREENSHOT_IMAGE_NAME);
 
             }
 

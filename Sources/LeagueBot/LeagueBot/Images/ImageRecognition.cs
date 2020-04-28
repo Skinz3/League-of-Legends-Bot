@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace LeagueBot.Img
+namespace LeagueBot.Image
 {
     public class ImageRecognition
     {
@@ -25,11 +25,11 @@ namespace LeagueBot.Img
         public static Point ImageCoords(string image, int resolution = 3 )
         {
 
-            if (ImageHelper.ImageTimestampExpired(image, STEP))
+            if (ImageUtils.ImageTimestampExpired(image, STEP))
             {
 
                 ImagePositionMatches[image] = FindImagePosition(image, resolution);
-                ImageHelper.UpdateImageTimestamp(image);
+                ImageUtils.UpdateImageTimestamp(image);
 
             }
 
@@ -41,11 +41,11 @@ namespace LeagueBot.Img
         //Does an image exist on our screen
         public static bool ImageExists(string image, int resolution = 3 )
         {
-            if (ImageHelper.ImageTimestampExpired(image, STEP))
+            if (ImageUtils.ImageTimestampExpired(image, STEP))
             {
 
                 ImagePositionMatches[image] = FindImagePosition(image, resolution);
-                ImageHelper.UpdateImageTimestamp(image);
+                ImageUtils.UpdateImageTimestamp(image);
             }
 
             //Get coords of image on our screen
@@ -65,11 +65,11 @@ namespace LeagueBot.Img
         public static int MatchingXPixels(string image, int resolution = 3)
         {
 
-            if (ImageHelper.ImageTimestampExpired(image, STEP))
+            if (ImageUtils.ImageTimestampExpired(image, STEP))
             {
 
                 ImageXMatches[image] = MatchImageX(image, resolution);
-                ImageHelper.UpdateImageTimestamp(image);
+                ImageUtils.UpdateImageTimestamp(image);
             }
 
             //Return the match count

@@ -11,17 +11,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace LeagueBot.Img
+namespace LeagueBot.Texts
 {
     public class TextCache
     {
-    
         public const int STEP = 250;
 
         private static Dictionary<string, int> TextCoords = new Dictionary<string, int>();
-        
-
-      
-        
     }
 }
