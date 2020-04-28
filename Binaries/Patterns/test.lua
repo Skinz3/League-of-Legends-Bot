@@ -9,12 +9,7 @@ Description = "This is a test pattern."
 
 function Execute()
 	
-	while true do
-
-		if img:textExists("League Of Legends","VICTORY") == true then
-			win:log("VICTORY");
-		end
-	end
+	
 	
 	
 end

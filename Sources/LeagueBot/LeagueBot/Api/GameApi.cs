@@ -31,6 +31,10 @@ namespace LeagueBot.Api
             WinApi.pressKey(key);
             WinApi.wait(200);
         }
+        public bool victory()
+        {
+            return ImageRecognition.ImageExists("Game/victory.png");
+        }
         public int getHealthPercent()
         {
             int value = ImageValues.Health();

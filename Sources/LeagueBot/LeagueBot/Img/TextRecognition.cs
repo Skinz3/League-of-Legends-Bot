@@ -94,11 +94,6 @@ namespace LeagueBot.Img
             return false;
 
         }
-
-
-
-
-
         public static void ReadText()
         {
 
