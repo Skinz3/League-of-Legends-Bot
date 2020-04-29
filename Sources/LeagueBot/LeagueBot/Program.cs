@@ -6,7 +6,6 @@ using LeagueBot.IO;
 using LeagueBot.Patterns;
 using LeagueBot.Texts;
 using LeagueBot.Windows;
-using NLua;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;

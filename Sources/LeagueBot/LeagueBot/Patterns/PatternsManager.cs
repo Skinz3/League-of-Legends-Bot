@@ -1,12 +1,16 @@
-﻿using LeagueBot.DesignPattern;
+﻿using LeagueBot.Api;
+using LeagueBot.DesignPattern;
 using LeagueBot.IO;
 using LeagueBot.Windows;
-using NLua;
+using Microsoft.CSharp;
 using System;
+using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -15,25 +19,50 @@ namespace LeagueBot.Patterns
 {
     class PatternsManager
     {
-        public const string PATH = "Patterns/";
+        public const string PATH = "Patterns\\";
 
-        public const string EXTENSION = ".lua";
+        public const string EXTENSION = ".cs";
 
-        static Dictionary<string, PatternScript> Scripts = new Dictionary<string, PatternScript>();
+        static Dictionary<string, Type> Scripts = new Dictionary<string, Type>();
 
         [StartupInvoke("Patterns", StartupInvokePriority.SecondPass)]
         public static void Initialize()
         {
-            foreach (var file in Directory.GetFiles(Path.Combine(Environment.CurrentDirectory, PATH)))
+            CSharpCodeProvider codeProvider = new CSharpCodeProvider();
+
+            CompilerParameters parameters = new CompilerParameters();
+            parameters.GenerateExecutable = false;
+            parameters.GenerateInMemory = true;
+            parameters.OutputAssembly = string.Empty;
+            parameters.IncludeDebugInformation = false;
+
+            parameters.ReferencedAssemblies.Add(Assembly.GetExecutingAssembly().Location);
+            parameters.ReferencedAssemblies.Add("System.Drawing.dll");
+
+            var files = Directory.GetFiles(Path.Combine(Environment.CurrentDirectory, PATH)).Where(x => Path.GetExtension(x) == EXTENSION).ToArray();
+
+            CompilerResults results = codeProvider.CompileAssemblyFromFile(parameters, files);
+
+            if (results.Errors.Count > 0)
             {
-                if (Path.GetExtension(file) == EXTENSION)
+                StringBuilder sb = new StringBuilder();
+
+                foreach (CompilerError err in results.Errors)
                 {
-                    string filename = Path.GetFileName(file);
-                    Lua lua = new Lua();
-                    lua.DoFile(file);
-                    Scripts.Add(Path.GetFileNameWithoutExtension(filename), new PatternScript(filename, lua));
+                    sb.AppendLine(string.Format("{0}({1},{2}) : {3}", Path.GetFileName(err.FileName), err.Line, err.Column, err.ErrorText));
                 }
+                Logger.Write(sb.ToString(), MessageState.WARNING);
+                Console.Read();
+                Environment.Exit(0);
             }
+
+            codeProvider.Dispose();
+
+            foreach (var type in results.CompiledAssembly.GetTypes())
+            {
+                Scripts.Add(type.Name, type);
+            }
+
         }
         public static bool Contains(string name)
         {
@@ -43,11 +72,15 @@ namespace LeagueBot.Patterns
         {
             if (!Scripts.ContainsKey(name))
             {
-                Logger.Write("Unable to execute " + name + EXTENSION + ". Script not found.");
+                Logger.Write("Unable to execute " + name + EXTENSION + ". Script not found.", MessageState.WARNING);
             }
             else
             {
-                Scripts[name].Execute();
+                PatternScript script = (PatternScript)Activator.CreateInstance(Scripts[name]);
+                script.bot = new BotApi();
+                script.client = new ClientApi();
+                script.game = new GameApi();
+                script.Execute();
             }
         }
         public static string ToString()
@@ -56,7 +89,7 @@ namespace LeagueBot.Patterns
 
             foreach (var script in Scripts)
             {
-                sb.AppendLine("-" + script.Value.ToString());
+                sb.AppendLine("-" + script.Key);
             }
 
             return sb.ToString();

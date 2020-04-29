@@ -69,7 +69,7 @@ namespace LeagueBot.Windows
                 return false;
             }
 
-            while (process.MainWindowHandle == IntPtr.Zero)
+            while (!process.HasExited && process.MainWindowHandle == IntPtr.Zero)
                 process.Refresh();
 
             IntPtr handle = process.MainWindowHandle;
