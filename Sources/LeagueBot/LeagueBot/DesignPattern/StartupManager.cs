@@ -35,17 +35,24 @@ namespace LeagueBot.DesignPattern
         {
             get; set;
         }
+        public bool ExitOnThrow
+        {
+            get;
+            set;
+        }
 
-        public StartupInvoke(string name, StartupInvokePriority type)
+        public StartupInvoke(string name, StartupInvokePriority type, bool exitOnTrow = true)
         {
             this.Type = type;
             this.Name = name;
             this.Hided = false;
+            this.ExitOnThrow = exitOnTrow;
         }
         public StartupInvoke(StartupInvokePriority type)
         {
             this.Hided = true;
             this.Type = type;
+            this.ExitOnThrow = true;
         }
         public override string ToString()
         {
@@ -82,10 +89,18 @@ namespace LeagueBot.DesignPattern
                             }
                             catch (Exception ex)
                             {
-                                Logger.Write(ex.ToString(), MessageState.ERROR);
-                                Console.ReadKey();
-                                Environment.Exit(0);
-                                return;
+                                if (data.Key.ExitOnThrow)
+                                {
+                                    Logger.Write(ex.ToString(), MessageState.ERROR);
+                                    Console.ReadKey();
+                                    Environment.Exit(0);
+                                    return;
+                                }
+                                else
+                                {
+                                    Logger.Write("Unable to initialize " + data.Key.Name, MessageState.WARNING);
+                                    continue;
+                                }
                             }
 
                         }
