@@ -65,8 +65,6 @@ namespace LeagueBot.Texts
                                  GraphicsUnit.Pixel);
             }
 
-            target.Save("test.png");
-
             Page page = Engine.Process(target);
 
             string text = page.GetText();
