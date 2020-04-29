@@ -18,8 +18,7 @@
 
 
 ## Downloads
-   * For non developpers, You can download LeagueBot updater [here](https://github.com/Skinz3/League-Of-Legends-BOT/raw/master/Updater.zip) so you don't have to redownload the binaries on the git.
-
+   * For non developpers, You can download LeagueBot updater [here](https://github.com/Skinz3/League-Of-Legends-BOT/raw/master/Updater.zip) to automatically get the binaries and automatically download updates ! 
 ## Installation
 
    Requirements :

@@ -13,6 +13,19 @@ using System.Windows.Forms;
 
 namespace LeagueBot.Api
 {
+    /*
+     * In Game Behaviour
+     * -> Move to Nearest tower
+     * -> Wait until minion spawn
+     * -> Perpetual near entities analysis
+     * -> Our objective is lane tower, once tower is destroyed, we go even futher
+     * -> Perpetual state analysis States : {Agressive,Farming,Flee,Back,Walking to turret}
+     * -> * Agressive if player is agressed and loose life fast
+     * -> * Farming if NearChampions == 0 and NearMinions > 0
+     * -> * Flee if life percentage is low
+     * -> * We back after Flee
+     * -> * Walk to our first turret
+     */
     public class GameApi
     {
         private bool IsShopOpen
