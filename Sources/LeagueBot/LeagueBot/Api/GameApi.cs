@@ -41,9 +41,20 @@ namespace LeagueBot.Api
         {
             ImageHelper.WaitForColor(997, 904, "#00D304");
         }
-        public bool isBlueSide()
+        public bool isBlueSide(string mapName)
         {
-            this.BlueSide = ImageHelper.GetColor(1343, 868) == "#2A768C";
+            switch (mapName)
+            {
+                case "SummonersRift":
+                    this.BlueSide = ImageHelper.GetColor(1343, 868) == "#2A768C";
+                    break;
+                case "HowlingAbyss":
+                    this.BlueSide = ImageHelper.GetColor(1337, 869) == "#3798B5";
+                    break;
+                default:
+                    Logger.Write("Unknown Map type " + mapName, MessageState.WARNING);
+                    break;
+            }
             return BlueSide;
         }
         public bool isPlayerAlive()

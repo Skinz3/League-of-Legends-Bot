@@ -35,7 +35,7 @@ function Execute()
 
     bot:wait(1000);
 
-    Side = game:isBlueSide();
+    Side = game:isBlueSide("SummonersRift");
 
     if Side == true then
         CAST_SPELL_TARGET = {1084,398}

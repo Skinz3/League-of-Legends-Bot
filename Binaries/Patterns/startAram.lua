@@ -9,9 +9,7 @@ Description = "This pattern script start an Aram Game."
 
 function Execute()
 
-    bot:log("Aram mode is not implemented :) will be shortely");
-
-   --[[ bot:log("Waiting for league client process...Ensure League client window size is 1600x900");
+    bot:log("Waiting for league client process...Ensure League client window size is 1600x900");
   
     bot:waitProcessOpen(CLIENT_PROCESS_NAME);
     bot:waitUntilProcessBounds(CLIENT_PROCESS_NAME,1600,900);
@@ -45,8 +43,6 @@ function Execute()
 
     
     bot:executePattern("aram"); 
-    
-    ]]--
 
 end
 

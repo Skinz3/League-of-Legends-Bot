@@ -14,98 +14,98 @@ CAST_SPELL_TARGET = {}
 
 function Execute()
 
-    win:log("Waiting for league of legends process...");
+    bot:log("Waiting for league of legends process...");
 
-    win:waitProcessOpen(GAME_PROCESS_NAME);
+    bot:waitProcessOpen(GAME_PROCESS_NAME);
  
-    win:waitUntilProcessBounds(GAME_PROCESS_NAME,1030,797)    
+    bot:waitUntilProcessBounds(GAME_PROCESS_NAME,1030,797)    
 
-    win:wait(200);
+    bot:wait(200);
 
-    win:log("Waiting for game to load.");
+    bot:log("Waiting for game to load.");
 
-    win:bringProcessToFront(GAME_PROCESS_NAME);
-    win:centerProcess(GAME_PROCESS_NAME)
+    bot:bringProcessToFront(GAME_PROCESS_NAME);
+    bot:centerProcess(GAME_PROCESS_NAME)
 
-    WaitForGameToStart();
+    game:waitUntilGameStart();
 
-    win:log("We are in game !");
+    bot:log("We are in game !");
 
-    win:bringProcessToFront(GAME_PROCESS_NAME);
-    win:centerProcess(GAME_PROCESS_NAME)
+    bot:bringProcessToFront(GAME_PROCESS_NAME);
+    bot:centerProcess(GAME_PROCESS_NAME)
 
-    win:wait(1000);
+    bot:wait(1000);
 
-    Side = getSide();
+    Side = game:isBlueSide("HowlingAbyss");
 
     if Side == true then
         CAST_SPELL_TARGET = {1084,398}
-        win:log("We are blue side!");
+        bot:log("We are blue side!");
     else
         CAST_SPELL_TARGET = {644,761}
-        win:log("We are red side!");   
+        bot:log("We are red side!");   
     end
 
-    LockCamera();
-    
-    UpgradeSummonerSpell1();
-    UpgradeSummonerSpell2();
-    UpgradeSummonerSpell3();
+    game:upgradeSpell(1);
 
-    ToogleShop();
-    BuyItem1();
-    BuyItem2();
-    ToogleShop();
+    --game:talk("Hi guys");
 
-    LockAlly2();
+    game:toogleShop();
 
-    while win:isProcessOpen(GAME_PROCESS_NAME) do
+    game:buyItem(1);
+    game:buyItem(2);
 
-        win:bringProcessToFront(GAME_PROCESS_NAME);
-        win:centerProcess(GAME_PROCESS_NAME)
+    game:toogleShop();
+
+    game:lockAlly(3);
+
+    while bot:isProcessOpen(GAME_PROCESS_NAME) do
+
+        bot:bringProcessToFront(GAME_PROCESS_NAME);
+        bot:centerProcess(GAME_PROCESS_NAME)
+
+        game:moveCenterScreen();
+
+        game:castSpell(1,CAST_SPELL_TARGET[1],CAST_SPELL_TARGET[2])
         
-        MoveToAlly2();
+        bot:wait(1000);
 
-        CastSpell1();
+        game:moveCenterScreen();
 
-        win:wait(1000);
+        game:castSpell(2,CAST_SPELL_TARGET[1],CAST_SPELL_TARGET[2])
 
-        MoveToAlly2();
+        bot:wait(1000);
 
-        CastSpell2();
+        game:moveCenterScreen();
 
-        win:wait(1000);
+        game:castSpell(3,CAST_SPELL_TARGET[1],CAST_SPELL_TARGET[2])
 
-        MoveToAlly2();
+        bot:wait(1000);
 
-        CastSpell3();
+        game:moveCenterScreen();
 
-        win:wait(1000);
-
-        MoveToAlly2();
-
-        CastSpell4();
+        game:castSpell(4,CAST_SPELL_TARGET[1],CAST_SPELL_TARGET[2])
       
     end
 
-    win:log("Match ended.");
+    bot:log("Match ended.");
 
-    win:waitProcessOpen(CLIENT_PROCESS_NAME);
+    bot:waitProcessOpen(CLIENT_PROCESS_NAME);
 
-    win:bringProcessToFront(CLIENT_PROCESS_NAME);
-    win:centerProcess(CLIENT_PROCESS_NAME)
+    bot:bringProcessToFront(CLIENT_PROCESS_NAME);
+    bot:centerProcess(CLIENT_PROCESS_NAME)
 
-    win:wait(5000);
+    bot:wait(5000);
 
-    win:leftClick(962,903); -- skip honor
+    client:skipHonor();
 
-    win:wait(2000);
+    bot:wait(2000);
 
-    win:leftClick(716,947); -- close game recap
+    client:closeGameRecap();
 
-    win:wait(2000);
+    bot:wait(2000);
 
-    win:executePattern("startAram"); -- find new match.
+    bot:executePattern("startAram"); -- find new match.
 
 
 end
