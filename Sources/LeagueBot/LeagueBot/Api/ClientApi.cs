@@ -53,5 +53,13 @@ namespace LeagueBot.Api
         {
             InputHelper.LeftClick(645, 275);
         }
+        public void skipHonor()
+        {
+            InputHelper.LeftClick(962, 903);
+        }
+        public void closeGameRecap()
+        {
+            InputHelper.LeftClick(716, 947);
+        }
     }
 }

@@ -96,11 +96,11 @@ function Execute()
 
     bot:wait(5000);
 
-    bot:leftClick(962,903); -- skip honor
+    client:skipHonor();
 
     bot:wait(2000);
 
-    bot:leftClick(716,947); -- close game recap
+    client:closeGameRecap();
 
     bot:wait(2000);
 
