@@ -8,11 +8,6 @@ namespace LeagueBot
 {
     public class Coop : PatternScript
     {
-        private bool Side
-        {
-            get;
-            set;
-        }
         private Point CastTargetPoint
         {
             get;
@@ -42,9 +37,9 @@ namespace LeagueBot
 
             bot.wait(1000);
 
-            Side = game.isBlueSide("SummonersRift");
+            game.detectSide("SummonersRift");
 
-            if (Side == true)
+            if (game.isBlueSide())
             {
                 CastTargetPoint = new Point(1084, 398);
                 bot.log("We are blue side!");

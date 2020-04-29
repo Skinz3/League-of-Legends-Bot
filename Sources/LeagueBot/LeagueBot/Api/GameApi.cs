@@ -41,7 +41,7 @@ namespace LeagueBot.Api
         {
             ImageHelper.WaitForColor(997, 904, "#00D304");
         }
-        public bool isBlueSide(string mapName)
+        public void detectSide(string mapName)
         {
             switch (mapName)
             {
@@ -55,7 +55,10 @@ namespace LeagueBot.Api
                     Logger.Write("Unknown Map type " + mapName, MessageState.WARNING);
                     break;
             }
-            return BlueSide;
+        }
+        public bool isBlueSide()
+        {
+            return this.BlueSide;
         }
         public bool isPlayerAlive()
         {
