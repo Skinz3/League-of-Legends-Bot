@@ -1,4 +1,5 @@
-﻿using LeagueBot.Game;
+﻿using LeagueBot.DesignPattern;
+using LeagueBot.Game;
 using LeagueBot.Game.Enums;
 using LeagueBot.Image;
 using LeagueBot.IO;
@@ -11,6 +12,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using static LeagueBot.Windows.Interop;
@@ -32,24 +34,7 @@ namespace LeagueBot
         {
             Logger.OnStartup();
 
-            Logger.Write("Loading LeagueBot...");
-
-            Configuration.LoadConfig();
-
-            PatternsManager.Initialize();
-
-            PixelCache.Initialize();
-
-            TextRecognition.Initialize();
-
-            try
-            {
-                LeagueManager.ApplySettings();
-            }
-            catch
-            {
-                Logger.Write("Unable to set league of legends settings. (Probably due to permission restrictions.)", MessageState.WARNING);
-            }
+            StartupManager.Initialize(Assembly.GetExecutingAssembly());
 
             HandleCommand();
 
@@ -57,19 +42,21 @@ namespace LeagueBot
         }
         static void HandleCommand()
         {
-            Logger.Write("Enter a pattern filename, type 'help' for help.");
+            Logger.Write("Enter a pattern filename, type 'help' for help.", MessageState.INFO);
 
             string line = Console.ReadLine();
 
             if (line == "help" || !PatternsManager.Contains(line))
             {
-                Logger.Write(PatternsManager.ToString(), MessageState.INFO2);
+                Logger.Write(PatternsManager.ToString());
                 HandleCommand();
                 return;
             }
 
 
             PatternsManager.Execute(line);
+
+            HandleCommand();
         }
     }
 }

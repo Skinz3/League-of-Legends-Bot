@@ -13,12 +13,12 @@ namespace LeagueBot.ApiHelpers
 {
     class ImageHelper
     {
-        public static void WaitForImage(string image)
+        public static void WaitForImage(string imagePath)
         {
-            bool exists = ImageRecognition.ImageExists(image);
+            bool exists = ImageRecognition.ImageExists(imagePath);
             while (!exists)
             {
-                exists = ImageRecognition.ImageExists(image);
+                exists = ImageRecognition.ImageExists(imagePath);
                 Thread.Sleep(1000);
             }
 

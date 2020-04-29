@@ -1,4 +1,5 @@
-﻿using LeagueBot.Image;
+﻿using LeagueBot.DesignPattern;
+using LeagueBot.Image;
 using LeagueBot.IO;
 using LeagueBot.Windows;
 using System;
@@ -24,6 +25,7 @@ namespace LeagueBot.Texts
 
         private static TesseractEngine Engine;
 
+        [StartupInvoke("Text Recognition", StartupInvokePriority.FifthPass)]
         public static void Initialize()
         {
             Engine = new TesseractEngine(TESS_PATH, TESS_LANGUAGE);
@@ -55,7 +57,7 @@ namespace LeagueBot.Texts
 
             Bitmap target = new Bitmap(rectangle.Width, rectangle.Height);
 
-           
+
             using (Graphics g = Graphics.FromImage(target))
             {
                 g.DrawImage(src, new Rectangle(0, 0, target.Width, target.Height),

@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using LeagueBot.DesignPattern;
 
 namespace LeagueBot.Image
 {
@@ -33,6 +34,7 @@ namespace LeagueBot.Image
 
         private static Bitmap CurrentScreenshot;
 
+        [StartupInvoke("Pixel Cache", StartupInvokePriority.ThirdPass)]
         public static void Initialize()
         {
             string dir = Path.Combine(Environment.CurrentDirectory, PATH);

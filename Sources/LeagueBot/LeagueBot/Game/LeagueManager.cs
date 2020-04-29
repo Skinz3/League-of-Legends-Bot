@@ -1,4 +1,5 @@
-﻿using LeagueBot.IO;
+﻿using LeagueBot.DesignPattern;
+using LeagueBot.IO;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -18,6 +19,7 @@ namespace LeagueBot.Game
 
         const string PERSISTED_CONFIG_PATH = @"League of Legends\Config\PersistedSettings.json";
 
+        [StartupInvoke("League manager", StartupInvokePriority.FourthPass)]
         public static void ApplySettings()
         {
             CFGFile config = new CFGFile(Path.Combine(Configuration.Instance.ClientPath, CONFIG_PATH));

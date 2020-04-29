@@ -1,4 +1,5 @@
-﻿using LeagueBot.IO;
+﻿using LeagueBot.DesignPattern;
+using LeagueBot.IO;
 using LeagueBot.Windows;
 using NLua;
 using System;
@@ -20,6 +21,7 @@ namespace LeagueBot.Patterns
 
         static Dictionary<string, PatternScript> Scripts = new Dictionary<string, PatternScript>();
 
+        [StartupInvoke("Patterns", StartupInvokePriority.SecondPass)]
         public static void Initialize()
         {
             foreach (var file in Directory.GetFiles(Path.Combine(Environment.CurrentDirectory, PATH)))

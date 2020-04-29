@@ -1,4 +1,5 @@
-﻿using LeagueBot.IO;
+﻿using LeagueBot.DesignPattern;
+using LeagueBot.IO;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -27,6 +28,7 @@ namespace LeagueBot
             get;
             set;
         }
+        [StartupInvoke("Config", StartupInvokePriority.Initial)]
         public static bool LoadConfig()
         {
             if (!Initialize())

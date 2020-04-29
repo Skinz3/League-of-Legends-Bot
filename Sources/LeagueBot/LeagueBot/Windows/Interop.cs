@@ -60,13 +60,13 @@ namespace LeagueBot.Windows
 
         [DllImport("user32.dll", SetLastError = true)]
         static extern bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int X, int Y, int cx, int cy, int uFlags);
-        public static void CenterProcessWindow(string name)
+        public static bool CenterProcessWindow(string name)
         {
             Process process = Process.GetProcessesByName(name).FirstOrDefault();
 
             if (process == null || process.HasExited)
             {
-                return;
+                return false;
             }
 
             while (process.MainWindowHandle == IntPtr.Zero)
@@ -79,6 +79,7 @@ namespace LeagueBot.Windows
             Rectangle screen = Screen.FromHandle(handle).Bounds;
             Point pt = new Point(screen.Left + screen.Width / 2 - (rct.Right - rct.Left) / 2, screen.Top + screen.Height / 2 - (rct.Bottom - rct.Top) / 2);
             SetWindowPos(handle, IntPtr.Zero, pt.X, pt.Y, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_SHOWWINDOW);
+            return true;
         }
         public static string GetForegroundProcessName()
         {
@@ -186,13 +187,13 @@ namespace LeagueBot.Windows
         [DllImport("user32.dll")]
         private static extern bool ShowWindow(IntPtr hwnd, int nCmdShow);
 
-        public static void BringWindowToFront(string processName)
+        public static bool BringWindowToFront(string processName)
         {
             var process = Process.GetProcessesByName(processName).FirstOrDefault();
 
             if (process == null || process.HasExited)
             {
-                return;
+                return false;
             }
 
             IntPtr wdwIntPtr = process.MainWindowHandle;
@@ -200,6 +201,8 @@ namespace LeagueBot.Windows
             ShowWindow(wdwIntPtr, (int)ShowWindowEnum.Restore);
 
             SetForegroundWindow(wdwIntPtr);
+
+            return true;
         }
 
         [DllImport("user32.dll", SetLastError = true)]

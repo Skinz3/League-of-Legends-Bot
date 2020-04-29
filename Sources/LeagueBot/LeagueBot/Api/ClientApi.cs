@@ -13,6 +13,10 @@ namespace LeagueBot.Api
         {
             InputHelper.LeftClick(306, 139);
         }
+        public void clickAramButton()
+        {
+            InputHelper.LeftClick(624, 373);
+        }
         public void clickCoopvsIAText()
         {
             InputHelper.LeftClick(336, 213);

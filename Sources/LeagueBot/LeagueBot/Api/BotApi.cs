@@ -1,4 +1,5 @@
 ﻿using LeagueBot.ApiHelpers;
+using LeagueBot.IO;
 using LeagueBot.Patterns;
 using LeagueBot.Windows;
 using System;
@@ -56,11 +57,17 @@ namespace LeagueBot.Api
         }
         public void centerProcess(string processName)
         {
-            Interop.CenterProcessWindow(processName);
+            if (!Interop.CenterProcessWindow(processName))
+            {
+                Logger.Write("Unable to center process: " + processName, MessageState.WARNING);
+            }
         }
         public void bringProcessToFront(string processName)
         {
-            Interop.BringWindowToFront(processName);
+            if (!Interop.BringWindowToFront(processName))
+            {
+                Logger.Write("Unable to bring process to front: " + processName, MessageState.WARNING);
+            }
         }
         public void waitProcessOpen(string processName)
         {
