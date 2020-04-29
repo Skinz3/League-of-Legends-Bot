@@ -15,12 +15,6 @@ namespace LeagueBot.Image
     //Use image recognition to find game values
     public class ImageValues
     {
-
-        public static Point GetNearestMinion()
-        {
-            var position = ImageRecognition.FindImagePosition("Game/minionHealthBar.png");
-            return position;
-        }
         //Return health value percentage
         public static int Health()
         {

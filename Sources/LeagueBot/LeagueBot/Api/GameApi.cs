@@ -148,25 +148,6 @@ namespace LeagueBot.Api
         }
         #endregion
 
-        #region Minions
-        public int[] getFirstMinion()
-        {
-            Logger.Write("getNearestMinion is not implemented yet.");
-            return new int[2];
-
-            var pt = ImageValues.GetNearestMinion();
-
-            if (pt == Point.Empty)
-            {
-                return null;
-            }
-            else
-            {
-                return new int[] { pt.X, pt.Y };
-            }
-        }
-        #endregion
-
         #region Chat
         public void talk(string message)
         {
