@@ -22,7 +22,6 @@ namespace LeagueBot.Game
         [StartupInvoke("League settings", StartupInvokePriority.FourthPass, false)]
         public static void ApplySettings()
         {
-            int i = Math.DivRem(0, 0, out i);
             CFGFile config = new CFGFile(Path.Combine(Configuration.Instance.ClientPath, CONFIG_PATH));
 
             config.Set("General", "WindowMode", "1");
