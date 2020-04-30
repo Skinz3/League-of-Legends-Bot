@@ -22,7 +22,7 @@
 ## Installation
 
    Requirements :
-   * League Of Legends client
+   * League Of Legends client in english
    * a League of legends account
    * a monitor with a **1920 * 1080** screen resolution.
    * .NET framework 4.7 installed on computer.

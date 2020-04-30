@@ -8,7 +8,7 @@ namespace LeagueBot
 {
     public class StartCoop : PatternScript
     {
-        private const string MODE = "intro";
+        private const string MODE = "intermediate";
 
         private const string SELECTED_CHAMPION = "garen";
 
