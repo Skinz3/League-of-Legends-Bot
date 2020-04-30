@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace LeagueBot.Game.Enums
 {
-    public enum ChampionBehaviour
+    public enum SideEnum
     {
-        Agressive,
-        FollowAlly,
+        Blue,
+        Red,
     }
 }

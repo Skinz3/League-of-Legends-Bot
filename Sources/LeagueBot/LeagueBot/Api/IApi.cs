@@ -4,12 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LeagueBot.Game.Enums
+namespace LeagueBot.Api
 {
-    public enum GameType
-    { 
-        Unknown,
-        Aram,
-        CoopAgainstIA,
+    public interface IApi
+    {
     }
 }

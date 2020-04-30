@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LeagueBot.Api
 {
-    public class ClientApi
+    public class ClientApi : IApi
     {
         public void clickPlayButton()
         {

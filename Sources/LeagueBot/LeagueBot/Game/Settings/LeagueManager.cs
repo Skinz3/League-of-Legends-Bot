@@ -9,7 +9,7 @@ using System.Security.Permissions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LeagueBot.Game
+namespace LeagueBot.Game.Settings
 {
     class LeagueManager
     {

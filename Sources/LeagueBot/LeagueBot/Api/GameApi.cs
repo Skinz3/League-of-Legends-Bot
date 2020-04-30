@@ -1,5 +1,8 @@
 ﻿using InputManager;
 using LeagueBot.ApiHelpers;
+using LeagueBot.Game.Entities;
+using LeagueBot.Game.Enums;
+using LeagueBot.Game.Misc;
 using LeagueBot.Image;
 using LeagueBot.IO;
 using LeagueBot.Windows;
@@ -26,182 +29,58 @@ namespace LeagueBot.Api
      * -> * We back after Flee
      * -> * Walk to our first turret
      */
-    public class GameApi
+    public class GameApi : IApi
     {
-        private bool IsShopOpen
+        public Shop shop
+        {
+            get;
+            private set;
+        }
+        public Camera camera
+        {
+            get;
+            private set;
+        }
+        public Chat chat
+        {
+            get;
+            private set;
+        }
+        private SideEnum side
         {
             get;
             set;
         }
-        public bool IsCameraLocked
+        public MainPlayer player
         {
             get;
-            set;
-        }
-        public bool BlueSide
-        {
-            get;
-            set;
+            private set;
         }
         public GameApi()
         {
-            IsShopOpen = false;
-            IsCameraLocked = false;
+            this.shop = new Shop(this);
+            this.camera = new Camera(this);
+            this.chat = new Chat(this);
+            this.player = new MainPlayer(this);
         }
 
-        #region Game Informations
         public void waitUntilGameStart()
         {
             ImageHelper.WaitForColor(997, 904, "#00D304");
         }
-        public void detectSide(string mapName)
+        public void detectSide()
         {
-            switch (mapName)
-            {
-                case "SummonersRift":
-                    this.BlueSide = ImageHelper.GetColor(1343, 868) == "#2A768C";
-                    break;
-                case "HowlingAbyss":
-                    this.BlueSide = ImageHelper.GetColor(1337, 869) == "#3798B5";
-                    break;
-                default:
-                    Logger.Write("Unknown Map type " + mapName, MessageState.WARNING);
-                    break;
-            }
+            this.side = ImageHelper.GetColor(1343, 868) == "#2A768C" ? SideEnum.Blue : SideEnum.Red;
         }
-        public bool isBlueSide()
+        public SideEnum getSide()
         {
-            return this.BlueSide;
-        }
-        public bool isPlayerAlive()
-        {
-            return ImageHelper.GetColor(765, 904) == "#07140E";
-        }
-        #endregion
-
-        #region Stats
-        public int getHealthPercent()
-        {
-            int value = ImageValues.Health();
-            BotHelper.Log("Health is " + value);
-            return value;
-        }
-        public int getManaPercent()
-        {
-            int value = ImageValues.Mana();
-            BotHelper.Log("Mana is " + value);
-            return value;
-        }
-        #endregion
-
-        #region Spells
-        public void castSpell(int indice, int x, int y)
-        {
-            string key = "D" + indice;
-            InputHelper.MoveMouse(x, y);
-            InputHelper.PressKey(key);
-            BotHelper.InputIdle();
-        }
-        public void upgradeSpell(int indice)
-        {
-            Point coords = new Point();
-
-            switch (indice)
-            {
-                case 1:
-                    coords = new Point(826, 833);
-                    break;
-                case 2:
-                    coords = new Point(875, 833);
-                    break;
-                case 3:
-                    coords = new Point(917, 833);
-                    break;
-                default:
-                    Logger.Write("Unknown spell indice :" + indice, MessageState.WARNING);
-                    return;
-            }
-
-            InputHelper.LeftClick(coords.X, coords.Y);
-            BotHelper.InputIdle();
-        }
-        #endregion
-
-        #region Camera
-        public void toggleCamera()
-        {
-            InputHelper.LeftClick(1241, 920);
-            BotHelper.InputIdle();
-            IsCameraLocked = !IsCameraLocked;
-        }
-        public void lockAlly(int allyIndice)
-        {
-            string key = "F" + allyIndice;
-            InputHelper.KeyUp(key);
-            BotHelper.InputIdle();
-            InputHelper.KeyDown(key);
-            BotHelper.InputIdle();
+            return this.side;
         }
 
-
-        #endregion
-
-        #region Shop
-        public void toogleShop()
-        {
-            InputHelper.PressKey("P");
-            BotHelper.InputIdle();
-            IsShopOpen = !IsShopOpen;
-        }
-        public void buyItem(int indice)
-        {
-            Point coords = new Point(0, 0);
-
-            switch (indice)
-            {
-                case 1:
-                    coords = new Point(577, 337);
-                    break;
-                case 2:
-                    coords = new Point(782, 336);
-                    break;
-                default:
-                    Logger.Write("Unknown item indice " + indice + ". Skipping", MessageState.WARNING);
-                    return;
-            }
-            InputHelper.RightClick(coords.X, coords.Y);
-
-            BotHelper.InputIdle();
-        }
-        #endregion
-
-        #region Chat
-        public void talk(string message)
-        {
-            Keyboard.KeyPress(Keys.Enter, 150);
-
-            BotHelper.Wait(100);
-
-            foreach (var character in message)
-            {
-                Keys key = KeyboardMapper.GetKey(character);
-                Keyboard.KeyPress(key, 150);
-                BotHelper.Wait(100);
-            }
-
-            BotHelper.InputIdle();
-            Keyboard.KeyPress(Keys.Enter, 150);
-            BotHelper.InputIdle();
-        }
-        #endregion
-
-        #region Movement
         public void moveCenterScreen()
         {
             InputHelper.RightClick(886, 521);
             BotHelper.InputIdle();
         }
-        #endregion
-
     }
 }

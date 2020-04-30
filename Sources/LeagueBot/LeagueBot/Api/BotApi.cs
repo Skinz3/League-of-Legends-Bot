@@ -12,7 +12,7 @@ using static LeagueBot.Windows.Interop;
 
 namespace LeagueBot.Api
 {
-    public class BotApi
+    public class BotApi : IApi
     {
         public void log(string message)
         {

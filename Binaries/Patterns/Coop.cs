@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using LeagueBot.Patterns;
+using LeagueBot.Game.Enums;
 
 namespace LeagueBot
 {
@@ -37,9 +38,9 @@ namespace LeagueBot
 
             bot.wait(1000);
 
-            game.detectSide("SummonersRift");
+            game.detectSide();
 
-            if (game.isBlueSide())
+            if (game.getSide() == SideEnum.Blue)
             {
                 CastTargetPoint = new Point(1084, 398);
                 bot.log("We are blue side!");
@@ -51,18 +52,18 @@ namespace LeagueBot
             }
 
 
-            game.upgradeSpell(1);
+            game.player.upgradeSpell(1);
 
-            game.talk("Hi guys");
+            game.chat.talk("Hi guys");
 
-            game.toogleShop();
+            game.shop.toogle();
 
-            game.buyItem(1);
-            game.buyItem(2);
+            game.shop.buyItem(1);
+            game.shop.buyItem(2);
 
-            game.toogleShop();
+            game.shop.toogle();
 
-            game.lockAlly(3);
+            game.camera.lockAlly(3);
 
             while (bot.isProcessOpen(GAME_PROCESS_NAME))
             {
@@ -72,26 +73,26 @@ namespace LeagueBot
 
                 game.moveCenterScreen();
 
-                game.castSpell(1, CastTargetPoint.X, CastTargetPoint.Y);
+                game.player.castSpell(1, CastTargetPoint.X, CastTargetPoint.Y);
 
 
                 bot.wait(1000);
 
                 game.moveCenterScreen();
 
-                game.castSpell(2, CastTargetPoint.X, CastTargetPoint.Y);
+                game.player.castSpell(2, CastTargetPoint.X, CastTargetPoint.Y);
 
                 bot.wait(1000);
 
                 game.moveCenterScreen();
 
-                game.castSpell(3, CastTargetPoint.X, CastTargetPoint.Y);
+                game.player.castSpell(3, CastTargetPoint.X, CastTargetPoint.Y);
 
                 bot.wait(1000);
 
                 game.moveCenterScreen();
 
-                game.castSpell(4, CastTargetPoint.X, CastTargetPoint.Y);
+                game.player.castSpell(4, CastTargetPoint.X, CastTargetPoint.Y);
 
             }
 
