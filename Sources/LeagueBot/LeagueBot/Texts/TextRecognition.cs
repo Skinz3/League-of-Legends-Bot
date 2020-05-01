@@ -75,7 +75,7 @@ namespace LeagueBot.Texts
 
             page.Dispose();
 
-            return text.Contains(phrase);
+            return text.ToLower().Contains(phrase.ToLower());
         }
         public static bool TextExists(string phrase)
         {

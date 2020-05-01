@@ -45,9 +45,13 @@ namespace LeagueBot.Api
         {
             InputHelper.LeftClick(1109, 219);
         }
+        public bool levelUp()
+        {
+            return TextHelper.TextExists(872, 237, 300, 300, "level up");
+        }
         public bool mustSelectChamp()
         {
-            return TextHelper.TextExists(692, 111, 512, 63, "CHOOSE YOUR CHAMPION");
+            return TextHelper.TextExists(692, 111, 512, 63, "choose your champion");
         }
         public void lockChampion()
         {
