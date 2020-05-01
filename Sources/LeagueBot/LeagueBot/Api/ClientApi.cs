@@ -37,6 +37,10 @@ namespace LeagueBot.Api
         {
             InputHelper.LeftClick(832, 949);
         }
+        public void skipLevelRewards()
+        {
+            InputHelper.LeftClick(953, 914);
+        }
         public void clickChampSearch()
         {
             InputHelper.LeftClick(1109, 219);

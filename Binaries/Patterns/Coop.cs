@@ -95,26 +95,8 @@ namespace LeagueBot
                 game.player.castSpell(4, CastTargetPoint.X, CastTargetPoint.Y);
 
             }
-
-
-            bot.log("Match ended.");
-
-            bot.waitProcessOpen(CLIENT_PROCESS_NAME);
-
-            bot.bringProcessToFront(CLIENT_PROCESS_NAME);
-            bot.centerProcess(CLIENT_PROCESS_NAME);
-
-            bot.wait(5000);
-
-            client.skipHonor();
-
-            bot.wait(2000);
-
-            client.closeGameRecap();
-
-            bot.wait(2000);
-
-            bot.executePattern("StartCoop");
+            
+            bot.executePattern("EndCoop");
         }
     }
 }
