@@ -26,7 +26,7 @@ namespace LeagueBot
 
             if (client.levelUp())
             {
-                bot:log("level up!");
+                bot.log("level up!");
                 client.skipLevelRewards();
             }
             bot.wait(2000);
