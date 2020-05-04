@@ -47,3 +47,5 @@
 
    * **Skinz** - *Initial work* [Skinz3](https://github.com/Skinz3)
    * **Forerunner**  [Glenndilen](https://github.com/glenndilen)
+   * **Chiquitinop**  [chiquitínop#9634](chiquitínop#9634)
+

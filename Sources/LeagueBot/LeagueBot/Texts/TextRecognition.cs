@@ -49,6 +49,63 @@ namespace LeagueBot.Texts
 
         }
 
+        internal static int GetTextValue(Rectangle rectangle)
+        {
+            Stopwatch st = Stopwatch.StartNew();
+
+            Bitmap src = PixelCache.GetScreenshot();
+
+            Bitmap target = new Bitmap(rectangle.Width, rectangle.Height);
+
+
+            using (Graphics g = Graphics.FromImage(target))
+            {
+                g.DrawImage(src, new Rectangle(0, 0, target.Width, target.Height),
+                                 rectangle,
+                                 GraphicsUnit.Pixel);
+            }
+
+            Page page = Engine.Process(target);
+
+            int text;
+            string textReplacement;
+
+                textReplacement = page.GetText();
+                if (textReplacement.Contains('I'))
+                    textReplacement = textReplacement.Replace('I', '1');
+
+                if (textReplacement.Contains(' '))
+                    textReplacement = textReplacement.Replace(" ", String.Empty);
+
+                if (textReplacement.Contains('Z'))
+                    textReplacement = textReplacement.Replace('Z', '2');
+
+                if (textReplacement.Contains('S'))
+                    textReplacement = textReplacement.Replace('S', '5');
+
+                   if (textReplacement.Contains("\n"))
+                textReplacement = textReplacement.Replace("\n", String.Empty);
+
+            try
+            {
+                text = Convert.ToInt32(textReplacement);
+            }
+            catch
+            {
+                text = 0;
+            }
+
+                //Console.WriteLine($"DEBUG GOLD (actual value): {textReplacement}");
+
+            src.Dispose();
+
+            target.Dispose();
+
+            page.Dispose();
+
+            return text;
+        }
+
         public static bool TextExists2(Rectangle rectangle, string phrase)
         {
             Stopwatch st = Stopwatch.StartNew();

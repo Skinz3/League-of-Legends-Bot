@@ -19,7 +19,7 @@ namespace LeagueBot.Game.Settings
 
         const string PERSISTED_CONFIG_PATH = @"League of Legends\Config\PersistedSettings.json";
 
-        [StartupInvoke("League settings", StartupInvokePriority.FourthPass, false)]
+        //[StartupInvoke("League settings", StartupInvokePriority.FourthPass, false)]
         public static void ApplySettings()
         {
             CFGFile config = new CFGFile(Path.Combine(Configuration.Instance.ClientPath, CONFIG_PATH));
@@ -143,6 +143,7 @@ namespace LeagueBot.Game.Settings
             file.Set("GameEvents", "evtUseItem1", "[q]");
             file.Set("GameEvents", "evtUseItem2", "[w]");
             file.Set("GameEvents", "evtUseItem3", "[e]");
+            //file.Set("General", "AutoAcquireTarget", "1");
 
             file.Save();
 
