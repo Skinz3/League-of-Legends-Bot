@@ -46,6 +46,6 @@
 # Authors
 
    * **Skinz** - *Initial work* [Skinz#1128](https://github.com/Skinz3)
-   * **Forerunner**  [Glenndilen#6615](https://github.com/glenndilen)
+   * **Forerunner**  [ForerunnerForerunner#6615](https://github.com/glenndilen)
    * **Chiquitinop**  [chiquitínop#9634](https://github.com/zorbuk)
 
