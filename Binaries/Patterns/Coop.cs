@@ -10,6 +10,36 @@ namespace LeagueBot
 {
     public class Coop : PatternScript
     {
+        static Point[,] ITEM_POSITIONS = new Point[,]
+        { 
+                { //Starting items
+                    new Point(580, 330),
+                    new Point(740, 330),
+                    new Point(940, 330) 
+                }, 
+                { // Early
+                    new Point(580, 440),
+                    new Point(740, 440),
+                    new Point(940, 440)
+                }, 
+                { // Essential
+                    new Point(580, 550),
+                    new Point(740, 550),
+                    new Point(940, 550)
+                },
+                { // Offensive
+                    new Point(580, 660),
+                    new Point(740, 660),
+                    new Point(940, 660)
+                },
+                { // Defensive
+                    new Point(580, 770),
+                    new Point(740, 770),
+                    new Point(940, 770)
+                }
+        };
+
+
 
         private Point CastTargetPoint
         {
@@ -61,37 +91,7 @@ namespace LeagueBot
 
             game.player.setLevel(0);
             
-
-            //left, to right
-            Point[,] item_positions = new Point[,]{ 
-                { //Starting items
-                    new Point(580, 330),
-                    new Point(740, 330),
-                    new Point(940, 330) 
-                }, 
-                { // Early
-                    new Point(580, 440),
-                    new Point(740, 440),
-                    new Point(940, 440)
-                }, 
-                { // Essential
-                    new Point(580, 550),
-                    new Point(740, 550),
-                    new Point(940, 550)
-                },
-                { // Offensive
-                    new Point(580, 660),
-                    new Point(740, 660),
-                    new Point(940, 660)
-                },
-                { // Defensive
-                    new Point(580, 770),
-                    new Point(740, 770),
-                    new Point(940, 770)
-                }
-            };
-
-            bot.log("Item found "+ item_positions[1, 1]);
+            bot.log("Item found "+ ITEM_POSITIONS[1, 1]);
 
             // On itemset for tristana
             /*Item[] items = { 
@@ -107,39 +107,39 @@ namespace LeagueBot
             };*/
             // On itemset for ziggs
             /*Item[] items = {
-                        new Item("Boots of Speed",300,false,false,0, item_positions[1,0]),
-                        new Item("Lost Chapter", 1300, false, false, 0, item_positions[1,1]),
-                        new Item("Blasting Wand", 850, false, false, 0, item_positions[1,2]),
-                        new Item("Sorcerer's Shoes", 1100, false, false, 0, item_positions[2,0]),
-                        new Item("Luden's Echo", 3200, false, false, 0, item_positions[2,1]),
-                        new Item("Lich Bane", 3200, false, false, 0, item_positions[2,2]),
-                        new Item("Morello", 3000, false, false, 0, item_positions[3,0]),
-                        new Item("Rabadon's Deathcap", 3600, false, false, 0, item_positions[3,2]),
-                        new Item("Void Staff", 2650, false, false, 0, item_positions[3,1])
+                        new Item("Boots of Speed",300,false,false,0, ITEM_POSITIONS[1,0]),
+                        new Item("Lost Chapter", 1300, false, false, 0, ITEM_POSITIONS[1,1]),
+                        new Item("Blasting Wand", 850, false, false, 0, ITEM_POSITIONS[1,2]),
+                        new Item("Sorcerer's Shoes", 1100, false, false, 0, ITEM_POSITIONS[2,0]),
+                        new Item("Luden's Echo", 3200, false, false, 0, ITEM_POSITIONS[2,1]),
+                        new Item("Lich Bane", 3200, false, false, 0, ITEM_POSITIONS[2,2]),
+                        new Item("Morello", 3000, false, false, 0, ITEM_POSITIONS[3,0]),
+                        new Item("Rabadon's Deathcap", 3600, false, false, 0, ITEM_POSITIONS[3,2]),
+                        new Item("Void Staff", 2650, false, false, 0, ITEM_POSITIONS[3,1])
             };*/
             //On Itemset for chogat
             /*Item[] items = {
-                        new Item("Boots of Speed",300,false,false,0, item_positions[1,2]),
-                        new Item("Catalyst", 1100, false, false, 0, item_positions[1,0]),
-                        new Item("Glacial", 900, false, false, 0, item_positions[1,1]),
-                        new Item("Mercurys", 1100, false, false, 0, item_positions[2,2]),
-                        new Item("Banshees", 3000, false, false, 0, item_positions[3,1]),
-                        new Item("Deadmans plate", 2900, false, false, 0, item_positions[3,0]),
-                        new Item("Abysal mask", 3000, false, false, 0, item_positions[2,1]),
-                        new Item("Glory", 2650, false, false, 0, item_positions[2,0]),
-                        new Item("Frozen Heart", 2650, false, false, 0, item_positions[4,1])
+                        new Item("Boots of Speed",300,false,false,0, ITEM_POSITIONS[1,2]),
+                        new Item("Catalyst", 1100, false, false, 0, ITEM_POSITIONS[1,0]),
+                        new Item("Glacial", 900, false, false, 0, ITEM_POSITIONS[1,1]),
+                        new Item("Mercurys", 1100, false, false, 0, ITEM_POSITIONS[2,2]),
+                        new Item("Banshees", 3000, false, false, 0, ITEM_POSITIONS[3,1]),
+                        new Item("Deadmans plate", 2900, false, false, 0, ITEM_POSITIONS[3,0]),
+                        new Item("Abysal mask", 3000, false, false, 0, ITEM_POSITIONS[2,1]),
+                        new Item("Glory", 2650, false, false, 0, ITEM_POSITIONS[2,0]),
+                        new Item("Frozen Heart", 2650, false, false, 0, ITEM_POSITIONS[4,1])
             };*/
             //On Itemset for lux
             Item[] items = {
-                        new Item("Lost Chapter",1300,false,false,0, item_positions[1,1]),
-                        new Item("Basic Bots", 300, false, false, 0, item_positions[1,0]),
-                        new Item("Ludens", 3200, false, false, 0, item_positions[2,1]),
-                        new Item("Upgraded bots", 1100, false, false, 0, item_positions[2,0]),
-                        new Item("Morello", 3000, false, false, 0, item_positions[2,2]),
-                        new Item("Rabadon", 3600, false, false, 0, item_positions[3,0]),
-                        new Item("Void Staff", 2650, false, false, 0, item_positions[3,1]),
-                        new Item("First morello part", 1600, false, false, 0, item_positions[1,2]),
-                        new Item("Zhonya", 2900, false, false, 0, item_positions[3,2])
+                        new Item("Lost Chapter",1300,false,false,0, ITEM_POSITIONS[1,1]),
+                        new Item("Basic Bots", 300, false, false, 0, ITEM_POSITIONS[1,0]),
+                        new Item("Ludens", 3200, false, false, 0, ITEM_POSITIONS[2,1]),
+                        new Item("Upgraded bots", 1100, false, false, 0, ITEM_POSITIONS[2,0]),
+                        new Item("Morello", 3000, false, false, 0, ITEM_POSITIONS[2,2]),
+                        new Item("Rabadon", 3600, false, false, 0, ITEM_POSITIONS[3,0]),
+                        new Item("Void Staff", 2650, false, false, 0, ITEM_POSITIONS[3,1]),
+                        new Item("First morello part", 1600, false, false, 0, ITEM_POSITIONS[1,2]),
+                        new Item("Zhonya", 2900, false, false, 0, ITEM_POSITIONS[3,2])
             };
 
             //if want another itemset, just copy and paste and change SELECTED_CHAMPION_SET value
