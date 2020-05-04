@@ -6,18 +6,32 @@ using System.Text;
 using System.Threading.Tasks;
 using LeagueBot.Api;
 using LeagueBot.ApiHelpers;
+using LeagueBot.Game.Enums;
 using LeagueBot.IO;
 
 namespace LeagueBot.Game.Misc
 {
     public class Shop : ApiMember<GameApi>
     {
+        private Dictionary<ShopItemTypeEnum, Point[]> ItemPositions = new Dictionary<ShopItemTypeEnum, Point[]>()
+        {
+            { ShopItemTypeEnum.Starting,  new Point[]{   new Point(580, 330), new Point(740, 330), new Point(940, 330) } },
+            { ShopItemTypeEnum.Early,     new Point[]{   new Point(580, 440),new Point(740, 440), new Point(940, 440) } },
+            { ShopItemTypeEnum.Essential, new Point[]{   new Point(580, 550), new Point(740, 550), new Point(940, 550)} },
+            { ShopItemTypeEnum.Offensive, new Point[]{   new Point(580, 660), new Point(740, 660), new Point(940, 660) } },
+            { ShopItemTypeEnum.Defensive, new Point[]{   new Point(580, 770), new Point(740, 770), new Point(940, 770), new Point(940, 770) } },
+
+        };
+
+
+
         public bool Opened
         {
             get;
             set;
         }
         public List<Item> ItemsToBuy = new List<Item>();
+
         public Shop(GameApi api) : base(api)
         {
             this.Opened = false;
@@ -28,17 +42,21 @@ namespace LeagueBot.Game.Misc
             BotHelper.InputIdle();
             Opened = !Opened;
         }
+        public Point getItemPosition(ShopItemTypeEnum type, int indice)
+        {
+            return ItemPositions[type][indice];
+        }
         public void setItemBuild(List<Item> items)
         {
             if (ItemsToBuy != null)
                 ItemsToBuy.Clear();
 
-                foreach(Item _item in items)
-                {
-                    ItemsToBuy.Add(_item);
+            foreach (Item _item in items)
+            {
+                ItemsToBuy.Add(_item);
 
-                    Logger.Write($"Added {_item.name} on items list");
-                }
+                Logger.Write($"Added {_item.name} on items list");
+            }
         }
 
         public int getPlayerGold()
@@ -60,7 +78,7 @@ namespace LeagueBot.Game.Misc
                             Logger.Write($"Character bought {_item.name}.");
                             InputHelper.RightClick(_item.point.X, _item.point.Y, 200);
                             _item.got = true;
-                            
+
                             BotHelper.Wait(500);
                             Logger.Write($"{getPlayerGold().ToString()} gold remaining.");
                             tryBuyItem();

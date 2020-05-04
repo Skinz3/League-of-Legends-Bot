@@ -49,6 +49,7 @@
     <Compile Include="ApiHelpers\InputHelper.cs" />
     <Compile Include="DesignPattern\StartupManager.cs" />
     <Compile Include="Game\Entities\MainPlayer.cs" />
+    <Compile Include="Game\Enums\ShopItemTypeEnum.cs" />
     <Compile Include="Game\Enums\SideEnum.cs" />
     <Compile Include="Game\ApiMember.cs" />
     <Compile Include="Game\Misc\Camera.cs" />

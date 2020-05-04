@@ -10,37 +10,6 @@ namespace LeagueBot
 {
     public class Coop : PatternScript
     {
-        static Point[,] ITEM_POSITIONS = new Point[,]
-        { 
-                { //Starting items
-                    new Point(580, 330),
-                    new Point(740, 330),
-                    new Point(940, 330) 
-                }, 
-                { // Early
-                    new Point(580, 440),
-                    new Point(740, 440),
-                    new Point(940, 440)
-                }, 
-                { // Essential
-                    new Point(580, 550),
-                    new Point(740, 550),
-                    new Point(940, 550)
-                },
-                { // Offensive
-                    new Point(580, 660),
-                    new Point(740, 660),
-                    new Point(940, 660)
-                },
-                { // Defensive
-                    new Point(580, 770),
-                    new Point(740, 770),
-                    new Point(940, 770)
-                }
-        };
-
-
-
         private Point CastTargetPoint
         {
             get;
@@ -91,8 +60,6 @@ namespace LeagueBot
 
             game.player.setLevel(0);
             
-            bot.log("Item found "+ ITEM_POSITIONS[1, 1]);
-
             // On itemset for tristana
             /*Item[] items = { 
                         new Item("Botas Iniciales",300,false,false,0,new Point(934,443)),
@@ -131,15 +98,15 @@ namespace LeagueBot
             };*/
             //On Itemset for lux
             Item[] items = {
-                        new Item("Lost Chapter",1300,false,false,0, ITEM_POSITIONS[1,1]),
-                        new Item("Basic Bots", 300, false, false, 0, ITEM_POSITIONS[1,0]),
-                        new Item("Ludens", 3200, false, false, 0, ITEM_POSITIONS[2,1]),
-                        new Item("Upgraded bots", 1100, false, false, 0, ITEM_POSITIONS[2,0]),
-                        new Item("Morello", 3000, false, false, 0, ITEM_POSITIONS[2,2]),
-                        new Item("Rabadon", 3600, false, false, 0, ITEM_POSITIONS[3,0]),
-                        new Item("Void Staff", 2650, false, false, 0, ITEM_POSITIONS[3,1]),
-                        new Item("First morello part", 1600, false, false, 0, ITEM_POSITIONS[1,2]),
-                        new Item("Zhonya", 2900, false, false, 0, ITEM_POSITIONS[3,2])
+                        new Item("Lost Chapter",1300,false,false,0,game.shop.getItemPosition(ShopItemTypeEnum.Early,1)),
+                        new Item("Basic Bots", 300, false, false, 0, game.shop.getItemPosition(ShopItemTypeEnum.Early,0)),
+                        new Item("Ludens", 3200, false, false, 0, game.shop.getItemPosition(ShopItemTypeEnum.Essential,1)),
+                        new Item("Upgraded bots", 1100, false, false, 0,  game.shop.getItemPosition(ShopItemTypeEnum.Essential,0)),
+                        new Item("Morello", 3000, false, false, 0, game.shop.getItemPosition(ShopItemTypeEnum.Essential,2)),
+                        new Item("Rabadon", 3600, false, false, 0,  game.shop.getItemPosition(ShopItemTypeEnum.Offensive,0)),
+                        new Item("Void Staff", 2650, false, false, 0,  game.shop.getItemPosition(ShopItemTypeEnum.Offensive,1)),
+                        new Item("First morello part", 1600, false, false, 0, game.shop.getItemPosition(ShopItemTypeEnum.Early,2)),
+                        new Item("Zhonya", 2900, false, false, 0, game.shop.getItemPosition(ShopItemTypeEnum.Offensive,2))
             };
 
             //if want another itemset, just copy and paste and change SELECTED_CHAMPION_SET value
