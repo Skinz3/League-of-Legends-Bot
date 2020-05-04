@@ -39,7 +39,7 @@ namespace LeagueBot.Api
         }
         public void skipLevelRewards()
         {
-            InputHelper.LeftClick(953, 914);
+            InputHelper.LeftClick(953, 938);
         }
         public void clickChampSearch()
         {
@@ -48,6 +48,10 @@ namespace LeagueBot.Api
         public bool levelUp()
         {
             return TextHelper.TextExists(872, 237, 300, 300, "level up");
+        }
+        public bool questCompleted()
+        {
+            return TextHelper.TextExists(872, 237, 300, 300, "mission");
         }
         public bool mustSelectChamp()
         {

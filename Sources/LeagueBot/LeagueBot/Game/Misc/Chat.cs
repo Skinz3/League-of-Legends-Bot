@@ -16,9 +16,27 @@ namespace LeagueBot.Game.Misc
         public Chat(GameApi api) : base(api)
         {
         }
-        public void talk(string message)
+        public void talkInGame(string message)
         {
             Keyboard.KeyPress(Keys.Enter, 150);
+
+            BotHelper.Wait(100);
+
+            foreach (var character in message)
+            {
+                Keys key = KeyboardMapper.GetKey(character);
+                Keyboard.KeyPress(key, 150);
+                BotHelper.Wait(100);
+            }
+
+            BotHelper.InputIdle();
+            Keyboard.KeyPress(Keys.Enter, 150);
+            BotHelper.InputIdle();
+        }
+
+        public void talkInChampSelect(string message)
+        {
+            InputHelper.LeftClick(390, 940, 200);
 
             BotHelper.Wait(100);
 

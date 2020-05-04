@@ -22,18 +22,27 @@ namespace LeagueBot
 
             client.skipHonor();
 
-            bot.wait(2000);
+            bot.wait(4000);
 
             if (client.levelUp())
             {
                 bot.log("level up!");
                 client.skipLevelRewards();
             }
-            bot.wait(2000);
+
+            bot.wait(4000);
+
+            if (client.questCompleted())
+            {
+                bot.log("quest completed!");
+                client.skipLevelRewards();
+            }
+
+            bot.wait(4000);
 
             client.closeGameRecap();
 
-            bot.wait(2000);
+            bot.wait(4000);
 
             bot.executePattern("StartCoop");
         }

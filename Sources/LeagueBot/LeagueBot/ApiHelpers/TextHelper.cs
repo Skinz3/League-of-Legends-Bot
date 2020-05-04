@@ -28,5 +28,12 @@ namespace LeagueBot.ApiHelpers
         {
             return TextRecognition.TextExists2(new Rectangle(x, y, width, heigth), text);
         }
+
+        internal static int GetTextFromImage(int x, int y, int width, int heigth)
+        {
+            Rectangle rect = new Rectangle(x, y, width, heigth);
+
+            return TextRecognition.GetTextValue(rect);
+        }
     }
 }

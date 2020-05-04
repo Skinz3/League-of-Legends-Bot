@@ -18,16 +18,16 @@ namespace LeagueBot.ApiHelpers
     {
         public static void InputWords(string message)
         {
-            BotHelper.Wait(100);
+            BotHelper.Wait(60);
 
             foreach (var character in message)
             {
                 Keys key = KeyboardMapper.GetKey(character);
-                Keyboard.KeyPress(key, 150);
+                Keyboard.KeyPress(key, 50);
                 BotHelper.Wait(100);
             }
 
-            BotHelper.Wait(100);
+            BotHelper.Wait(60);
         }
         public static void KeyUp(string key)
         {
@@ -39,23 +39,23 @@ namespace LeagueBot.ApiHelpers
         }
         public static void PressKey(string key)
         {
-            Keyboard.KeyPress((Keys)Enum.Parse(typeof(Keys), key), 150);
+            Keyboard.KeyPress((Keys)Enum.Parse(typeof(Keys), key), 50);
         }
 
         public static void MoveMouse(int x, int y)
         {
             Mouse.Move(x, y);
         }
-        public static void RightClick(int x, int y, int delay = 150)
+        public static void RightClick(int x, int y, int delay = 50)
         {
             Mouse.Move(x, y);
-            BotHelper.Wait(100);
+            BotHelper.Wait(60);
             Mouse.PressButton(Mouse.MouseKeys.Right, delay);
         }
-        public static void LeftClick(int x, int y, int delay = 150)
+        public static void LeftClick(int x, int y, int delay = 50)
         {
             Mouse.Move(x, y);
-            BotHelper.Wait(100);
+            BotHelper.Wait(60);
             Mouse.PressButton(Mouse.MouseKeys.Left, delay);
         }
 

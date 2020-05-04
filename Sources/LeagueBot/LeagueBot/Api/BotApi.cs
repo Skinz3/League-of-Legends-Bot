@@ -9,11 +9,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static LeagueBot.Windows.Interop;
+using LeagueBot.Patterns;
 
 namespace LeagueBot.Api
 {
     public class BotApi : IApi
     {
+        //public int _outMaxTime = 360; // 6 minutes.
+        //public int _outActualTime = 0;
+
         public void log(string message)
         {
             BotHelper.Log(message);
@@ -74,6 +78,15 @@ namespace LeagueBot.Api
             while (!Interop.IsProcessOpen(processName))
             {
                 BotHelper.Wait(1000);
+
+                /*if(processName == "League of Legends") { 
+                    _outActualTime++;
+
+                    if(_outActualTime == _outMaxTime)
+                    {
+                        Logger.Write("Someone picked your champ... ", MessageState.WARNING);
+                    }
+                }*/
             }
         }
         public void inputWords(string words)

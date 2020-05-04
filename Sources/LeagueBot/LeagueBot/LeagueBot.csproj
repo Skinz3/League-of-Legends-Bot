@@ -53,6 +53,7 @@
     <Compile Include="Game\ApiMember.cs" />
     <Compile Include="Game\Misc\Camera.cs" />
     <Compile Include="Game\Misc\Chat.cs" />
+    <Compile Include="Game\Misc\Item.cs" />
     <Compile Include="Game\Misc\Shop.cs" />
     <Compile Include="Game\Settings\LeagueManager.cs" />
     <Compile Include="Patterns\PatternScript.cs" />

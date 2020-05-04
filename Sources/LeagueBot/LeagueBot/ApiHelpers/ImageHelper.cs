@@ -23,6 +23,11 @@ namespace LeagueBot.ApiHelpers
             }
 
         }
+
+        public static bool ImageExist(string imagePath)
+        {
+            return ImageRecognition.ImageExists(imagePath);
+        }
         public static void LeftClickImage(string image)
         {
             if (ImageRecognition.ImageExists(image))

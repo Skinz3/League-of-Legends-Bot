@@ -68,8 +68,10 @@ namespace LeagueBot.Api
         {
             ImageHelper.WaitForColor(997, 904, "#00D304");
         }
+
         public void detectSide()
         {
+            //when side is detected, reset all bot items.
             this.side = ImageHelper.GetColor(1343, 868) == "#2A768C" ? SideEnum.Blue : SideEnum.Red;
         }
         public SideEnum getSide()
