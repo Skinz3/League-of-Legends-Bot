@@ -7,7 +7,7 @@ using LeagueBot.Game.Enums;
 
 namespace LeagueBot
 {
-    public class Coop : PatternScript
+    public class OldCoop : PatternScript
     {
         private Point CastTargetPoint
         {
@@ -54,7 +54,7 @@ namespace LeagueBot
 
             game.player.upgradeSpell(1);
 
-            game.chat.talk("Hi guys");
+            game.chat.talkInGame("Hi guys");
 
             game.shop.toogle();
 
