@@ -29,30 +29,30 @@ namespace LeagueBot.Game.Entities
  -4 Si tiene poca vida, vuelve a base y compra.
 */
 
-        public void WaitUntilMinionSpawn()
+        public void waitUntilMinionSpawn()
         {
             //wait calculations
         }
 
         // --------------------------------------- SPELL ORDER FOR COMBOS TO ENEMIES
-        public void ProcessSpellToEnemyChampions()
+        public void processSpellToEnemyChampions()
         {
-            TryCastSpellToEnemyChampion(1);
-            TryCastSpellToEnemyChampion(3);
+            tryCastSpellToEnemyChampion(1);
+            tryCastSpellToEnemyChampion(3);
             BotHelper.Wait(550);
-            TryCastSpellToEnemyChampion(3);
-            TryCastSpellToEnemyChampion(4);
+            tryCastSpellToEnemyChampion(3);
+            tryCastSpellToEnemyChampion(4);
         }
 
         // --------------------------------------- SPELL ORDER FOR COMBOS TO CREEPS
-        public void ProcessSpellToEnemyCreeps()
+        public void processSpellToEnemyCreeps()
         {
-            TryCastSpellToEnemyChampion(3);
+            tryCastSpellToEnemyChampion(3);
             BotHelper.Wait(550);
-            TryCastSpellToEnemyChampion(3);
+            tryCastSpellToEnemyChampion(3);
         }
 
-        public void MoveNearestBotlaneAllyTower()
+        public void moveNearestBotlaneAllyTower()
         {
             //Primera torreta aliada con placas aun viva.
             if(ImageHelper.GetColor(1410,924) == "#1C4F5D")//ALIVE: #1B4D5A - 1422,904 (buscar color)
@@ -105,17 +105,7 @@ namespace LeagueBot.Game.Entities
             InputHelper.PressKey(key);
             BotHelper.InputIdle();
         }
-        public void FixCamera()
-        {
-            if (ImageHelper.ImageExist("Game/fixedcamera.png"))
-            {
-                BotHelper.InputIdle();
-                InputHelper.LeftClick(1245, 925, 150);
-                BotHelper.Log("Camera Fixed!");
-                BotHelper.InputIdle();
-            }
-        }
-        public void FixItemsInShop()
+        public void fixItemsInShop()
         {
             if (ImageHelper.ImageExist("Game/toggleshopitems.png"))
             {
@@ -152,20 +142,20 @@ namespace LeagueBot.Game.Entities
             InputHelper.LeftClick(coords.X, coords.Y);
             BotHelper.InputIdle();
         }
-        public void SetLevel(int level)
+        public void setLevel(int level)
         {
             PlayerLevel = level;
         }
-        public void IncreaseLevel()
+        public void increaseLevel()
         {
             PlayerLevel++;
         }
-        public int GetLevel()
+        public int getLevel()
         {
             return PlayerLevel;
         }
 
-        public void UpSpells()
+        public void upSpells()
         {
             switch (PlayerLevel)
             {
@@ -241,7 +231,7 @@ namespace LeagueBot.Game.Entities
             else
                 return false;
         }
-        public void JustMoveAway()
+        public void justMoveAway()
         {
             Point go = ImageValues.EnemyChampion();
 
@@ -252,7 +242,7 @@ namespace LeagueBot.Game.Entities
             InputHelper.RightClick(780, 600);
             BotHelper.Wait(1000);
         }
-        public void NothingHereMoveAway()
+        public void nothingHereMoveAway()
         {
             InputHelper.RightClick(780, 600);
             BotHelper.Wait(1000);
@@ -274,17 +264,17 @@ namespace LeagueBot.Game.Entities
             //BotHelper.Log("Mana is " + value);
             return value;
         }
-        public int EnemyCreepHealth()
+        public int enemyCreepHealth()
         {
             int value = ImageValues.EnemyCreepHealth();
             return value;
         }
-        public int AllyCreepHealth()
+        public int allyCreepHealth()
         {
             int value = ImageValues.AllyCreepHealth();
             return value;
         }
-        public void AllyCreepPosition()
+        public void allyCreepPosition()
         {
             Point go = ImageValues.AllyCreepPosition();
 
@@ -307,7 +297,7 @@ namespace LeagueBot.Game.Entities
             return true;
         }
 
-        public bool NearTowerStructure()
+        public bool nearTowerStructure()
         {
             Point go = ImageValues.EnemyTowerStructure();
             Point go2 = ImageValues.EnemyTowerStructure();
@@ -331,7 +321,7 @@ namespace LeagueBot.Game.Entities
             return isNear;
         }
 
-        public void TryCastSpellToCreep(int indice)
+        public void tryCastSpellToCreep(int indice)
         {
             Point go = ImageValues.EnemyCreepPosition();
 
@@ -346,7 +336,7 @@ namespace LeagueBot.Game.Entities
             BotHelper.Wait(65);
         }
 
-        public void MoveAwayFromEnemy()
+        public void moveAwayFromEnemy()
         {
             Point go = ImageValues.EnemyChampion();
 
@@ -360,7 +350,7 @@ namespace LeagueBot.Game.Entities
             InputHelper.MoveMouse(970, 540);
             InputHelper.PressKey("A");
         }
-        public void MoveAwayFromCreep()
+        public void moveAwayFromCreep()
         {
             Point go = ImageValues.EnemyCreepPosition();
 
@@ -375,7 +365,7 @@ namespace LeagueBot.Game.Entities
             InputHelper.PressKey("A");
         }
 
-        public void TryCastSpellToEnemyChampion(int indice)
+        public void tryCastSpellToEnemyChampion(int indice)
         {
             Point go = ImageValues.EnemyChampion();
 
@@ -390,7 +380,7 @@ namespace LeagueBot.Game.Entities
             BotHelper.Wait(50);
         }
 
-        public void BackBaseRegenerateAndBuy()
+        public void backBaseRegenerateAndBuy()
         {
             InputHelper.PressKey("B");
             Thread.Sleep(11000); // 11 seconds, we should be in base already.
@@ -400,7 +390,6 @@ namespace LeagueBot.Game.Entities
         {
             int minute = TextHelper.GetTextFromImage(1426, 171, 16, 16);
             BotHelper.Log("Game is on minute " + minute.ToString());
-
             return minute;
         }
 

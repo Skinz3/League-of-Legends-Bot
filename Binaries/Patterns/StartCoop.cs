@@ -10,14 +10,13 @@ namespace LeagueBot
     public class StartCoop : PatternScript
     {
         private const string MODE = "intermediate";
+        
         private Random RandomTextSender;
-        //also on Coop.cs
+        
         private const string SELECTED_CHAMPION = "lux";
 
         public override void Execute()
         {
-            bot.wait(5000);
-
             bot.log("Waiting for league client process... Ensure League client window size is 1600x900");
             bot.waitProcessOpen(CLIENT_PROCESS_NAME);
             

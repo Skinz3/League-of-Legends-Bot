@@ -59,7 +59,7 @@ namespace LeagueBot
 
             bot.wait(1000);
 
-            game.player.SetLevel(0);
+            game.player.setLevel(0);
             
 
             //left, to right
@@ -148,18 +148,18 @@ namespace LeagueBot
 
             game.shop.setItemBuild(itemsToBuy);
 
-            game.player.FixCamera();
+            game.camera.toggle();
 
             game.shop.toogle();
             bot.wait(1000);
-            game.player.FixItemsInShop();
+            game.player.fixItemsInShop();
             bot.wait(1000);
             game.shop.buyItem(1);
             game.shop.toogle();
 
             bot.wait(20000); //wait 20 seconds.
 
-            game.player.MoveNearestBotlaneAllyTower();
+            game.player.moveNearestBotlaneAllyTower();
 
             while (bot.isProcessOpen(GAME_PROCESS_NAME))
             {
@@ -168,8 +168,8 @@ namespace LeagueBot
 
                 if (game.player.getCharacterLeveled())
                 {
-                    game.player.IncreaseLevel();
-                    game.player.UpSpells(); //Change order on MainPlayer.cs
+                    game.player.increaseLevel();
+                    game.player.upSpells(); //Change order on MainPlayer.cs
                 }
 
                 //back base/buy
@@ -177,56 +177,56 @@ namespace LeagueBot
                 {
                     //heal usage if is available
                     if (game.player.isThereAnEnemy())
-                        game.player.TryCastSpellToCreep(6);
+                        game.player.tryCastSpellToCreep(6);
                 }
 
                 if (game.player.getHealthPercent() <= 65)
                 {
                     //heal usage if is available
                     if (game.player.isThereAnEnemy())
-                        game.player.TryCastSpellToCreep(5);
+                        game.player.tryCastSpellToCreep(5);
                 }
 
                 if (game.player.getHealthPercent() <= 15)
                 {
                     //low hp.
                     bot.wait(50);
-                    game.player.MoveNearestBotlaneAllyTower();
+                    game.player.moveNearestBotlaneAllyTower();
                     bot.wait(8000);
-                    game.player.BackBaseRegenerateAndBuy();
+                    game.player.backBaseRegenerateAndBuy();
                     // read gold.
                     game.shop.toogle();
                     game.shop.tryBuyItem();
                     game.shop.toogle();
                     bot.wait(200);
 
-                    game.player.MoveNearestBotlaneAllyTower();
+                    game.player.moveNearestBotlaneAllyTower();
                     bot.wait(6000);
                     //prevent getting stucked by doing it again
-                    game.player.MoveNearestBotlaneAllyTower();
+                    game.player.moveNearestBotlaneAllyTower();
                 }
 
                 bot.wait(500);
 
                 //getting attacked by enemy, tower or creep.
                 
-                if (game.player.AllyCreepHealth() != 0)
+                if (game.player.allyCreepHealth() != 0)
                 {
                     //attack enemy and run away
                     if (game.player.isThereAnEnemy())
                     {
-                        game.player.ProcessSpellToEnemyChampions();
-                        game.player.MoveAwayFromEnemy();
+                        game.player.processSpellToEnemyChampions();
+                        game.player.moveAwayFromEnemy();
                     }
                     else
                     {
-                        if (game.player.EnemyCreepHealth() != 0)
+                        if (game.player.enemyCreepHealth() != 0)
                         {
-                            game.player.ProcessSpellToEnemyCreeps();
-                            game.player.MoveAwayFromCreep();
+                            game.player.processSpellToEnemyCreeps();
+                            game.player.moveAwayFromCreep();
                         }
                         bot.wait(500);
-                        game.player.AllyCreepPosition();
+                        game.player.allyCreepPosition();
 
                        /* if (game.player.isGettingAttacked())
                         {
@@ -241,19 +241,19 @@ namespace LeagueBot
 
                     if (game.player.isThereAnEnemy())
                     {
-                        game.player.ProcessSpellToEnemyChampions();
-                        game.player.MoveAwayFromEnemy();
+                        game.player.processSpellToEnemyChampions();
+                        game.player.moveAwayFromEnemy();
                     }
 
-                    if (game.player.EnemyCreepHealth() != 0)
+                    if (game.player.enemyCreepHealth() != 0)
                     {
-                        game.player.ProcessSpellToEnemyCreeps();
-                        game.player.MoveAwayFromCreep();
+                        game.player.processSpellToEnemyCreeps();
+                        game.player.moveAwayFromCreep();
                     }
 
-                    if (game.player.NearTowerStructure())
+                    if (game.player.nearTowerStructure())
                     {
-                        game.player.JustMoveAway();
+                        game.player.justMoveAway();
                     }
 
                     //early game botlane, mid game mid.
