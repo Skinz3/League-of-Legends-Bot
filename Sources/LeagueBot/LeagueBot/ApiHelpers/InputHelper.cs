@@ -16,15 +16,15 @@ namespace LeagueBot.ApiHelpers
 {
     class InputHelper
     {
-        public static void InputWords(string message)
+        public static void InputWords(string message, int keyDelay = 50, int delay = 100)
         {
             BotHelper.Wait(60);
 
             foreach (var character in message)
             {
                 Keys key = KeyboardMapper.GetKey(character);
-                Keyboard.KeyPress(key, 50);
-                BotHelper.Wait(100);
+                Keyboard.KeyPress(key, keyDelay);
+                BotHelper.Wait(delay);
             }
 
             BotHelper.Wait(60);

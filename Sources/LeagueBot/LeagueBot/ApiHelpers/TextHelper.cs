@@ -32,7 +32,6 @@ namespace LeagueBot.ApiHelpers
         internal static int GetTextFromImage(int x, int y, int width, int heigth)
         {
             Rectangle rect = new Rectangle(x, y, width, heigth);
-
             return TextRecognition.GetTextValue(rect);
         }
     }

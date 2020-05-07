@@ -89,9 +89,9 @@ namespace LeagueBot.Api
                 }*/
             }
         }
-        public void inputWords(string words)
+        public void inputWords(string words, int keyDelay = 50, int delay = 100)
         {
-            InputHelper.InputWords(words);
+            InputHelper.InputWords(words, keyDelay, delay);
         }
     }
 }
