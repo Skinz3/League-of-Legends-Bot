@@ -32,7 +32,7 @@ namespace LeagueBot
 
             bot.wait(4000);
 
-            if (client.questCompleted())
+            while (client.questCompleted())
             {
                 bot.log("quest completed!");
                 client.skipLevelRewards();
