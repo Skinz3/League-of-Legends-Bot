@@ -106,7 +106,7 @@ namespace LeagueBot
             }
             //champion not selected?
 
-            bot.executePattern("OldCoop");
+            bot.executePattern("Coop");
         }
     }
 }
