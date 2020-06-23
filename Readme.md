@@ -5,7 +5,7 @@
 
 # Welcome to LeagueBot
 
-  * League of legends bot is a pixel bot for League Of Legends 10.8, written in C# .NET using image processing (image & text recognition), Interop and scriptting engine.
+  * League of legends bot is a pixel bot for League Of Legends 10.8, written in C# .NET using image processing (image & text recognition), API reading, Interop and scripting engine.
   * This software is opensource and free feel free to create a pull request!
   * It's a good way to raise your account level 30 without having to play or simply to win blue essences.
 
@@ -18,7 +18,7 @@
 
 
 ## Downloads
-   * For non developpers, You can download LeagueBot updater [here](https://github.com/Skinz3/League-Of-Legends-BOT/raw/master/Updater.zip) to automatically get the binaries and automatically download updates ! 
+   * In the top right, click "Clone". Once downloaded, you may either compile the source yourself using Visual Studio, or you may simply use the software provided in the folder "Binaries".
 ## Installation
 
    Requirements :
@@ -30,6 +30,8 @@
    Before launch the bot, you need to follow setup instructions bellow : 
 
    [Setup instructions](https://github.com/Skinz3/League-Of-Legends-BOT/wiki/How-to-make-it-work)
+   
+   Should the bot not work, you may need to screenshot the client, crop out the necessary parts, and update the pictures in the Binaries folder.
 
   
 	 
