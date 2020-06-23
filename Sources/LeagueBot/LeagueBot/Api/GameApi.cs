@@ -1,4 +1,4 @@
-﻿using InputManager;
+using InputManager;
 using LeagueBot.ApiHelpers;
 using LeagueBot.Game.Entities;
 using LeagueBot.Game.Enums;
@@ -81,8 +81,15 @@ namespace LeagueBot.Api
 
         public void moveCenterScreen()
         {
+            /*InputHelper.RightClick(886, 521);
+            BotHelper.InputIdle();*/
+
+            Random r = new Random();
+            InputHelper.MoveMouse(970, 540);
+            InputHelper.PressKey("A");
+            BotHelper.Wait(r.Next(700, 800));
             InputHelper.RightClick(886, 521);
-            BotHelper.InputIdle();
+            BotHelper.Wait(r.Next(155, 175));
         }
     }
 }
