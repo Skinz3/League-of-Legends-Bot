@@ -70,7 +70,12 @@ namespace LeagueBot.Patterns
         }
         public static void Execute(string name)
         {
-            if (!Scripts.ContainsKey(name))
+            if (name == "help")
+            {
+                Logger.WriteColor1("The following scripts were found:");
+                Logger.Write(PatternsManager.ToString());
+            }
+            else if (!Scripts.ContainsKey(name))
             {
                 Logger.Write("Unable to execute " + name + EXTENSION + ". Script not found.", MessageState.WARNING);
             }
