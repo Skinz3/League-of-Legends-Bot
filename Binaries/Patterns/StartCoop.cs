@@ -64,7 +64,7 @@ namespace LeagueBot
                 bot.wait(3000);
             }
 
-            bot.log("Match founded");
+            bot.log("Match found");
 
             client.clickChampSearch();
             bot.wait(2000);
