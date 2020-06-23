@@ -66,7 +66,30 @@ namespace LeagueBot.Api
 
         public void waitUntilGameStart()
         {
-            ImageHelper.WaitForColor(997, 904, "#00D304");
+            bool gameStarted = false;
+            string URL = "https://127.0.0.1:2999/liveclientdata/playerlist";
+
+            while (!gameStarted)
+            {
+                ServicePointManager.ServerCertificateValidationCallback = (sender, cert, chain, sslPolicyErrors) => true;
+                try
+                {
+                    string json = new WebClient().DownloadString(URL);
+                    if (json.Contains("ORDER"))
+                    {
+                        gameStarted = true;
+                        break;
+                    }
+                    else
+                    {
+                        Thread.Sleep(5000);
+                    }
+                }
+                catch
+                {
+                    Thread.Sleep(5000);
+                }
+            }
         }
 
         public void detectSide()
