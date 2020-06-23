@@ -42,19 +42,7 @@ namespace LeagueBot
         static void HandleCommand()
         {
             Logger.Write("Enter a pattern filename, type 'help' for help.", MessageState.INFO);
-
-            string line = Console.ReadLine();
-
-            if (line == "help" || !PatternsManager.Contains(line))
-            {
-                Logger.Write(PatternsManager.ToString());
-                HandleCommand();
-                return;
-            }
-
-
-            PatternsManager.Execute(line);
-
+            PatternsManager.Execute(Console.ReadLine());
             HandleCommand();
         }
     }
