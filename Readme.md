@@ -48,4 +48,6 @@
    * **Skinz** - *Initial work* [Skinz#1128](https://github.com/Skinz3)
    * **Forerunner**  [ForerunnerForerunner#6615](https://github.com/glenndilen)
    * **Chiquitinop**  [chiquitínop#9634](https://github.com/zorbuk)
+   
+   * **Kevin** [Kevi#8060](https://github.com/kevdah)
 
