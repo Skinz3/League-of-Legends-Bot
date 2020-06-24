@@ -11,6 +11,7 @@ namespace LeagueBot
         
         public override void Execute()
         {
+			bot.wait(10000);
              bot.log("Match ended.");
 
             bot.waitProcessOpen(CLIENT_PROCESS_NAME);
@@ -32,7 +33,19 @@ namespace LeagueBot
 
             bot.wait(4000);
 
-            while (client.questCompleted())
+            if (client.questCompleted())
+            {
+                bot.log("quest completed!");
+                client.skipLevelRewards();
+            }
+            bot.wait(4000);
+            if (client.questCompleted())
+            {
+                bot.log("quest completed!");
+                client.skipLevelRewards();
+            }
+            bot.wait(4000);
+            if (client.questCompleted())
             {
                 bot.log("quest completed!");
                 client.skipLevelRewards();
@@ -44,7 +57,7 @@ namespace LeagueBot
 
             bot.wait(4000);
 
-            bot.executePattern("StartCoop");
+            bot.executePattern("Restart");
         }
     }
 }
