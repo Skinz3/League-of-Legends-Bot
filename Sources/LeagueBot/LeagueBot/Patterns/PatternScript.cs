@@ -28,6 +28,16 @@ namespace LeagueBot.Patterns
             protected get;
             set;
         }
+        public Api.Game riotAPI
+        {
+            protected get;
+            set;
+        }
+        public IO.FileIO io
+        {
+            protected get;
+            set;
+        }
 
         public abstract void Execute();
     }

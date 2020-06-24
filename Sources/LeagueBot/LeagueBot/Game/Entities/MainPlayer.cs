@@ -1,4 +1,4 @@
-using LeagueBot.Api;
+﻿using LeagueBot.Api;
 using LeagueBot.ApiHelpers;
 using LeagueBot.Image;
 using LeagueBot.IO;
@@ -27,14 +27,24 @@ namespace LeagueBot.Game.Entities
         private void update()
         {
             string json;
-            ServicePointManager.ServerCertificateValidationCallback = (sender, cert, chain, sslPolicyErrors) => true;
-            json = new WebClient().DownloadString(URL);
-            JObject jo = JObject.Parse(json);
-            game = jo.ToObject<Api.Game>();
-            game.currentHealth = (int)jo.SelectToken("championStats.currentHealth");
-            game.maxHealth = (int)jo.SelectToken("championStats.maxHealth");
-            game.resourceValue = (int)jo.SelectToken("championStats.resourceValue");
-            game.resourceMax = (int)jo.SelectToken("championStats.resourceMax");
+            try
+            {
+                ServicePointManager.ServerCertificateValidationCallback = (sender, cert, chain, sslPolicyErrors) => true;
+                json = new WebClient().DownloadString(URL);
+                JObject jo = JObject.Parse(json);
+                game = jo.ToObject<Api.Game>();
+                game.currentHealth = (int)jo.SelectToken("championStats.currentHealth");
+                game.maxHealth = (int)jo.SelectToken("championStats.maxHealth");
+                game.resourceValue = (int)jo.SelectToken("championStats.resourceValue");
+                game.resourceMax = (int)jo.SelectToken("championStats.resourceMax");
+            }
+            catch
+            {
+                game.currentHealth = 1;
+                game.maxHealth = 1;
+                game.resourceMax = 1;
+                game.resourceValue = 1;
+            }
         }
 
 

@@ -45,6 +45,14 @@ namespace LeagueBot.Api
         {
             InputHelper.LeftClick(1109, 219);
         }
+        public void clearChampSearch()
+        {
+            InputHelper.LeftClick(1301, 219);
+        }
+        public bool blocked()
+        {
+            return TextHelper.TextExists(768, 934, 90, 24, "blocked");
+        }
         public bool levelUp()
         {
             return TextHelper.TextExists(872, 237, 300, 300, "level up");

@@ -1,4 +1,4 @@
-using LeagueBot.Api;
+﻿using LeagueBot.Api;
 using LeagueBot.DesignPattern;
 using LeagueBot.IO;
 using LeagueBot.Windows;
@@ -74,6 +74,11 @@ namespace LeagueBot.Patterns
             {
                 Logger.WriteColor1("The following scripts were found:");
                 Logger.Write(PatternsManager.ToString());
+                Logger.WriteColor1("Apply game settings? Type 'apply settings'");
+            }
+            else if(name.ToLower() == "apply settings")
+            {
+                Game.Settings.LeagueManager.ApplySettings();
             }
             else if (name == "Restart")
             {
@@ -92,6 +97,7 @@ namespace LeagueBot.Patterns
                 script.bot = new BotApi();
                 script.client = new ClientApi();
                 script.game = new GameApi();
+                script.io = new FileIO(Directory.GetCurrentDirectory() + "\\champlist.txt");
                 script.Execute();
             }
         }
