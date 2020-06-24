@@ -67,19 +67,22 @@ namespace LeagueBot
 
             bot.log("Match found");
 
-            client.clickChampSearch();
-            bot.wait(2000);
-            bot.inputWords(SELECTED_CHAMPION);
+            string[] champs = io.getChamps();
 
-            bot.wait(2000);
+            if(champs.Length > 0)
+            {
+                foreach (string champ in champs)
+                {
+                    pickChamp(champ);
+                    client.clearChampSearch();
+                    bot.wait(150);
+                    client.clearChampSearch();
+                }
+            } else
+            {
+                pickChamp(SELECTED_CHAMPION);
+            }
 
-            client.selectFirstChampion();
-
-            bot.wait(2000);
-
-            client.lockChampion();
-
-            bot.wait(1500);
 
            /* RandomTextSender = new Random();
             switch (RandomTextSender.Next(5))
@@ -108,6 +111,19 @@ namespace LeagueBot
             //champion not selected?
 */
             bot.executePattern("Coop");
+        }
+
+        void pickChamp(string champ)
+        {
+            client.clickChampSearch();
+            bot.wait(2000);
+            bot.inputWords(champ);
+
+            bot.wait(2000);
+            client.selectFirstChampion();
+            bot.wait(2000);
+            client.lockChampion();
+            bot.wait(1500);
         }
     }
 }
