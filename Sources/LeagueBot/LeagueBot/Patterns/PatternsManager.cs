@@ -1,4 +1,4 @@
-﻿using LeagueBot.Api;
+using LeagueBot.Api;
 using LeagueBot.DesignPattern;
 using LeagueBot.IO;
 using LeagueBot.Windows;
@@ -75,6 +75,13 @@ namespace LeagueBot.Patterns
                 Logger.WriteColor1("The following scripts were found:");
                 Logger.Write(PatternsManager.ToString());
             }
+            else if (name == "Restart")
+            {
+                ProcessStartInfo startInfo = new ProcessStartInfo("LeagueBot.exe");
+                startInfo.Arguments = "StartCoop";
+                Process.Start(startInfo);
+                Environment.Exit(0);
+            }
             else if (!Scripts.ContainsKey(name))
             {
                 Logger.Write("Unable to execute " + name + EXTENSION + ". Script not found.", MessageState.WARNING);
@@ -88,6 +95,7 @@ namespace LeagueBot.Patterns
                 script.Execute();
             }
         }
+
         public static string ToString()
         {
             StringBuilder sb = new StringBuilder();
