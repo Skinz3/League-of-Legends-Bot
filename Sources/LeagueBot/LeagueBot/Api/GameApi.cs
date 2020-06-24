@@ -10,7 +10,9 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Net;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -29,6 +31,7 @@ namespace LeagueBot.Api
      * -> * We back after Flee
      * -> * Walk to our first turret
      */
+
     public class GameApi : IApi
     {
         public Shop shop
@@ -71,21 +74,16 @@ namespace LeagueBot.Api
 
             while (!gameStarted)
             {
-                ServicePointManager.ServerCertificateValidationCallback = (sender, cert, chain, sslPolicyErrors) => true;
+                string json;
                 try
                 {
-                    string json = new WebClient().DownloadString(URL);
-                    if (json.Contains("ORDER"))
-                    {
-                        gameStarted = true;
-                        break;
-                    }
-                    else
-                    {
-                        Thread.Sleep(5000);
-                    }
+                    gameStarted = player.getGold() != 0;
                 }
                 catch
+                {
+                    Thread.Sleep(5000);
+                }
+                finally
                 {
                     Thread.Sleep(5000);
                 }
@@ -95,7 +93,9 @@ namespace LeagueBot.Api
         public void detectSide()
         {
             //when side is detected, reset all bot items.
-            this.side = ImageHelper.GetColor(1343, 868) == "#2A768C" ? SideEnum.Blue : SideEnum.Red;
+            // this.side = ImageHelper.GetColor(1343, 868) == "#2A768C" ? SideEnum.Blue : SideEnum.Red;
+
+            this.side = SideEnum.Blue;
         }
         public SideEnum getSide()
         {

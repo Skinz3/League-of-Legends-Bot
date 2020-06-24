@@ -9,11 +9,11 @@ namespace LeagueBot
 {
     public class StartCoop : PatternScript
     {
-        private const string MODE = "intermediate";
+        private const string MODE = "intro";
         
         private Random RandomTextSender;
         
-        private const string SELECTED_CHAMPION = "lux";
+        private const string SELECTED_CHAMPION = "ashe";
 
         public override void Execute()
         {
@@ -60,6 +60,7 @@ namespace LeagueBot
 
             while (client.mustSelectChamp() == false)
             {
+				client.clickFindMatchButton();
                 client.acceptMatch();
                 bot.wait(3000);
             }
@@ -80,7 +81,7 @@ namespace LeagueBot
 
             bot.wait(1500);
 
-            RandomTextSender = new Random();
+           /* RandomTextSender = new Random();
             switch (RandomTextSender.Next(5))
             {
                 case 1:
@@ -105,7 +106,7 @@ namespace LeagueBot
                     break;
             }
             //champion not selected?
-
+*/
             bot.executePattern("Coop");
         }
     }

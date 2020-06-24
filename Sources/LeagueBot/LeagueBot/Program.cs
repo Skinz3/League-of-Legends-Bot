@@ -1,4 +1,4 @@
-﻿using LeagueBot.DesignPattern;
+using LeagueBot.DesignPattern;
 using LeagueBot.Game;
 using LeagueBot.Game.Enums;
 using LeagueBot.Image;
@@ -35,15 +35,28 @@ namespace LeagueBot
 
             StartupManager.Initialize(Assembly.GetExecutingAssembly());
 
-            HandleCommand();
-
+            if (args.Length == 0)
+                HandleCommand(string.Empty);
+            else
+                HandleCommand(args[0]);
+            
             Console.Read();
         }
-        static void HandleCommand()
+        static void HandleCommand(string restart)
         {
-            Logger.Write("Enter a pattern filename, type 'help' for help.", MessageState.INFO);
-            PatternsManager.Execute(Console.ReadLine());
-            HandleCommand();
+            string line;
+
+            if (restart == string.Empty)
+            {
+                Logger.Write("Enter a pattern filename, type 'help' for help.", MessageState.INFO);
+
+                line = Console.ReadLine();
+            } else { line = restart; }
+            
+
+            PatternsManager.Execute(line);
+
+            HandleCommand(string.Empty);
         }
     }
 }
