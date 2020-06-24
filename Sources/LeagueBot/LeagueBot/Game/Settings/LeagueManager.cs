@@ -19,7 +19,7 @@ namespace LeagueBot.Game.Settings
 
         const string PERSISTED_CONFIG_PATH = @"League of Legends\Config\PersistedSettings.json";
 
-        [StartupInvoke("League settings", StartupInvokePriority.FourthPass, false)]
+        //[StartupInvoke("League settings", StartupInvokePriority.FourthPass, false)]
         public static void ApplySettings()
         {
             CFGFile config = new CFGFile(Path.Combine(Configuration.Instance.ClientPath, CONFIG_PATH));
