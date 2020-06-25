@@ -1,4 +1,4 @@
-﻿using LeagueBot.Api;
+using LeagueBot.Api;
 using LeagueBot.ApiHelpers;
 using LeagueBot.Image;
 using LeagueBot.IO;
@@ -7,6 +7,7 @@ using System;
 using System.Drawing;
 using System.Net;
 using System.Threading;
+using System.Windows.Forms;
 
 namespace LeagueBot.Game.Entities
 {
@@ -21,7 +22,7 @@ namespace LeagueBot.Game.Entities
         public MainPlayer(GameApi api) : base(api)
         {
             URL = "https://127.0.0.1:2999/liveclientdata/activeplayer";
-            PlayerLevel = 1;
+            PlayerLevel = 0;
         }
 
         private void update()
@@ -183,26 +184,32 @@ namespace LeagueBot.Game.Entities
         {
             Point coords = new Point();
 
+            Logger.Write("Leveling up spell " + indice);
+
+            Keys spell;
+
             switch (indice)
             {
                 case 1:
-                    coords = new Point(826, 833);
+                    spell = Keys.Q;
                     break;
                 case 2:
-                    coords = new Point(875, 833);
+                    spell = Keys.W;
                     break;
                 case 3:
-                    coords = new Point(917, 833);
+                    spell = Keys.E;
                     break;
                 case 4:
-                    coords = new Point(967, 833);
+                    spell = Keys.R;
                     break;
                 default:
                     Logger.Write("Unknown spell indice :" + indice, MessageState.WARNING);
+                    spell = Keys.Q;
                     return;
             }
 
-            InputHelper.LeftClick(coords.X, coords.Y);
+            InputManager.Keyboard.ShortcutKeys(new Keys[] { Keys.ControlKey, spell }, 30);
+
             BotHelper.InputIdle();
         }
         public void setLevel(int level)
@@ -211,7 +218,8 @@ namespace LeagueBot.Game.Entities
         }
         public void increaseLevel()
         {
-            PlayerLevel++;
+            update();
+            PlayerLevel = game.level;
         }
         public int getLevel()
         {
@@ -315,9 +323,7 @@ namespace LeagueBot.Game.Entities
         public bool getCharacterLeveled()
         {
             update();
-            bool x = game.level > this.PlayerLevel;
-            increaseLevel();
-            return x;
+            return game.level > this.PlayerLevel;
         }
 
         public int getHealthPercent()
