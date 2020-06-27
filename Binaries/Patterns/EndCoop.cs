@@ -25,15 +25,23 @@ namespace LeagueBot
 
             bot.wait(4000);
 
-            if (client.levelUp())
+            /*if (client.levelUp())
             {
                 bot.log("level up!");
                 client.skipLevelRewards();
-            }
+            }*/
+
+            client.skipLevelRewards();
 
             bot.wait(4000);
 
-            if (client.questCompleted())
+            client.skipLevelRewards();
+
+            bot.wait(4000);
+
+            client.skipLevelRewards();
+
+            /*if (client.questCompleted())
             {
                 bot.log("quest completed!");
                 client.skipLevelRewards();
@@ -49,7 +57,7 @@ namespace LeagueBot
             {
                 bot.log("quest completed!");
                 client.skipLevelRewards();
-            }
+            }*/
 
             bot.wait(4000);
 

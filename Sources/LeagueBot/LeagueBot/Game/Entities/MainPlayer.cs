@@ -1,4 +1,4 @@
-using LeagueBot.Api;
+﻿using LeagueBot.Api;
 using LeagueBot.ApiHelpers;
 using LeagueBot.Image;
 using LeagueBot.IO;

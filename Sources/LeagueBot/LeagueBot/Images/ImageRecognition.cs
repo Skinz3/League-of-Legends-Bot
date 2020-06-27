@@ -141,9 +141,136 @@ namespace LeagueBot.Image
 
         }
 
+        public static Point FindImagePositionNearest(string filename, int resolution = 3)
+        {
 
-        //Find X/Y coords of an image on screen
-        public static Point FindImagePosition(string filename, int resolution = 3 )
+            //Convert images to pixel arrays
+            int[] pixels = PixelCache.GetPixels(PixelCache.SCREENSHOT_IMAGE_NAME);
+            int[] search = PixelCache.GetPixels(filename);
+
+
+
+            //Set X and Y pointer for search
+            int x = 1;
+            int y = 1;
+            Point nearestPixelPosition = new Point(0, 0);
+
+
+            //Loop through each pixel in screenshot
+            for (int key = 0; key < pixels.Length; ++key)
+            {
+
+                //If this pixel matches the first pixel in our image
+                if (pixels[key] == search[0])
+                {
+
+                    //Create a matched variable
+                    bool matched = true;
+
+                    //Foreach X pixel in our resolution
+                    for (int i = 1; i < resolution; ++i)
+                    {
+
+                        //If the pixel does not match, unset the matched variable
+                        if (pixels[key + i] != search[i]) matched = false;
+
+                    }
+
+                    //If the first resolution is matched, move on
+                    if (matched)
+                    {
+                        //Foreach Y pixel in our resolution
+                        for (int i = 1; i < resolution; ++i)
+                        {
+                            //If the pixel does not match, unset the matched variable
+                            try
+                            {
+                                if (pixels[key + (PixelCache.GetWidth(PixelCache.SCREENSHOT_IMAGE_NAME) * i)] != search[(PixelCache.GetWidth(filename) * i)]) matched = false;
+                            }
+                            catch
+                            {
+                                continue;
+                            }
+
+                        }
+
+                        //If we have matched the resoltion again, move on
+                        if (matched)
+                        {
+
+                            //The starting pointer ( end of the iamge on screen )
+                            int start = (key) + (PixelCache.GetWidth(PixelCache.SCREENSHOT_IMAGE_NAME) * (PixelCache.GetHeight(filename) - 1)) + PixelCache.GetWidth(filename);
+
+
+                            //Increment the amount of pixels to remove
+                            for (int i = 1; i < resolution; ++i)
+                            {
+
+                                //If the pixel does not match, unset the matched variable
+                                if (pixels[start - i] != search[(PixelCache.GetWidth(filename) * PixelCache.GetHeight(filename)) - i]) matched = false;
+
+                            }
+
+                            //Did we match the last X pixels of our image?
+                            if (matched)
+                            {
+
+                                //Finally, we will match the four center pixels of the image, to ensure this really is what we are looking for
+                                try
+                                {
+                                    if (pixels[key + (PixelCache.GetWidth(PixelCache.SCREENSHOT_IMAGE_NAME) * (PixelCache.GetHeight(filename) / 2)) + (PixelCache.GetWidth(filename) / 2)] == search[(PixelCache.GetWidth(filename) * (PixelCache.GetHeight(filename) / 2) + (PixelCache.GetWidth(filename) / 2))] &&
+                                    pixels[key + (PixelCache.GetWidth(PixelCache.SCREENSHOT_IMAGE_NAME) * ((PixelCache.GetHeight(filename) / 2) + 1)) + (PixelCache.GetWidth(filename) / 2)] == search[(PixelCache.GetWidth(filename) * ((PixelCache.GetHeight(filename) / 2) + 1) + (PixelCache.GetWidth(filename) / 2))] &&
+                                    pixels[key + (PixelCache.GetWidth(PixelCache.SCREENSHOT_IMAGE_NAME) * (PixelCache.GetHeight(filename) / 2)) + (PixelCache.GetWidth(filename) / 2) + 1] == search[(PixelCache.GetWidth(filename) * (PixelCache.GetHeight(filename) / 2) + (PixelCache.GetWidth(filename) / 2)) + 1] &&
+                                    pixels[key + (PixelCache.GetWidth(PixelCache.SCREENSHOT_IMAGE_NAME) * ((PixelCache.GetHeight(filename) / 2) + 1)) + (PixelCache.GetWidth(filename) / 2) + 1] == search[(PixelCache.GetWidth(filename) * ((PixelCache.GetHeight(filename) / 2) + 1) + (PixelCache.GetWidth(filename) / 2)) + 1])
+                                    {
+
+                                        //Return the coordinates of this image
+                                        //return new Point(x, y);
+                                        nearestPixelPosition.X = x;
+                                        nearestPixelPosition.Y = y;
+
+                                    }
+                                }
+                                catch
+                                {
+
+                                    //return new Point(x, y);
+                                    nearestPixelPosition.X = x;
+                                    nearestPixelPosition.Y = y;
+
+                                }
+
+                            }
+
+                        }
+
+                    }
+
+                }
+
+                //If we are at the edge of the screen
+                if (x == PixelCache.GetWidth(PixelCache.SCREENSHOT_IMAGE_NAME))
+                {
+
+                    //Increment the row
+                    y++;
+
+                    //Reset the X position
+                    x = 0;
+                }
+
+                //Increment the X position
+                x++;
+
+            }
+
+            return nearestPixelPosition;
+
+        }
+
+
+    //Find X/Y coords of an image on screen
+    public static Point FindImagePosition(string filename, int resolution = 3 )
         {
 
             //Convert images to pixel arrays

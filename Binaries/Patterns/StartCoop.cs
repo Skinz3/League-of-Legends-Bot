@@ -116,14 +116,13 @@ namespace LeagueBot
         void pickChamp(string champ)
         {
             client.clickChampSearch();
-            bot.wait(2000);
+            bot.wait(500);
             bot.inputWords(champ);
-
-            bot.wait(2000);
+            bot.wait(300);
             client.selectFirstChampion();
-            bot.wait(2000);
+            bot.wait(500);
             client.lockChampion();
-            bot.wait(1500);
+            bot.wait(1000);
         }
     }
 }

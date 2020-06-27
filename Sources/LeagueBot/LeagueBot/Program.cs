@@ -53,7 +53,6 @@ namespace LeagueBot
             if (restart == string.Empty)
             {
                 Logger.Write("Enter a pattern filename, type 'help' for help.", MessageState.INFO);
-
                 line = Console.ReadLine();
             } else { line = restart; }
             

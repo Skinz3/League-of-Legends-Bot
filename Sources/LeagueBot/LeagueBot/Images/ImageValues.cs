@@ -16,7 +16,7 @@ namespace LeagueBot.Image
     //Use image recognition to find game values
     public class ImageValues
     {
-        //Return health value percentage
+        /*//Return health value percentage
         public static int Health()
         {
             //Get matching x pixels of the health bar
@@ -28,7 +28,7 @@ namespace LeagueBot.Image
             //Get percentage of 100
             return (int)Math.Round(100d * value / total);
 
-        }
+        }*/
 
         public static int EnemyCreepHealth()
         {
@@ -52,11 +52,11 @@ namespace LeagueBot.Image
             //Get percentage of 100
             return (int)Math.Round(100d * value / total);
         }
-        public static Point characterLeveled()
+        /*public static Point characterLeveled()
         {
             Point position = ImageRecognition.FindImagePosition("Game/levelup.png", 5);
             return position;
-        }
+        }*/
         public static Point AllyCreepPosition()
         {
             Point position = ImageRecognition.FindImagePosition("Game/allycreephealth.png", 3);
@@ -89,7 +89,7 @@ namespace LeagueBot.Image
             return position;
         }
 
-        //Return health value percentage
+        /*//Return mana value percentage
         public static int Mana()
         {
             //Get matching x pixels of the health bar
@@ -101,7 +101,7 @@ namespace LeagueBot.Image
             //Get percentage of 100
             return (int)Math.Round((double)(100 * value) / total);
 
-        }
+        }*/
 
         internal static Point EnemyChampion()
         {
