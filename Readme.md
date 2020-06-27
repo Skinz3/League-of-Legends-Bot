@@ -29,7 +29,7 @@
 
    Before launch the bot, you need to follow setup instructions bellow : 
 
-   [Setup instructions](https://github.com/Skinz3/League-Of-Legends-BOT/wiki/How-to-make-it-work)
+   [Setup instructions](https://github.com/kevdah/League-Of-Legends-BOT/wiki/How-to-make-it-work)
    
    Should the bot not work, you may need to screenshot the client, crop out the necessary parts, and update the pictures in the Binaries folder.
 
@@ -43,7 +43,7 @@
 
    FAQ, Api documentation... some good stuff :wink:
 
-   [Here is the wiki](https://github.com/Skinz3/League-Of-Legends-BOT/wiki) 
+   [Here is the wiki](https://github.com/kevdah/League-Of-Legends-BOT/wiki) 
 
 # Authors
 
