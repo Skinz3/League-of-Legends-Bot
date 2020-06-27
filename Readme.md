@@ -41,7 +41,7 @@
 
 # LeagueBot Wiki
 
-   FAQ, Api documentation... some good stuff :wink:
+   FAQ, setup guide etc:
 
    [Here is the wiki](https://github.com/kevdah/League-Of-Legends-BOT/wiki) 
 
