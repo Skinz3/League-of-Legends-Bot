@@ -4,6 +4,7 @@ using System.Drawing;
 using LeagueBot.Patterns;
 using LeagueBot.Game.Enums;
 using LeagueBot.Game.Misc;
+using System.IO;
 
 
 namespace LeagueBot
@@ -20,6 +21,9 @@ namespace LeagueBot
         {
             bool develop_mode = false;
             bool CreepHasBeenFound = false;
+            bool fixCamera = false;
+
+
             int allyIndex = 2;
             bot.log("waiting for league of legends process...");
 
@@ -66,6 +70,8 @@ namespace LeagueBot
                 bot.wait(1000);
 
                 game.player.setLevel(0);
+
+                #region items
 
                 // On itemset for tristana
                 /*Item[] items = { 
@@ -142,15 +148,16 @@ namespace LeagueBot
 
                 //if want another itemset, just copy and paste and change SELECTED_CHAMPION_SET value
 
+                #endregion
+
                 List<Item> itemsToBuy = new List<Item>(items);
 
                 game.shop.setItemBuild(itemsToBuy);
 
-                game.camera.toggle();
+                game.shop.toogle();
 
                 bot.wait(1500);
 
-                game.shop.toogle();
                 bot.wait(1000);
                 game.player.fixItemsInShop();
                 bot.wait(1000);
@@ -160,7 +167,11 @@ namespace LeagueBot
                 if (!develop_mode)
                     bot.wait(3000); //wait 3 seconds.
 
-                game.camera.toggle();
+                if (fixCamera)
+                {
+                    cameraFix();
+                }
+
 
                 game.player.moveNearestBotlaneAllyTower();
 
@@ -298,6 +309,19 @@ namespace LeagueBot
         int incAllyIndex(int allyIndex)
         {
             return (allyIndex < 5) ? ++allyIndex : 1;
+        }
+
+        void cameraFix()
+        {
+            string img = Directory.GetCurrentDirectory() + @"\Images\Game\unfixedcamera.png";
+            if (File.Exists(img))
+            {
+                game.camera.toggleIfUnlocked();
+            }
+            else
+            {
+                bot.log("cameraFix error: Image not found.");
+            }
         }
 
     }
