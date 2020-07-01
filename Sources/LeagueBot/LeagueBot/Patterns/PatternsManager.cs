@@ -78,7 +78,18 @@ namespace LeagueBot.Patterns
             }
             else if(name.ToLower() == "apply settings")
             {
-                Game.Settings.LeagueManager.ApplySettings();
+                try
+                {
+                    Game.Settings.LeagueManager.ApplySettings();
+                }
+                catch (UnauthorizedAccessException e)
+                {
+                    Logger.Write("<ERROR> - Permission denied.");
+                }
+                catch (Exception e)
+                {
+                    Logger.Write(e.ToString());
+                }
             }
             else if (name == "Restart")
             {
