@@ -23,7 +23,7 @@ namespace LeagueBot.Patterns
             protected get;
             set;
         }
-        public ClientApi client
+        public LCU client
         {
             protected get;
             set;
