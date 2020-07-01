@@ -95,7 +95,7 @@ namespace LeagueBot.Patterns
             {
                 PatternScript script = (PatternScript)Activator.CreateInstance(Scripts[name]);
                 script.bot = new BotApi();
-                script.client = new ClientApi();
+                script.client = new LCU();
                 script.game = new GameApi();
                 script.io = new FileIO(Directory.GetCurrentDirectory() + "\\champlist.txt");
                 script.Execute();
