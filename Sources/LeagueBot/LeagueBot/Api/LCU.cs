@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -32,17 +32,32 @@ namespace LeagueBot.Api
 
         public bool leaverbuster()
         {
-            updateRequest();
-            String url = "https://127.0.0.1:" + this.port + "/lol-lobby/v2/lobby/matchmaking/search-state";
-            request.AddHeader("Authorization", "Basic " + this.auth);
-            return request.Get(url).ToString().Contains("QUEUE_DODGER");
+            try
+            {
+                updateRequest();
+                String url = "https://127.0.0.1:" + this.port + "/lol-lobby/v2/lobby/matchmaking/search-state";
+                request.AddHeader("Authorization", "Basic " + this.auth);
+                return request.Get(url).ToString().Contains("QUEUE_DODGER");
+            }
+            catch
+            {
+                return false;
+            }
+            
         }
 
         public bool inChampSelect()
         {
-            string stringUrl = "https://127.0.0.1:" + this.port + "/lol-champ-select/v1/session";
-            updateRequest();
-            return request.Get(stringUrl).ToString().Contains("action");
+            try
+            {
+                string stringUrl = "https://127.0.0.1:" + this.port + "/lol-champ-select/v1/session";
+                updateRequest();
+                return request.Get(stringUrl).ToString().Contains("action");
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public void createLobby(string type)
