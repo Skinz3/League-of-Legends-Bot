@@ -37,7 +37,8 @@ namespace LeagueBot.Api
                 updateRequest();
                 String url = "https://127.0.0.1:" + this.port + "/lol-lobby/v2/lobby/matchmaking/search-state";
                 request.AddHeader("Authorization", "Basic " + this.auth);
-                return request.Get(url).ToString().Contains("QUEUE_DODGER");
+                string response = request.Get(url).ToString();
+                return response.Contains("QUEUE_DODGER") || response.Contains("LEAVER_BUSTED");
             }
             catch
             {
