@@ -87,6 +87,7 @@
     <Compile Include="ApiHelpers\ImageHelper.cs" />
     <Compile Include="ApiHelpers\InputHelper.cs" />
     <Compile Include="DesignPattern\StartupManager.cs" />
+    <Compile Include="Game\Entities\Accounts.cs" />
     <Compile Include="Game\Entities\Champions.cs" />
     <Compile Include="Game\Entities\MainPlayer.cs" />
     <Compile Include="Game\Enums\ShopItemTypeEnum.cs" />
@@ -152,4 +153,7 @@
   </Target>
   <Import Project="..\packages\MSBuild.NugetContentRestore.0.1.6\build\net40\MSBuild.NugetContentRestore.targets" Condition="Exists('..\packages\MSBuild.NugetContentRestore.0.1.6\build\net40\MSBuild.NugetContentRestore.targets')" />
   <Import Project="..\packages\Tesseract.3.3.0\build\Tesseract.targets" Condition="Exists('..\packages\Tesseract.3.3.0\build\Tesseract.targets')" />
+  <Target Name="BeforeBuild">
+    <NugetContentRestoreTask SolutionDir="$(SolutionDir)" ProjectDir="$(ProjectDir)" />
+  </Target>
 </Project>

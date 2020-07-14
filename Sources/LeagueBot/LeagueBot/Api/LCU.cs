@@ -7,6 +7,8 @@ using System.IO;
 using Leaf.xNet;
 using LeagueBot.Game.Entities;
 using LeagueBot.IO;
+using LeagueBot.ApiHelpers;
+using System.Windows.Forms;
 
 namespace LeagueBot.Api
 {
@@ -95,15 +97,40 @@ namespace LeagueBot.Api
             HttpResponse result = request.Post(url);
         }
 
-        #region misc
-
-        private void updateRequest()
+        public void SingOut()
         {
-            this.request = new HttpRequest();
-            this.request.AddHeader("Authorization", "Basic " + this.auth);
-            this.request.AddHeader("Accept", "application/json");
-            this.request.AddHeader("content-type", "application/json");
-            this.request.IgnoreProtocolErrors = true;
+            InputHelper.LeftClick(1736, 110, 150);
+            InputHelper.LeftClick(1000, 587, 150);
+            Logger.Write("Logged out");
+        }
+
+        public bool isLogged()
+        {
+            //Console.WriteLine(TextHelper.TextExists(447, 111, 505, 135, "HOME"));
+            return TextHelper.TextExists(447, 111, 505, 135, "HOME");
+        }
+
+        public bool WrongCredentials()
+        {
+
+            //Console.Write(TextHelper.TextExists(586, 438, 100, 40, "match"));
+            return TextHelper.TextExists(586, 438, 100, 40, "match");
+        }
+
+
+        public void GetLoginData()
+        {
+            Accounts acc = new Accounts();
+
+            InputHelper.LeftClick(388, 464, 150);
+            BotHelper.Wait(2000);
+            SendKeys.SendWait(acc.login);
+            BotHelper.Wait(2000);
+            InputHelper.LeftClick(388, 527, 150);
+            BotHelper.Wait(2000);
+            SendKeys.SendWait(acc.password);
+            BotHelper.Wait(2000);
+            InputHelper.LeftClick(500, 680, 150);
         }
 
         public void readLockFile()
@@ -131,6 +158,18 @@ namespace LeagueBot.Api
             }
 
         }
+        #region misc
+
+        private void updateRequest()
+        {
+            this.request = new HttpRequest();
+            this.request.AddHeader("Authorization", "Basic " + this.auth);
+            this.request.AddHeader("Accept", "application/json");
+            this.request.AddHeader("content-type", "application/json");
+            this.request.IgnoreProtocolErrors = true;
+        }
+
+        
         #endregion
     }
 }
