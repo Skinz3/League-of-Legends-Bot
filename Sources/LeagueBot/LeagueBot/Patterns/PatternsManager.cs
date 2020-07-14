@@ -93,10 +93,26 @@ namespace LeagueBot.Patterns
             }
             else if (name == "Restart")
             {
-                ProcessStartInfo startInfo = new ProcessStartInfo("LeagueBot.exe");
-                startInfo.Arguments = "StartCoop";
-                Process.Start(startInfo);
+                Globals.numberOfGames--;
+                if (Globals.numberOfGames != 0)
+                {
+                    ProcessStartInfo startInfo = new ProcessStartInfo("LeagueBot.exe");
+                    startInfo.Arguments = "StartCoop " + Globals.numberOfGames.ToString();
+                    Process.Start(startInfo);
+                }
                 Environment.Exit(0);
+            }
+            else if (name == "StartCoopLimited")
+            {
+                int gamesnumber;
+                Logger.Write("Enter the number of games to play before stopping the bot.", MessageState.INFO);
+                while (!int.TryParse(Console.ReadLine(), out gamesnumber))
+                {
+                    Console.WriteLine("That was invalid. Enter an integer to continue.");
+                }
+                Globals.numberOfGames = gamesnumber;
+                PatternsManager.Execute("StartCoop");
+
             }
             else if (!Scripts.ContainsKey(name))
             {
