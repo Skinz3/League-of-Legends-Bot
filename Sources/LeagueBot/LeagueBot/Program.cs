@@ -39,27 +39,39 @@ namespace LeagueBot
             checkChampList();
 
             if (args.Length == 0)
-                HandleCommand(string.Empty);
-            else
-                HandleCommand(args[0]);
-            
+                HandleCommand(string.Empty, -1);
+            else if (args.Length == 1)
+                HandleCommand(args[0], -1);
+            else if (args.Length == 2)
+            {   
+                int gamesInt = int.Parse(args[1]);
+
+                if(gamesInt>=0){
+                    Logger.Write("Bot has " + args[1] + " game(s) left to play.", MessageState.INFO);
+                }else{
+                    Logger.Write("Bot has played " + (Math.Abs(gamesInt)-1).ToString() + " game(s)", MessageState.INFO);
+                }                
+                
+                HandleCommand(args[0], gamesInt);
+            }
             Console.Read();
         }
 
-        static void HandleCommand(string restart)
+        static void HandleCommand(string restart, int games)
         {
             string line;
+            Globals.numberOfGames = games;
 
             if (restart == string.Empty)
             {
                 Logger.Write("Enter a pattern filename, type 'help' for help.", MessageState.INFO);
                 line = Console.ReadLine();
-            } else { line = restart; }
-            
+            }
+            else { line = restart; }
 
             PatternsManager.Execute(line);
 
-            HandleCommand(string.Empty);
+            HandleCommand(string.Empty, games);
         }
 
         private static void checkChampList()
@@ -71,5 +83,9 @@ namespace LeagueBot
                 File.Create(path);
             }
         }
+    }
+    public class Globals
+    {
+        public static int numberOfGames; // Modifiable
     }
 }
