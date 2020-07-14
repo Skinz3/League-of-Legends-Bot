@@ -16,5 +16,9 @@ namespace LeagueBot.Api
         public int level { get; set; }
         [JsonProperty("summonerName")]
         public string summonerName { get; set; }
+        public double kills { get; set; }
+        public double deaths { get; set; }
+        public double assists { get; set; }
+        public double creepScore { get; set; }
     }
 }

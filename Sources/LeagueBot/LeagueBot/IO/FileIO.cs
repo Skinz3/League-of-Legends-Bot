@@ -21,5 +21,10 @@ namespace LeagueBot.IO
             return File.ReadAllLines(dir);
         }
 
+        public string[] getAccounts()
+        {
+            return File.ReadAllLines(dir);
+        }
+
     }
 }

@@ -23,7 +23,14 @@ namespace LeagueBot
             bot.centerProcess(CLIENT_PROCESS_NAME);
 
             bot.log("Client ready.");
-            bot.wait(2000);
+			bot.KillProcess(CLIENT_PROCESS_NAME);
+			bot.wait(13000);
+			
+			bot.waitProcessOpen(CLIENT_PROCESS_NAME);
+            bot.bringProcessToFront(CLIENT_PROCESS_NAME);
+            bot.centerProcess(CLIENT_PROCESS_NAME);
+			bot.log("Client ready.");
+			
             client.createLobby(MODE);
 
             bot.log("Attempting to search for game...");

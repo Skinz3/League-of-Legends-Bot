@@ -38,6 +38,8 @@ namespace LeagueBot
 
             checkChampList();
 
+            checkAccountsList();
+
             if (args.Length == 0)
                 HandleCommand(string.Empty, -1);
             else if (args.Length == 1)
@@ -83,7 +85,19 @@ namespace LeagueBot
                 File.Create(path);
             }
         }
+
+        private static void checkAccountsList()
+        {
+            string path = Directory.GetCurrentDirectory() + "\\accounts.txt";
+            if (!File.Exists(path))
+            {
+                Logger.WriteColor2("accounts.txt not found. Creating file...\nPlease fill the list that has been generated with accounts data.\nNOTE: One login:password per line.");
+                File.Create(path);
+            }
+        }
+
     }
+
     public class Globals
     {
         public static int numberOfGames; // Modifiable
