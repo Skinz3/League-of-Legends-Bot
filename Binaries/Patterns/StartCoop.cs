@@ -66,6 +66,13 @@ namespace LeagueBot
                 {
                     bot.log("Attempting to pick "+champ);
                     client.pickChampionByName(champ);
+					bot.wait(2000);
+					if(client.IsPicked())
+					{
+						bot.log(champ+" is picked!");
+						bot.executePattern("Coop");
+						break;
+					}
 
                 }
             } else
