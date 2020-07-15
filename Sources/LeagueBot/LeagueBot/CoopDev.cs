@@ -11,6 +11,7 @@ namespace LeagueBot
 {
     public class CoopDev : PatternScript
     {
+
         private Point CastTargetPoint
         {
             get;
@@ -23,7 +24,8 @@ namespace LeagueBot
             bool CreepHasBeenFound = false;
             bool fixCamera = false;
 
-
+			game.player.getSummonerName();
+			//bot.wait(50000);
             int allyIndex = 2;
             bot.log("waiting for league of legends process...");
 
@@ -46,7 +48,7 @@ namespace LeagueBot
                 bot.centerProcess(GAME_PROCESS_NAME);
 
                 game.waitUntilGameStart();
-
+				
                 bot.log("We are in game!");
 
                 bot.bringProcessToFront(GAME_PROCESS_NAME);
@@ -110,7 +112,11 @@ namespace LeagueBot
                             new Item("Frozen Heart", 2650, false, false, 0, ITEM_POSITIONS[4,1])
                 };*/
                 //On Itemset for lux
-                /*Item[] items = {
+
+                
+                
+
+                    Item[] items = {
                             new Item("Lost Chapter",1300,false,false,0,game.shop.getItemPosition(ShopItemTypeEnum.Early,1)),
                             new Item("Basic Bots", 300, false, false, 0, game.shop.getItemPosition(ShopItemTypeEnum.Early,0)),
                             new Item("Ludens", 3200, false, false, 0, game.shop.getItemPosition(ShopItemTypeEnum.Essential,1)),
@@ -120,7 +126,23 @@ namespace LeagueBot
                             new Item("Void Staff", 2650, false, false, 0,  game.shop.getItemPosition(ShopItemTypeEnum.Offensive,1)),
                             new Item("First morello part", 1600, false, false, 0, game.shop.getItemPosition(ShopItemTypeEnum.Early,2)),
                             new Item("Zhonya", 2900, false, false, 0, game.shop.getItemPosition(ShopItemTypeEnum.Offensive,2))
-                };*/
+                     };
+               
+               /*
+					Item[] items = {
+                            new Item("Vampiric Scepter",900,false,false, 0, game.shop.getItemPosition(ShopItemTypeEnum.Early,1)),
+                            new Item("Long Sword", 350, false, false, 0, game.shop.getItemPosition(ShopItemTypeEnum.Early,0)),
+                            new Item("Berserker's Greaves", 1100, false, false, 0, game.shop.getItemPosition(ShopItemTypeEnum.Essential,2)),
+                            new Item("B.F. Sword", 1300, false, false, 0,  game.shop.getItemPosition(ShopItemTypeEnum.Offensive,1)),
+                            new Item("Bloodthirster", 3500, false, false, 0,  game.shop.getItemPosition(ShopItemTypeEnum.Offensive,2)),
+                            new Item("B.F. Sword", 1300, false, false, 0,  game.shop.getItemPosition(ShopItemTypeEnum.Offensive,1)),
+                            new Item("Infinity Edge", 3400, false, false, 0,  game.shop.getItemPosition(ShopItemTypeEnum.Defensive,2)),
+                            new Item("Statikk Shiv", 2600, false, false, 0,  game.shop.getItemPosition(ShopItemTypeEnum.Defensive,0)),
+                            new Item("Frozen Mallet", 3100, false, false, 0,  game.shop.getItemPosition(ShopItemTypeEnum.Defensive,1)),
+                }; */
+				
+				//}
+				
                 //On Itemset for ashe (intermediate bots)
                 /*Item[] items = {
                             new Item("Boots of Speed",300,false,false, 0, game.shop.getItemPosition(ShopItemTypeEnum.Early,1)),
@@ -134,17 +156,8 @@ namespace LeagueBot
                             new Item("Mortal Reminder", 2800, false, false, 0, game.shop.getItemPosition(ShopItemTypeEnum.Offensive,2))
                 };*/
                 //On Itemset for ashe (begginer bots)
-                Item[] items = {
-                            new Item("Vampiric Scepter",900,false,false, 0, game.shop.getItemPosition(ShopItemTypeEnum.Early,1)),
-                            new Item("Long Sword", 350, false, false, 0, game.shop.getItemPosition(ShopItemTypeEnum.Early,0)),
-                            new Item("Berserker's Greaves", 1100, false, false, 0, game.shop.getItemPosition(ShopItemTypeEnum.Essential,2)),
-                            new Item("B.F. Sword", 1300, false, false, 0,  game.shop.getItemPosition(ShopItemTypeEnum.Offensive,1)),
-                            new Item("Bloodthirster", 3500, false, false, 0,  game.shop.getItemPosition(ShopItemTypeEnum.Offensive,2)),
-                            new Item("B.F. Sword", 1300, false, false, 0,  game.shop.getItemPosition(ShopItemTypeEnum.Offensive,1)),
-                            new Item("Infinity Edge", 3400, false, false, 0,  game.shop.getItemPosition(ShopItemTypeEnum.Defensive,2)),
-                            new Item("Statikk Shiv", 2600, false, false, 0,  game.shop.getItemPosition(ShopItemTypeEnum.Defensive,0)),
-                            new Item("Frozen Mallet", 3100, false, false, 0,  game.shop.getItemPosition(ShopItemTypeEnum.Defensive,1)),
-                };
+				/*
+                */
 
                 //if want another itemset, just copy and paste and change SELECTED_CHAMPION_SET value
 

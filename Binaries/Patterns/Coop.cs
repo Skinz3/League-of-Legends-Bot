@@ -26,7 +26,12 @@ namespace LeagueBot
 
             int allyIndex = 2;
             bot.log("waiting for league of legends process...");
-
+			
+			
+			//game.player.getSummonerName();
+			//game.player.getInfoAboutChamp();
+			
+			
             //bot._outActualTime = 0
             if (!develop_mode)
                 bot.wait(95000);

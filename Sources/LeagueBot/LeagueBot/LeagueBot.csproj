@@ -82,14 +82,17 @@
     <Compile Include="Api\BotApi.cs" />
     <Compile Include="Api\Game.cs" />
     <Compile Include="Api\IApi.cs" />
+    <Compile Include="Api\JsonObject.cs" />
     <Compile Include="Api\LCU.cs" />
     <Compile Include="Configuration.cs" />
     <Compile Include="ApiHelpers\ImageHelper.cs" />
     <Compile Include="ApiHelpers\InputHelper.cs" />
+    <Compile Include="CoopDev.cs" />
     <Compile Include="DesignPattern\StartupManager.cs" />
     <Compile Include="Game\Entities\Accounts.cs" />
     <Compile Include="Game\Entities\Champions.cs" />
     <Compile Include="Game\Entities\MainPlayer.cs" />
+    <Compile Include="Api\Spell.cs" />
     <Compile Include="Game\Enums\ShopItemTypeEnum.cs" />
     <Compile Include="Game\Enums\SideEnum.cs" />
     <Compile Include="Game\ApiMember.cs" />
@@ -129,6 +132,7 @@
     <Reference Include="Leaf.xNet, Version=5.2.10.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Leaf.xNet.5.2.10\lib\net45\Leaf.xNet.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>

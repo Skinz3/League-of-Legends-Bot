@@ -28,6 +28,12 @@ namespace LeagueBot
             get;
             set;
         }
+
+        public string LockFile
+        {
+            get;
+            set;
+        }
         [StartupInvoke("Config", StartupInvokePriority.Initial)]
         public static bool LoadConfig()
         {
@@ -99,6 +105,7 @@ namespace LeagueBot
             Instance = new Configuration()
             {
                 ClientPath = clientPath,
+                LockFile = "C:\\Riot Games\\League of Legends\\lockfile",
             };
 
             Save();

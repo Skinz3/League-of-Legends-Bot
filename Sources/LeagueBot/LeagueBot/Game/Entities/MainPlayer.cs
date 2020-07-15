@@ -2,10 +2,14 @@
 using LeagueBot.ApiHelpers;
 using LeagueBot.Image;
 using LeagueBot.IO;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Net;
+using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -16,8 +20,11 @@ namespace LeagueBot.Game.Entities
         private int PlayerLevel;
         private Point PlayerPosition;
         private string URL;
-
+        public string championName;
         Api.Game game = new Api.Game();
+        private string myJSON;
+
+        
 
         public MainPlayer(GameApi api) : base(api)
         {
@@ -38,6 +45,7 @@ namespace LeagueBot.Game.Entities
                 game.maxHealth = (int)jo.SelectToken("championStats.maxHealth");
                 game.resourceValue = (int)jo.SelectToken("championStats.resourceValue");
                 game.resourceMax = (int)jo.SelectToken("championStats.resourceMax");
+                game.summonerName = (string)jo.SelectToken("summonerName");
             }
             catch
             {
@@ -45,10 +53,53 @@ namespace LeagueBot.Game.Entities
                 game.maxHealth = 1;
                 game.resourceMax = 1;
                 game.resourceValue = 1;
+                game.summonerName = "Cant read";
             }
         }
 
+        public void getInfoAboutChamp()
+        {
 
+            update();
+            string json;
+
+            json = new WebClient().DownloadString("http://ddragon.leagueoflegends.com/cdn/10.14.1/data/en_US/champion/" + this.championName + ".json");
+            JObject jo = JObject.Parse(json);
+
+            Spell Q = new Spell("Q",jo, this.championName, 0);
+            Spell W = new Spell("W", jo, this.championName, 1);
+            Spell E = new Spell("E", jo, this.championName, 2);
+            Spell R = new Spell("R", jo, this.championName, 3);
+
+
+        }
+
+        public string getSummonerName()
+        {
+            update();
+            string json;
+            
+            
+            ServicePointManager.ServerCertificateValidationCallback = (sender, cert, chain, sslPolicyErrors) => true;
+            json = new WebClient().DownloadString("https://127.0.0.1:2999/liveclientdata/playerlist");
+            JArray jo = JArray.Parse(json);
+            
+            
+            for (int i = 0; i<10; i++)
+            {
+                string summonerName = jo[i]["summonerName"].Value<string>();
+                if (summonerName == this.game.summonerName)
+                {
+                    championName = jo[i]["championName"].Value<string>();
+                    Logger.Write(championName + " is picked!");
+                    this.game.championName = championName;
+                    return championName;
+                }
+
+            }
+            return "Cant recognize championName";
+            
+        }
         private void updatePlayerPosition()
         {
             Point tempPlayerPosition = setPlayerPosition();
@@ -118,43 +169,43 @@ namespace LeagueBot.Game.Entities
 
         public void moveNearestBotlaneAllyTower()
         {
-            //Primera torreta aliada con placas aun viva.
-            if (ImageHelper.GetColor(1410, 924) == "#1C4F5D")//ALIVE: #1B4D5A - 1422,904 (buscar color)
-            {
-                InputHelper.RightClick(1410, 911);
-                BotHelper.InputIdle();
-                return;
-            }
-            if (ImageHelper.GetColor(1387, 834) == "#3592B1")
-            {
-                InputHelper.RightClick(1410, 911);
-                BotHelper.InputIdle();
-                return;
-            }
-            //Primera torreta aliada sin placas
-            if (ImageHelper.GetColor(1411, 922) == "#2A788D")//ALIVE: #1B4D5A - 1422,904 (buscar color)
-            {
-                InputHelper.RightClick(1410, 911);
-                BotHelper.InputIdle();
-                return;
-            }
-            //Segunda torreta aliada sin placas
-            if (ImageHelper.GetColor(1366, 916) == "#328AA8")//ALIVE: #1B4D5A - 1422,904 (buscar color)
-            {
-                InputHelper.RightClick(1366, 916);
-                BotHelper.InputIdle();
-                return;
-            }
-            //Tercera torreta aliada sin placas
-            if (ImageHelper.GetColor(1335, 917) == "#2C7B92")//ALIVE: #1B4D5A - 1422,904 (buscar color)
-            {
-                InputHelper.RightClick(1335, 916);
-                BotHelper.InputIdle();
-                return;
-            }
+            ////Primera torreta aliada con placas aun viva.
+            //if (ImageHelper.GetColor(1410, 924) == "#1C4F5D")//ALIVE: #1B4D5A - 1422,904 (buscar color)
+            //{
+            //    InputHelper.RightClick(1410, 911);
+            //    BotHelper.InputIdle();
+            //    return;
+            //}
+            //if (ImageHelper.GetColor(1387, 834) == "#3592B1")
+            //{
+            //    InputHelper.RightClick(1410, 911);
+            //    BotHelper.InputIdle();
+            //    return;
+            //}
+            ////Primera torreta aliada sin placas
+            //if (ImageHelper.GetColor(1411, 922) == "#2A788D")//ALIVE: #1B4D5A - 1422,904 (buscar color)
+            //{
+            //    InputHelper.RightClick(1410, 911);
+            //    BotHelper.InputIdle();
+            //    return;
+            //}
+            ////Segunda torreta aliada sin placas
+            //if (ImageHelper.GetColor(1366, 916) == "#328AA8")//ALIVE: #1B4D5A - 1422,904 (buscar color)
+            //{
+            //    InputHelper.RightClick(1366, 916);
+            //    BotHelper.InputIdle();
+            //    return;
+            //}
+            ////Tercera torreta aliada sin placas
+            //if (ImageHelper.GetColor(1335, 917) == "#2C7B92")//ALIVE: #1B4D5A - 1422,904 (buscar color)
+            //{
+            //    InputHelper.RightClick(1335, 916);
+            //    BotHelper.InputIdle();
+            //    return;
+            //}
 
-            InputHelper.RightClick(1308, 905);
-            BotHelper.InputIdle();
+            InputHelper.RightClick(1430, 906);
+            BotHelper.Wait(25000);
         }
 
         public bool dead()

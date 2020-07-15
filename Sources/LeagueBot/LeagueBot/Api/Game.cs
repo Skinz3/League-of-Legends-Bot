@@ -20,5 +20,8 @@ namespace LeagueBot.Api
         public double deaths { get; set; }
         public double assists { get; set; }
         public double creepScore { get; set; }
+        public string championName { get; set; }
     }
+
+   
 }
