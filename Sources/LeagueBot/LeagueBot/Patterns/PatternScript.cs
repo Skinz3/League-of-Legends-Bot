@@ -11,6 +11,8 @@ namespace LeagueBot.Patterns
     {
         public const string CLIENT_PROCESS_NAME = "LeagueClientUX";
 
+        public const string RIOT_PROCESS_NAME = "RiotClientUX";
+
         public const string GAME_PROCESS_NAME = "League of Legends";
 
         public BotApi bot
@@ -23,7 +25,17 @@ namespace LeagueBot.Patterns
             protected get;
             set;
         }
-        public ClientApi client
+        public LCU client
+        {
+            protected get;
+            set;
+        }
+        public Api.Game riotAPI
+        {
+            protected get;
+            set;
+        }
+        public IO.FileIO io
         {
             protected get;
             set;

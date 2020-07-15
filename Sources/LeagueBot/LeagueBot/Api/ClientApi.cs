@@ -45,8 +45,17 @@ namespace LeagueBot.Api
         {
             InputHelper.LeftClick(1109, 219);
         }
+        public void clearChampSearch()
+        {
+            InputHelper.LeftClick(1301, 219);
+        }
+        public bool blocked()
+        {
+            return TextHelper.TextExists(768, 934, 90, 24, "blocked");
+        }
         public bool levelUp()
         {
+            IO.Logger.WriteColor1(TextHelper.GetTextFromImage(872, 237, 300, 300));
             return TextHelper.TextExists(872, 237, 300, 300, "level up");
         }
         public bool questCompleted()

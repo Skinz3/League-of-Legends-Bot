@@ -10,7 +10,9 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Net;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -29,6 +31,7 @@ namespace LeagueBot.Api
      * -> * We back after Flee
      * -> * Walk to our first turret
      */
+
     public class GameApi : IApi
     {
         public Shop shop
@@ -66,13 +69,33 @@ namespace LeagueBot.Api
 
         public void waitUntilGameStart()
         {
-            ImageHelper.WaitForColor(997, 904, "#00D304");
+            bool gameStarted = false;
+            string URL = "https://127.0.0.1:2999/liveclientdata/playerlist";
+
+            while (!gameStarted)
+            {
+                string json;
+                try
+                {
+                    gameStarted = player.getGold() != 0;
+                }
+                catch
+                {
+                    Thread.Sleep(5000);
+                }
+                finally
+                {
+                    Thread.Sleep(5000);
+                }
+            }
         }
 
         public void detectSide()
         {
             //when side is detected, reset all bot items.
-            this.side = ImageHelper.GetColor(1343, 868) == "#2A768C" ? SideEnum.Blue : SideEnum.Red;
+            // this.side = ImageHelper.GetColor(1343, 868) == "#2A768C" ? SideEnum.Blue : SideEnum.Red;
+
+            this.side = SideEnum.Blue;
         }
         public SideEnum getSide()
         {
@@ -81,8 +104,15 @@ namespace LeagueBot.Api
 
         public void moveCenterScreen()
         {
+            /*InputHelper.RightClick(886, 521);
+            BotHelper.InputIdle();*/
+
+            Random r = new Random();
+            InputHelper.MoveMouse(970, 540);
+            InputHelper.PressKey("A");
+            BotHelper.Wait(r.Next(700, 800));
             InputHelper.RightClick(886, 521);
-            BotHelper.InputIdle();
+            BotHelper.Wait(r.Next(155, 175));
         }
     }
 }

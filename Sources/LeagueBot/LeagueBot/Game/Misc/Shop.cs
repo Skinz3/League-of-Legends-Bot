@@ -55,13 +55,13 @@ namespace LeagueBot.Game.Misc
             {
                 ItemsToBuy.Add(_item);
 
-                Logger.Write($"Added {_item.name} on items list");
+                Logger.WriteInformation($"Added {_item.name} on items list", "SHOP");
             }
         }
 
         public int getPlayerGold()
         {
-            return TextHelper.GetTextFromImage(767, 828, 118, 34);
+            return Api.player.getGold();
         }
 
         public void tryBuyItem()
@@ -75,12 +75,12 @@ namespace LeagueBot.Game.Misc
                     {
                         if (_item.got == false)
                         {
-                            Logger.Write($"Character bought {_item.name}.");
+                            Logger.WriteInformation($"Character bought {_item.name}.","SHOP");
                             InputHelper.RightClick(_item.point.X, _item.point.Y, 200);
                             _item.got = true;
 
                             BotHelper.Wait(500);
-                            Logger.Write($"{getPlayerGold().ToString()} gold remaining.");
+                            Logger.WriteInformation($"{getPlayerGold().ToString()} gold remaining.", "SHOP");
                             tryBuyItem();
                             BotHelper.Wait(500);
                         }

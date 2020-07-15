@@ -80,15 +80,13 @@
     <Compile Include="ApiHelpers\BotHelper.cs" />
     <Compile Include="ApiHelpers\TextHelper.cs" />
     <Compile Include="Api\BotApi.cs" />
+    <Compile Include="Api\ClientApi.cs" />
     <Compile Include="Api\Game.cs" />
     <Compile Include="Api\IApi.cs" />
-    <Compile Include="Api\LCU.cs" />
     <Compile Include="Configuration.cs" />
     <Compile Include="ApiHelpers\ImageHelper.cs" />
     <Compile Include="ApiHelpers\InputHelper.cs" />
     <Compile Include="DesignPattern\StartupManager.cs" />
-    <Compile Include="Game\Entities\Accounts.cs" />
-    <Compile Include="Game\Entities\Champions.cs" />
     <Compile Include="Game\Entities\MainPlayer.cs" />
     <Compile Include="Game\Enums\ShopItemTypeEnum.cs" />
     <Compile Include="Game\Enums\SideEnum.cs" />
@@ -126,17 +124,12 @@
     <Reference Include="InputManager, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\InputManager.1.0.0\lib\InputManager.dll</HintPath>
     </Reference>
-    <Reference Include="Leaf.xNet, Version=5.2.10.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Leaf.xNet.5.2.10\lib\net45\Leaf.xNet.dll</HintPath>
-    </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="Tesseract, Version=3.3.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Tesseract.3.3.0\lib\net45\Tesseract.dll</HintPath>
@@ -153,7 +146,4 @@
   </Target>
   <Import Project="..\packages\MSBuild.NugetContentRestore.0.1.6\build\net40\MSBuild.NugetContentRestore.targets" Condition="Exists('..\packages\MSBuild.NugetContentRestore.0.1.6\build\net40\MSBuild.NugetContentRestore.targets')" />
   <Import Project="..\packages\Tesseract.3.3.0\build\Tesseract.targets" Condition="Exists('..\packages\Tesseract.3.3.0\build\Tesseract.targets')" />
-  <Target Name="BeforeBuild">
-    <NugetContentRestoreTask SolutionDir="$(SolutionDir)" ProjectDir="$(ProjectDir)" />
-  </Target>
 </Project>

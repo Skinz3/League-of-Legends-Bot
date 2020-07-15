@@ -93,5 +93,29 @@ namespace LeagueBot.Api
         {
             InputHelper.InputWords(words, keyDelay, delay);
         }
+
+        public void KillProcess(string processName)
+        {
+            try
+            {
+                foreach (Process proc in Process.GetProcessesByName(processName))
+                {
+                    proc.Kill();
+                    Logger.Write("Closing " + processName);
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Write("Cant handle " + processName + " to kill");
+            }
+        }
+
+        public void StartProcess()
+        {
+            ProcessStartInfo startInfo = new ProcessStartInfo();
+            startInfo.FileName = @"C:\Riot Games\Riot Client\RiotClientServices.exe";
+            startInfo.Arguments = @" --launch-product=league_of_legends --launch-patchline=live";
+            Process.Start(startInfo);
+        }
     }
 }

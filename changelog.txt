@@ -1,0 +1,5 @@
+14.07.2020 20:18 (Warsaw +1 time)
+- added Accounts class
+- created (and checking) accounts.txt with login:password 
+- added "Login" pattern for starting client and logging
+- fixing black screen issue Client by killing UI proccess

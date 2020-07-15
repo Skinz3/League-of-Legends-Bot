@@ -21,6 +21,11 @@ namespace LeagueBot.IO
     {
         private const ConsoleColor COLOR_1 = ConsoleColor.Cyan;
         private const ConsoleColor COLOR_2 = ConsoleColor.DarkCyan;
+        private const ConsoleColor INFORMATION = ConsoleColor.Green;
+        private const ConsoleColor SHOP = ConsoleColor.Yellow;
+        private const ConsoleColor PLAYER = ConsoleColor.Blue;
+        private const ConsoleColor UNSET = ConsoleColor.Gray;
+
 
         private static Dictionary<MessageState, ConsoleColor> Colors = new Dictionary<MessageState, ConsoleColor>()
         {
@@ -44,6 +49,27 @@ namespace LeagueBot.IO
         public static void WriteColor2(object value)
         {
             WriteColored(value, COLOR_2);
+        }
+        public static void WritePixel(string message)
+        {
+            Console.ForegroundColor = INFORMATION;
+            Console.WriteLine($"<DETECTION> - {message}");
+        }
+        public static void WriteInformation(string message, string type)
+        {
+            switch (type)
+            {
+                case "PLAYER":
+                    Console.ForegroundColor = PLAYER;
+                    break;
+                case "SHOP":
+                    Console.ForegroundColor = SHOP;
+                    break;
+                default:
+                    Console.ForegroundColor = UNSET;
+                    break;
+            }
+            Console.WriteLine($"<{type}> - {message}");
         }
         private static void WriteColored(object value, ConsoleColor color)
         {
