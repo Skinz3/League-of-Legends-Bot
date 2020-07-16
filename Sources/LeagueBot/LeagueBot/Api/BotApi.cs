@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static LeagueBot.Windows.Interop;
-using LeagueBot.Patterns;
+
 
 namespace LeagueBot.Api
 {

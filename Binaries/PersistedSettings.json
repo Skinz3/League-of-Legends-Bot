@@ -768,11 +768,11 @@
                         },
                         {
                             "name": "evtPlayerAttackMove",
-                            "value": "[a],[x]"
+                            "value": "[x]"
                         },
                         {
                             "name": "evtPlayerAttackMoveClick",
-                            "value": "[Button 5]"
+                            "value": "[a]"
                         },
                         {
                             "name": "evtPlayerAttackOnlyClick",

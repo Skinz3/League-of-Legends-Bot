@@ -1,11 +1,16 @@
 ﻿using LeagueBot.Api;
 using LeagueBot.ApiHelpers;
+using LeagueBot.Game.Entities;
 using LeagueBot.Image;
 using LeagueBot.IO;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Net;
+using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -15,14 +20,29 @@ namespace LeagueBot.Game.Entities
     {
         private int PlayerLevel;
         private Point PlayerPosition;
-        private string URL;
+        public Spell Q,W,E,R;
+        public SummonerSpell summonerSpellOne, summonerSpellTwo;
+        public string championName;
+        public string summonerName;
 
         Api.Game game = new Api.Game();
+        
+        
 
         public MainPlayer(GameApi api) : base(api)
         {
-            URL = "https://127.0.0.1:2999/liveclientdata/activeplayer";
+            
             PlayerLevel = 0;
+            getSummonerName();
+
+            string json = new WebClient().DownloadString("http://ddragon.leagueoflegends.com/cdn/10.14.1/data/en_US/champion/" + this.championName + ".json");
+            JObject jo = JObject.Parse(json);
+
+
+            this.Q = new Spell("Q", jo, this.championName, 0);
+            this.W = new Spell("W", jo, this.championName, 1);
+            this.E = new Spell("E", jo, this.championName, 2);
+            this.R = new Spell("R", jo, this.championName, 3);
         }
 
         private void update()
@@ -31,13 +51,16 @@ namespace LeagueBot.Game.Entities
             try
             {
                 ServicePointManager.ServerCertificateValidationCallback = (sender, cert, chain, sslPolicyErrors) => true;
-                json = new WebClient().DownloadString(URL);
+                json = new WebClient().DownloadString("https://127.0.0.1:2999/liveclientdata/activeplayer");
                 JObject jo = JObject.Parse(json);
                 game = jo.ToObject<Api.Game>();
                 game.currentHealth = (int)jo.SelectToken("championStats.currentHealth");
                 game.maxHealth = (int)jo.SelectToken("championStats.maxHealth");
                 game.resourceValue = (int)jo.SelectToken("championStats.resourceValue");
                 game.resourceMax = (int)jo.SelectToken("championStats.resourceMax");
+                game.summonerName = (string)jo.SelectToken("summonerName");
+                this.summonerName = (string)jo.SelectToken("summonerName");
+
             }
             catch
             {
@@ -45,10 +68,60 @@ namespace LeagueBot.Game.Entities
                 game.maxHealth = 1;
                 game.resourceMax = 1;
                 game.resourceValue = 1;
+                game.summonerName = "Cant read";
             }
         }
 
 
+        public string getSummonerName()
+        {
+            update();
+             
+            ServicePointManager.ServerCertificateValidationCallback = (sender, cert, chain, sslPolicyErrors) => true;
+            string json = new WebClient().DownloadString("https://127.0.0.1:2999/liveclientdata/playerlist");
+            JArray jo = JArray.Parse(json);
+
+            string summs = new WebClient().DownloadString("https://127.0.0.1:2999/liveclientdata/playersummonerspells?summonerName=" + this.summonerName+"");
+            JObject jo2 = JObject.Parse(summs);
+
+            summonerSpellOne = new SummonerSpell("summonerSpellOne", jo2, 5);
+            summonerSpellTwo = new SummonerSpell("summonerSpellTwo", jo2, 6);
+
+
+            for (int i = 0; i<10; i++)
+            {
+                string summonerName = jo[i]["summonerName"].Value<string>();
+                if (summonerName == this.game.summonerName)
+                {
+                    championName = jo[i]["championName"].Value<string>();
+                    Logger.Write(championName + " is picked!");
+                    this.game.championName = championName;
+                    return championName;
+                }
+
+            }
+            return "Cant recognize championName";
+            
+        }
+
+        public void heal()
+        {
+            if(this.summonerSpellOne.displayName == "Heal")
+            {
+                this.summonerSpellOne.use();
+                Logger.Write("Healed");
+            }
+            else if(this.summonerSpellTwo.displayName == "Heal")
+            {
+                this.summonerSpellTwo.use();
+                Logger.Write("Healed");
+            }
+            else
+            {
+                Logger.Write("Heal is not your summonerspell");
+            }
+            
+        }
         private void updatePlayerPosition()
         {
             Point tempPlayerPosition = setPlayerPosition();
@@ -85,76 +158,31 @@ namespace LeagueBot.Game.Entities
 
             return true;
         }
-        public void waitUntilMinionSpawn()
+      
+
+        public void combo()
         {
-            //wait calculations
+            this.Q.cast();
+            this.W.cast();
+            this.E.cast();
+            this.R.cast();
         }
 
-        // --------------------------------------- SPELL ORDER FOR COMBOS TO ENEMIES
-        public void processSpellToEnemyChampions()
+        public void harras()
         {
-            //LUX
-            /*tryCastSpellToEnemyChampion(1);
-            tryCastSpellToEnemyChampion(3);
-            BotHelper.Wait(550);
-            tryCastSpellToEnemyChampion(3);
-            tryCastSpellToEnemyChampion(4);*/
-            //ASHE
-            tryCastSpellToEnemyChampion(2);
-            tryCastSpellToEnemyChampion(4);
-            tryCastSpellToEnemyChampion(1);
+            this.W.cast();
         }
 
-        // --------------------------------------- SPELL ORDER FOR COMBOS TO CREEPS
-        public void processSpellToEnemyCreeps()
+        public void farm()
         {
-            //LUX
-            /*tryCastSpellToEnemyChampion(3);
-            BotHelper.Wait(550);
-            tryCastSpellToEnemyChampion(3);*/
-            //ASHE
-            //tryCastSpellToEnemyCreep(2);
+            this.E.cast();
         }
+
 
         public void moveNearestBotlaneAllyTower()
         {
-            //Primera torreta aliada con placas aun viva.
-            if (ImageHelper.GetColor(1410, 924) == "#1C4F5D")//ALIVE: #1B4D5A - 1422,904 (buscar color)
-            {
-                InputHelper.RightClick(1410, 911);
-                BotHelper.InputIdle();
-                return;
-            }
-            if (ImageHelper.GetColor(1387, 834) == "#3592B1")
-            {
-                InputHelper.RightClick(1410, 911);
-                BotHelper.InputIdle();
-                return;
-            }
-            //Primera torreta aliada sin placas
-            if (ImageHelper.GetColor(1411, 922) == "#2A788D")//ALIVE: #1B4D5A - 1422,904 (buscar color)
-            {
-                InputHelper.RightClick(1410, 911);
-                BotHelper.InputIdle();
-                return;
-            }
-            //Segunda torreta aliada sin placas
-            if (ImageHelper.GetColor(1366, 916) == "#328AA8")//ALIVE: #1B4D5A - 1422,904 (buscar color)
-            {
-                InputHelper.RightClick(1366, 916);
-                BotHelper.InputIdle();
-                return;
-            }
-            //Tercera torreta aliada sin placas
-            if (ImageHelper.GetColor(1335, 917) == "#2C7B92")//ALIVE: #1B4D5A - 1422,904 (buscar color)
-            {
-                InputHelper.RightClick(1335, 916);
-                BotHelper.InputIdle();
-                return;
-            }
-
-            InputHelper.RightClick(1308, 905);
-            BotHelper.InputIdle();
+            InputHelper.RightClick(1430, 906);
+            BotHelper.Wait(5000);
         }
 
         public bool dead()
@@ -162,28 +190,11 @@ namespace LeagueBot.Game.Entities
             update();
             return game.currentHealth == 0;
         }
-        public void castSpell(int indice, int x, int y)
-        {
-            string key = "D" + indice;
-            InputHelper.MoveMouse(x, y);
-            InputHelper.PressKey(key);
-            BotHelper.InputIdle();
-        }
-        public void fixItemsInShop()
-        {
-            if (ImageHelper.ImageExist("Game/toggleshopitems.png"))
-            {
+      
 
-                BotHelper.InputIdle();
-                InputHelper.LeftClick(1050, 240, 150);
-                Logger.WriteInformation("Items in Shop Fixed!", game.summonerName);
-                BotHelper.InputIdle();
-            }
-        }
         public void upgradeSpell(int indice)
         {
-            Point coords = new Point();
-
+           
             Logger.Write("Leveling up spell " + indice);
 
             Keys spell;
@@ -192,15 +203,19 @@ namespace LeagueBot.Game.Entities
             {
                 case 1:
                     spell = Keys.Q;
+                    this.Q.level += 1;              
                     break;
                 case 2:
                     spell = Keys.W;
+                    this.W.level += 1;
                     break;
                 case 3:
                     spell = Keys.E;
+                    this.E.level += 1;
                     break;
                 case 4:
                     spell = Keys.R;
+                    this.R.level += 1;
                     break;
                 default:
                     Logger.Write("Unknown spell indice :" + indice, MessageState.WARNING);
@@ -231,58 +246,58 @@ namespace LeagueBot.Game.Entities
             switch (PlayerLevel)
             {
                 case 1:
-                    upgradeSpell(2); // Q 1
+                    upgradeSpell(1); // Q 1
                     break;
                 case 2:
-                    upgradeSpell(3); // W 1
+                    upgradeSpell(2); // W 1
                     break;
                 case 3:
-                    upgradeSpell(1); // E 1
+                    upgradeSpell(3); // E 1
                     break;
                 case 4:
-                    upgradeSpell(2); // Q 2
+                    upgradeSpell(1); // Q 2
                     break;
                 case 5:
-                    upgradeSpell(2); // Q 3
+                    upgradeSpell(2); // W 3
                     break;
                 case 6:
-                    upgradeSpell(4); // R 1
+                    upgradeSpell(3); // R 1
                     break;
                 case 7:
-                    upgradeSpell(2); // Q 4
+                    upgradeSpell(1); // Q 4
                     break;
                 case 8:
-                    upgradeSpell(1); // E 2
+                    upgradeSpell(3); // E 2
                     break;
                 case 9:
-                    upgradeSpell(2); // Q max
+                    upgradeSpell(1); // Q max
                     break;
                 case 10:
-                    upgradeSpell(1); // E 3
+                    upgradeSpell(3); // E 3
                     break;
                 case 11:
                     upgradeSpell(4); // R 2
                     break;
                 case 12:
-                    upgradeSpell(1); // E 4
+                    upgradeSpell(3); // E 4
                     break;
                 case 13:
                     upgradeSpell(3); // E max
                     break;
                 case 14:
-                    upgradeSpell(3); // W 2
+                    upgradeSpell(2); // W 2
                     break;
                 case 15:
-                    upgradeSpell(3); // W 3
+                    upgradeSpell(2); // W 3
                     break;
                 case 16:
                     upgradeSpell(4); // R max
                     break;
                 case 17:
-                    upgradeSpell(3); // W 4
+                    upgradeSpell(2); // W 4
                     break;
                 case 18:
-                    upgradeSpell(3); // W max
+                    upgradeSpell(2); // W max
                     break;
                 default:
                     //something not leveled?
@@ -309,9 +324,8 @@ namespace LeagueBot.Game.Entities
             if (go.X == 0 && go.Y == 0)
                 return;
 
-            //InputHelper.RightClick(770, 690);
-            InputHelper.RightClick(780, 600);
-            Logger.WriteInformation("Is just moving away.", game.summonerName);
+            InputHelper.RightClick(1411, 922);
+            Logger.Write("Is just moving away.");
             BotHelper.Wait(1000);
         }
         public void nothingHereMoveAway()
@@ -328,92 +342,61 @@ namespace LeagueBot.Game.Entities
 
         public int getHealthPercent()
         {
-            return (int)(100*game.currentHealth/game.maxHealth);
+            update();
+            Logger.WriteColor1("Your heal: "+ (game.currentHealth / game.maxHealth) * 100);
+            return (int)((game.currentHealth/game.maxHealth)*100);
         }
         public int getManaPercent()
         {
             return (int)(100 * game.resourceValue / game.resourceMax);
         }
-        public int enemyCreepHealth()
-        {
-            int value;
-            try
-            {
-                value = ImageValues.EnemyCreepHealth();
-            }
-            catch
-            {
-                value = 0;
-            }
-            return value;
-        }
 
-        public int allyCreepHealth()
-        {
-            int value;
-            try
-            {
-                value = ImageValues.AllyCreepHealth();
-            }
-            catch
-            {
-                value = 0;
-            }
-            return value;
-        }
-        public void allyCreepPosition()
-        {
-            Point go = ImageValues.AllyCreepPosition();
 
-            if (go.X == 0 && go.Y == 0)
-                return;
 
-            Logger.WritePixel($"Ally creep has been found on [X: {go.X}, Y: {go.Y}] ~ allyCreepPosition()");
-            //InputHelper.RightClick(go.X-25,go.Y+120);
-            InputHelper.MoveMouse(go.X - 40, go.Y + 135);
-            BotHelper.Wait(350);
-            InputHelper.PressKey("A");
-        }
-        public bool isThereAnAllyCreep()
-        {
-            Point go = ImageValues.AllyCreepPosition();
-
-            if (go.X == 0 && go.Y == 0)
-                return false;
-
-            return true;
-        }
-        public bool isThereAnEnemyCreep()
-        {
-            Point go = ImageValues.EnemyCreepPosition();
-
-            if (go.X == 0 && go.Y == 0)
-                return false;
-
-            Logger.WritePixel($"Enemy creep has been found on [X: {go.X}, Y: {go.Y}] ~ isThereAnEnemyCreep()");
-            return true;
-        }
-        public bool isThereAnEnemy()
+        public void moveAwayFromEnemy()
         {
             Point go = ImageValues.EnemyChampion();
 
             if (go.X == 0 && go.Y == 0)
-                return false;
+                return;
 
-            Logger.WritePixel($"Enemy character has been found on [X: {go.X}, Y: {go.Y}] ~ isThereAnEnemy()");
+            Random r = new Random();
+            InputHelper.MoveMouse(go.X + 45, go.Y + 100);
             InputHelper.PressKey("A");
-            return true;
-        }
-        public bool isThereAnAlly()
-        {
-            Point go = ImageValues.AllyChampion();
+            BotHelper.Wait(r.Next(866, 1233));
 
-            if (go.X == 0 && go.Y == 0)
-                return false;
+            //PLAYER POSITION UPDATER
+            updatePlayerPosition();
 
-            Logger.WritePixel($"Ally character has been found on [X: {go.X}, Y: {go.Y}] ~ isThereAnAlly()");
-            return true;
+            //while (playerHasRange("enemy"))
+            //{
+                //if (towerHealthBarFound())
+                //    break;
+                //if (enemyTowerHealthBarFound2())
+                //    break;
+                //if (!AllyMinion.isThereAnAllyCreep2())
+                //    break;
+                //if (!isPlayerBotInScreen())
+                //    break;
+
+                go = ImageValues.EnemyChampion();
+
+                //if (go.X == 0 && go.Y == 0)
+                //    break;
+
+                InputHelper.MoveMouse(go.X + 45, go.Y + 100);
+                InputHelper.PressKey("A");
+
+
+            //}
+
+            InputHelper.RightClick(780, 600);
+            
+            BotHelper.Wait(r.Next(222, 433));
         }
+
+
+
 
         public bool nearTowerStructure()
         {
@@ -442,92 +425,8 @@ namespace LeagueBot.Game.Entities
             return isNear;
         }
 
-        public void tryCastSpellToCreep(int indice)
-        {
-            Point go = ImageValues.EnemyCreepPosition();
-
-            if (go.X == 0 && go.Y == 0)
-                return;
-
-            InputHelper.MoveMouse(go.X + 28, go.Y + 42);
-
-            string key = "D" + indice;
-
-            InputHelper.PressKey(key.ToString());
-            BotHelper.Wait(65);
-        }
-
-        /*public void moveAwayFromEnemy()
-        {
-            Point go = ImageValues.EnemyChampion();
-
-            if (go.X == 0 && go.Y == 0)
-                return;
-
-            //InputHelper.RightClick(770, 690); 
-            BotHelper.Wait(100);
-            InputHelper.RightClick(780, 600);
-            BotHelper.Wait(1250); // depends on attack speed
-                                 //InputHelper.MoveMouse(go.X + 50, go.Y + 100);
-                                 //InputHelper.MoveMouse(970, 540); //RIGHT
-            InputHelper.MoveMouse(go.X + 45, go.Y + 100); //attack enemy, not creeps.
-            InputHelper.PressKey("A");
-        }
-        public void moveAwayFromCreep()
-        {
-            Point go = ImageValues.EnemyCreepPosition();
-
-            if (go.X == 0 && go.Y == 0)
-                return;
-
-            BotHelper.Wait(200);
-            //InputHelper.RightClick(770, 690); //680.680
-            InputHelper.RightClick(780, 600);
-            BotHelper.Wait(850); // depends on attack speed
-                                  //InputHelper.MoveMouse(go.X + 50, go.Y + 100);
-            InputHelper.MoveMouse(970, 540);
-            InputHelper.PressKey("A");
-        }*/
-
-        //REWORKED moveAway~() functions.
-        public void moveAwayFromEnemy()
-        {
-            Point go = ImageValues.EnemyChampion();
-
-            if (go.X == 0 && go.Y == 0)
-                return;
-
-            Random r = new Random();
-            InputHelper.MoveMouse(go.X + 45, go.Y + 100);
-            InputHelper.PressKey("A");
-            BotHelper.Wait(r.Next(866, 1233));
-
-            //PLAYER POSITION UPDATER
-            updatePlayerPosition();
-
-            while (playerHasRange("enemy"))
-            {
-                if (towerHealthBarFound())
-                    break;
-                if (enemyTowerHealthBarFound2())
-                    break;
-                if (!isThereAnAllyCreep())
-                    break;
-                if (!isPlayerBotInScreen())
-                    break;
-
-                go = ImageValues.EnemyChampion();
-
-                if (go.X == 0 && go.Y == 0)
-                    break;
-
-                InputHelper.MoveMouse(go.X + 45, go.Y + 100);
-                InputHelper.PressKey("A");
-            }
-
-            InputHelper.RightClick(780, 600);
-            BotHelper.Wait(r.Next(222, 433));
-        }
+       
+        
 
         private bool towerHealthBarFound()
         {
@@ -594,9 +493,9 @@ namespace LeagueBot.Game.Entities
 
             while (playerHasRange("creep"))
             {
-                if (isThereAnEnemy())
+                if (EnemyCharacter.isThereAnEnemy2())
                     break;
-                if (!isThereAnAllyCreep())
+                if (!AllyMinion.isThereAnAllyCreep2())
                     break;
                 if (towerHealthBarFound())
                     break;

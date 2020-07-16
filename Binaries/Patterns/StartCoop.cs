@@ -24,8 +24,11 @@ namespace LeagueBot
 
             bot.log("Client ready.");
 			bot.KillProcess(CLIENT_PROCESS_NAME);
+			//while(!client.isLogged()){
+			//	bot.wait(1000);
+			//	bot.log("Waiting for reload UI");
+			//}
 			bot.wait(13000);
-			
 			bot.waitProcessOpen(CLIENT_PROCESS_NAME);
             bot.bringProcessToFront(CLIENT_PROCESS_NAME);
             bot.centerProcess(CLIENT_PROCESS_NAME);
@@ -63,6 +66,14 @@ namespace LeagueBot
                 {
                     bot.log("Attempting to pick "+champ);
                     client.pickChampionByName(champ);
+					bot.wait(2000);
+					if(client.IsPicked())
+					{
+						bot.log(champ+" is picked!");
+						bot.executePattern("Coop");
+						break;
+					}
+
                 }
             } else
             {

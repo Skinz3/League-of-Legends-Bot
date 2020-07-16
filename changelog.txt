@@ -1,3 +1,8 @@
+15.07.2020
+- added lockfile path in config.json. Remeber to change it
+- bot dont try to pick when champ is picked
+- spell class
+
 14.07.2020 20:18 (Warsaw +1 time)
 - added Accounts class
 - created (and checking) accounts.txt with login:password 

@@ -9,6 +9,9 @@ using LeagueBot.Game.Entities;
 using LeagueBot.IO;
 using LeagueBot.ApiHelpers;
 using System.Windows.Forms;
+using System.Runtime.InteropServices;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace LeagueBot.Api
 {
@@ -17,7 +20,8 @@ namespace LeagueBot.Api
         public int port;
         public string auth;
         HttpRequest request = new HttpRequest();
-
+        public const string CONFIG_PATH = "config.json";
+       
 
         public LCU()
         {
@@ -90,6 +94,12 @@ namespace LeagueBot.Api
             this.pickChampion(ch.getIdByChamp(name));
         }
 
+        public bool IsPicked()
+        {
+            //Console.WriteLine(TextHelper.TextExists(993, 110, 200, 60, "LOADOUT"));
+            return TextHelper.TextExists(993, 110, 200, 60, "LOADOUT");
+        }
+
         public void acceptQueue()
         {
             string url = "https://127.0.0.1:" + this.port + "/lol-matchmaking/v1/ready-check/accept";
@@ -133,12 +143,21 @@ namespace LeagueBot.Api
             InputHelper.LeftClick(500, 680, 150);
         }
 
+        public string checkConfig()
+        {
+
+            dynamic stuff = JObject.Parse((File.ReadAllText(CONFIG_PATH)));
+            return stuff.LockFile;
+        }
         public void readLockFile()
         {
+          
             try
             {
-                using (var fileStream = new FileStream(@"C:\Riot Games\League of Legends\lockfile", FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+                Logger.Write(@"" + checkConfig() + "");
+                using (var fileStream = new FileStream(@""+ checkConfig() + "", FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
                 {
+                    
                     using (var streamReader = new StreamReader(fileStream, Encoding.Default))
                     {
                         string line;
@@ -151,6 +170,7 @@ namespace LeagueBot.Api
                         }
                     }
                 }
+                
             }
             catch
             {
@@ -158,6 +178,7 @@ namespace LeagueBot.Api
             }
 
         }
+
         #region misc
 
         private void updateRequest()
