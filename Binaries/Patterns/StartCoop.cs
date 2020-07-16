@@ -24,11 +24,11 @@ namespace LeagueBot
 
             bot.log("Client ready.");
 			bot.KillProcess(CLIENT_PROCESS_NAME);
-			while(!client.isLogged()){
-				bot.wait(1000);
-				bot.log("Waiting for reload UI");
-			}
-			
+			//while(!client.isLogged()){
+			//	bot.wait(1000);
+			//	bot.log("Waiting for reload UI");
+			//}
+			bot.wait(13000);
 			bot.waitProcessOpen(CLIENT_PROCESS_NAME);
             bot.bringProcessToFront(CLIENT_PROCESS_NAME);
             bot.centerProcess(CLIENT_PROCESS_NAME);

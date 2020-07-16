@@ -59,12 +59,41 @@ namespace LeagueBot.Api
             get;
             private set;
         }
+
+        public AllyMinion allyMinion
+        {
+            get;
+            private set;
+        }
+
+        public EnemyMinion enemyMinion
+        {
+            get;
+            private set;
+        }
+
+        public AllyCharacter allyCharacter
+        {
+            get;
+            private set;
+        }
+
+        public EnemyCharacter enemyCharacter
+        {
+            get;
+            private set;
+        }
+
         public GameApi()
         {
             this.shop = new Shop(this);
             this.camera = new Camera(this);
             this.chat = new Chat(this);
             this.player = new MainPlayer(this);
+            this.allyMinion = new AllyMinion(this);
+            this.enemyMinion = new EnemyMinion(this);
+            this.allyCharacter = new AllyCharacter(this);
+            this.enemyCharacter = new EnemyCharacter(this);
         }
 
         public void waitUntilGameStart()

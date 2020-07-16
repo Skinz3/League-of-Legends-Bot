@@ -9,7 +9,7 @@ using System.IO;
 
 namespace LeagueBot
 {
-    public class Coop : PatternScript
+    public class CoopDev : PatternScript
     {
         private Point CastTargetPoint
         {
@@ -20,7 +20,7 @@ namespace LeagueBot
         public override void Execute()
         {
 			
-            bool develop_mode = false;
+            bool develop_mode = true;
             bool CreepHasBeenFound = false;
             bool fixCamera = false;
             int allyIndex = 2;

@@ -118,5 +118,17 @@ namespace LeagueBot.Game.Misc
 
             BotHelper.InputIdle();
         }
+
+        public void fixItemsInShop()
+        {
+            if (ImageHelper.ImageExist("Game/toggleshopitems.png"))
+            {
+
+                BotHelper.InputIdle();
+                InputHelper.LeftClick(1050, 240, 150);
+                Logger.Write("Items in Shop Fixed!");
+                BotHelper.InputIdle();
+            }
+        }
     }
 }
