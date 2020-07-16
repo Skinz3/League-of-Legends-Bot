@@ -33,16 +33,8 @@ namespace LeagueBot.Game.Entities
         {
             
             PlayerLevel = 0;
-            getSummonerName();
-
-            string json = new WebClient().DownloadString("http://ddragon.leagueoflegends.com/cdn/10.14.1/data/en_US/champion/" + this.championName + ".json");
-            JObject jo = JObject.Parse(json);
-
-
-            this.Q = new Spell("Q", jo, this.championName, 0);
-            this.W = new Spell("W", jo, this.championName, 1);
-            this.E = new Spell("E", jo, this.championName, 2);
-            this.R = new Spell("R", jo, this.championName, 3);
+            
+            
         }
 
         private void update()
@@ -96,10 +88,19 @@ namespace LeagueBot.Game.Entities
                     championName = jo[i]["championName"].Value<string>();
                     Logger.Write(championName + " is picked!");
                     this.game.championName = championName;
+                    string json3 = new WebClient().DownloadString("http://ddragon.leagueoflegends.com/cdn/10.14.1/data/en_US/champion/" + this.game.championName + ".json");
+                    JObject jo3 = JObject.Parse(json3);
+
+
+                    this.Q = new Spell("Q", jo3, this.championName, 0);
+                    this.W = new Spell("W", jo3, this.championName, 1);
+                    this.E = new Spell("E", jo3, this.championName, 2);
+                    this.R = new Spell("R", jo3, this.championName, 3);
                     return championName;
                 }
 
             }
+            
             return "Cant recognize championName";
             
         }

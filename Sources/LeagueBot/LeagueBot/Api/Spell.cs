@@ -29,7 +29,7 @@ namespace LeagueBot.Api
             this.level = 0;
             this.spell = spell + 1;
             this.maxrank = (int)jo.SelectToken("data." + championName + ".spells["+spell+"].maxrank");
-
+            
             List<string> cooldowns = new List<string>();
             for (int i = 0; i < this.maxrank; i++)
             {
