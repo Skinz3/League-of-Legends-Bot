@@ -30,6 +30,11 @@ namespace LeagueBot.Api
         {
             PatternsManager.Execute(name);
         }
+
+        public static void executePattern2(string name)
+        {
+            PatternsManager.Execute(name);
+        }
         public void waitUntilProcessBounds(string processName, int boundsX, int boundsY)
         {
             RECT rect = new RECT();
@@ -47,11 +52,14 @@ namespace LeagueBot.Api
                 }
 
                 Interop.GetWindowRect(process.MainWindowHandle, out rect);
-
+                
                 width = rect.Right - rect.Left;
                 height = rect.Bottom - rect.Top;
-
-                BotHelper.Wait(1000);
+                if(width != boundsX && height != boundsY)
+                {
+                    BotHelper.Log("Did you set resolution to 1024x768 and set Windowed mode to \"Windowed\"?");
+                }
+                BotHelper.Wait(2000);
 
             }
         }

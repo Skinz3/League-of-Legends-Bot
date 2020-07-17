@@ -79,23 +79,28 @@
   <ItemGroup>
     <Compile Include="ApiHelpers\BotHelper.cs" />
     <Compile Include="ApiHelpers\TextHelper.cs" />
+    <Compile Include="Api\ActivePlayerData.cs" />
+    <Compile Include="Api\AllPlayerData.cs" />
     <Compile Include="Api\BotApi.cs" />
     <Compile Include="Api\Game.cs" />
+    <Compile Include="Api\GameStats.cs" />
     <Compile Include="Api\IApi.cs" />
-    <Compile Include="Api\JsonObject.cs" />
     <Compile Include="Api\LCU.cs" />
-    <Compile Include="Api\Prediction.cs" />
+    <Compile Include="Api\Models\Item.cs" />
+    <Compile Include="Api\Models\PlayerData.cs" />
+    <Compile Include="Api\Service.cs" />
     <Compile Include="Api\SummonerSpell.cs" />
     <Compile Include="Configuration.cs" />
     <Compile Include="ApiHelpers\ImageHelper.cs" />
     <Compile Include="ApiHelpers\InputHelper.cs" />
     <Compile Include="DesignPattern\StartupManager.cs" />
+    <Compile Include="Devices\Keyboard.cs" />
+    <Compile Include="Devices\Mouse.cs" />
+    <Compile Include="Game\Engine.cs" />
     <Compile Include="Game\Entities\Accounts.cs" />
-    <Compile Include="Game\Entities\AllyCharacter.cs" />
-    <Compile Include="Game\Entities\AllyMinion.cs" />
     <Compile Include="Game\Entities\Champions.cs" />
-    <Compile Include="Game\Entities\EnemyCharacter.cs" />
-    <Compile Include="Game\Entities\EnemyMinion.cs" />
+    <Compile Include="Game\Enums\GameObjectOrder.cs" />
+    <Compile Include="Game\Enums\LogLevel.cs" />
     <Compile Include="Game\Fight\AA.cs" />
     <Compile Include="Game\Fight\Combo.cs" />
     <Compile Include="Game\Fight\Flee.cs" />
@@ -109,6 +114,11 @@
     <Compile Include="Game\Misc\Chat.cs" />
     <Compile Include="Game\Misc\Item.cs" />
     <Compile Include="Game\Misc\Shop.cs" />
+    <Compile Include="Game\Modules\Memory.cs" />
+    <Compile Include="Game\Modules\NativeImport.cs" />
+    <Compile Include="Game\Modules\Utils.cs" />
+    <Compile Include="Game\Objects\LocalPlayer.cs" />
+    <Compile Include="Game\OffsetManager.cs" />
     <Compile Include="Game\Settings\LeagueManager.cs" />
     <Compile Include="IO\FileIO.cs" />
     <Compile Include="Patterns\PatternScript.cs" />
@@ -146,6 +156,21 @@
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="PresentationFramework" />
+    <Reference Include="SharpDX">
+      <HintPath>..\..\..\..\..\..\source\repos\ExSharp-Base\ExSharpBase\packages\SharpDX.4.2.0\lib\net40\SharpDX.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.Desktop">
+      <HintPath>..\..\..\..\..\..\source\repos\ExSharp-Base\ExSharpBase\packages\SharpDX.Desktop.4.2.0\lib\net40\SharpDX.Desktop.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.Direct3D9">
+      <HintPath>..\..\..\..\..\..\source\repos\ExSharp-Base\ExSharpBase\packages\SharpDX.Direct3D9.4.2.0\lib\net40\SharpDX.Direct3D9.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.DXGI">
+      <HintPath>..\..\..\..\..\..\source\repos\ExSharp-Base\ExSharpBase\packages\SharpDX.DXGI.4.2.0\lib\net40\SharpDX.DXGI.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.Mathematics">
+      <HintPath>..\..\..\..\..\..\source\repos\ExSharp-Base\ExSharpBase\packages\SharpDX.Mathematics.4.2.0\lib\net40\SharpDX.Mathematics.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Net.Http" />

@@ -33,13 +33,13 @@ namespace LeagueBot.Api
         public string displayName { get; set; }
         public int slot { get; set; }
 
-        public SummonerSpell(string name,JObject jo, int slot)
+        public SummonerSpell(string name, JObject jo, int slot)
         {
             this.summonerName = summonerName;
             this.slot = slot;
             this.name = name;
             this.displayName = (string)jo.SelectToken(name+".displayName");
-            Logger.WriteColor2("Your summoner spell:" + this.displayName);
+            //Logger.WriteColor2("Your summoner spell:" + this.displayName);
 
         }
 

@@ -1,14 +1,13 @@
 ﻿using Newtonsoft.Json;
 using System.Collections.Generic;
-
 namespace LeagueBot.Api
 {
     public class Game
     {
         public double currentHealth { get; set; }
         public double maxHealth { get; set; }
-        public double resourceValue { get; set; }
-        public double resourceMax { get; set; }
+        public double currentManaMax { get; set; }
+        public double currentMana { get; set; }
 
         [JsonProperty("currentGold")]
         public double currentGold { get; set; }
@@ -22,6 +21,4 @@ namespace LeagueBot.Api
         public double creepScore { get; set; }
         public string championName { get; set; }
     }
-
-   
 }

@@ -4,9 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LeagueBot.Api
+namespace LeagueBot.Game.Enums
 {
-    class Prediction
+    public enum LogLevel
     {
+        Debug,
+        Error,
+        Info,
+        Warn
     }
 }
