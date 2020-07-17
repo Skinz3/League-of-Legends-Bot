@@ -17,44 +17,15 @@ namespace LeagueBot.Api
     public class Spell
     {
         public string name { get; set; }
-        public string[] cooldown { get; set; }
-        public string[] range { get; set; }
-        public string[] cost { get; set; }
-        public int maxrank { get; set; }
         public int spell { get; set; }
         public string championName { get; set; }
         public int level { get; set; }
-        public Spell(string name, JObject jo, string championName, int spell)
+        public Spell(string name, string championName, int spell)
         {
             this.level = 0;
             this.spell = spell + 1;
-            this.maxrank = (int)jo.SelectToken("data." + championName + ".spells["+spell+"].maxrank");
-            
-            List<string> cooldowns = new List<string>();
-            for (int i = 0; i < this.maxrank; i++)
-            {
-                cooldowns.Add((string)jo.SelectToken("data." + this.championName + ".spells[" + spell + "].cooldown[" + i + "]"));
-            }
-            
-            List<string> ranges = new List<string>();
-            for (int i = 0; i < this.maxrank; i++)
-            {
-                ranges.Add((string)jo.SelectToken("data." + this.championName + ".spells[" + spell + "].range[" + i + "]"));
-            }
-
-            List<string> costs = new List<string>();
-            for (int i = 0; i < maxrank; i++)
-            {
-                costs.Add((string)jo.SelectToken("data." + this.championName + ".spells[" + spell + "].cost[" + i + "]"));
-            }
-
             this.name = name;
             this.championName = championName;
-            this.range = ranges.ToArray();
-            this.cooldown = cooldowns.ToArray();
-            this.cost = costs.ToArray();
-            
-
         }
 
         public void cast()
@@ -72,18 +43,7 @@ namespace LeagueBot.Api
             BotHelper.Wait(50);
         }
 
-        public string ManaCost
-        {
-            get
-            {
-                if (!IsLearned())
-                {
-                    return "not learned";
-                }
-                return this.cost[0];
-            }
-        }
-
+       
         public bool IsLearned()
         {
             return false;

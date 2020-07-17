@@ -4,6 +4,10 @@ using System.Drawing;
 using LeagueBot.Patterns;
 using LeagueBot.Game.Enums;
 using LeagueBot.Game.Misc;
+using LeagueBot.Game.Objects;
+using LeagueBot.Api;
+using LeagueBot.ApiHelpers;
+
 using System.IO;
 
 
@@ -46,7 +50,8 @@ namespace LeagueBot
                 game.waitUntilGameStart();
 
                 bot.log("We are in game!");
-				game.player.getSummonerName();	
+				string championName = LocalPlayer.GetChampionName();
+				bot.log(championName + " picked.");	
                 bot.bringProcessToFront(GAME_PROCESS_NAME);
                 bot.centerProcess(GAME_PROCESS_NAME);
 
@@ -103,82 +108,77 @@ namespace LeagueBot
                 if (!develop_mode)
                     bot.wait(3000); //wait 3 seconds.
 
-                if (fixCamera)
-                {
-                    cameraFix();
-                }
+                //if (fixCamera)
+                //{
+                 //   cameraFix();
+                //}
+				
+				game.player.lockcamera();
 
                 game.player.moveNearestBotlaneAllyTower();
 				bot.wait(3000);
 				
-                while (bot.isProcessOpen(GAME_PROCESS_NAME)) // Game loop
+                 while (bot.isProcessOpen(GAME_PROCESS_NAME)) // Game loop
                 {
-					int health = game.player.getHealthPercent();
+
                     bot.bringProcessToFront(GAME_PROCESS_NAME);
                     bot.centerProcess(GAME_PROCESS_NAME);
                     
+
                     if (game.player.getCharacterLeveled())
                     {
                         game.player.increaseLevel();
                         game.player.upSpells(); //Change order on MainPlayer.cs
-						
-						  if (health <= 40)
-							{ 
-							game.player.heal();
-							}
                     }
 
-                    
-					if (game.player.dead())
-						{
-                        //low hp.
-                        game.player.justMoveAway();
-                        bot.wait(2000);
-                        //game.player.backBaseRegenerateAndBuy();
-                        // read gold.
-                        game.shop.toogle();
-                        game.shop.tryBuyItem();
-                        game.shop.toogle();
-                        bot.wait(200);
-						while(game.player.dead())
-						{
-							bot.log("Player dead.Waiting for player alive");
-							bot.wait(1000);
-						}
-                        game.player.moveNearestBotlaneAllyTower();
-                        bot.wait(2000);
-                        //prevent getting stucked by doing it again
-                        game.player.moveNearestBotlaneAllyTower();
-						}
+                    int health = game.player.getHealthPercent();
+
+                    //back base/buy
+                    if (health <= 50)
+                    {
+                        //heal usage if is available
+                        if (game.player.isThereAnEnemy())
+                            game.player.heal();
+                    }
+
+                    if (health <= 88)
+                    {
+                        //heal usage if is available
+                        if (game.player.isThereAnEnemy())
+                            game.player.heal();
+                    }
+
+                    if (health <= 25)
+                    {
+						game.player.heal();
+                        
+                    }
 
                     //getting attacked by enemy, tower or creep.
 
-                    if (game.allyMinion.isThereAnAllyCreep())
+                    if (game.player.isThereAnAllyCreep())
                     {
-						
-						
                         //attack enemy and run away
-                        if (game.enemyCharacter.isThereAnEnemy())
+                        if (game.player.isThereAnEnemy())
                         {
                             game.player.combo();
                             game.player.moveAwayFromEnemy();
                         }
                         else
                         {
-							
-                            if (game.enemyMinion.isThereAnEnemyCreep())
+                            if (game.player.isThereAnEnemyCreep())
                             {
-                                game.player.farm();
+                                game.player.harras();
                                 game.player.moveAwayFromCreep();
                             }
                             bot.wait(100);
-                            game.allyMinion.allyCreepPosition();
+                            game.player.allyCreepPosition();
                             CreepHasBeenFound = true;
                         }
                     }
                     else
                     {
-                        // Just run away, no allies to find.
+                       // Just run away, no allies to find.
 						if (game.player.dead())
 						{
                         //low hp.
@@ -200,22 +200,27 @@ namespace LeagueBot
                         //prevent getting stucked by doing it again
                         game.player.moveNearestBotlaneAllyTower();
 						}
-                        if (game.enemyCharacter.isThereAnEnemy())
+
+                        if (game.player.isThereAnEnemy())
                         {
                             game.player.combo();
                             game.player.moveAwayFromEnemy();
                         }
 
-                        if (game.enemyMinion.isThereAnEnemyCreep())
+                        if (game.player.isThereAnEnemyCreep())
                         {
-                            game.player.combo();
+                            game.player.harras();
                             game.player.moveAwayFromCreep();
                         }
 
-                        if (!game.allyMinion.isThereAnAllyCreep() && !game.enemyCharacter.isThereAnEnemy() && !game.player.nearTowerStructure() && !game.enemyMinion.isThereAnEnemyCreep())
+                        if (!game.player.isThereAnAllyCreep() && !game.player.isThereAnEnemy() && !game.player.nearTowerStructure() && !game.player.isThereAnEnemyCreep())
                         {
-                            bot.log("Creeps not found. Is there a creep or bad image?");
-                            
+                            //bot.log("im lost help!");
+                            if (game.player.tryMoveLightArea(1397, 683, "#65898F")) { }
+                            else if (game.player.tryMoveLightArea(966, 630, "#65898F")) { }
+                            else if (game.player.tryMoveLightArea(1444, 813, "#919970")) { }
+                            else
+                            {
                                 if (CreepHasBeenFound)
                                     game.camera.lockAlly(allyIndex);
                                 else
@@ -227,14 +232,14 @@ namespace LeagueBot
 
 
                                 game.moveCenterScreen();
-                                if (!game.allyMinion.isThereAnAllyCreep() || !game.enemyMinion.isThereAnEnemyCreep()) //if player just afks, change index.
+                                if (!game.player.isThereAnAllyCreep() || !game.player.isThereAnEnemyCreep()) //if player just afks, change index.
                                 {
                                     allyIndex = incAllyIndex(allyIndex);
                                 }
 
                                 bot.wait(500);
 
-                            
+                            }
                         }
 
                     }

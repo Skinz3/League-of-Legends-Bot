@@ -3,6 +3,7 @@ using LeagueBot.ApiHelpers;
 using LeagueBot.Game.Entities;
 using LeagueBot.Game.Enums;
 using LeagueBot.Game.Misc;
+using LeagueBot.Game.Objects;
 using LeagueBot.Image;
 using LeagueBot.IO;
 using LeagueBot.Windows;
@@ -60,40 +61,12 @@ namespace LeagueBot.Api
             private set;
         }
 
-        public AllyMinion allyMinion
-        {
-            get;
-            private set;
-        }
-
-        public EnemyMinion enemyMinion
-        {
-            get;
-            private set;
-        }
-
-        public AllyCharacter allyCharacter
-        {
-            get;
-            private set;
-        }
-
-        public EnemyCharacter enemyCharacter
-        {
-            get;
-            private set;
-        }
-
         public GameApi()
         {
             this.shop = new Shop(this);
             this.camera = new Camera(this);
             this.chat = new Chat(this);
             this.player = new MainPlayer(this);
-            this.allyMinion = new AllyMinion(this);
-            this.enemyMinion = new EnemyMinion(this);
-            this.allyCharacter = new AllyCharacter(this);
-            this.enemyCharacter = new EnemyCharacter(this);
         }
 
         public void waitUntilGameStart()
@@ -106,7 +79,7 @@ namespace LeagueBot.Api
                 string json;
                 try
                 {
-                    gameStarted = player.getGold() != 0;
+                    gameStarted = LocalPlayer.GetCurrentGold() != 0;
                 }
                 catch
                 {

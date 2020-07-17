@@ -30,6 +30,11 @@ namespace LeagueBot.Api
         {
             PatternsManager.Execute(name);
         }
+
+        public static void executePattern2(string name)
+        {
+            PatternsManager.Execute(name);
+        }
         public void waitUntilProcessBounds(string processName, int boundsX, int boundsY)
         {
             RECT rect = new RECT();
