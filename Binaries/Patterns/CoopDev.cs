@@ -215,7 +215,7 @@ namespace LeagueBot
 
                         if (!game.player.isThereAnAllyCreep() && !game.player.isThereAnEnemy() && !game.player.nearTowerStructure() && !game.player.isThereAnEnemyCreep())
                         {
-                            //bot.log("im lost help!");
+                            bot.log("Creeps not found or your images are wrong.");
                             if (game.player.tryMoveLightArea(1397, 683, "#65898F")) { }
                             else if (game.player.tryMoveLightArea(966, 630, "#65898F")) { }
                             else if (game.player.tryMoveLightArea(1444, 813, "#919970")) { }

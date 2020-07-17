@@ -78,16 +78,14 @@ namespace LeagueBot.Game.Entities
             if (this.summonerSpellOne.displayName == "heal")
             {
                 this.summonerSpellOne.use();
-                //Logger.Write("Heal used");
             }
             else if (this.summonerSpellTwo.displayName == "heal")
             {
                 this.summonerSpellTwo.use();
-                //Logger.Write("Heal used");
             }
             else
             {
-                //Logger.Write("Heal not setted.");
+                Logger.Write("Heal not setted.");
             }
 
         }
