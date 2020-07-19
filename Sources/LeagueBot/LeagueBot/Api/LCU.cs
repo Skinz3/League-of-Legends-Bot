@@ -1,4 +1,4 @@
-using System;
+ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +9,8 @@ using LeagueBot.Game.Entities;
 using LeagueBot.IO;
 using LeagueBot.ApiHelpers;
 using System.Windows.Forms;
+using System.Management;
+using System.Text.RegularExpressions;
 
 namespace LeagueBot.Api
 {
@@ -16,12 +18,14 @@ namespace LeagueBot.Api
     {
         public int port;
         public string auth;
+        private static readonly string RegexPattern = "\"--remoting-auth-token=(?'token'.*?)\" | \"--app-port=(?'port'|.*?)\"";
+        private static readonly RegexOptions RegexOption = RegexOptions.Multiline;
         HttpRequest request = new HttpRequest();
 
 
         public LCU()
         {
-            this.readLockFile();
+            this.readProcess();
         }
 
         public void startQueue()
@@ -133,30 +137,36 @@ namespace LeagueBot.Api
             InputHelper.LeftClick(500, 680, 150);
         }
 
-        public void readLockFile()
+        public void readProcess()
         {
-            try
+            ManagementClass managementClass = new ManagementClass("Win32_Process");
+            foreach (ManagementBaseObject manageBaseobj in managementClass.GetInstances())
             {
-                using (var fileStream = new FileStream(@"C:\Riot Games\League of Legends\lockfile", FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+                ManagementObject manageObj = (ManagementObject)manageBaseobj;
+                if (manageObj["Name"].Equals("LeagueClientUx.exe"))
                 {
-                    using (var streamReader = new StreamReader(fileStream, Encoding.Default))
+                    foreach (object obj in Regex.Matches(manageObj["CommandLine"].ToString(), RegexPattern, RegexOption))
                     {
-                        string line;
-                        while ((line = streamReader.ReadLine()) != null)
+                        Match match = (Match)obj;
+                        if (!string.IsNullOrEmpty(match.Groups["port"].ToString()))
                         {
-                            string[] lines = line.Split(':');
-                            this.port = int.Parse(lines[2]);
-                            string riot_pass = lines[3];
-                            this.auth = Convert.ToBase64String(Encoding.UTF8.GetBytes("riot:" + riot_pass));
+                            this.port = int.Parse(match.Groups["port"].ToString());
+                        }
+                        else if (!string.IsNullOrEmpty(match.Groups["token"].ToString()))
+                        {
+                            String riot_pass = match.Groups["token"].ToString().Replace("=", "");
+                            this.auth = Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes("riot:" + riot_pass));
                         }
                     }
+
+
                 }
             }
-            catch
-            {
-                Logger.Write("ERROR: lockfile not found. Is the LoL client started? Are you logged in?");
-            }
 
+            if (this.auth == null)
+            { 
+                Logger.Write("Cannot find LeagueClientUx.exe, Is it open?");
+            }
         }
         #region misc
 
