@@ -36,10 +36,57 @@ namespace LeagueBot.Game.Entities
 
         private void getSummonerSpells()
         {
-            string summonerSpells = new WebClient().DownloadString("https://127.0.0.1:2999/liveclientdata/playersummonerspells?summonerName=" + game.summonerName + "");
+            string summonerSpells = new WebClient().DownloadString("https://127.0.0.1:" + GetPort() + "/liveclientdata/playersummonerspells?summonerName=" + game.summonerName + "");
             JObject jo2 = JObject.Parse(summonerSpells);
             this.summonerSpellOne = new SummonerSpell("summonerSpellOne", jo2, 5);
             this.summonerSpellTwo = new SummonerSpell("summonerSpellTwo", jo2, 6);
+        }
+        
+        private String GetPort()
+        {
+            var processes = Process.GetProcessesByName("LeagueClient");
+
+            using (var ns = new Process())
+            {
+                ProcessStartInfo psi = new ProcessStartInfo("netstat.exe", "-ano");
+                psi.RedirectStandardOutput = true;
+                psi.UseShellExecute = false;
+                ns.StartInfo = psi;
+                ns.Start();
+
+                using (StreamReader r = ns.StandardOutput)
+                {
+                    string output = r.ReadToEnd();
+                    ns.WaitForExit();
+
+                    string[] lines = output.Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
+
+                    foreach (string line in lines)
+                    {
+                        if (line.Contains(processes[0].Id.ToString()) && line.Contains("0.0.0.0:0"))
+                        {
+                            var outp = line.Split(' ');
+                            return outp[6].Replace("127.0.0.1:", "");
+                        }
+                    }
+                }
+            }
+            return String.Empty;
+        }
+
+        string _port = string.Empty;
+        
+        string Port
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(_port))
+                {
+                    return GetPort();
+                }
+
+                return _port;
+            }
         }
 
         private void update()
