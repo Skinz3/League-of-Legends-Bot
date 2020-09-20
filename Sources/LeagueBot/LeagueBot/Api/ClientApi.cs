@@ -80,7 +80,7 @@ namespace LeagueBot.Api
         }
         public void onGameEnd()
         {
-            Console.Title = Assembly.GetCallingAssembly().GetName().Name;
+            Console.Title = Assembly.GetEntryAssembly().GetName().Name;
         }
     }
 }

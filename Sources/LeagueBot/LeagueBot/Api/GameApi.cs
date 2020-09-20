@@ -84,13 +84,12 @@ namespace LeagueBot.Api
         }
         public bool isAllyDead(int id)
         {
-            return LCU.IsAllyDead(id);
+            return LCU.GetAlly(id).isDead;
         }
         public void onGameStarted()
         {
             Console.Title = "In Game : " + player.getName();
         }
-
 
         public dynamic getAllies()
         {
@@ -100,7 +99,7 @@ namespace LeagueBot.Api
         {
             const int StartIndex = 2;
 
-            int max = 0;
+            int max = -1;
             int index = StartIndex;
 
 
@@ -121,15 +120,10 @@ namespace LeagueBot.Api
                 }
                 if (ally.scores.kills > max)
                 {
-
                     if (ally.summonerSpells.summonerSpellOne.displayName != "Chilling Smite" && ally.summonerSpells.summonerSpellTwo.displayName != "Chilling Smite")
                     {
                         max = ally.scores.kills;
                         index = i;
-                    }
-                    else
-                    {
-                        Console.WriteLine("We wont follow jungler");
                     }
                 }
                 i++;

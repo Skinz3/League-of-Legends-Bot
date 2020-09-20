@@ -180,11 +180,21 @@ namespace LeagueBot.Game.Entities
         {
             return LCU.GetStats();
         }
-        public int getManaPercent()
+
+        public void recall()
         {
-            int value = ImageValues.Mana();
-            //BotHelper.Log("Mana is " + value);
-            return value;
+            InputHelper.PressKey("B");
+            BotHelper.InputIdle();
+        }
+        public double getHealthPercent()
+        {
+            var stats = getStats();
+            return stats.currentHealth / stats.maxHealth;
+        }
+        public double getManaPercent()
+        {
+            var stats = getStats();
+            return stats.resourceValue / stats.resourceMax;
         }
 
 

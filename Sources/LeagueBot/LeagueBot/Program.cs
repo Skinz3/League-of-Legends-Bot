@@ -26,6 +26,16 @@ namespace LeagueBot
      * The user input settings (game mode, champion , champion behaviour)
      * -> We create Session.cs that call scripts.
      */
+
+
+    /* *** Final Goal ***
+     * Todo -> Champion script (GameLoop() function is relative the champion)
+     * Dont use dynamic in LCU , use classes definitions of LCU instead.
+     * Object architecture of ApiMembers<>, MainPlayer property are defined in MainPlayer.cs and Coop.cs (dead property for example. Thats sucks)
+     * Use Task<T> and Parallelism instead of GameLoop()
+     * Optimize pixel searching ? it is possible faster than FastBitmap.cs (LockBits) ?
+     * Make solo pattern instead of following ally.
+     */
     class Program
     {
         [STAThread]

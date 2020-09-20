@@ -9,7 +9,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static LeagueBot.Windows.Interop;
-using LeagueBot.Patterns;
 
 namespace LeagueBot.Api
 {
@@ -18,9 +17,9 @@ namespace LeagueBot.Api
         //public int _outMaxTime = 360; // 6 minutes.
         //public int _outActualTime = 0;
 
-        public void log(string message)
+        public void log(object message)
         {
-            BotHelper.Log(message);
+            BotHelper.Log(message.ToString());
         }
         public void wait(int ms)
         {

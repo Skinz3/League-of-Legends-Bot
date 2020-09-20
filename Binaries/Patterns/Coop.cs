@@ -34,7 +34,7 @@ namespace LeagueBot
             game.onGameStarted();
 
             bot.log("We are in game !");
-      
+
             bot.bringProcessToFront(GAME_PROCESS_NAME);
             bot.centerProcess(GAME_PROCESS_NAME);
 
@@ -60,23 +60,33 @@ namespace LeagueBot
 
             game.shop.toogle();
 
+            GameLoop();
+
+            bot.executePattern("EndCoop");
+        }
+
+        private void GameLoop()
+        {
             int followedAlly = game.getAllyIdToFollow();
 
             bot.wait(2000);
 
             game.camera.lockAlly(followedAlly); // <--- verify ally exists!
 
-            bot.log("Following ally no "+followedAlly);
+            bot.log("Following ally no " + followedAlly);
 
             int level = game.player.getLevel();
 
             bool dead = false;
 
+            bool isRecalling = false;
+
             while (bot.isProcessOpen(GAME_PROCESS_NAME))
             {
-              /*  var stats = game.player.getStats() <--- you can use this
-                stats.abilityPower */
-                
+                bot.bringProcessToFront(GAME_PROCESS_NAME);
+
+                bot.centerProcess(GAME_PROCESS_NAME);
+
                 int newLevel = game.player.getLevel();
 
                 if (newLevel != level)
@@ -85,69 +95,100 @@ namespace LeagueBot
                     game.player.upgradeSpellOnLevelUp();
                 }
 
+
                 if (game.player.dead())
                 {
                     if (!dead)
                     {
                         dead = true;
-
-                        bot.log("Oops, active player is dead.");
-
-                        game.shop.toogle();
-
-                        for (int i = 10;i >= 3;i--)
-                        {
-                             game.shop.buyItem(i);
-                        }
-                     
-                        game.shop.toogle();
+                        isRecalling = false;
+                        OnSpawnJoin();
                     }
 
                     bot.wait(4000);
-                    continue; 
+                    continue;
                 }
 
-                if (dead) // we revive ! 
+                if (dead)
                 {
-                    bot.log("Active player revive.");
                     dead = false;
-                    followedAlly = game.getAllyIdToFollow();
+                    OnRevive();
+                }
 
-                    game.camera.lockAlly(followedAlly);
+                if (isRecalling)
+                {
+                    game.player.recall();
+                    bot.wait(4000);
 
-                    bot.log("Following ally no "+followedAlly);
+                    if (game.player.getManaPercent() == 1)
+                    {
+                        OnSpawnJoin();
+                        isRecalling = false;
+                    }
+                    continue;
+                }
+                if (game.player.getManaPercent() <= 0.10d || game.isAllyDead(followedAlly))
+                {
+                    isRecalling = true;
+                    continue;
                 }
 
 
-                bot.bringProcessToFront(GAME_PROCESS_NAME);
+                CastAndMove();
 
-                bot.centerProcess(GAME_PROCESS_NAME);
 
-                game.moveCenterScreen();
 
-                game.player.tryCastSpellOnTarget(1);
 
-                bot.wait(500);
-
-                game.moveCenterScreen();
-
-                game.player.tryCastSpellOnTarget(2);
-
-                bot.wait(500);
-
-                game.moveCenterScreen();
-
-                game.player.tryCastSpellOnTarget(3);
-
-                bot.wait(500);
-
-                game.moveCenterScreen();
-
-                game.player.tryCastSpellOnTarget(4);
 
             }
-            
-            bot.executePattern("EndCoop");
+        }
+        private void OnSpawnJoin()
+        {
+            bot.log("Oops, active player is dead.");
+
+            game.shop.toogle();
+
+            for (int i = 10; i >= 3; i--)
+            {
+                game.shop.buyItem(i);
+            }
+
+            game.shop.toogle();
+        }
+        private void OnRevive()
+        {
+            bot.log("Active player revive.");
+
+            int followedAlly = game.getAllyIdToFollow();
+
+            game.camera.lockAlly(followedAlly);
+
+            bot.log("Following ally no " + followedAlly);
+        }
+
+        private void CastAndMove()
+        {
+            game.moveCenterScreen();
+
+            game.player.tryCastSpellOnTarget(1);
+
+            bot.wait(500);
+
+            game.moveCenterScreen();
+
+            game.player.tryCastSpellOnTarget(2);
+
+            bot.wait(500);
+
+            game.moveCenterScreen();
+
+            game.player.tryCastSpellOnTarget(3);
+
+            bot.wait(500);
+
+            game.moveCenterScreen();
+
+            game.player.tryCastSpellOnTarget(4);
         }
 
         public override void End()
