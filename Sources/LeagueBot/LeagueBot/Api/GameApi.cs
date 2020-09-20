@@ -91,7 +91,7 @@ namespace LeagueBot.Api
             Console.Title = "In Game : " + player.getName();
         }
 
-       
+
         public dynamic getAllies()
         {
             return LCU.GetAllies();
@@ -99,13 +99,19 @@ namespace LeagueBot.Api
         public int getAllyIdToFollow()
         {
             int max = 0;
+            int index = 0;
 
-            int index = 2;
 
             int i = 2;
 
-            foreach (var ally in getAllies())
+            var allies = getAllies();
+
+            foreach (var ally in allies)
             {
+                if (ally.summonerName == player.getName())
+                {
+                    continue;
+                }
                 if (ally.scores.kills > max)
                 {
                     max = ally.scores.kills;
@@ -113,10 +119,6 @@ namespace LeagueBot.Api
                 }
                 i++;
             }
-            index = index - 1;
-
-            if (index == 1)
-                index++;
 
             return index;
         }

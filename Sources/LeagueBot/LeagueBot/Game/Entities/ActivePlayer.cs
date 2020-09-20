@@ -58,8 +58,16 @@ namespace LeagueBot.Game.Entities
             if (target == null)
                 return;
 
+            if (target is Minion && indice == 3)
+            {
+                return;
+            }
+            if (target is Minion && indice == 4)
+            {
+                return;
+            }
             string key = "D" + indice;
-            InputHelper.MoveMouse(target.Position.X, target.Position.X);
+            InputHelper.MoveMouse(target.Position.X, target.Position.Y);
             InputHelper.PressKey(key);
             BotHelper.InputIdle();
         }

@@ -111,7 +111,11 @@ namespace LeagueBot
                 {
                     bot.log("Active player revive.");
                     dead = false;
-                    game.camera.lockAlly(game.getAllyIdToFollow());
+                    followedAlly = game.getAllyIdToFollow();
+
+                    game.camera.lockAlly(followedAlly);
+
+                    bot.log("Following ally no "+followedAlly);
                 }
 
 
