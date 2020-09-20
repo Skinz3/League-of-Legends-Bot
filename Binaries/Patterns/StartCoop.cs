@@ -13,7 +13,7 @@ namespace LeagueBot
         
         private Random RandomTextSender;
         
-        private const string SELECTED_CHAMPION = "ezreal";
+        private const string SELECTED_CHAMPION = "veigar";
 
         public override void Execute()
         {

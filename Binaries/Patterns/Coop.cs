@@ -60,7 +60,7 @@ namespace LeagueBot
 
             game.shop.toogle();
 
-            int followedAlly = 3;
+            int followedAlly = game.getAllyIdToFollow();
 
             bot.wait(2000);
 
@@ -111,7 +111,7 @@ namespace LeagueBot
                 {
                     bot.log("Active player revive.");
                     dead = false;
-                    game.camera.lockAlly(followedAlly);
+                    game.camera.lockAlly(game.getAllyIdToFollow());
                 }
 
 

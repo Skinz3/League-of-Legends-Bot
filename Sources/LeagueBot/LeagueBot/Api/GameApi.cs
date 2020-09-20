@@ -96,7 +96,26 @@ namespace LeagueBot.Api
         {
             return LCU.GetAllies();
         }
+        public int getAllyIdToFollow()
+        {
+            int max = 0;
 
+            int index = 2;
+
+            int i = 2;
+
+            foreach (var ally in getAllies())
+            {
+                if (ally.scores.kills > max)
+                {
+                    max = ally.scores.kills;
+                    index = i;
+                }
+                i++;
+            }
+
+            return index;
+        }
 
         public SideEnum getSide()
         {
