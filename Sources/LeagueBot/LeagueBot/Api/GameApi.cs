@@ -99,10 +99,10 @@ namespace LeagueBot.Api
         public int getAllyIdToFollow()
         {
             int max = 0;
-            int index = 0;
+            int index = 2;
 
 
-            int i = 2;
+            int i = index;
 
             var allies = getAllies();
 

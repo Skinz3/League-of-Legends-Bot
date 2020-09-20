@@ -11,8 +11,10 @@ namespace LeagueBot
         
         public override void Execute()
         {
-             bot.log("Match ended.");
+            bot.log("Match ended.");
 
+            client.onGameEnd();
+            
             bot.waitProcessOpen(CLIENT_PROCESS_NAME);
 
             bot.bringProcessToFront(CLIENT_PROCESS_NAME);
@@ -36,6 +38,7 @@ namespace LeagueBot
             {
                 bot.log("quest completed!");
                 client.skipLevelRewards();
+                bot.wait(1000);
             }
 
             bot.wait(4000);

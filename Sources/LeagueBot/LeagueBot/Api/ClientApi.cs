@@ -77,5 +77,9 @@ namespace LeagueBot.Api
         {
             InputHelper.LeftClick(716, 947);
         }
+        public void onGameEnd()
+        {
+            Console.Title = Assembly.GetCallingAssembly().GetName().Name;
+        }
     }
 }

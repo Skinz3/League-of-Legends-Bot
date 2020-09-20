@@ -81,6 +81,8 @@ namespace LeagueBot.Patterns
                 script.client = new ClientApi();
                 script.game = new GameApi();
 
+                script.Execute();
+                /*
                 try
                 {
                     script.Execute();
@@ -88,7 +90,7 @@ namespace LeagueBot.Patterns
                 catch
                 {
                     script.OnException();
-                }
+                } */
             }
         }
         public static string ToString()
