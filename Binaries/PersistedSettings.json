@@ -209,7 +209,7 @@
                     "settings": [
                         {
                             "name": "AutoAcquireTarget",
-                            "value": "1"
+                            "value": "0"
                         },
                         {
                             "name": "CfgVersion",
@@ -286,7 +286,7 @@
                         },
                         {
                             "name": "ChatScale",
-                            "value": "1"
+                            "value": "100"
                         },
                         {
                             "name": "DeathRecapScale",

@@ -22,16 +22,9 @@ namespace LeagueBot.Game.Misc
 
         public void toggle()
         {
-            InputHelper.PressKey("Y");
+            InputHelper.LeftClick(1241, 920);
             BotHelper.InputIdle();
             Locked = !Locked;
-        }
-        public void toggleIfUnlocked()
-        {
-            if (ImageHelper.ImageExist("Game/unfixedcamera.png"))
-            {
-                toggle();
-            }
         }
         public void lockAlly(int allyIndice)
         {

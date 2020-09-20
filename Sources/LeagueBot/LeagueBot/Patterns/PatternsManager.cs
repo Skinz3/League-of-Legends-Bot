@@ -70,51 +70,7 @@ namespace LeagueBot.Patterns
         }
         public static void Execute(string name)
         {
-            if (name == "help")
-            {
-                Logger.WriteColor1("The following scripts were found:");
-                Logger.Write(PatternsManager.ToString());
-                Logger.WriteColor1("Apply game settings? Type 'apply settings'");
-            }
-            else if(name.ToLower() == "apply settings")
-            {
-                try
-                {
-                    Game.Settings.LeagueManager.ApplySettings();
-                }
-                catch (UnauthorizedAccessException e)
-                {
-                    Logger.Write("<ERROR> - Permission denied.");
-                }
-                catch (Exception e)
-                {
-                    Logger.Write(e.ToString());
-                }
-            }
-            else if (name == "Restart")
-            {
-                Globals.numberOfGames--;
-                if (Globals.numberOfGames != 0)
-                {
-                    ProcessStartInfo startInfo = new ProcessStartInfo("LeagueBot.exe");
-                    startInfo.Arguments = "StartCoop " + Globals.numberOfGames.ToString();
-                    Process.Start(startInfo);
-                }
-                Environment.Exit(0);
-            }
-            else if (name == "StartCoopLimited")
-            {
-                int gamesnumber;
-                Logger.Write("Enter the number of games to play before stopping the bot.", MessageState.INFO);
-                while (!int.TryParse(Console.ReadLine(), out gamesnumber))
-                {
-                    Console.WriteLine("That was invalid. Enter an integer to continue.");
-                }
-                Globals.numberOfGames = gamesnumber;
-                PatternsManager.Execute("StartCoop");
-
-            }
-            else if (!Scripts.ContainsKey(name))
+            if (!Scripts.ContainsKey(name))
             {
                 Logger.Write("Unable to execute " + name + EXTENSION + ". Script not found.", MessageState.WARNING);
             }
@@ -122,13 +78,11 @@ namespace LeagueBot.Patterns
             {
                 PatternScript script = (PatternScript)Activator.CreateInstance(Scripts[name]);
                 script.bot = new BotApi();
-                script.client = new LCU();
+                script.client = new ClientApi();
                 script.game = new GameApi();
-                script.io = new FileIO(Directory.GetCurrentDirectory() + "\\champlist.txt");
                 script.Execute();
             }
         }
-
         public static string ToString()
         {
             StringBuilder sb = new StringBuilder();

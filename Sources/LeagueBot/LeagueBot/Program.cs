@@ -10,7 +10,6 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
-using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -36,70 +35,27 @@ namespace LeagueBot
 
             StartupManager.Initialize(Assembly.GetExecutingAssembly());
 
-            checkChampList();
+            HandleCommand();
 
-            checkAccountsList();
-
-            if (args.Length == 0)
-                HandleCommand(string.Empty, -1);
-            else if (args.Length == 1)
-                HandleCommand(args[0], -1);
-            else if (args.Length == 2)
-            {   
-                int gamesInt = int.Parse(args[1]);
-
-                if(gamesInt>=0){
-                    Logger.Write("Bot has " + args[1] + " game(s) left to play.", MessageState.INFO);
-                }else{
-                    Logger.Write("Bot has played " + (Math.Abs(gamesInt)-1).ToString() + " game(s)", MessageState.INFO);
-                }                
-                
-                HandleCommand(args[0], gamesInt);
-            }
             Console.Read();
         }
-
-        static void HandleCommand(string restart, int games)
+        static void HandleCommand()
         {
-            string line;
-            Globals.numberOfGames = games;
+            Logger.Write("Enter a pattern filename, type 'help' for help.", MessageState.INFO);
 
-            if (restart == string.Empty)
+            string line = Console.ReadLine();
+
+            if (line == "help" || !PatternsManager.Contains(line))
             {
-                Logger.Write("Enter a pattern filename, type 'help' for help.", MessageState.INFO);
-                line = Console.ReadLine();
+                Logger.Write(PatternsManager.ToString());
+                HandleCommand();
+                return;
             }
-            else { line = restart; }
+
 
             PatternsManager.Execute(line);
 
-            HandleCommand(string.Empty, games);
+            HandleCommand();
         }
-
-        private static void checkChampList()
-        {
-            string path = Directory.GetCurrentDirectory() + "\\champlist.txt";
-            if (!File.Exists(path))
-            {
-                Logger.WriteColor1("champlist.txt not found. Creating file...\nPlease fill the list that has been generated with champion names.\nNOTE: One champion per line.");
-                File.Create(path);
-            }
-        }
-
-        private static void checkAccountsList()
-        {
-            string path = Directory.GetCurrentDirectory() + "\\accounts.txt";
-            if (!File.Exists(path))
-            {
-                Logger.WriteColor2("accounts.txt not found. Creating file...\nPlease fill the list that has been generated with accounts data.\nNOTE: One login:password per line.");
-                File.Create(path);
-            }
-        }
-
-    }
-
-    public class Globals
-    {
-        public static int numberOfGames; // Modifiable
     }
 }

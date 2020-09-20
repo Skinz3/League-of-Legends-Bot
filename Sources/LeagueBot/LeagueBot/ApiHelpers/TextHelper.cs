@@ -26,30 +26,12 @@ namespace LeagueBot.ApiHelpers
         }
         public static bool TextExists(int x, int y, int width, int heigth, string text)
         {
-            bool exist;
-            try
-            {
-                exist = TextRecognition.TextExists2(new Rectangle(x, y, width, heigth), text);
-            }
-            catch
-            {
-                exist = false;
-            }
-
-            return exist;
+            return TextRecognition.TextExists2(new Rectangle(x, y, width, heigth), text);
         }
 
         internal static int GetTextFromImage(int x, int y, int width, int heigth)
         {
-            Rectangle rect;
-            try
-            {
-                rect = new Rectangle(x, y, width, heigth);
-            }
-            catch
-            {
-                return 0;
-            }
+            Rectangle rect = new Rectangle(x, y, width, heigth);
             return TextRecognition.GetTextValue(rect);
         }
     }
