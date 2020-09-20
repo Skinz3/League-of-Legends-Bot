@@ -80,7 +80,15 @@ namespace LeagueBot.Patterns
                 script.bot = new BotApi();
                 script.client = new ClientApi();
                 script.game = new GameApi();
-                script.Execute();
+
+                try
+                {
+                    script.Execute();
+                }
+                catch
+                {
+                    script.OnException();
+                }
             }
         }
         public static string ToString()

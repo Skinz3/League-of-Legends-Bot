@@ -53,16 +53,16 @@ namespace LeagueBot.Game.Misc
                     coords = new Point(575, 455);
                     break;
                 case 5:
-                    coords = new Point(761, 449);
+                    coords = new Point(534, 518);
                     break;
                 case 6:
-                    coords = new Point(910, 457);
+                    coords = new Point(756, 516);
                     break;
                 case 7:
-                    coords = new Point(585, 563);
+                    coords = new Point(907,513);
                     break;
                 case 8:
-                    coords = new Point(757, 573);
+                    coords = new Point(532, 630);
                     break;
                 case 9:
                     coords = new Point(937, 565);

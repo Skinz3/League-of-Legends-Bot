@@ -121,29 +121,35 @@ namespace LeagueBot
 
                 game.moveCenterScreen();
 
-                game.player.castSpell(1, CastTargetPoint.X, CastTargetPoint.Y);
+                game.player.tryCastSpellOnTarget(1);
 
                 bot.wait(1000);
 
                 game.moveCenterScreen();
 
-                game.player.castSpell(2, CastTargetPoint.X, CastTargetPoint.Y);
+                game.player.tryCastSpellOnTarget(2);
 
                 bot.wait(1000);
 
                 game.moveCenterScreen();
 
-                game.player.castSpell(3, CastTargetPoint.X, CastTargetPoint.Y);
+                game.player.tryCastSpellOnTarget(3);
 
                 bot.wait(1000);
 
                 game.moveCenterScreen();
 
-                game.player.castSpell(4, CastTargetPoint.X, CastTargetPoint.Y);
+                game.player.tryCastSpellOnTarget(4);
 
             }
             
             bot.executePattern("EndCoop");
+        }
+
+        public override void End()
+        {
+            bot.executePattern("EndCoop");
+            base.End();
         }
     }
 }
