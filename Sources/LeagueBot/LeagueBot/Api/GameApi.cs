@@ -98,8 +98,10 @@ namespace LeagueBot.Api
         }
         public int getAllyIdToFollow()
         {
+            const int StartIndex = 2;
+
             int max = 0;
-            int index = 2;
+            int index = StartIndex;
 
 
             int i = index;
@@ -108,6 +110,10 @@ namespace LeagueBot.Api
 
             foreach (var ally in allies)
             {
+                if (i - StartIndex == 4)
+                {
+                    break;
+                }
                 if (ally.summonerName == player.getName())
                 {
                     continue;
