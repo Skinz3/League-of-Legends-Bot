@@ -42,12 +42,11 @@
 
    [Here is the wiki](https://github.com/Skinz3/League-Of-Legends-BOT/wiki) 
 
-# Authors
+# Author
 
-   * **Skinz** - *Initial work* [Skinz#1128](https://github.com/Skinz3)
+   * **Skinz** Initial Work - [Skinz#1128](https://github.com/Skinz3)
 
    * **Forerunner**  [ForerunnerForerunner#6615](https://github.com/glenndilen)
-   * **Chiquitinop**  [chiquitínop#9634](https://github.com/zorbuk)
 
 # Todo List
 
