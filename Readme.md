@@ -59,4 +59,5 @@
    * Optimize pixel searching ? it is possible faster than ```FastBitmap.cs (LockBits)``` ? (see ``` ImageHelper.GetColorPosition(Point point) ``` )
    * Make a solo in game pattern (we dont need an ally!)
    * Update Git API References
+   * Add functionality to ``` Coop.cs ```.
 
