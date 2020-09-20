@@ -81,7 +81,10 @@ namespace LeagueBot.Api
             }
 
         }
-
+        public bool isAllyDead(int id)
+        {
+            return LCU.IsAllyDead(id);
+        }
         public void onGameStarted()
         {
             Console.Title = "In Game : " + player.getName();

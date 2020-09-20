@@ -109,6 +109,7 @@ namespace LeagueBot
 
                 if (dead) // we revive ! 
                 {
+                    bot.log("Active player revive.");
                     dead = false;
                     game.camera.lockAlly(followedAlly);
                 }

@@ -64,6 +64,14 @@ namespace LeagueBot.ApiHelpers
             dynamic dyn = JsonConvert.DeserializeObject(resultStr);
             return dyn.gameTime;
         }
+        public static bool IsAllyDead(int id)
+        {
+            var resultStr = Http.GetString(PlayerListUrl);
+
+            dynamic dyn = JsonConvert.DeserializeObject(resultStr);
+
+            return dyn[id - 1].isDead;
+        }
         public static SideEnum GetPlayerSide()
         {
             string playerName = GetPlayerName();
