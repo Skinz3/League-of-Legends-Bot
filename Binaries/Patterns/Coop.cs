@@ -32,25 +32,22 @@ namespace LeagueBot
             game.waitUntilGameStart();
 
             bot.log("We are in game !");
-
+      
             bot.bringProcessToFront(GAME_PROCESS_NAME);
             bot.centerProcess(GAME_PROCESS_NAME);
 
-            bot.wait(1000);
-
-            game.detectSide();
+            bot.wait(6000);
 
             if (game.getSide() == SideEnum.Blue)
             {
-                CastTargetPoint = new Point(644, 761);
+                CastTargetPoint = new Point(1084, 398);
                 bot.log("We are blue side!");
             }
             else
             {
-                CastTargetPoint = new Point(1084, 398);
+                CastTargetPoint = new Point(644, 761);
                 bot.log("We are red side!");
             }
-
 
             game.player.upgradeSpell(1);
 
@@ -61,10 +58,36 @@ namespace LeagueBot
 
             game.shop.toogle();
 
-            game.camera.lockAlly(3);
+            int followedAlly = 2;
+
+            bot.wait(2000);
+
+            game.camera.lockAlly(2);
+
+            bot.log("Following ally no "+followedAlly);
+
+            int level = game.player.getLevel();
 
             while (bot.isProcessOpen(GAME_PROCESS_NAME))
             {
+                if (game.player.getLevel() != level)
+                {
+                    game.player.upgradeSpellOnLevelUp();
+                }
+
+                if (game.player.dead())
+                {
+                    bot.log("DEAD");
+                    game.shop.toogle();
+
+                    game.shop.buyItem(3);
+                    game.shop.buyItem(4); 
+                    game.shop.buyItem(5); 
+                    game.shop.toogle();
+                    bot.wait(4000);
+                    continue; 
+                }
+
                 bot.bringProcessToFront(GAME_PROCESS_NAME);
 
                 bot.centerProcess(GAME_PROCESS_NAME);

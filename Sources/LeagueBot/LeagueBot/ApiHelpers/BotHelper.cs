@@ -17,7 +17,7 @@ namespace LeagueBot.ApiHelpers
         /*
          * In milliseconds
          */
-        private const int IDLE_DELAY = 150;
+        private const int IDLE_DELAY = 250;
 
         public static void Wait(int ms)
         {

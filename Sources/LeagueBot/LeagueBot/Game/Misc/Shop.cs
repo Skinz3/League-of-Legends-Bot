@@ -23,15 +23,11 @@ namespace LeagueBot.Game.Misc
 
         };
 
-
-
         public bool Opened
         {
             get;
             set;
         }
-        public List<Item> ItemsToBuy = new List<Item>();
-
         public Shop(GameApi api) : base(api)
         {
             this.Opened = false;
@@ -46,48 +42,12 @@ namespace LeagueBot.Game.Misc
         {
             return ItemPositions[type][indice];
         }
-        public void setItemBuild(List<Item> items)
-        {
-            if (ItemsToBuy != null)
-                ItemsToBuy.Clear();
-
-            foreach (Item _item in items)
-            {
-                ItemsToBuy.Add(_item);
-
-                Logger.Write($"Added {_item.name} on items list");
-            }
-        }
-
+    
         public int getPlayerGold()
         {
             return TextHelper.GetTextFromImage(767, 828, 118, 34);
         }
 
-        public void tryBuyItem()
-        {
-            if (ItemsToBuy != null)
-            {
-                foreach (Item _item in ItemsToBuy)
-                {
-                    BotHelper.Wait(1000);
-                    if (_item.cost <= getPlayerGold())
-                    {
-                        if (_item.got == false)
-                        {
-                            Logger.Write($"Character bought {_item.name}.");
-                            InputHelper.RightClick(_item.point.X, _item.point.Y, 200);
-                            _item.got = true;
-
-                            BotHelper.Wait(500);
-                            Logger.Write($"{getPlayerGold().ToString()} gold remaining.");
-                            tryBuyItem();
-                            BotHelper.Wait(500);
-                        }
-                    }
-                }
-            }
-        }
         public void buyItem(int indice)
         {
             //INITIAL BUY

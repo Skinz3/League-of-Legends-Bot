@@ -25,8 +25,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
-    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <Prefer32Bit>true</Prefer32Bit>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -40,6 +40,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="ApiHelpers\BotHelper.cs" />
+    <Compile Include="ApiHelpers\LCU.cs" />
     <Compile Include="ApiHelpers\TextHelper.cs" />
     <Compile Include="Api\BotApi.cs" />
     <Compile Include="Api\ClientApi.cs" />
@@ -54,7 +55,6 @@
     <Compile Include="Game\ApiMember.cs" />
     <Compile Include="Game\Misc\Camera.cs" />
     <Compile Include="Game\Misc\Chat.cs" />
-    <Compile Include="Game\Misc\Item.cs" />
     <Compile Include="Game\Misc\Shop.cs" />
     <Compile Include="Game\Settings\LeagueManager.cs" />
     <Compile Include="Patterns\PatternScript.cs" />
@@ -70,6 +70,7 @@
     <Compile Include="Api\GameApi.cs" />
     <Compile Include="Patterns\PatternsManager.cs" />
     <Compile Include="Images\ImageRecognition.cs" />
+    <Compile Include="Utils\Http.cs" />
     <Compile Include="Windows\ApplicationCapture.cs" />
     <Compile Include="Windows\Interop.cs" />
     <Compile Include="Program.cs" />
@@ -84,6 +85,7 @@
     <Reference Include="InputManager, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\InputManager.1.0.0\lib\InputManager.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>

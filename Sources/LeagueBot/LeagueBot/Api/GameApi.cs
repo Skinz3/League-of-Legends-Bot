@@ -5,12 +5,16 @@ using LeagueBot.Game.Enums;
 using LeagueBot.Game.Misc;
 using LeagueBot.Image;
 using LeagueBot.IO;
+using LeagueBot.Utils;
 using LeagueBot.Windows;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Net;
+using System.Net.Security;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -46,7 +50,7 @@ namespace LeagueBot.Api
             get;
             private set;
         }
-        private SideEnum side
+        private SideEnum? side
         {
             get;
             set;
@@ -66,17 +70,26 @@ namespace LeagueBot.Api
 
         public void waitUntilGameStart()
         {
-            ImageHelper.WaitForColor(997, 904, "#00D304");
+            while (true)
+            {
+                if (LCU.IsApiReady() && LCU.GetGameTime() > 1d)
+                {
+                    break;
+                }
+
+                Thread.Sleep(2000);
+            }
+
+            Console.Title = player.getName();
         }
 
-        public void detectSide()
-        {
-            //when side is detected, reset all bot items.
-            this.side = ImageHelper.GetColor(1343, 868) == "#2A768C" ? SideEnum.Blue : SideEnum.Red;
-        }
         public SideEnum getSide()
         {
-            return this.side;
+            if (side == null)
+            {
+                side = LCU.GetPlayerSide();
+            }
+            return side.Value;
         }
 
         public void moveCenterScreen()
