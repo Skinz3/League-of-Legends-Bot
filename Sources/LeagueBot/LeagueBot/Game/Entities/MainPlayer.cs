@@ -23,14 +23,36 @@ namespace LeagueBot.Game.Entities
         {
             return LCU.IsPlayerDead();
         }
-        public void castSpell(int indice, int x, int y)
+
+        public Point? getTargetCastPoint()
         {
+            Color color = Color.FromArgb(203, 98, 88); // enemy lifebar
+
+            var target = ImageHelper.GetColorPosition(color);
+
+            if (target == null)
+            {
+                return null;
+            }
+            else
+            {
+                return new Point(target.Value.X + 50, target.Value.Y + 60); // lifebarposition + offset to find model
+            }
+        }
+
+        public void tryCastSpellOnTarget(int indice)
+        {
+            Point? point = getTargetCastPoint();
+
+            if (point == null)
+                return;
+
             string key = "D" + indice;
-            InputHelper.MoveMouse(x, y);
+            InputHelper.MoveMouse(point.Value.X, point.Value.Y);
             InputHelper.PressKey(key);
             BotHelper.InputIdle();
         }
-     
+
         public void upgradeSpell(int indice)
         {
             Point coords = new Point();
@@ -134,7 +156,7 @@ namespace LeagueBot.Game.Entities
                     break;
             }
         }
-     
+
         public dynamic getStats()
         {
             return LCU.GetStats();
@@ -146,7 +168,7 @@ namespace LeagueBot.Game.Entities
             return value;
         }
 
-     
+
         public int gameMinute()
         {
             int minute = TextHelper.GetTextFromImage(1426, 171, 16, 16);

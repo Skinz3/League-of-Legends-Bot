@@ -10,6 +10,7 @@ using LeagueBot.Windows;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Net;
 using System.Net.Security;
@@ -89,6 +90,13 @@ namespace LeagueBot.Api
         {
             Console.Title = "In Game : " + player.getName();
         }
+
+       
+        public dynamic getAllies()
+        {
+            return LCU.GetAllies();
+        }
+
 
         public SideEnum getSide()
         {

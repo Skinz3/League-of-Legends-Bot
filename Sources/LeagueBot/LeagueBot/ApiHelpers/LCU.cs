@@ -99,6 +99,13 @@ namespace LeagueBot.ApiHelpers
 
         }
 
+        public static dynamic GetAllies()
+        {
+            var resultStr = Http.GetString(PlayerListUrl);
+            dynamic dyn = JsonConvert.DeserializeObject(resultStr);
+            return dyn;
+        }
+
         public static dynamic GetStats()
         {
             var resultStr = Http.GetString(ActivePlayerUrl);

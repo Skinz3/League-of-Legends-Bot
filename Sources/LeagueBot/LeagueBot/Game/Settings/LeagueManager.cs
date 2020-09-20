@@ -19,14 +19,17 @@ namespace LeagueBot.Game.Settings
 
         const string PERSISTED_CONFIG_PATH = @"League of Legends\Config\PersistedSettings.json";
 
+        public const int LEAGUE_WIDTH = 1024;
+        public const int LEAGUE_HEIGTH = 768;
+
         [StartupInvoke("League settings", StartupInvokePriority.FourthPass, false)]
         public static void ApplySettings()
         {
             CFGFile config = new CFGFile(Path.Combine(Configuration.Instance.ClientPath, CONFIG_PATH));
 
             config.Set("General", "WindowMode", "1");
-            config.Set("General", "Width", "1024");
-            config.Set("General", "Height", "768");
+            config.Set("General", "Width", LEAGUE_WIDTH.ToString());
+            config.Set("General", "Height", LEAGUE_HEIGTH.ToString());
             config.Set("General", "Colors", "32");
             config.Set("General", "RelativeTeamColors", "1");
             config.Set("General", "UserSetResolution", "1");
