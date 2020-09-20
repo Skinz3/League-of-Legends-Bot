@@ -56,7 +56,7 @@ namespace LeagueBot.Api
             get;
             set;
         }
-        public MainPlayer player
+        public ActivePlayer player
         {
             get;
             private set;
@@ -66,7 +66,7 @@ namespace LeagueBot.Api
             this.shop = new Shop(this);
             this.camera = new Camera(this);
             this.chat = new Chat(this);
-            this.player = new MainPlayer(this);
+            this.player = new ActivePlayer(this);
         }
 
         public void waitUntilGameStart()
@@ -113,8 +113,12 @@ namespace LeagueBot.Api
                 }
                 i++;
             }
+            index = index - 1;
 
-            return index - 1;
+            if (index == 1)
+                index++;
+
+            return index;
         }
 
         public SideEnum getSide()

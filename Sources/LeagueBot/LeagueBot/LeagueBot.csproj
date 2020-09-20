@@ -49,7 +49,10 @@
     <Compile Include="ApiHelpers\ImageHelper.cs" />
     <Compile Include="ApiHelpers\InputHelper.cs" />
     <Compile Include="DesignPattern\StartupManager.cs" />
-    <Compile Include="Game\Entities\MainPlayer.cs" />
+    <Compile Include="Game\Entities\Champion.cs" />
+    <Compile Include="Game\Entities\IEntity.cs" />
+    <Compile Include="Game\Entities\ActivePlayer.cs" />
+    <Compile Include="Game\Entities\Minion.cs" />
     <Compile Include="Game\Enums\ShopItemTypeEnum.cs" />
     <Compile Include="Game\Enums\SideEnum.cs" />
     <Compile Include="Game\ApiMember.cs" />

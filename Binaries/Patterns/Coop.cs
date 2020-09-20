@@ -95,7 +95,7 @@ namespace LeagueBot
 
                         game.shop.toogle();
 
-                        for (int i = 3;i <= 10;i++)
+                        for (int i = 10;i >= 3;i--)
                         {
                              game.shop.buyItem(i);
                         }
@@ -123,19 +123,19 @@ namespace LeagueBot
 
                 game.player.tryCastSpellOnTarget(1);
 
-                bot.wait(1000);
+                bot.wait(500);
 
                 game.moveCenterScreen();
 
                 game.player.tryCastSpellOnTarget(2);
 
-                bot.wait(1000);
+                bot.wait(500);
 
                 game.moveCenterScreen();
 
                 game.player.tryCastSpellOnTarget(3);
 
-                bot.wait(1000);
+                bot.wait(500);
 
                 game.moveCenterScreen();
 
