@@ -114,14 +114,23 @@ namespace LeagueBot.Api
                 {
                     break;
                 }
+
                 if (ally.summonerName == player.getName())
                 {
                     continue;
                 }
                 if (ally.scores.kills > max)
                 {
-                    max = ally.scores.kills;
-                    index = i;
+
+                    if (ally.summonerSpells.summonerSpellOne.displayName != "Chilling Smite" && ally.summonerSpells.summonerSpellTwo.displayName != "Chilling Smite")
+                    {
+                        max = ally.scores.kills;
+                        index = i;
+                    }
+                    else
+                    {
+                        Console.WriteLine("We wont follow jungler");
+                    }
                 }
                 i++;
             }
