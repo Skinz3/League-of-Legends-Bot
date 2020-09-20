@@ -13,16 +13,6 @@ namespace LeagueBot.Game.Misc
 {
     public class Shop : ApiMember<GameApi>
     {
-        private Dictionary<ShopItemTypeEnum, Point[]> ItemPositions = new Dictionary<ShopItemTypeEnum, Point[]>()
-        {
-            { ShopItemTypeEnum.Starting,  new Point[]{   new Point(580, 330), new Point(740, 330), new Point(940, 330) } },
-            { ShopItemTypeEnum.Early,     new Point[]{   new Point(580, 440),new Point(740, 440), new Point(940, 440) } },
-            { ShopItemTypeEnum.Essential, new Point[]{   new Point(580, 550), new Point(740, 550), new Point(940, 550)} },
-            { ShopItemTypeEnum.Offensive, new Point[]{   new Point(580, 660), new Point(740, 660), new Point(940, 660) } },
-            { ShopItemTypeEnum.Defensive, new Point[]{   new Point(580, 770), new Point(740, 770), new Point(940, 770), new Point(940, 770) } },
-
-        };
-
         public bool Opened
         {
             get;
@@ -38,10 +28,6 @@ namespace LeagueBot.Game.Misc
             BotHelper.InputIdle();
             Opened = !Opened;
         }
-        public Point getItemPosition(ShopItemTypeEnum type, int indice)
-        {
-            return ItemPositions[type][indice];
-        }
     
         public int getPlayerGold()
         {
@@ -50,7 +36,6 @@ namespace LeagueBot.Game.Misc
 
         public void buyItem(int indice)
         {
-            //INITIAL BUY
             Point coords = new Point(0, 0);
 
             switch (indice)
@@ -62,13 +47,28 @@ namespace LeagueBot.Game.Misc
                     coords = new Point(782, 336);
                     break;
                 case 3:
-                    coords = new Point(595, 557);
+                    coords = new Point(913, 345);
                     break;
                 case 4:
-                    coords = new Point(600, 665);
+                    coords = new Point(575, 455);
                     break;
                 case 5:
-                    coords = new Point(760, 540);
+                    coords = new Point(761, 449);
+                    break;
+                case 6:
+                    coords = new Point(910, 457);
+                    break;
+                case 7:
+                    coords = new Point(585, 563);
+                    break;
+                case 8:
+                    coords = new Point(757, 573);
+                    break;
+                case 9:
+                    coords = new Point(937, 565);
+                    break;
+                case 10:
+                    coords = new Point(565, 681);
                     break;
                 default:
                     Logger.Write("Unknown item indice " + indice + ". Skipping", MessageState.WARNING);

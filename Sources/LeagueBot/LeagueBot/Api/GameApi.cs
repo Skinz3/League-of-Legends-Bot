@@ -72,7 +72,7 @@ namespace LeagueBot.Api
         {
             while (true)
             {
-                if (LCU.IsApiReady() && LCU.GetGameTime() > 1d)
+                if (LCU.IsApiReady() && LCU.GetGameTime() > 2d)
                 {
                     break;
                 }
@@ -80,7 +80,11 @@ namespace LeagueBot.Api
                 Thread.Sleep(2000);
             }
 
-            Console.Title = player.getName();
+        }
+
+        public void onGameStarted()
+        {
+            Console.Title = "In Game : " + player.getName();
         }
 
         public SideEnum getSide()

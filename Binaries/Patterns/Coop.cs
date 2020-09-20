@@ -31,12 +31,14 @@ namespace LeagueBot
 
             game.waitUntilGameStart();
 
+            game.onGameStarted();
+
             bot.log("We are in game !");
       
             bot.bringProcessToFront(GAME_PROCESS_NAME);
             bot.centerProcess(GAME_PROCESS_NAME);
 
-            bot.wait(6000);
+            bot.wait(3000);
 
             if (game.getSide() == SideEnum.Blue)
             {
@@ -49,7 +51,7 @@ namespace LeagueBot
                 bot.log("We are red side!");
             }
 
-            game.player.upgradeSpell(1);
+            game.player.upgradeSpellOnLevelUp();
 
             game.shop.toogle();
 
@@ -62,31 +64,50 @@ namespace LeagueBot
 
             bot.wait(2000);
 
-            game.camera.lockAlly(2);
+            game.camera.lockAlly(followedAlly); // <--- verify ally exists!
 
             bot.log("Following ally no "+followedAlly);
 
             int level = game.player.getLevel();
 
+            bool dead = false;
+
             while (bot.isProcessOpen(GAME_PROCESS_NAME))
             {
-                if (game.player.getLevel() != level)
+              /*  var stats = game.player.getStats() <--- you can use this
+                stats.abilityPower */
+                
+                int newLevel = game.player.getLevel();
+
+                if (newLevel != level)
                 {
+                    level = newLevel;
                     game.player.upgradeSpellOnLevelUp();
                 }
 
                 if (game.player.dead())
                 {
-                    bot.log("DEAD");
-                    game.shop.toogle();
+                    if (!dead)
+                    {
+                        dead = true;
 
-                    game.shop.buyItem(3);
-                    game.shop.buyItem(4); 
-                    game.shop.buyItem(5); 
-                    game.shop.toogle();
+                        bot.log("Oops, active player is dead.");
+
+                        game.shop.toogle();
+
+                        for (int i = 3;i <= 10;i++)
+                        {
+                             game.shop.buyItem(i);
+                        }
+                     
+                        game.shop.toogle();
+                    }
+
                     bot.wait(4000);
                     continue; 
                 }
+
+                dead = false;
 
                 bot.bringProcessToFront(GAME_PROCESS_NAME);
 
@@ -95,7 +116,6 @@ namespace LeagueBot
                 game.moveCenterScreen();
 
                 game.player.castSpell(1, CastTargetPoint.X, CastTargetPoint.Y);
-
 
                 bot.wait(1000);
 

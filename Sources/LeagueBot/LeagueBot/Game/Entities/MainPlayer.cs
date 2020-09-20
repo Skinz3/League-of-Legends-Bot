@@ -135,16 +135,9 @@ namespace LeagueBot.Game.Entities
             }
         }
      
-        public bool getCharacterLeveled()
+        public dynamic getStats()
         {
-            return TextHelper.TextExists(835, 772, 81, 27, "level up");
-        }
-
-        public int getHealthPercent()
-        {
-            int value = ImageValues.Health();
-            //BotHelper.Log("Health is " + value);
-            return value;
+            return LCU.GetStats();
         }
         public int getManaPercent()
         {

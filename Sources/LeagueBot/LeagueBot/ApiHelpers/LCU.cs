@@ -42,9 +42,7 @@ namespace LeagueBot.ApiHelpers
 
         public static bool IsPlayerDead()
         {
-            var resultStr = Http.GetString(ActivePlayerUrl);
-            dynamic dyn = JsonConvert.DeserializeObject(resultStr);
-            return dyn.currentHealth == 0;
+            return GetStats().currentHealth == 0;
         }
 
         public static int GetPlayerLevel()
@@ -91,6 +89,13 @@ namespace LeagueBot.ApiHelpers
 
             throw new Exception("Wut");
 
+        }
+
+        public static dynamic GetStats()
+        {
+            var resultStr = Http.GetString(ActivePlayerUrl);
+            dynamic dyn = JsonConvert.DeserializeObject(resultStr);
+            return dyn.championStats;
         }
     }
 }
