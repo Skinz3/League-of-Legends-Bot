@@ -114,7 +114,7 @@ namespace LeagueBot.Api
                 i++;
             }
 
-            return index;
+            return index - 1;
         }
 
         public SideEnum getSide()
