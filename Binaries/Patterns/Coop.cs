@@ -60,7 +60,7 @@ namespace LeagueBot
 
             game.shop.toogle();
 
-            int followedAlly = 2;
+            int followedAlly = 3;
 
             bot.wait(2000);
 
@@ -107,7 +107,12 @@ namespace LeagueBot
                     continue; 
                 }
 
-                dead = false;
+                if (dead) // we revive ! 
+                {
+                    dead = false;
+                    game.camera.lockAlly(followedAlly);
+                }
+
 
                 bot.bringProcessToFront(GAME_PROCESS_NAME);
 
