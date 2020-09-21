@@ -73,6 +73,7 @@ namespace LeagueBot
         private void GameLoop()
         {
             AllyIndex = game.getAllyIdToFollow();
+            game.camera.lockAlly(AllyIndex);
             
             bot.log("Following ally no " + AllyIndex);
 
