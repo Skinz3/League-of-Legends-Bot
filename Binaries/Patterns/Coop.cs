@@ -127,7 +127,14 @@ namespace LeagueBot
                     }
                     continue;
                 }
-                if (game.player.getManaPercent() <= 0.10d || game.isAllyDead(followedAlly))
+
+                if (game.isAllyDead(followedAlly))
+                {
+                    followedAlly = game.getAllyIdToFollow();
+                    game.camera.lockAlly(followedAlly);
+                }
+                
+                if (game.player.getManaPercent() <= 0.10d)
                 {
                     isRecalling = true;
                     continue;
