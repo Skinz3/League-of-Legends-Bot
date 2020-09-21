@@ -14,6 +14,11 @@ namespace LeagueBot
             get;
             set;
         }
+        private int AllyIndex
+        {
+            get;
+            set;
+        }
         public override void Execute()
         {
             bot.log("waiting for league of legends process...");
@@ -67,13 +72,11 @@ namespace LeagueBot
 
         private void GameLoop()
         {
-            int followedAlly = game.getAllyIdToFollow();
+            AllyIndex = game.getAllyIdToFollow();
 
-            bot.wait(2000);
+            game.camera.lockAlly(AllyIndex); // <--- verify ally exists!
 
-            game.camera.lockAlly(followedAlly); // <--- verify ally exists!
-
-            bot.log("Following ally no " + followedAlly);
+            bot.log("Following ally no " + AllyIndex);
 
             int level = game.player.getLevel();
 
@@ -128,11 +131,7 @@ namespace LeagueBot
                     continue;
                 }
 
-                if (game.isAllyDead(followedAlly))
-                {
-                    followedAlly = game.getAllyIdToFollow();
-                    game.camera.lockAlly(followedAlly);
-                }
+                
 
                 if (game.player.getManaPercent() <= 0.10d)
                 {
@@ -160,16 +159,16 @@ namespace LeagueBot
 
             game.shop.toogle();
 
-            int followedAlly = game.getAllyIdToFollow();
-            game.camera.lockAlly(followedAlly);
+            AllyIndex = game.getAllyIdToFollow();
+            game.camera.lockAlly(AllyIndex);
         }
         private void OnRevive()
         {
-            int followedAlly = game.getAllyIdToFollow();
+            AllyIndex = game.getAllyIdToFollow();
 
-            game.camera.lockAlly(followedAlly);
+            game.camera.lockAlly(AllyIndex);
 
-            bot.log("Following ally no " + followedAlly);
+            bot.log("Following ally no " + AllyIndex);
         }
 
         private void CastAndMove() // Replace this by Champion pattern script.

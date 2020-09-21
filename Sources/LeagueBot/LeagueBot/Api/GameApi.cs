@@ -34,7 +34,7 @@ namespace LeagueBot.Api
      * -> * We back after Flee
      * -> * Walk to our first turret
      */
-    public class GameApi : IApi
+    public class GameApi : IApi // Teams[] CameraIndex PlayerIndex
     {
         public Shop shop
         {
@@ -82,10 +82,6 @@ namespace LeagueBot.Api
             }
 
         }
-        public bool isAllyDead(int id)
-        {
-            return LCU.GetAlly(id).isDead;
-        }
         public void onGameStarted()
         {
             Console.Title = "In Game : " + player.getName();
@@ -118,9 +114,10 @@ namespace LeagueBot.Api
                 {
                     continue;
                 }
-                if (ally.scores.kills > max && ally.isDead == false)
+                if (ally.scores.kills > max && ally.isDead == false) // not workin
                 {
-                    if (ally.summonerSpells.summonerSpellOne.displayName != "Chilling Smite" && ally.summonerSpells.summonerSpellTwo.displayName != "Chilling Smite")
+                    if (ally.summonerSpells.summonerSpellOne.displayName != "Chilling Smite" && ally.summonerSpells.summonerSpellTwo.displayName != "Chilling Smite"
+                        && ally.summonerSpells.summonerSpellOne.displayName != "Smite" && ally.summonerSpells.summonerSpellTwo.displayName != "Smite")
                     {
                         max = ally.scores.kills;
                         index = i;
