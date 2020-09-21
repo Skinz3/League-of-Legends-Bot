@@ -73,9 +73,7 @@ namespace LeagueBot
         private void GameLoop()
         {
             AllyIndex = game.getAllyIdToFollow();
-
-            game.camera.lockAlly(AllyIndex); // <--- verify ally exists!
-
+            
             bot.log("Following ally no " + AllyIndex);
 
             int level = game.player.getLevel();
@@ -89,7 +87,7 @@ namespace LeagueBot
                 bot.bringProcessToFront(GAME_PROCESS_NAME);
 
                 bot.centerProcess(GAME_PROCESS_NAME);
-
+                
                 int newLevel = game.player.getLevel();
 
                 if (newLevel != level)
@@ -142,9 +140,7 @@ namespace LeagueBot
 
                 CastAndMove();
 
-
-
-
+               
 
             }
         }

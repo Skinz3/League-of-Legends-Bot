@@ -98,7 +98,6 @@ namespace LeagueBot.Api
             int max = -1;
             int index = StartIndex;
 
-
             int i = index;
 
             var allies = getAllies();
@@ -114,10 +113,10 @@ namespace LeagueBot.Api
                 {
                     continue;
                 }
-                if (ally.scores.kills > max && ally.isDead == false) // not workin
+                if (ally.scores.kills > max && ally.isDead == false)
                 {
-                    if (ally.summonerSpells.summonerSpellOne.displayName != "Chilling Smite" && ally.summonerSpells.summonerSpellTwo.displayName != "Chilling Smite"
-                        && ally.summonerSpells.summonerSpellOne.displayName != "Smite" && ally.summonerSpells.summonerSpellTwo.displayName != "Smite")
+                    if (!ally.summonerSpells.summonerSpellOne.displayName.ToString().ToLower().Contains("smite") && // not jungler
+                        !ally.summonerSpells.summonerSpellTwo.displayName.ToString().ToLower().Contains("smite"))
                     {
                         max = ally.scores.kills;
                         index = i;
