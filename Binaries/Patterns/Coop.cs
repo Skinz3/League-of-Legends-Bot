@@ -144,8 +144,6 @@ namespace LeagueBot
         }
         private void OnSpawnJoin()
         {
-            bot.log("Oops, active player is dead.");
-
             game.shop.toogle();
 
             for (int i = 10; i >= 3; i--)
@@ -157,8 +155,6 @@ namespace LeagueBot
         }
         private void OnRevive()
         {
-            bot.log("Active player revive.");
-
             int followedAlly = game.getAllyIdToFollow();
 
             game.camera.lockAlly(followedAlly);
@@ -166,29 +162,29 @@ namespace LeagueBot
             bot.log("Following ally no " + followedAlly);
         }
 
-        private void CastAndMove()
+        private void CastAndMove() // Replace this by Champion pattern script.
         {
             game.moveCenterScreen();
 
-            game.player.tryCastSpellOnTarget(1);
+            game.player.tryCastSpellOnTarget(3); // veigar cage
 
             bot.wait(500);
 
             game.moveCenterScreen();
 
-            game.player.tryCastSpellOnTarget(2);
+            game.player.tryCastSpellOnTarget(2); // Z
 
             bot.wait(500);
 
             game.moveCenterScreen();
 
-            game.player.tryCastSpellOnTarget(3);
+            game.player.tryCastSpellOnTarget(1); // Q
 
             bot.wait(500);
 
             game.moveCenterScreen();
 
-            game.player.tryCastSpellOnTarget(4);
+            game.player.tryCastSpellOnTarget(4); // ult 
         }
 
         public override void End()
