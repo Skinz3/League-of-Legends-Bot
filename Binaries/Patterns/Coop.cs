@@ -133,7 +133,7 @@ namespace LeagueBot
                     followedAlly = game.getAllyIdToFollow();
                     game.camera.lockAlly(followedAlly);
                 }
-                
+
                 if (game.player.getManaPercent() <= 0.10d)
                 {
                     isRecalling = true;
@@ -159,6 +159,9 @@ namespace LeagueBot
             }
 
             game.shop.toogle();
+
+            int followedAlly = game.getAllyIdToFollow();
+            game.camera.lockAlly(followedAlly);
         }
         private void OnRevive()
         {
