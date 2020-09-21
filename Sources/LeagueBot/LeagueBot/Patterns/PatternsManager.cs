@@ -81,6 +81,8 @@ namespace LeagueBot.Patterns
                 script.bot = new BotApi();
                 script.client = new ClientApi();
                 script.game = new GameApi();
+                script.Execute();
+                return;
 
                 try
                 {

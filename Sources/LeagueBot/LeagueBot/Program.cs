@@ -1,20 +1,9 @@
 ﻿using LeagueBot.DesignPattern;
-using LeagueBot.Game;
-using LeagueBot.Game.Enums;
-using LeagueBot.Image;
 using LeagueBot.IO;
 using LeagueBot.Patterns;
-using LeagueBot.Texts;
 using LeagueBot.Windows;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using static LeagueBot.Windows.Interop;
 
 namespace LeagueBot
 {
@@ -62,10 +51,10 @@ namespace LeagueBot
                 return;
             }
 
-
             PatternsManager.Execute(line);
 
             HandleCommand();
         }
+
     }
 }

@@ -118,7 +118,7 @@ namespace LeagueBot.Api
                 {
                     continue;
                 }
-                if (ally.scores.kills > max)
+                if (ally.scores.kills > max && ally.isDead == false)
                 {
                     if (ally.summonerSpells.summonerSpellOne.displayName != "Chilling Smite" && ally.summonerSpells.summonerSpellTwo.displayName != "Chilling Smite")
                     {
