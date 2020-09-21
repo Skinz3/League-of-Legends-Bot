@@ -1,8 +1,11 @@
 ﻿using LeagueBot.Game.Enums;
+using LeagueBot.Patterns;
 using LeagueBot.Utils;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -13,14 +16,15 @@ namespace LeagueBot.ApiHelpers
 {
     public class LCU
     {
+        public static int ApiPort = 2999;
 
-        public const string ApiUrl = "https://127.0.0.1:2999/liveclientdata";
+        public static string ApiUrl = "https://127.0.0.1:" + ApiPort + "/liveclientdata";
 
-        public const string ActivePlayerUrl = ApiUrl + "/activeplayer";
+        public static string ActivePlayerUrl = ApiUrl + "/activeplayer";
 
-        public const string PlayerListUrl = ApiUrl + "/playerlist";
+        public static string PlayerListUrl = ApiUrl + "/playerlist";
 
-        public const string GameStatsUrl = ApiUrl + "/gamestats";
+        public static string GameStatsUrl = ApiUrl + "/gamestats";
 
         public static bool IsApiReady()
         {
@@ -64,6 +68,12 @@ namespace LeagueBot.ApiHelpers
             dynamic dyn = JsonConvert.DeserializeObject(resultStr);
             return dyn.gameTime;
         }
+
+        public static void Initialize()
+        {
+            ApiPort = GetPort();
+        }
+
         public static dynamic GetAlly(int id)
         {
             var resultStr = Http.GetString(PlayerListUrl);
@@ -109,6 +119,37 @@ namespace LeagueBot.ApiHelpers
             var resultStr = Http.GetString(ActivePlayerUrl);
             dynamic dyn = JsonConvert.DeserializeObject(resultStr);
             return dyn.championStats;
+        }
+        private static int GetPort()
+        {
+            var processes = Process.GetProcessesByName(PatternScript.CLIENT_PROCESS_NAME);
+
+            using (var ns = new Process())
+            {
+                ProcessStartInfo psi = new ProcessStartInfo("netstat.exe", "-ano");
+                psi.RedirectStandardOutput = true;
+                psi.UseShellExecute = false;
+                ns.StartInfo = psi;
+                ns.Start();
+
+                using (StreamReader r = ns.StandardOutput)
+                {
+                    string output = r.ReadToEnd();
+                    ns.WaitForExit();
+
+                    string[] lines = output.Split(new string[] { Environment.NewLine }, StringSplitOptions.None);
+
+                    foreach (string line in lines)
+                    {
+                        if (line.Contains(processes[0].Id.ToString()) && line.Contains("0.0.0.0:0"))
+                        {
+                            var outp = line.Split(' ');
+                            return int.Parse(outp[6].Replace("127.0.0.1:", ""));
+                        }
+                    }
+                }
+            }
+            return 0;
         }
     }
 }

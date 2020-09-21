@@ -18,18 +18,20 @@ namespace LeagueBot
         public override void Execute()
         {
             bot.log("Waiting for league client process... Ensure League client window size is 1600x900");
+        
             bot.waitProcessOpen(CLIENT_PROCESS_NAME);
             
             bot.bringProcessToFront(CLIENT_PROCESS_NAME);
             bot.waitUntilProcessBounds(CLIENT_PROCESS_NAME, 1600, 900);
             bot.centerProcess(CLIENT_PROCESS_NAME);
 
-            bot.wait(5000);
+            bot.wait(4000);
 
             bot.bringProcessToFront(CLIENT_PROCESS_NAME);
             bot.waitUntilProcessBounds(CLIENT_PROCESS_NAME, 1600, 900);
             bot.centerProcess(CLIENT_PROCESS_NAME);
 
+            bot.init();
             //REDO
 
             bot.log("Client ready.");

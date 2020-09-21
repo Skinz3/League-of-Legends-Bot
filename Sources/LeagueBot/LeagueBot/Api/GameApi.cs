@@ -71,6 +71,7 @@ namespace LeagueBot.Api
 
         public void waitUntilGameStart()
         {
+
             while (true)
             {
                 if (LCU.IsApiReady() && LCU.GetGameTime() > 2d)
