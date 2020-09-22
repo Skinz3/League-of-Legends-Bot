@@ -22,7 +22,7 @@
   * Back and buy items when weak
   * End game, earn experience
   * Loop 👨‍🌾🐿️
-  <p align="center">
+  <p align="center" style="height : 55vw; width: 55vw; >
   <img  src="https://i.imgur.com/kM8nDoh.png">
 </p>
   
