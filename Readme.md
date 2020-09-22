@@ -44,9 +44,7 @@
 
 # Author
 
-   * **Skinz** Initial Work - [Skinz#1128](https://github.com/Skinz3)
-
-   * **Forerunner**  [ForerunnerForerunner#6615](https://github.com/glenndilen)
+   * **Skinz** - [Skinz#1128](https://github.com/Skinz3)
 
 # Todo List
 
