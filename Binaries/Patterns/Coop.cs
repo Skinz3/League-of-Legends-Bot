@@ -103,6 +103,8 @@ namespace LeagueBot
                     game.shop.buySearchedItem();
 
                     item.Buyed = true;
+
+                    golds -= item.Cost;
                 }
             }
 
