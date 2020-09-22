@@ -27,6 +27,8 @@ namespace LeagueBot
      */
     class Program
     {
+        public static int GameCount = 0;
+
         [STAThread]
         static void Main(string[] args)
         {

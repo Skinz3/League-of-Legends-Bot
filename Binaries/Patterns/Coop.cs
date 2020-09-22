@@ -53,8 +53,6 @@ namespace LeagueBot
 
             game.waitUntilGameStart();
 
-            game.onGameStarted();
-
             bot.log("We are in game !");
 
             bot.bringProcessToFront(GAME_PROCESS_NAME);

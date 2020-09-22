@@ -91,8 +91,10 @@ namespace LeagueBot.Api
         }
         public void onGameEnd()
         {
-            Console.Title = Assembly.GetEntryAssembly().GetName().Name;
+            Program.GameCount++;
+
+            Console.Title = Assembly.GetEntryAssembly().GetName().Name + " (" + Program.GameCount + " games)";
         }
-        
+
     }
 }

@@ -71,7 +71,6 @@ namespace LeagueBot.Api
 
         public void waitUntilGameStart()
         {
-
             while (true)
             {
                 if (LCU.IsApiReady() && LCU.GetGameTime() > 2d)
@@ -83,11 +82,7 @@ namespace LeagueBot.Api
             }
 
         }
-        public void onGameStarted()
-        {
-            Console.Title = "In Game : " + player.getName();
-        }
-
+     
         public dynamic getAllies()
         {
             return LCU.GetAllies();

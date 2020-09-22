@@ -64,7 +64,7 @@ namespace LeagueBot.IO
             WriteColor2(" '---'`--'`-'`-`-`|`--`-`--'  '--'  `-' `-'");
             WriteColor2("               ._.'                       ");
             Console.WriteLine();
-            Console.Title = Assembly.GetCallingAssembly().GetName().Name;
+            Console.Title = Assembly.GetEntryAssembly().GetName().Name + " ("+Program.GameCount + " games)";
         }
     }
 }
