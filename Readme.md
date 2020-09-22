@@ -3,7 +3,7 @@
   <img  src="icon.png">
 </p>
 
-# Welcome to LeagueBot
+# Welcome to LeagueBot 
 
   * League of legends bot is a pixel bot for League Of Legends 10.19, written in C# .NET using image processing (image & text recognition), Interop and scriptting engine.
   * This software is opensource and free feel free to create a pull request!
@@ -21,10 +21,10 @@
   * Cast spells on champions and minions
   * Back and buy items when weak
   * End game, earn experience
-  * Loop
+  * Loop 👨‍🌾🐿️
 
-## Downloads
-   * For non developpers, You can download LeagueBot updater [here](https://github.com/Skinz3/League-Of-Legends-BOT/raw/master/Updater.zip) to automatically get the binaries and automatically download updates ! 
+## Download 
+   * For non developpers, You can download LeagueBot updater [here](https://github.com/Skinz3/League-Of-Legends-BOT/raw/master/Updater.zip) to automatically get the binaries and automatically download updates ! 🤫
 ## Installation
 
    Requirements :
