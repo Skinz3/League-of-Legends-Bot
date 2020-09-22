@@ -107,6 +107,13 @@ namespace LeagueBot.ApiHelpers
 
         }
 
+        public static int GetPlayerGolds()
+        {
+            var resultStr = Http.GetString(ActivePlayerUrl);
+            dynamic dyn = JsonConvert.DeserializeObject(resultStr);
+            return (int)dyn.currentGold;
+        }
+
         public static dynamic GetAllies()
         {
             var resultStr = Http.GetString(PlayerListUrl);

@@ -73,20 +73,22 @@ namespace LeagueBot.Api
                 Logger.Write("Unable to bring process to front: " + processName, MessageState.WARNING);
             }
         }
-        public void waitProcessOpen(string processName)
+        public void waitProcessOpen(string processName, Action timeoutCallback = null, int timeout = 20)
         {
+            Stopwatch st = Stopwatch.StartNew();
+
             while (!Interop.IsProcessOpen(processName))
             {
-                BotHelper.Wait(1000);
-
-                /*if(processName == "League of Legends") { 
-                    _outActualTime++;
-
-                    if(_outActualTime == _outMaxTime)
+                if (timeoutCallback != null)
+                {
+                    if (st.Elapsed.TotalSeconds > timeout)
                     {
-                        Logger.Write("Someone picked your champ... ", MessageState.WARNING);
+                        timeoutCallback();
+                        return;
                     }
-                }*/
+
+                }
+                BotHelper.Wait(1000);
             }
         }
         public void inputWords(string words, int keyDelay = 50, int delay = 100)

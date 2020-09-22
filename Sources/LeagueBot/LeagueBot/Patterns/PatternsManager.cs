@@ -88,7 +88,7 @@ namespace LeagueBot.Patterns
                 }
                 catch
                 {
-                    Logger.Write("Skipping unhandled exception.", MessageState.WARNING);
+                    Logger.Write("Skipping unhandled exception. (GameLoop() must be ended)", MessageState.WARNING);
                     script.OnException();
                 }
             }

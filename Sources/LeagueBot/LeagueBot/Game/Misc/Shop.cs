@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using LeagueBot.Api;
 using LeagueBot.ApiHelpers;
 using LeagueBot.Game.Enums;
@@ -28,10 +29,34 @@ namespace LeagueBot.Game.Misc
             BotHelper.InputIdle();
             Opened = !Opened;
         }
-    
+
         public int getPlayerGold()
         {
             return TextHelper.GetTextFromImage(767, 828, 118, 34);
+        }
+        public void searchItem(string name)
+        {
+            InputHelper.KeyDown("LControlKey");
+            InputHelper.KeyDown("L");
+            InputHelper.KeyUp("LControlKey");
+            InputHelper.KeyUp("L");
+
+            BotHelper.InputIdle();
+
+            InputHelper.InputWords(name);
+
+        }
+        public void buySearchedItem()
+        {
+            BotHelper.InputIdle();
+
+            InputHelper.PressKey("Enter");
+
+            BotHelper.InputIdle();
+
+            InputHelper.PressKey("Enter");
+
+            BotHelper.InputIdle();
         }
 
         public void buyItem(int indice)
@@ -59,7 +84,7 @@ namespace LeagueBot.Game.Misc
                     coords = new Point(756, 516);
                     break;
                 case 7:
-                    coords = new Point(907,513);
+                    coords = new Point(907, 513);
                     break;
                 case 8:
                     coords = new Point(532, 630);

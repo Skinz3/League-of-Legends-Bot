@@ -102,6 +102,10 @@ namespace LeagueBot.Game.Entities
         {
             return LCU.GetPlayerLevel();
         }
+        public int getGolds()
+        {
+            return LCU.GetPlayerGolds();
+        }
         public string getName()
         {
             return LCU.GetPlayerName();
