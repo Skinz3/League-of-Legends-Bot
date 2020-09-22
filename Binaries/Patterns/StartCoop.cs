@@ -19,93 +19,122 @@ namespace LeagueBot
         {
             bot.log("Waiting for league client process... Ensure League client window size is 1600x900");
         
-            bot.waitProcessOpen(CLIENT_PROCESS_NAME);
+            // bot.waitProcessOpen(CLIENT_PROCESS_NAME);
             
-            bot.bringProcessToFront(CLIENT_PROCESS_NAME);
-            bot.waitUntilProcessBounds(CLIENT_PROCESS_NAME, 1600, 900);
-            bot.centerProcess(CLIENT_PROCESS_NAME);
+            // bot.bringProcessToFront(CLIENT_PROCESS_NAME);
+            // bot.waitUntilProcessBounds(CLIENT_PROCESS_NAME, 1600, 900);
+            // bot.centerProcess(CLIENT_PROCESS_NAME);
 
-            bot.wait(4000);
+            // bot.wait(4000);
 
-            bot.bringProcessToFront(CLIENT_PROCESS_NAME);
-            bot.waitUntilProcessBounds(CLIENT_PROCESS_NAME, 1600, 900);
-            bot.centerProcess(CLIENT_PROCESS_NAME);
+            // bot.bringProcessToFront(CLIENT_PROCESS_NAME);
+            // bot.waitUntilProcessBounds(CLIENT_PROCESS_NAME, 1600, 900);
+            // bot.centerProcess(CLIENT_PROCESS_NAME);
 
             bot.init();
+			
+			
+			client.createLobby();
+			bot.wait(2000);
+			
+			client.searchGame();
+			bot.wait(2000);
+			
+			while(!client.isInChampSelect())
+			{
+				while(client.leaverbuster())
+				{
+					bot.log("Leave buster detected");
+					bot.wait(2000);
+				}
+				client.acceptGame();
+			}	
+			
+			client.pickChampion();
+			
+			while(client.isInChampSelect()){
+				bot.log("Champion picked. Waiting for a game...");
+				//check here is game proccess opened, if no, repeat accepting
+			}
+			
+			
+			bot.wait(20000);
+			
             //REDO
 
-            bot.log("Client ready.");
-            bot.wait(2000);
-            client.clickPlayButton();
-            bot.wait(2000);
-            client.clickCoopvsIAText();
-            bot.wait(2000);
+            // bot.log("Client ready.");
+            // bot.wait(2000);
+			
+            //client.clickPlayButton();
+            //bot.wait(2000);
+            //client.clickCoopvsIAText();
+            //bot.wait(2000);
 
-            if (MODE == "intermediate")
-            {
-                client.clickIntermediateText();
-            }
-            else if (MODE == "intro")
-            {
-                client.clickIntroText();
-            }
+            // if (MODE == "intermediate")
+            // {
+                // client.clickIntermediateText();
+            // }
+            // else if (MODE == "intro")
+            // {
+                // client.clickIntroText();
+            // }
 
 
-            bot.wait(2000);
-            client.clickConfirmButton();
+            // bot.wait(2000);
+            // client.clickConfirmButton();
 
-            bot.wait(5000);
+            // bot.wait(5000);
 
-            client.clickFindMatchButton();
+            // client.clickFindMatchButton();
 
-            bot.log("Finding match...");
+            // bot.log("Finding match...");
 
-            while (client.mustSelectChamp() == false)
-            {
-                client.acceptMatch();
-                bot.wait(3000);
-            }
+            // while (client.mustSelectChamp() == false)
+            // {
+                // client.acceptMatch();
+                // bot.wait(3000);
+            // }
 
-            bot.log("Match founded");
+            // bot.log("Match founded");
 
-            client.clickChampSearch();
-            bot.wait(2000);
-            bot.inputWords(SELECTED_CHAMPION);
+            // client.clickChampSearch();
+            // bot.wait(2000);
+            // bot.inputWords(SELECTED_CHAMPION);
 
-            bot.wait(2000);
+            // bot.wait(2000);
 
-            client.selectFirstChampion();
+            // client.selectFirstChampion();
 
-            bot.wait(2000);
+            // bot.wait(2000);
 
-            client.lockChampion();
+            // client.lockChampion();
 
-            bot.wait(1500);
+            // bot.wait(1500);
 
-            RandomTextSender = new Random();
-            switch (RandomTextSender.Next(5))
-            {
-                case 1:
-                    game.chat.talkInChampSelect("hi guys");
-                    game.chat.talkInChampSelect("supporting bot");
-                    break;
-                case 2:
-                    game.chat.talkInChampSelect("gl boys dont flame");
-                    break;
-                case 3:
-                    game.chat.talkInChampSelect("sup");
-                    break;
-                case 4:
-                    game.chat.talkInChampSelect("bot");
-                    break;
-                case 5:
-                    game.chat.talkInChampSelect("support");
-                    break;
-                default:
-                    game.chat.talkInChampSelect("Hi guys");
-                    game.chat.talkInChampSelect("Going botlane");
-                    break;
-            }
+            // RandomTextSender = new Random();
+            // switch (RandomTextSender.Next(5))
+            // {
+                // case 1:
+                    // game.chat.talkInChampSelect("hi guys");
+                    // game.chat.talkInChampSelect("supporting bot");
+                    // break;
+                // case 2:
+                    // game.chat.talkInChampSelect("gl boys dont flame");
+                    // break;
+                // case 3:
+                    // game.chat.talkInChampSelect("sup");
+                    // break;
+                // case 4:
+                    // game.chat.talkInChampSelect("bot");
+                    // break;
+                // case 5:
+                    // game.chat.talkInChampSelect("support");
+                    // break;
+                // default:
+                    // game.chat.talkInChampSelect("Hi guys");
+                    // game.chat.talkInChampSelect("Going botlane");
+                    // break;
+            // }
             //champion not selected?
 
             bot.executePattern("Coop");
