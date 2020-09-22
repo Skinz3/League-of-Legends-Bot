@@ -46,6 +46,13 @@
 
    * **Skinz** - [Skinz#1128](https://github.com/Skinz3)
 
+# Current Features
+  * Start a Coop Game
+  * Follow the strongest Ally
+  * Cast spells on champions and minions
+  * Back and buy Items when weak
+  * Loop
+
 # Todo List
 
    Only pull requests concerning these subjects will be accepted
