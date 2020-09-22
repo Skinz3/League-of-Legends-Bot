@@ -34,10 +34,10 @@ namespace LeagueBot
                     new Item("Lost Chapter",1300),
                     new Item("Sorcerer's Shoes",800),
                     new Item("Blasting Wand",850),
-                    new Item("Luden's Echo",1050), // <--- Cost when Lost Chapter & Blasting Wand are buyed.
+                    new Item("Luden's Echo",1050), // <--- Cost when Lost Chapter & Blasting Wand were bought
                     new Item("Needlessly Large Rod",1250),
                     new Item("Needlessly Large Rod",1250),
-                    new Item("Rabadon's Deathcap",1100),
+                    new Item("Rabadon's Deathcap",1100), 
 
                 };
             }
