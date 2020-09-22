@@ -34,7 +34,7 @@ namespace LeagueBot
             new Item("Needlessly Large Rod",1250),
             new Item("Needlessly Large Rod",1250),
             new Item("Rabadon's Deathcap",1100), 
-        }
+        };
 
         public override void Execute()
         {
