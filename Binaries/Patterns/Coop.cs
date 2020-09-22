@@ -96,7 +96,7 @@ namespace LeagueBot
 
             foreach (Item item in Items)
             {
-                if (item.Cost < golds)
+                if (item.Cost > golds)
                 {
                     break;
                 }
