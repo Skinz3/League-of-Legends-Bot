@@ -85,6 +85,10 @@ namespace LeagueBot.Api
         {
             InputHelper.LeftClick(716, 947);
         }
+        public void leaveQueue()
+        {
+            closeGameRecap();
+        }
         public void onGameEnd()
         {
             Console.Title = Assembly.GetEntryAssembly().GetName().Name;

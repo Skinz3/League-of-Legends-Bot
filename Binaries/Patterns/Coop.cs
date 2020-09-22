@@ -112,6 +112,8 @@ namespace LeagueBot
         {
             bot.log("Game was dodge... aborting.");
 
+            client.leaveQueue();
+
             bot.executePattern("StartCoop");
         }
         private void GameLoop()
@@ -148,7 +150,7 @@ namespace LeagueBot
                     {
                         dead = true;
                         isRecalling = false;
-                        OnSpawnJoin();
+                        OnDie();
                     }
 
                     bot.wait(4000);
@@ -159,6 +161,7 @@ namespace LeagueBot
                 {
                     dead = false;
                     OnRevive();
+                    continue;
                 }
 
                 if (isRecalling)
@@ -186,20 +189,21 @@ namespace LeagueBot
                 CastAndMove();
 
 
-
             }
+        }
+        private void OnDie()
+        {
+            BuyItems();
         }
         private void OnSpawnJoin()
         {
             BuyItems();
-
             AllyIndex = game.getAllyIdToFollow();
             game.camera.lockAlly(AllyIndex);
         }
         private void OnRevive()
         {
             AllyIndex = game.getAllyIdToFollow();
-
             game.camera.lockAlly(AllyIndex);
 
             bot.log("Following ally no " + AllyIndex);
@@ -211,19 +215,13 @@ namespace LeagueBot
 
             game.player.tryCastSpellOnTarget(3); // veigar cage
 
-            bot.wait(500);
-
             game.moveCenterScreen();
 
             game.player.tryCastSpellOnTarget(2); // Z
 
-            bot.wait(500);
-
             game.moveCenterScreen();
 
             game.player.tryCastSpellOnTarget(1); // Q
-
-            bot.wait(500);
 
             game.moveCenterScreen();
 

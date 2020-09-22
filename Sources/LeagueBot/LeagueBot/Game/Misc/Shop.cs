@@ -25,7 +25,15 @@ namespace LeagueBot.Game.Misc
         }
         public void toogle()
         {
-            InputHelper.PressKey("P");
+            if (Opened)
+            {
+                InputHelper.PressKey("Escape");
+            }
+            else
+            {
+                InputHelper.PressKey("P");
+            }
+
             BotHelper.InputIdle();
             Opened = !Opened;
         }
