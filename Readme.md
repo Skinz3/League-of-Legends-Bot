@@ -15,7 +15,13 @@
 
   [<p align="center"><img src="discord.png"></p>](https://discord.gg/cB8qtcE)
 
-
+# Current Features
+  * Start a Coop Game
+  * Follow the strongest Ally
+  * Cast spells on champions and minions
+  * Back and buy items when weak
+  * End game, earn experience
+  * Loop
 
 ## Downloads
    * For non developpers, You can download LeagueBot updater [here](https://github.com/Skinz3/League-Of-Legends-BOT/raw/master/Updater.zip) to automatically get the binaries and automatically download updates ! 
@@ -45,14 +51,6 @@
 # Author
 
    * **Skinz** - [Skinz#1128](https://github.com/Skinz3)
-
-# Current Features
-  * Start a Coop Game
-  * Follow the strongest Ally
-  * Cast spells on champions and minions
-  * Back and buy Items when weak
-  * End game, get experience
-  * Loop
 
 # Todo List
 
