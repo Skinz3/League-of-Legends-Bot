@@ -96,7 +96,11 @@ namespace LeagueBot
 
             foreach (Item item in Items)
             {
-                if (!item.Buyed && golds >= item.Cost)
+                if (item.Cost < golds)
+                {
+                    break;
+                }
+                if (!item.Buyed)
                 {
                     game.shop.searchItem(item.Name);
 
