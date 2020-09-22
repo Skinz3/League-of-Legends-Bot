@@ -51,6 +51,7 @@
   * Follow the strongest Ally
   * Cast spells on champions and minions
   * Back and buy Items when weak
+  * End game, get experience
   * Loop
 
 # Todo List
