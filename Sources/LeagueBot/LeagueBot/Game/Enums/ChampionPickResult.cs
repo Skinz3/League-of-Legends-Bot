@@ -11,6 +11,5 @@ namespace LeagueBot.Game.Enums
         Ok,
         ChampionNotOwned,
         ChampionPicked,
-        InvalidChampion,
     }
 }

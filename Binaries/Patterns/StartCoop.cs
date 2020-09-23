@@ -110,9 +110,6 @@ namespace LeagueBot
                     case ChampionPickResult.ChampionPicked:
                         bot.log("Someone already pick your champ!");
                         break;
-                    case ChampionPickResult.InvalidChampion:
-                        bot.log("Unable to pick champion, invalid champ !");
-                        break;
                     default:
                         break;
                 }

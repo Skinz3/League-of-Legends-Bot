@@ -41,7 +41,7 @@
   <ItemGroup>
     <Compile Include="ApiHelpers\BotHelper.cs" />
     <Compile Include="Game\Enums\ChampionEnum.cs" />
-    <Compile Include="Game\Enums\LCUResults.cs" />
+    <Compile Include="Game\Enums\ChampionPickResult.cs" />
     <Compile Include="Game\Enums\QueueEnum.cs" />
     <Compile Include="Game\Enums\SearchMatchResult.cs" />
     <Compile Include="LCU\ClientLCU.cs" />
