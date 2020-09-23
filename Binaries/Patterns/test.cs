@@ -23,8 +23,6 @@ namespace LeagueBot
             
             client.loadSummoner();
 
-            client.pickChampion("Annie");
-
         }
     }
 }

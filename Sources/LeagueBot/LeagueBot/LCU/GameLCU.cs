@@ -1,4 +1,5 @@
-﻿using LeagueBot.Game.Enums;
+﻿using Leaf.xNet;
+using LeagueBot.Game.Enums;
 using LeagueBot.Patterns;
 using LeagueBot.Utils;
 using Newtonsoft.Json;
@@ -7,7 +8,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Net;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -28,19 +28,19 @@ namespace LeagueBot.ApiHelpers
 
         public static bool IsApiReady()
         {
-            var response = Http.Get(ApiUrl + "/playerlist");
-
-            if (response == null)
+            using (HttpRequest request = new HttpRequest())
             {
-                return false;
-            }
-            if (response.StatusCode == HttpStatusCode.OK)
-            {
-                response.Dispose();
-                return true;
+                request.CharacterSet = Encoding.UTF8;
+                request.IgnoreProtocolErrors = true;
+
+                var response = request.Get(ApiUrl + "/playerlist");
+
+                if (response.StatusCode == HttpStatusCode.OK)
+                {
+                    return true;
+                }
             }
 
-            response.Dispose();
             return false;
         }
 
@@ -51,20 +51,20 @@ namespace LeagueBot.ApiHelpers
 
         public static int GetPlayerLevel()
         {
-            var resultStr = Http.GetString(ActivePlayerUrl);
+            var resultStr = HttpGetString(ActivePlayerUrl);
             dynamic dyn = JsonConvert.DeserializeObject(resultStr);
             return dyn.level;
         }
         public static string GetPlayerName()
         {
-            var resultStr = Http.GetString(ActivePlayerUrl);
+            var resultStr = HttpGetString(ActivePlayerUrl);
             dynamic dyn = JsonConvert.DeserializeObject(resultStr);
             return dyn.summonerName;
         }
 
         public static double GetGameTime()
         {
-            var resultStr = Http.GetString(GameStatsUrl);
+            var resultStr = HttpGetString(GameStatsUrl);
             dynamic dyn = JsonConvert.DeserializeObject(resultStr);
             return dyn.gameTime;
         }
@@ -72,7 +72,7 @@ namespace LeagueBot.ApiHelpers
 
         public static dynamic GetAlly(int id)
         {
-            var resultStr = Http.GetString(PlayerListUrl);
+            var resultStr = HttpGetString(PlayerListUrl);
             dynamic dyn = JsonConvert.DeserializeObject(resultStr);
             return dyn[id - 1];
         }
@@ -80,7 +80,7 @@ namespace LeagueBot.ApiHelpers
         {
             string playerName = GetPlayerName();
 
-            var resultStr = Http.GetString(PlayerListUrl);
+            var resultStr = HttpGetString(PlayerListUrl);
 
             dynamic dyn = JsonConvert.DeserializeObject(resultStr);
 
@@ -105,21 +105,21 @@ namespace LeagueBot.ApiHelpers
 
         public static int GetPlayerGolds()
         {
-            var resultStr = Http.GetString(ActivePlayerUrl);
+            var resultStr = HttpGetString(ActivePlayerUrl);
             dynamic dyn = JsonConvert.DeserializeObject(resultStr);
             return (int)dyn.currentGold;
         }
 
         public static dynamic GetAllies()
         {
-            var resultStr = Http.GetString(PlayerListUrl);
+            var resultStr = HttpGetString(PlayerListUrl);
             dynamic dyn = JsonConvert.DeserializeObject(resultStr);
             return dyn;
         }
 
         public static dynamic GetStats()
         {
-            var resultStr = Http.GetString(ActivePlayerUrl);
+            var resultStr = HttpGetString(ActivePlayerUrl);
             dynamic dyn = JsonConvert.DeserializeObject(resultStr);
             return dyn.championStats;
         }
@@ -157,6 +157,16 @@ namespace LeagueBot.ApiHelpers
                 }
             }
             return 0;
+        }
+
+        public static string HttpGetString(string url)
+        {
+            using (HttpRequest request = new HttpRequest())
+            {
+                request.IgnoreProtocolErrors = true;
+                request.CharacterSet = Encoding.UTF8;
+                return request.Get(url).ToString();
+            }
         }
     }
 }

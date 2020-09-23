@@ -46,7 +46,6 @@
     <Compile Include="Game\Enums\SearchMatchResult.cs" />
     <Compile Include="LCU\ClientLCU.cs" />
     <Compile Include="LCU\GameLCU.cs" />
-    <Compile Include="ApiHelpers\TextHelper.cs" />
     <Compile Include="Api\BotApi.cs" />
     <Compile Include="Api\ClientApi.cs" />
     <Compile Include="Api\IApi.cs" />
@@ -68,12 +67,9 @@
     <Compile Include="Game\Settings\LeagueManager.cs" />
     <Compile Include="LCU\Protocol\Summoner.cs" />
     <Compile Include="Patterns\PatternScript.cs" />
-    <Compile Include="Texts\TextUtils.cs" />
     <Compile Include="Images\ImageUtils.cs" />
-    <Compile Include="Texts\TextCache.cs" />
     <Compile Include="Images\PixelCache.cs" />
     <Compile Include="Images\ImageValues.cs" />
-    <Compile Include="Texts\TextRecognition.cs" />
     <Compile Include="IO\Json.cs" />
     <Compile Include="IO\CFGFile.cs" />
     <Compile Include="IO\Logger.cs" />
@@ -82,7 +78,6 @@
     <Compile Include="Images\ImageRecognition.cs" />
     <Compile Include="Utils\DirectBitmap.cs" />
     <Compile Include="Utils\FastBitmap.cs" />
-    <Compile Include="Utils\Http.cs" />
     <Compile Include="Windows\ApplicationCapture.cs" />
     <Compile Include="Windows\Interop.cs" />
     <Compile Include="Program.cs" />
@@ -119,9 +114,6 @@
     </Reference>
     <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="Tesseract, Version=3.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Tesseract.3.3.0\lib\net45\Tesseract.dll</HintPath>
-    </Reference>
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup />
@@ -131,10 +123,8 @@
       <ErrorText>Ce projet fait référence à des packages NuGet qui sont manquants sur cet ordinateur. Utilisez l'option de restauration des packages NuGet pour les télécharger. Pour plus d'informations, consultez http://go.microsoft.com/fwlink/?LinkID=322105. Le fichier manquant est : {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\MSBuild.NugetContentRestore.0.1.6\build\net40\MSBuild.NugetContentRestore.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\MSBuild.NugetContentRestore.0.1.6\build\net40\MSBuild.NugetContentRestore.targets'))" />
-    <Error Condition="!Exists('..\packages\Tesseract.3.3.0\build\Tesseract.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Tesseract.3.3.0\build\Tesseract.targets'))" />
   </Target>
   <Import Project="..\packages\MSBuild.NugetContentRestore.0.1.6\build\net40\MSBuild.NugetContentRestore.targets" Condition="Exists('..\packages\MSBuild.NugetContentRestore.0.1.6\build\net40\MSBuild.NugetContentRestore.targets')" />
-  <Import Project="..\packages\Tesseract.3.3.0\build\Tesseract.targets" Condition="Exists('..\packages\Tesseract.3.3.0\build\Tesseract.targets')" />
   <Target Name="BeforeBuild">
     <NugetContentRestoreTask SolutionDir="$(SolutionDir)" ProjectDir="$(ProjectDir)" />
   </Target>

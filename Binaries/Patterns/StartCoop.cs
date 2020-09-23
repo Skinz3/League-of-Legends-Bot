@@ -21,9 +21,7 @@ namespace LeagueBot
         public override void Execute()
         {
             bot.initialize();
-
-            client.loadSummoner();
-            
+         
             bot.log("Waiting for league client process...");
         
             bot.waitProcessOpen(CLIENT_PROCESS_NAME);
@@ -31,11 +29,20 @@ namespace LeagueBot
             bot.bringProcessToFront(CLIENT_PROCESS_NAME);
             bot.centerProcess(CLIENT_PROCESS_NAME);
 
+            while (!client.loadSummoner())
+            {
+                bot.warn("Unable to load summoner. Retrying in 10 seconds.");
+
+                bot.wait(1000);
+            }
+
+            bot.log("Summoner loaded "+ client.summoner.displayName);
+
             client.createLobby(QueueType);
 
             bot.log("Searching match...");
             
-            SearchMatchResult result = SearchMatchResult.Unknown;
+            SearchMatchResult result = client.searchMatch();
 
             while (result != SearchMatchResult.Ok)
             {
@@ -44,10 +51,10 @@ namespace LeagueBot
                 switch (result)
                 {
                     case SearchMatchResult.GatekeeperRestricted:
-                       bot.log("Cannot search match. Queue delay. Retrying in 10 seconds.");
+                       bot.warn("Cannot search match. Queue dodge timer. Retrying in 10 seconds.");
                        break;
                     case SearchMatchResult.QueueNotEnabled:
-                       bot.log("Cannot search match. Recreating Queue. Retrying in 10 seconds.");
+                       bot.warn("Cannot search match. Recreating Queue. Retrying in 10 seconds.");
                        break;
                            
               

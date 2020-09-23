@@ -29,7 +29,6 @@ namespace LeagueBot.LCU
         private static string AcceptURL => Url + "lol-matchmaking/v1/ready-check/accept";
         private static string PickURL => Url + "lol-champ-select/v1/session/actions/";
         private static string SessionURL => Url + "lol-champ-select/v1/session";
-        private static string SearchStateURL => Url + "lol-lobby/v2/lobby/matchmaking/search-state";
 
         private static string LoginURL => Url + "rso-auth/v1/session/credentials";
 
@@ -68,96 +67,98 @@ namespace LeagueBot.LCU
 
         public static bool CreateLobby(QueueEnum queueId)
         {
-            var request = CreateRequest();
-
-            string response = request.Post(CreateURL, "{\"queueId\": " + (int)queueId + "}", "application/json").StatusCode.ToString();
-
-            if (response == "OK")
+            using (var request = CreateRequest())
             {
-                return true;
-            }
-            else
-            {
-                return false;
+                string response = request.Post(CreateURL, "{\"queueId\": " + (int)queueId + "}", "application/json").StatusCode.ToString();
+
+                if (response == "OK")
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
         }
 
         public static SearchMatchResult SearchMatch()
         {
-            var request = CreateRequest();
-            string response = request.Post(SearchURL).ToString();
-
-            if (response == string.Empty)
+            using (var request = CreateRequest())
             {
-                return SearchMatchResult.Ok;
-            }
-            else
-            {
-                SearchMatchResult result = SearchMatchResult.Unknown;
+                string response = request.Post(SearchURL).ToString();
 
-                dynamic obj = JsonConvert.DeserializeObject(response);
-
-                Logger.Write("Search Match Result : " + obj.message, MessageState.WARNING);
-
-                switch (obj.message)
+                if (response == string.Empty)
                 {
-                    case "GATEKEEPER_RESTRICTED":
-                        result = SearchMatchResult.GatekeeperRestricted;
-                        break;
-                    case "QUEUE_NOT_ENABLED":
-                        result = SearchMatchResult.QueueNotEnabled;
-                        break;
+                    return SearchMatchResult.Ok;
                 }
-            
+                else
+                {
+                    SearchMatchResult result = SearchMatchResult.Unknown;
 
-                return result;
+                    dynamic obj = JsonConvert.DeserializeObject(response);
 
+                    string message = obj.message;
+
+                    switch (message)
+                    {
+                        case "GATEKEEPER_RESTRICTED":
+                            result = SearchMatchResult.GatekeeperRestricted;
+                            break;
+                        case "QUEUE_NOT_ENABLED":
+                            result = SearchMatchResult.QueueNotEnabled;
+                            break;
+
+                        default:
+                            Logger.Write("Unknown search match result : " + obj.message, MessageState.WARNING);
+                            break;
+                    }
+
+
+                    return result;
+
+                }
             }
         }
         public static bool IsMatchFounded()
         {
-            var request = CreateRequest();
-            var result = request.Get(ReadyCheckURL).ToString();
-            return result.Contains("InProgress");
+            using (var request = CreateRequest())
+            {
+                var result = request.Get(ReadyCheckURL).ToString();
+                return result.Contains("InProgress");
+            }
         }
         public static Summoner GetCurrentSummoner()
         {
-            var request = CreateRequest();
-            var result = request.Get(Url + "lol-summoner/v1/current-summoner").ToString();
-            return JsonConvert.DeserializeObject<Summoner>(result);
+            using (var request = CreateRequest())
+            {
+                var result = request.Get(Url + "lol-summoner/v1/current-summoner").ToString();
+                return JsonConvert.DeserializeObject<Summoner>(result);
+            }
         }
         public static dynamic GetChampSelectSession()
         {
-            var request = CreateRequest();
-            var result = request.Get(Url + "lol-champ-select/v1/session").ToString();
-            return JsonConvert.DeserializeObject(result);
+            using (var request = CreateRequest())
+            {
+                var result = request.Get(Url + "lol-champ-select/v1/session").ToString();
+                return JsonConvert.DeserializeObject(result);
+            }
         }
         public static void AcceptMatch()
         {
-            var request = CreateRequest();
-            request.Post(AcceptURL);
-
-        }
-        public static bool Leaverbuster()
-        {
-            try
+            using (var request = CreateRequest())
             {
-                var request = CreateRequest();
-                string response = request.Get(SearchStateURL).ToString();
-                return response.Contains("QUEUE_DODGER") || response.Contains("LEAVER_BUSTED");
+                request.Post(AcceptURL);
             }
-            catch
-            {
-                return false;
-            }
-
         }
         public static bool IsInChampSelect()
         {
             try
             {
-                var request = CreateRequest();
-                return request.Get(SessionURL).ToString().Contains("action");
+                using (var request = CreateRequest())
+                {
+                    return request.Get(SessionURL).ToString().Contains("action");
+                }
             }
             catch
             {
@@ -170,10 +171,12 @@ namespace LeagueBot.LCU
         }
         public static int[] GetPickableChampions()
         {
-            var request = CreateRequest();
-            var result = request.Get(PickableChampionsUrl).ToString();
-            result = Regex.Match(result, @"\[(.*)\]").Groups[1].Value;
-            return result.Split(',').Select(Int32.Parse).ToArray();
+            using (var request = CreateRequest())
+            {
+                var result = request.Get(PickableChampionsUrl).ToString();
+                result = Regex.Match(result, @"\[(.*)\]").Groups[1].Value;
+                return result.Split(',').Select(Int32.Parse).ToArray();
+            }
         }
 
         public static ChampionPickResult PickChampion(Summoner currentSummoner, ChampionEnum champion)
@@ -214,62 +217,27 @@ namespace LeagueBot.LCU
 
             int championId = (int)champion;
 
-            var request = CreateRequest();
-
-            var result = request.Patch(PickURL + id, "{\"actorCellId\": 0, \"championId\": " + championId + ", \"completed\": true, \"id\": " + id + ", \"isAllyAction\": true, \"type\": \"string\"}", "application/json").ToString();
-
-            return ChampionPickResult.Ok;
-        }
-
-        //info: with LCU API you dont have to skip honor. You can wait around 60+ seconds for vote ending and use createLobby()
-        //Also if you want implemented login, restarting client is faster than waiting 
-        //but if really want honor, have fun with this:
-
-        public static void HonorRandomPlayer()
-        {
-            var request = CreateRequest();
-
-            request.Get(GetHonorDataUrl).ToString();
-            /*sample json
-             
+            using (var request = CreateRequest())
             {
-            "eligiblePlayers": [
-                {
-                "championId": 0,
-                "skinIndex": 0,
-                "skinName": "string",
-                "summonerId": 0,
-                "summonerName": "string"
-                }
-             ],
-            "gameId": 0
-             }
-            */
-            //
-
-            string honorCategory = "HEART";
-            long gameId = 1;
-            long summonerId = 1;
-
-            Logger.Write("Player honor");
-            request.Post(HonorURL, "{ \"gameId\": " + gameId + ", \"honorCategory\": \"" + honorCategory + "\", \"summonerId\": " + summonerId + "}").ToString();
-
+                var result = request.Patch(PickURL + id, "{\"actorCellId\": 0, \"championId\": " + championId + ", \"completed\": true, \"id\": " + id + ", \"isAllyAction\": true, \"type\": \"string\"}", "application/json").ToString();
+                return ChampionPickResult.Ok;
+            }
         }
 
         public static void RestartClient()
         {
-            var request = CreateRequest();
-            request.Post(RestartUXUrl);
+            using (var request = CreateRequest())
+            {
+                request.Post(RestartUXUrl);
+            }
         }
 
         private static HttpRequest CreateRequest()
         {
             HttpRequest request = new HttpRequest();
-            request.AddHeader("Authorization", "Basic " + Auth);
-            request.AddHeader("Accept", "application/json");
-            request.AddHeader("content-type", "application/json");
-            request.AddHeader("charset", "utf8");
             request.IgnoreProtocolErrors = true;
+            request.CharacterSet = Encoding.UTF8;
+            request.AddHeader("Authorization", "Basic " + Auth);
             return request;
         }
 

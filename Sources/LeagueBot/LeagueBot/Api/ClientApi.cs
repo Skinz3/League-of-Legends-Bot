@@ -22,15 +22,15 @@ namespace LeagueBot.Api
 {
     public class ClientApi : IApi
     {
-        private Summoner Summoner
+        public Summoner summoner
         {
             get;
-            set;
+            private set;
         }
-        public void loadSummoner()
+        public bool loadSummoner()
         {
-            this.Summoner = ClientLCU.GetCurrentSummoner();
-            Logger.Write("Summoner loaded : " + Summoner.displayName);
+            this.summoner = ClientLCU.GetCurrentSummoner();
+            return summoner != null;
         }
         public void createLobby(QueueEnum queueId)
         {
@@ -44,10 +44,6 @@ namespace LeagueBot.Api
         {
             ClientLCU.AcceptMatch();
         }
-        public void honorRandomPlayer()
-        {
-            ClientLCU.HonorRandomPlayer();
-        }
         public bool isMatchFound()
         {
             return ClientLCU.IsMatchFounded();
@@ -59,7 +55,7 @@ namespace LeagueBot.Api
 
             if (Enum.TryParse<ChampionEnum>(name, out champion) && champion != ChampionEnum.None)
             {
-                return ClientLCU.PickChampion(Summoner, champion);
+                return ClientLCU.PickChampion(summoner, champion);
             }
             else
             {
