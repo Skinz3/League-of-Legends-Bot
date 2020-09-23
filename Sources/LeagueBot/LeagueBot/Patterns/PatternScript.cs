@@ -31,11 +31,6 @@ namespace LeagueBot.Patterns
 
         public abstract void Execute();
 
-        public virtual void OnException()
-        {
-            End();
-        }
-
         public virtual void End()
         {
 

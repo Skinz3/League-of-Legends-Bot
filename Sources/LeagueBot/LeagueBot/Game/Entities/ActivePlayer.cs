@@ -21,7 +21,7 @@ namespace LeagueBot.Game.Entities
 
         public bool dead()
         {
-            return LCU.IsPlayerDead();
+            return GameLCU.IsPlayerDead();
         }
 
         public IEntity getNearTarget()
@@ -100,15 +100,15 @@ namespace LeagueBot.Game.Entities
         }
         public int getLevel()
         {
-            return LCU.GetPlayerLevel();
+            return GameLCU.GetPlayerLevel();
         }
         public int getGolds()
         {
-            return LCU.GetPlayerGolds();
+            return GameLCU.GetPlayerGolds();
         }
         public string getName()
         {
-            return LCU.GetPlayerName();
+            return GameLCU.GetPlayerName();
         }
         public void upgradeSpellOnLevelUp()
         {
@@ -182,7 +182,7 @@ namespace LeagueBot.Game.Entities
 
         public dynamic getStats()
         {
-            return LCU.GetStats();
+            return GameLCU.GetStats();
         }
 
         public void recall()
@@ -199,14 +199,6 @@ namespace LeagueBot.Game.Entities
         {
             var stats = getStats();
             return stats.resourceValue / stats.resourceMax;
-        }
-
-
-        public int gameMinute()
-        {
-            int minute = TextHelper.GetTextFromImage(1426, 171, 16, 16);
-            BotHelper.Log("Game is on minute " + minute.ToString());
-            return minute;
         }
     }
 }

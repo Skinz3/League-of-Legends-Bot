@@ -52,6 +52,10 @@
 
    * **Skinz** - [Skinz#1128](https://github.com/Skinz3)
 
+# Special Thanks
+
+   * **Arecki** - For his help with LCU Api.
+   
 # Todo List
 
    Only pull requests concerning these subjects will be accepted

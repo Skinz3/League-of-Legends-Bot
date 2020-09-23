@@ -14,9 +14,9 @@ using System.Threading.Tasks;
 
 namespace LeagueBot.ApiHelpers
 {
-    public class LCU
+    public class GameLCU
     {
-        public static int ApiPort = 2999;
+        private static int ApiPort = 2999;
 
         public static string ApiUrl = "https://127.0.0.1:" + ApiPort + "/liveclientdata";
 
@@ -69,10 +69,6 @@ namespace LeagueBot.ApiHelpers
             return dyn.gameTime;
         }
 
-        public static void Initialize()
-        {
-            ApiPort = GetPort();
-        }
 
         public static dynamic GetAlly(int id)
         {
@@ -127,6 +123,10 @@ namespace LeagueBot.ApiHelpers
             dynamic dyn = JsonConvert.DeserializeObject(resultStr);
             return dyn.championStats;
         }
+        /// <summary>
+        /// unused yet.
+        /// </summary>
+        /// <returns></returns>
         private static int GetPort()
         {
             var processes = Process.GetProcessesByName(PatternScript.CLIENT_PROCESS_NAME);

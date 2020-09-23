@@ -68,7 +68,6 @@ namespace LeagueBot.Patterns
         {
             return Scripts.ContainsKey(name);
         }
-        [STAThread]
         public static void Execute(string name)
         {
             if (!Scripts.ContainsKey(name))
@@ -81,16 +80,7 @@ namespace LeagueBot.Patterns
                 script.bot = new BotApi();
                 script.client = new ClientApi();
                 script.game = new GameApi();
-
-                try
-                {
-                    script.Execute();
-                }
-                catch
-                {
-                    Logger.Write("Skipping unhandled exception. (GameLoop() must be ended)", MessageState.WARNING);
-                    script.OnException();
-                }
+                script.Execute();
             }
         }
         public static string ToString()

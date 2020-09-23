@@ -29,7 +29,6 @@ namespace LeagueBot
     {
         public static int GameCount = 0;
 
-        [STAThread]
         static void Main(string[] args)
         {
             Logger.OnStartup();

@@ -69,11 +69,12 @@ namespace LeagueBot.Api
             this.player = new ActivePlayer(this);
         }
 
+       
         public void waitUntilGameStart()
         {
             while (true)
             {
-                if (LCU.IsApiReady() && LCU.GetGameTime() > 2d)
+                if (GameLCU.IsApiReady() && GameLCU.GetGameTime() > 2d)
                 {
                     break;
                 }
@@ -85,7 +86,7 @@ namespace LeagueBot.Api
      
         public dynamic getAllies()
         {
-            return LCU.GetAllies();
+            return GameLCU.GetAllies();
         }
         public int getAllyIdToFollow()
         {
@@ -128,7 +129,7 @@ namespace LeagueBot.Api
         {
             if (side == null)
             {
-                side = LCU.GetPlayerSide();
+                side = GameLCU.GetPlayerSide();
             }
             return side.Value;
         }

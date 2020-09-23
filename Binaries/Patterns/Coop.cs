@@ -40,7 +40,7 @@ namespace LeagueBot
         {
             bot.log("waiting for league of legends process...");
 
-            bot.waitProcessOpen(GAME_PROCESS_NAME, OnGameDodged, 120); // 120 seconds timeout
+            bot.waitProcessOpen(GAME_PROCESS_NAME); // 120 seconds timeout
 
             bot.waitUntilProcessBounds(GAME_PROCESS_NAME, 1030, 797);
 
@@ -75,9 +75,19 @@ namespace LeagueBot
 
             BuyItems();
 
-            GameLoop();
-
-            bot.executePattern("EndCoop");
+            try
+            {
+                GameLoop();
+            }
+            catch
+            {
+                bot.warn("GameLoop was breaked, ending game.");
+                End();
+            }
+            finally
+            {
+                End();
+            }
         }
         private void BuyItems()
         {
@@ -105,14 +115,6 @@ namespace LeagueBot
 
             game.shop.toogle();
 
-        }
-        private void OnGameDodged()
-        {
-            bot.log("Game was dodge... aborting.");
-
-            client.leaveQueue();
-
-            bot.executePattern("StartCoop");
         }
         private void GameLoop()
         {

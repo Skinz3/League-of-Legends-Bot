@@ -27,9 +27,5 @@ namespace LeagueBot.ApiHelpers
         {
             Thread.Sleep(IDLE_DELAY);
         }
-        public static void Log(string message)
-        {
-            Logger.Write(message, MessageState.INFO2);
-        }
     }
 }

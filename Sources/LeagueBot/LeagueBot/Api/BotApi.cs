@@ -1,5 +1,6 @@
 ﻿using LeagueBot.ApiHelpers;
 using LeagueBot.IO;
+using LeagueBot.LCU;
 using LeagueBot.Patterns;
 using LeagueBot.Windows;
 using System;
@@ -14,13 +15,17 @@ namespace LeagueBot.Api
 {
     public class BotApi : IApi
     {
-        public void init()
+        public void initialize()
         {
-            LCU.Initialize();
+            ClientLCU.Initialize();
         }
         public void log(object message)
         {
-            BotHelper.Log(message.ToString());
+            Logger.Write(message.ToString());
+        }
+        public void warn(object message)
+        {
+            Logger.Write(message.ToString(), MessageState.WARNING);
         }
         public void wait(int ms)
         {

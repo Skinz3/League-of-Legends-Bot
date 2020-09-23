@@ -12,83 +12,66 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Leaf.xNet;
 using System.Threading;
+using LeagueBot.Patterns;
+using LeagueBot.LCU;
+using LeagueBot.Game;
+using LeagueBot.Game.Enums;
+using LeagueBot.LCU.Protocol;
 
 namespace LeagueBot.Api
 {
     public class ClientApi : IApi
     {
-        public void clickPlayButton()
+        private Summoner Summoner
         {
-            InputHelper.LeftClick(306, 139);
+            get;
+            set;
         }
-        public void clickAramButton()
+        public void loadSummoner()
         {
-            InputHelper.LeftClick(631, 373);
+            this.Summoner = ClientLCU.GetCurrentSummoner();
+            Logger.Write("Summoner loaded : " + Summoner.displayName);
         }
-        public void clickCoopvsIAText()
+        public void createLobby(QueueEnum queueId)
         {
-            InputHelper.LeftClick(336, 213);
+            ClientLCU.CreateLobby(queueId);
         }
-        public void clickIntroText()
+        public SearchMatchResult searchMatch()
         {
-            InputHelper.LeftClick(733, 709);
-        }
-        public void clickIntermediateText()
-        {
-            InputHelper.LeftClick(755, 790);
-        }
-        public void clickConfirmButton()
-        {
-            InputHelper.LeftClick(832, 949);
-        }
-        public void clickFindMatchButton()
-        {
-            InputHelper.LeftClick(832, 949);
-        }
-        public void skipLevelRewards()
-        {
-            InputHelper.LeftClick(953, 938);
-        }
-        public void clickChampSearch()
-        {
-            InputHelper.LeftClick(1109, 219);
-        }
-        public bool levelUp()
-        {
-            return TextHelper.TextExists(872, 237, 300, 300, "level up");
-        }
-        public bool questCompleted()
-        {
-            return TextHelper.TextExists(872, 237, 300, 300, "mission");
-        }
-        public bool mustSelectChamp()
-        {
-            return TextHelper.TextExists(692, 111, 512, 63, "choose your champion");
-        }
-        public void lockChampion()
-        {
-            InputHelper.LeftClick(959, 831);
+            return ClientLCU.SearchMatch();
         }
         public void acceptMatch()
         {
-            InputHelper.LeftClick(947, 780);
+            ClientLCU.AcceptMatch();
         }
-        public void selectFirstChampion()
+        public void honorRandomPlayer()
         {
-            InputHelper.LeftClick(645, 275);
+            ClientLCU.HonorRandomPlayer();
         }
-        public void skipHonor()
+        public bool isMatchFound()
         {
-            InputHelper.LeftClick(962, 903);
+            return ClientLCU.IsMatchFounded();
         }
-        public void closeGameRecap()
+
+        public ChampionPickResult pickChampion(string name)
         {
-            InputHelper.LeftClick(716, 947);
+            ChampionEnum champion = ChampionEnum.None;
+
+            if (Enum.TryParse<ChampionEnum>(name, out champion) && champion != ChampionEnum.None)
+            {
+                return ClientLCU.PickChampion(Summoner, champion);
+            }
+            else
+            {
+                return ChampionPickResult.InvalidChampion;
+            }
+
         }
-        public void leaveQueue()
+        public bool isInChampSelect()
         {
-            closeGameRecap();
+            return ClientLCU.IsInChampSelect();
         }
+
         public void onGameEnd()
         {
             Program.GameCount++;

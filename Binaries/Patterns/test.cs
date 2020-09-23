@@ -3,28 +3,28 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using LeagueBot.Patterns;
+using LeagueBot.ApiHelpers;
 
 namespace LeagueBot
 {
-    public class EndCoop : PatternScript
+    public class test : PatternScript
     {
-        
         public override void Execute()
         {
-            bot.initialize(); // scripts are isolated.
-
-            bot.log("Match ended.");
-
-            client.onGameEnd();
+            bot.initialize();
             
+            bot.log("Waiting for league client process... Ensure League client window size is 1600x900");
+        
             bot.waitProcessOpen(CLIENT_PROCESS_NAME);
-
-            bot.bringProcessToFront(CLIENT_PROCESS_NAME);
-            bot.centerProcess(CLIENT_PROCESS_NAME);
-
-            bot.wait(10 * 1000);
             
-            bot.executePattern("StartCoop");
+            bot.bringProcessToFront(CLIENT_PROCESS_NAME);
+            bot.waitUntilProcessBounds(CLIENT_PROCESS_NAME, 1600, 900);
+            bot.centerProcess(CLIENT_PROCESS_NAME);
+            
+            client.loadSummoner();
+
+            client.pickChampion("Annie");
+
         }
     }
 }

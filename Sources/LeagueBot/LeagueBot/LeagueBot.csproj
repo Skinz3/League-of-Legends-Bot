@@ -40,7 +40,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="ApiHelpers\BotHelper.cs" />
-    <Compile Include="ApiHelpers\LCU.cs" />
+    <Compile Include="Game\Enums\ChampionEnum.cs" />
+    <Compile Include="Game\Enums\LCUResults.cs" />
+    <Compile Include="Game\Enums\QueueEnum.cs" />
+    <Compile Include="Game\Enums\SearchMatchResult.cs" />
+    <Compile Include="LCU\ClientLCU.cs" />
+    <Compile Include="LCU\GameLCU.cs" />
     <Compile Include="ApiHelpers\TextHelper.cs" />
     <Compile Include="Api\BotApi.cs" />
     <Compile Include="Api\ClientApi.cs" />
@@ -61,6 +66,7 @@
     <Compile Include="Game\Misc\Item.cs" />
     <Compile Include="Game\Misc\Shop.cs" />
     <Compile Include="Game\Settings\LeagueManager.cs" />
+    <Compile Include="LCU\Protocol\Summoner.cs" />
     <Compile Include="Patterns\PatternScript.cs" />
     <Compile Include="Texts\TextUtils.cs" />
     <Compile Include="Images\ImageUtils.cs" />
