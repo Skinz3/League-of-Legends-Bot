@@ -41,7 +41,9 @@ namespace LeagueBot.LCU
 
         public static void Initialize()
         {
-            using (var fileStream = new FileStream(@"C:\Riot Games\League of Legends\lockfile", FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+            string path = Path.Combine(Configuration.Instance.ClientPath, @"League of Legends\lockfile");
+
+            using (var fileStream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
             {
                 using (var streamReader = new StreamReader(fileStream, Encoding.Default))
                 {
