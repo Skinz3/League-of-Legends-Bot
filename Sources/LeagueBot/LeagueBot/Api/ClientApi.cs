@@ -26,7 +26,7 @@ namespace LeagueBot.Api
         HttpRequest request = new HttpRequest();
 
         private int queueId = 830; //bots intro, forgot intermediate id
-        private string URL { get { return "https://127.0.0.1:" + this.port + "/"; } }
+        private string URL { get { return "https://127.0.0.1:"+this.port+"/"; } }
         /* You can create Objects for this variables and read/write info */
 
         private string create = "lol-lobby/v2/lobby";
@@ -35,19 +35,68 @@ namespace LeagueBot.Api
         private string pick = "lol-champ-select/v1/session/actions/";
         private string session = "lol-champ-select/v1/session";
         private string searchState = "lol-lobby/v2/lobby/matchmaking/search-state";
-        private string login = "rso-auth/v1/session/credentials";
+        private string login = "lol-login/v1/session";
 
         private string honor = "lol-honor-v2/v1/honor-player";
         private string getHonorData = "lol-honor-v2/v1/ballot";
 
-        private string pickableChampion = "GET: lol-champ-select/v1/pickable-champion-ids";
+        private string pickableChampion = "lol-champ-select/v1/pickable-champion-ids";
         private string restartUX = "riotclient/kill-and-restart-ux";
 
         /* */
 
+        public void openClient()
+        {
+            //KILL ALL LEAGUECLIENT PROCESSES BEFORE START IT
+            int lcuPort = 1337;
+            string lcuPassword = "RWr6Cf-tOJkKA768wjRl6A";
+            ProcessStartInfo psi = new ProcessStartInfo();
+            psi.FileName = @"C:/Riot Games/League of Legends/LeagueClient.exe";
+            psi.Arguments = "--headless --allow-multiple-clients --app-port=" + lcuPort + " --remoting-auth-token=" + lcuPassword + "  --system-yaml-override=\"custom.yaml\"";
+            Process.Start(psi);
+            Logger.Write("Openning LeagueClient");
+            Thread.Sleep(10000);
+        }
+
+        public void loggining()
+        {
+            //im reading login and password from TXT
+            string acc_username = "login";
+            string acc_password = "password";
+
+            readProcess();
+            updateRequest();
+
+            string response = request.Post(URL + login, "{\"password\": \"" + acc_password + "\",\"username\": \"" + acc_username + "\"}", "application/json").ToString();
+
+            //Session session = JsonConvert.DeserializeObject<Session>(statusCode);
+
+            Logger.Write(response);
+            Thread.Sleep(5000);
+            //if (session.state == "IN_PROGRESS")
+            //{
+            //    Logger.Write("Waiting in login queue...");
+            //    Thread.Sleep(5000);
+            //    Logger.Write("Successfully logged in. Waiting for full initialisation.");
+            //    Thread.Sleep(6000);
+
+            //}
+            //else if (session.state == "SUCCEEDED")
+            //{
+            //    Logger.Write("Successfully logged in. Waiting for full initialisation.");
+            //    Thread.Sleep(6000);
+
+            //}
+            //else if (session.state == "ERROR")
+            //{
+            //    Logger.Write("Error: " + session.messageId);
+            //    Thread.Sleep(2000);
+            //}
+        }
+
         public ClientApi()
         {
-            getLCUData();
+            //getLCUData();
         }
 
         public void createLobby()
@@ -98,6 +147,13 @@ namespace LeagueBot.Api
             {
                 return false;
             }
+        }
+
+        public void getPickableChampions()
+        {
+            updateRequest();
+            string response = request.Get(URL + pickableChampion).ToString();
+            
         }
 
         public void pickChampion()
@@ -164,6 +220,7 @@ namespace LeagueBot.Api
             this.request.IgnoreProtocolErrors = true;
         }
 
+        //USE THIS ONLY IF YOU ARE USING LEAGUECLIENT UX !!!!!!!!!!!!!!!!!1
         public void getLCUData()
         {
             try
@@ -190,14 +247,51 @@ namespace LeagueBot.Api
 
         }
 
-       
+        //USE THIS ONLY IF YOU ARE USING LEAGUECLIENT WITHOUOT UX!!!!!
 
-        
-                    
+        public void readProcess()
+            {
+                String pattern = "(?<port>port=(\\S+))|(?<token>token=(\\S+))";
+                ManagementClass managementClass = new ManagementClass("Win32_Process");
+                foreach (ManagementBaseObject manageBaseobj in managementClass.GetInstances())
+                {
+                    ManagementObject manageObj = (ManagementObject)manageBaseobj;
+                    if (manageObj["Name"].Equals("LeagueClient.exe"))
+                    {
+                        String CommandLineArguments = manageObj["CommandLine"].ToString();
+                        if (CommandLineArguments.Contains("port"))
+                        {
+                            MatchCollection matches = Regex.Matches(CommandLineArguments, pattern, RegexOption);
+                            foreach (Match match in matches)
+                            {
+                            if (!string.IsNullOrEmpty(match.Groups["port"].ToString()))
+                            {
+                                this.port = int.Parse(match.Groups[1].ToString());
+                            }
+                            if (!string.IsNullOrEmpty(match.Groups["token"].ToString()))
+                                {
+                                    //this.auth = match.Groups[0].ToString().Replace("token=", "");
+                                    this.auth = Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes("riot:" + match.Groups[0].ToString().Replace("token=", "")));
 
-        /**********************************************/
+                                }
+                            }
+                        }
 
-        public void clickPlayButton()
+
+
+                    }
+                }
+
+                if (this.auth == null)
+                {
+                    Logger.Write("ERROR: Client started?");
+                }
+            }
+
+
+            /**********************************************/
+
+            public void clickPlayButton()
         {
             InputHelper.LeftClick(306, 139);
         }
