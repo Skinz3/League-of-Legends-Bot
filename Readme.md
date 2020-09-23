@@ -22,6 +22,7 @@
   * Back and buy items when weak
   * End game, earn experience
   * Loop 👨‍🌾🐿️
+  
 
 ## Download 
    * For non developpers, You can download LeagueBot updater [here](https://github.com/Skinz3/League-Of-Legends-BOT/raw/master/Updater.zip) to automatically get the binaries and automatically download updates ! 🤫
