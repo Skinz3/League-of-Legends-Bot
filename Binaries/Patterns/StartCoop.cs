@@ -101,14 +101,14 @@ namespace LeagueBot
                 switch (pickResult)
                 {
                     case ChampionPickResult.Ok:
-                        bot.log(Champions[championIndex] + "picked successfully.");
+                        bot.log(Champions[championIndex] + " picked successfully");
                         picked = true;
                         break;
                     case ChampionPickResult.ChampionNotOwned:
-                        bot.log("Error the request champion is not owned.");
+                        bot.warn("Error the request champion is not owned.");
                         break;
                     case ChampionPickResult.ChampionPicked:
-                        bot.log("Someone already pick your champ!");
+                        bot.warn("Someone already pick your champion");
                         break;
                     default:
                         break;

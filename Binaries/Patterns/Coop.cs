@@ -38,7 +38,7 @@ namespace LeagueBot
 
         public override void Execute()
         {
-            bot.log("waiting for league of legends process...");
+            bot.log("Waiting for league of legends process...");
 
             bot.waitProcessOpen(GAME_PROCESS_NAME); // 120 seconds timeout
 
@@ -46,14 +46,14 @@ namespace LeagueBot
 
             bot.wait(200);
 
-            bot.log("waiting for game to load.");
+            bot.log("Waiting for game to load.");
 
             bot.bringProcessToFront(GAME_PROCESS_NAME);
             bot.centerProcess(GAME_PROCESS_NAME);
 
             game.waitUntilGameStart();
 
-            bot.log("We are in game !");
+            bot.log("Game Started");
 
             bot.bringProcessToFront(GAME_PROCESS_NAME);
             bot.centerProcess(GAME_PROCESS_NAME);
@@ -63,12 +63,12 @@ namespace LeagueBot
             if (game.getSide() == SideEnum.Blue)
             {
                 CastTargetPoint = new Point(1084, 398);
-                bot.log("We are blue side!");
+                bot.log("We are blue side !");
             }
             else
             {
                 CastTargetPoint = new Point(644, 761);
-                bot.log("We are red side!");
+                bot.log("We are red side !");
             }
 
             game.player.upgradeSpellOnLevelUp();
@@ -190,6 +190,8 @@ namespace LeagueBot
 
 
             }
+
+            End();
         }
         private void OnDie()
         {
