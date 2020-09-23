@@ -12,5 +12,6 @@ namespace LeagueBot.Game.Enums
         Ok,
         GatekeeperRestricted,
         QueueNotEnabled,
+        InvalidLobby,
     }
 }

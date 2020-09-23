@@ -41,28 +41,21 @@ namespace LeagueBot.LCU
 
         public static void Initialize()
         {
-            try
+            using (var fileStream = new FileStream(@"C:\Riot Games\League of Legends\lockfile", FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
             {
-                using (var fileStream = new FileStream(@"C:\Riot Games\League of Legends\lockfile", FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+                using (var streamReader = new StreamReader(fileStream, Encoding.Default))
                 {
-                    using (var streamReader = new StreamReader(fileStream, Encoding.Default))
+                    string line;
+                    while ((line = streamReader.ReadLine()) != null)
                     {
-                        string line;
-                        while ((line = streamReader.ReadLine()) != null)
-                        {
-                            string[] lines = line.Split(':');
-                            Port = int.Parse(lines[2]);
-                            string riot_pass = lines[3];
-                            Auth = Convert.ToBase64String(Encoding.UTF8.GetBytes("riot:" + riot_pass));
-                        }
+                        string[] lines = line.Split(':');
+                        Port = int.Parse(lines[2]);
+                        string riot_pass = lines[3];
+                        Auth = Convert.ToBase64String(Encoding.UTF8.GetBytes("riot:" + riot_pass));
                     }
                 }
             }
-            catch
-            {
-                Console.Read();
-                Environment.Exit(0);
-            }
+
         }
 
         public static bool CreateLobby(QueueEnum queueId)
@@ -108,7 +101,9 @@ namespace LeagueBot.LCU
                         case "QUEUE_NOT_ENABLED":
                             result = SearchMatchResult.QueueNotEnabled;
                             break;
-
+                        case "INVALID_LOBBY":
+                            result = SearchMatchResult.InvalidLobby;
+                            break;
                         default:
                             Logger.Write("Unknown search match result : " + obj.message, MessageState.WARNING);
                             break;

@@ -10,29 +10,28 @@ namespace LeagueBot
 {
     public class StartCoop : PatternScript
     {
-        private static string[] Champions = new string[]
+        private static ChampionEnum[] Champions = new ChampionEnum[]
         {
-            "Veigar",
-            "Annie"
+            ChampionEnum.Veigar,
+            ChampionEnum.Annie,
         };
 
         private static QueueEnum QueueType = QueueEnum.BotIntermediate;
 
         public override void Execute()
         {
-            bot.initialize();
-         
             bot.log("Waiting for league client process...");
-        
+
             bot.waitProcessOpen(CLIENT_PROCESS_NAME);
             
+            bot.initialize();
+
             bot.bringProcessToFront(CLIENT_PROCESS_NAME);
             bot.centerProcess(CLIENT_PROCESS_NAME);
 
             while (!client.loadSummoner())
             {
                 bot.warn("Unable to load summoner. Retrying in 10 seconds.");
-
                 bot.wait(1000);
             }
 
@@ -46,21 +45,23 @@ namespace LeagueBot
 
             while (result != SearchMatchResult.Ok)
             {
-                result = client.searchMatch();
-
                 switch (result)
                 {
                     case SearchMatchResult.GatekeeperRestricted:
                        bot.warn("Cannot search match. Queue dodge timer. Retrying in 10 seconds.");
                        break;
                     case SearchMatchResult.QueueNotEnabled:
-                       bot.warn("Cannot search match. Recreating Queue. Retrying in 10 seconds.");
+                       client.createLobby(QueueType);
+                       bot.warn("Cannot search match. Creating lobby...");
                        break;
-                           
-              
+                    case SearchMatchResult.InvalidLobby:
+                       bot.warn("Cannot search match. Client not ready. Retrying in 10 seconds.");
+                       break;
                 }
-             
+
                 bot.wait(1000 * 10);
+
+                result = client.searchMatch();
             }
 
             
@@ -91,6 +92,11 @@ namespace LeagueBot
 
             while (!picked)
             {
+                if (championIndex > Champions.Length - 1)
+                {
+                    bot.warn("Unable to continue. No more champions to pick");
+                    return;
+                }
                 ChampionPickResult pickResult = client.pickChampion(Champions[championIndex]);
 
                 switch (pickResult)

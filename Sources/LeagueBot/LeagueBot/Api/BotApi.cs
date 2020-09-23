@@ -21,11 +21,15 @@ namespace LeagueBot.Api
         }
         public void log(object message)
         {
-            Logger.Write(message.ToString());
+            Logger.Write(message);
         }
         public void warn(object message)
         {
-            Logger.Write(message.ToString(), MessageState.WARNING);
+            Logger.Write(message, MessageState.WARNING);
+        }
+        public void error(object message)
+        {
+            Logger.Write(message, MessageState.ERROR);
         }
         public void wait(int ms)
         {

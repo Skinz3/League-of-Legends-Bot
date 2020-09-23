@@ -62,7 +62,8 @@ namespace LeagueBot.IO
             WriteColor2(" |    .-. .-.  .-...  . .-.   |--:  .-. |  ");
             WriteColor1(" |   (.-'(   )(   ||  |(.-'   |   )(   )|  ");
             WriteColor2(" '---'`--'`-'`-`-`|`--`-`--'  '--'  `-' `-'");
-            WriteColor2("               ._.'                       ");
+            WriteColor2("               ._.' ");
+            WriteColor2("> https://github.com/Skinz3");
             Console.WriteLine();
             Console.Title = Assembly.GetEntryAssembly().GetName().Name + " ("+Program.GameCount + " games)";
         }

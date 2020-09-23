@@ -63,7 +63,7 @@ namespace LeagueBot.DesignPattern
     {
         public static void Initialize(Assembly startupAssembly)
         {
-            Logger.WriteColor2("** Initialisation **");
+            Logger.WriteColor1("** Initialisation **");
 
             Stopwatch watch = Stopwatch.StartNew();
 
@@ -117,7 +117,7 @@ namespace LeagueBot.DesignPattern
                 }
             }
             watch.Stop();
-            Logger.WriteColor2("** Initialisation Complete (" + watch.Elapsed.Seconds + "s) **");
+            Logger.WriteColor1("** Initialisation Complete (" + watch.Elapsed.Seconds + "s) **");
         }
     }
 }

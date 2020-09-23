@@ -49,19 +49,9 @@ namespace LeagueBot.Api
             return ClientLCU.IsMatchFounded();
         }
 
-        public ChampionPickResult pickChampion(string name)
+        public ChampionPickResult pickChampion(ChampionEnum champion)
         {
-            ChampionEnum champion = ChampionEnum.None;
-
-            if (Enum.TryParse<ChampionEnum>(name, out champion) && champion != ChampionEnum.None)
-            {
-                return ClientLCU.PickChampion(summoner, champion);
-            }
-            else
-            {
-                return ChampionPickResult.InvalidChampion;
-            }
-
+            return ClientLCU.PickChampion(summoner, champion);
         }
         public bool isInChampSelect()
         {
