@@ -190,8 +190,6 @@ namespace LeagueBot
 
 
             }
-
-            End();
         }
         private void OnDie()
         {

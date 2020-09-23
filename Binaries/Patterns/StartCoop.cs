@@ -14,6 +14,7 @@ namespace LeagueBot
         {
             ChampionEnum.Veigar,
             ChampionEnum.Annie,
+            ChampionEnum.Ashe,
         };
 
         private static QueueEnum QueueType = QueueEnum.BotIntermediate;
@@ -83,7 +84,7 @@ namespace LeagueBot
 
             bot.log("Match founded.");
 
-            bot.wait(5000);
+            bot.wait(4000);
 
             bool picked = false;
 

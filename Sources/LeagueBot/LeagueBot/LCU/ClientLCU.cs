@@ -233,6 +233,8 @@ namespace LeagueBot.LCU
         {
             HttpRequest request = new HttpRequest();
             request.IgnoreProtocolErrors = true;
+            request.ConnectTimeout = 5000;
+            request.ReadWriteTimeout = 5000;
             request.CharacterSet = Encoding.UTF8;
             request.AddHeader("Authorization", "Basic " + Auth);
             return request;

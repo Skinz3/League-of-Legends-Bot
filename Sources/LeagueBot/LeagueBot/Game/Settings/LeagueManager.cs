@@ -146,7 +146,7 @@ namespace LeagueBot.Game.Settings
             file.Set("GameEvents", "evtUseItem1", "[q]");
             file.Set("GameEvents", "evtUseItem2", "[w]");
             file.Set("GameEvents", "evtUseItem3", "[e]");
-            //file.Set("General", "AutoAcquireTarget", "1");
+            
 
             file.Save();
 
