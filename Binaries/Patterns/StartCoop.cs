@@ -26,7 +26,6 @@ namespace LeagueBot
             
             bot.initialize();
 
-            bot.bringProcessToFront(CLIENT_PROCESS_NAME);
             bot.centerProcess(CLIENT_PROCESS_NAME);
 
             while (!client.loadSummoner())
@@ -102,7 +101,7 @@ namespace LeagueBot
                 switch (pickResult)
                 {
                     case ChampionPickResult.Ok:
-                        bot.log("We picked champion successfully.");
+                        bot.log(Champions[championIndex] + "picked successfully.");
                         picked = true;
                         break;
                     case ChampionPickResult.ChampionNotOwned:
