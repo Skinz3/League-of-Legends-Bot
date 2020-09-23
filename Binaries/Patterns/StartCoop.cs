@@ -75,7 +75,7 @@ namespace LeagueBot
 
             }
 
-            while (!client.isInChampSelect())
+            while (client.getGameflowPhase() != GameflowPhaseEnum.ChampSelect)
             {
                 client.acceptMatch();
                 bot.wait(1000);

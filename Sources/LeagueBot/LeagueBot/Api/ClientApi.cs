@@ -48,14 +48,14 @@ namespace LeagueBot.Api
         {
             return ClientLCU.IsMatchFounded();
         }
+        public GameflowPhaseEnum getGameflowPhase()
+        {
+            return ClientLCU.GetGameflowPhase();
+        }
 
         public ChampionPickResult pickChampion(ChampionEnum champion)
         {
             return ClientLCU.PickChampion(summoner, champion);
-        }
-        public bool isInChampSelect()
-        {
-            return ClientLCU.IsInChampSelect();
         }
 
         public void onGameEnd()

@@ -117,6 +117,15 @@ namespace LeagueBot.LCU
                 }
             }
         }
+        public static GameflowPhaseEnum GetGameflowPhase()
+        {
+            using (var request = CreateRequest())
+            {
+                var result = request.Get(Url + "lol-gameflow/v1/gameflow-phase").ToString();
+                result = Regex.Match(result, "\"(.*)\"").Groups[1].Value;
+                return (GameflowPhaseEnum)Enum.Parse(typeof(GameflowPhaseEnum), result);
+            }
+        }
         public static bool IsMatchFounded()
         {
             using (var request = CreateRequest())
@@ -148,20 +157,7 @@ namespace LeagueBot.LCU
                 request.Post(AcceptURL);
             }
         }
-        public static bool IsInChampSelect()
-        {
-            try
-            {
-                using (var request = CreateRequest())
-                {
-                    return request.Get(SessionURL).ToString().Contains("action");
-                }
-            }
-            catch
-            {
-                return false;
-            }
-        }
+
         public static bool CanPickChampion(ChampionEnum champion)
         {
             return GetPickableChampions().Contains((int)champion);
