@@ -28,13 +28,13 @@ namespace LeagueBot
 
             client.closeClient();
            
-            bot.wait(10 * 1000);
+            bot.wait(5 * 1000);
 
             bot.log("Opening client..");
 
             client.openClient();
 
-            bot.wait(10 * 1000);
+            bot.wait(25 * 1000);
 
             bot.executePattern("StartCoop");
         }
