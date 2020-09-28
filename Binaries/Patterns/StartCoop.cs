@@ -29,7 +29,9 @@ namespace LeagueBot
             
             bot.initialize();
 
-            bot.centerProcess(ClientProcessName);
+            bot.bringProcessToFront(ClientProcessName);
+            
+            bot.centerProcess(ClientProcessName);   
 
             while (!client.loadSummoner())
             {

@@ -20,7 +20,6 @@ namespace LeagueBot.Windows
         private static LowLevelKeyboardProc _proc = HookCallback;
         private static IntPtr _hookID = IntPtr.Zero;
 
-      //  [StartupInvoke(StartupInvokePriority.Initial)]
         public static void Init()
         {
             Task.Run(() =>
