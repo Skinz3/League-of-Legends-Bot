@@ -21,13 +21,15 @@ namespace LeagueBot
 
         public override void Execute()
         {
+            client.openClient();
+
             bot.log("Waiting for league client process...");
 
-            bot.waitProcessOpen(CLIENT_PROCESS_NAME);
+            bot.waitProcessOpen(ClientProcessName);
             
             bot.initialize();
 
-            bot.centerProcess(CLIENT_PROCESS_NAME);
+            bot.centerProcess(ClientProcessName);
 
             while (!client.loadSummoner())
             {
@@ -37,10 +39,14 @@ namespace LeagueBot
 
             bot.log("Summoner loaded "+ client.summoner.displayName);
 
+            bot.wait(3000);
+
             client.createLobby(QueueType);
 
             bot.log("Searching match...");
             
+            bot.wait(3000);
+
             SearchMatchResult result = client.searchMatch();
 
             while (result != SearchMatchResult.Ok)
@@ -48,18 +54,21 @@ namespace LeagueBot
                 switch (result)
                 {
                     case SearchMatchResult.GatekeeperRestricted:
-                       bot.warn("Cannot search match. Queue dodge timer. Retrying in 10 seconds.");
+                       bot.warn("Cannot search match. Queue dodge timer. Retrying in 20 seconds.");
+                       bot.wait(1000 * 20);
                        break;
                     case SearchMatchResult.QueueNotEnabled:
                        client.createLobby(QueueType);
                        bot.warn("Cannot search match. Creating lobby...");
+                       bot.wait(1000 * 10);
                        break;
                     case SearchMatchResult.InvalidLobby:
                        bot.warn("Cannot search match. Client not ready. Retrying in 10 seconds.");
+                        bot.wait(1000 * 10);
                        break;
                 }
 
-                bot.wait(1000 * 10);
+               
 
                 result = client.searchMatch();
             }
@@ -84,7 +93,7 @@ namespace LeagueBot
 
             bot.log("Match founded.");
 
-            bot.wait(4000);
+            bot.wait(5000);
 
             bool picked = false;
 

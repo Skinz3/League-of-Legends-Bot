@@ -8,7 +8,6 @@ namespace LeagueBot
 {
     public class EndCoop : PatternScript
     {
-        
         public override void Execute()
         {
             bot.initialize(); // scripts are isolated.
@@ -16,14 +15,27 @@ namespace LeagueBot
             bot.log("Match ended.");
 
             client.onGameEnd();
-            
-            bot.waitProcessOpen(CLIENT_PROCESS_NAME);
 
-            bot.bringProcessToFront(CLIENT_PROCESS_NAME);
-            bot.centerProcess(CLIENT_PROCESS_NAME);
+           
+            bot.wait(5 * 1000);
+
+            bot.waitProcessOpen(ClientProcessName);
+
+            bot.bringProcessToFront(ClientProcessName);
+            bot.centerProcess(ClientProcessName);
+
+            bot.log("Closing client...");
+
+            client.closeClient();
+           
+            bot.wait(10 * 1000);
+
+            bot.log("Opening client..");
+
+            client.openClient();
 
             bot.wait(10 * 1000);
-            
+
             bot.executePattern("StartCoop");
         }
     }

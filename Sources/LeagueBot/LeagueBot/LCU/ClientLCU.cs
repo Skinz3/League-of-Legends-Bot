@@ -3,13 +3,18 @@ using LeagueBot.Game;
 using LeagueBot.Game.Enums;
 using LeagueBot.IO;
 using LeagueBot.LCU.Protocol;
+using LeagueBot.Patterns;
+using LeagueBot.Windows;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Management;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace LeagueBot.LCU
@@ -22,7 +27,10 @@ namespace LeagueBot.LCU
 
         private static string Url => "https://127.0.0.1:" + Port + "/";
 
-        private static string CreateURL => Url + "lol-lobby/v2/lobby";
+        private static string LoginUrl => Url + "lol-login/v1/session";
+
+
+        private static string CreateLobbyURL => Url + "lol-lobby/v2/lobby";
         private static string SearchURL => Url + "lol-lobby/v2/lobby/matchmaking/search";
         private static string ReadyCheckURL => Url + "lol-matchmaking/v1/ready-check/";
 
@@ -36,7 +44,7 @@ namespace LeagueBot.LCU
         private static string GetHonorDataUrl => Url + "lol-honor-v2/v1/ballot";
 
         private static string PickableChampionsUrl => Url + "lol-champ-select/v1/pickable-champion-ids";
-        private static string RestartUXUrl => Url + "riotclient/kill-and-restart-ux";
+        private static string KillUXUrl => Url + "riotclient/kill-ux";
 
 
         public static void Initialize()
@@ -64,7 +72,7 @@ namespace LeagueBot.LCU
         {
             using (var request = CreateRequest())
             {
-                string response = request.Post(CreateURL, "{\"queueId\": " + (int)queueId + "}", "application/json").StatusCode.ToString();
+                string response = request.Post(CreateLobbyURL, "{\"queueId\": " + (int)queueId + "}", "application/json").StatusCode.ToString();
 
                 if (response == "OK")
                 {
@@ -175,28 +183,12 @@ namespace LeagueBot.LCU
         public static ChampionPickResult PickChampion(Summoner currentSummoner, ChampionEnum champion)
         {
             var session = ClientLCU.GetChampSelectSession();
-            var cellId = -1;
-            var id = -1;
-
-            foreach (var summoner in session.myTeam)
-            {
-                if (summoner.summonerId == currentSummoner.summonerId)
-                {
-                    cellId = summoner.cellId;
-                }
-
-            }
 
             foreach (var summoner in session.actions[0])
             {
                 if (summoner.championId == (int)champion)
                 {
                     return ChampionPickResult.ChampionPicked;
-                }
-
-                if (summoner.actorCellId == cellId)
-                {
-                    id = summoner.id;
                 }
             }
 
@@ -210,20 +202,38 @@ namespace LeagueBot.LCU
 
             int championId = (int)champion;
 
-            using (var request = CreateRequest())
+            for (int id = 0; id < 10; id++)
             {
-                var result = request.Patch(PickURL + id, "{\"actorCellId\": 0, \"championId\": " + championId + ", \"completed\": true, \"id\": " + id + ", \"isAllyAction\": true, \"type\": \"string\"}", "application/json").ToString();
-                return ChampionPickResult.Ok;
+                using (var request = CreateRequest())
+                {
+                    var result = request.Patch(PickURL + id, "{\"actorCellId\": 0, \"championId\": " + championId + ", \"completed\": true, \"id\": " + id + ", \"isAllyAction\": true, \"type\": \"string\"}", "application/json").ToString();
+                }
             }
+
+            return ChampionPickResult.Ok;
+
         }
 
-        public static void RestartClient()
+        public static void CloseClient()
         {
             using (var request = CreateRequest())
             {
-                request.Post(RestartUXUrl);
+                request.Post(KillUXUrl);
+            }
+
+            foreach (var process in Process.GetProcessesByName(PatternScript.ClientHostProcessName))
+            {
+                process.Kill();
             }
         }
+
+        public static void OpenClient()
+        {
+            ProcessStartInfo psi = new ProcessStartInfo();
+            psi.FileName = Path.Combine(Configuration.Instance.ClientPath, @"League of Legends\LeagueClient.exe");
+            Process.Start(psi);
+        }
+
 
         private static HttpRequest CreateRequest()
         {

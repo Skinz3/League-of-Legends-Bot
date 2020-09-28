@@ -80,7 +80,16 @@ namespace LeagueBot.Patterns
                 script.bot = new BotApi();
                 script.client = new ClientApi();
                 script.game = new GameApi();
-                script.Execute();
+
+                try
+                {
+                    script.Execute();
+                }
+                catch
+                {
+                    Logger.Write("Breaking pattern.", MessageState.WARNING);
+                    script.End();
+                }
             }
         }
         public static string ToString()

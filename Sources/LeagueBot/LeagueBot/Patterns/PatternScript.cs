@@ -9,9 +9,11 @@ namespace LeagueBot.Patterns
 {
     public abstract class PatternScript
     {
-        public const string CLIENT_PROCESS_NAME = "LeagueClientUX";
+        public const string ClientProcessName = "LeagueClientUX";
 
-        public const string GAME_PROCESS_NAME = "League of Legends";
+        public const string ClientHostProcessName = "LeagueClient";
+
+        public const string GameProcessName = "League of Legends";
 
         public BotApi bot
         {

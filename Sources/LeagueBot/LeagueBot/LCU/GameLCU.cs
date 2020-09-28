@@ -131,7 +131,7 @@ namespace LeagueBot.ApiHelpers
         /// <returns></returns>
         private static int GetPort()
         {
-            var processes = Process.GetProcessesByName(PatternScript.CLIENT_PROCESS_NAME);
+            var processes = Process.GetProcessesByName(PatternScript.ClientProcessName);
 
             using (var ns = new Process())
             {

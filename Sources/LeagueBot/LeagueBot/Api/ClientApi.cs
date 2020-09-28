@@ -27,6 +27,14 @@ namespace LeagueBot.Api
             get;
             private set;
         }
+        public void closeClient()
+        {
+            ClientLCU.CloseClient();
+        }
+        public void openClient()
+        {
+            ClientLCU.OpenClient();
+        }
         public bool loadSummoner()
         {
             this.summoner = ClientLCU.GetCurrentSummoner();

@@ -40,23 +40,23 @@ namespace LeagueBot
         {
             bot.log("Waiting for league of legends process...");
 
-            bot.waitProcessOpen(GAME_PROCESS_NAME); // 120 seconds timeout
+            bot.waitProcessOpen(GameProcessName); // 120 seconds timeout
 
-            bot.waitUntilProcessBounds(GAME_PROCESS_NAME, 1030, 797);
+            bot.waitUntilProcessBounds(GameProcessName, 1030, 797);
 
             bot.wait(200);
 
             bot.log("Waiting for game to load.");
 
-            bot.bringProcessToFront(GAME_PROCESS_NAME);
-            bot.centerProcess(GAME_PROCESS_NAME);
+            bot.bringProcessToFront(GameProcessName);
+            bot.centerProcess(GameProcessName);
 
             game.waitUntilGameStart();
 
             bot.log("Game Started");
 
-            bot.bringProcessToFront(GAME_PROCESS_NAME);
-            bot.centerProcess(GAME_PROCESS_NAME);
+            bot.bringProcessToFront(GameProcessName);
+            bot.centerProcess(GameProcessName);
 
             bot.wait(3000);
 
@@ -75,19 +75,9 @@ namespace LeagueBot
 
             BuyItems();
 
-            try
-            {
-                GameLoop();
-            }
-            catch
-            {
-                bot.warn("GameLoop was breaked, ending game.");
-                End();
-            }
-            finally
-            {
-                End();
-            }
+            GameLoop();
+
+            End();
         }
         private void BuyItems()
         {
@@ -129,11 +119,11 @@ namespace LeagueBot
 
             bool isRecalling = false;
 
-            while (bot.isProcessOpen(GAME_PROCESS_NAME))
+            while (bot.isProcessOpen(GameProcessName))
             {
-                bot.bringProcessToFront(GAME_PROCESS_NAME);
+                bot.bringProcessToFront(GameProcessName);
 
-                bot.centerProcess(GAME_PROCESS_NAME);
+                bot.centerProcess(GameProcessName);
 
                 int newLevel = game.player.getLevel();
 
