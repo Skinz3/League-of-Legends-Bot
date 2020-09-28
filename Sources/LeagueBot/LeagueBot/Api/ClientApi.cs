@@ -69,7 +69,7 @@ namespace LeagueBot.Api
         }
         public bool isMatchFound()
         {
-            return ClientLCU.IsMatchFounded();
+            return ClientLCU.IsMatchFound();
         }
         public GameflowPhaseEnum getGameflowPhase()
         {

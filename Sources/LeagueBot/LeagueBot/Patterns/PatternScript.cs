@@ -15,6 +15,8 @@ namespace LeagueBot.Patterns
 
         public const string GameProcessName = "League of Legends";
 
+        public const string ClientExecutablePath = @"League of Legends\LeagueClient.exe";
+
         public virtual bool ThrowException => true;
 
         public BotApi bot

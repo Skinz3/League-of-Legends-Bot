@@ -34,7 +34,6 @@ namespace LeagueBot.LCU
 
 
         private static string SearchURL => Url + "lol-lobby/v2/lobby/matchmaking/search";
-        private static string ReadyCheckURL => Url + "lol-matchmaking/v1/ready-check/";
 
         private static string AcceptURL => Url + "lol-matchmaking/v1/ready-check/accept";
 
@@ -50,6 +49,11 @@ namespace LeagueBot.LCU
         private static string PickableChampionsUrl => Url + "lol-champ-select/v1/pickable-champion-ids";
         private static string KillUXUrl => Url + "riotclient/kill-ux";
 
+        private static string GameflowAvailabilityUrl => Url + "lol-gameflow/v1/availability";
+
+        private static string GameflowPhaseUrl => Url + "lol-gameflow/v1/gameflow-phase";
+
+        private static string CurrentSummonerUrl => Url + "lol-summoner/v1/current-summoner";
 
         public static void Initialize()
         {
@@ -83,7 +87,7 @@ namespace LeagueBot.LCU
 
                 try
                 {
-                    var response = request.Get(Url + "lol-gameflow/v1/availability");
+                    var response = request.Get(GameflowAvailabilityUrl);
 
                     if (response.StatusCode == HttpStatusCode.OK)
                     {
@@ -152,7 +156,6 @@ namespace LeagueBot.LCU
                             break;
                     }
 
-
                     return result;
 
                 }
@@ -162,24 +165,20 @@ namespace LeagueBot.LCU
         {
             using (var request = CreateRequest())
             {
-                var result = request.Get(Url + "lol-gameflow/v1/gameflow-phase").ToString();
+                var result = request.Get(GameflowPhaseUrl).ToString();
                 result = Regex.Match(result, "\"(.*)\"").Groups[1].Value;
                 return (GameflowPhaseEnum)Enum.Parse(typeof(GameflowPhaseEnum), result);
             }
         }
-        public static bool IsMatchFounded()
+        public static bool IsMatchFound()
         {
-            using (var request = CreateRequest())
-            {
-                var result = request.Get(ReadyCheckURL).ToString();
-                return result.Contains("InProgress");
-            }
+            return GetGameflowPhase() == GameflowPhaseEnum.ReadyCheck;
         }
         public static Summoner GetCurrentSummoner()
         {
             using (var request = CreateRequest())
             {
-                var result = request.Get(Url + "lol-summoner/v1/current-summoner").ToString();
+                var result = request.Get(CurrentSummonerUrl).ToString();
                 return JsonConvert.DeserializeObject<Summoner>(result);
             }
         }
@@ -187,7 +186,7 @@ namespace LeagueBot.LCU
         {
             using (var request = CreateRequest())
             {
-                var result = request.Get(Url + "lol-champ-select/v1/session").ToString();
+                var result = request.Get(SessionURL).ToString();
                 return JsonConvert.DeserializeObject(result);
             }
         }
@@ -235,7 +234,7 @@ namespace LeagueBot.LCU
 
             int championId = (int)champion;
 
-            for (int id = 0; id < 10; id++)
+            for (int id = 0; id < 10; id++) // <-- clean this. What is 'id' ?
             {
                 using (var request = CreateRequest())
                 {
@@ -262,12 +261,8 @@ namespace LeagueBot.LCU
 
         public static void OpenClient()
         {
-            if (Process.GetProcessesByName("LeagueClient").Length > 0)
-            {
-                return;
-            }
             ProcessStartInfo psi = new ProcessStartInfo();
-            psi.FileName = Path.Combine(Configuration.Instance.ClientPath, @"League of Legends\LeagueClient.exe");
+            psi.FileName = Path.Combine(Configuration.Instance.ClientPath, PatternScript.ClientExecutablePath);
             Process.Start(psi);
         }
 
