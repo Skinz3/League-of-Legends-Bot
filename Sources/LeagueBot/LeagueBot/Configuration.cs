@@ -3,9 +3,12 @@ using LeagueBot.IO;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Forms;
 using MessageBox = System.Windows.MessageBox;
@@ -28,49 +31,22 @@ namespace LeagueBot
             get;
             set;
         }
+
         [StartupInvoke("Config", StartupInvokePriority.Initial)]
-        public static bool LoadConfig()
+        public static void LoadConfig()
         {
             if (!Initialize())
             {
-                string path = DEFAULT_LEAGUE_PATH;
-
-                if (!Directory.Exists(path))
-                {
-                    var result = MessageBox.Show("Please select the league of legends 'Riot Game' folder.", "Hello", MessageBoxButton.OKCancel, MessageBoxImage.Asterisk);
-
-                    if (result == MessageBoxResult.Cancel)
-                    {
-                        Environment.Exit(0);
-                        return false;
-                    }
-                    FolderBrowserDialog folderOpen = new FolderBrowserDialog();
-                    folderOpen.Description = "Please select the league of legends 'Riot Game' folder.";
-
-                    if (folderOpen.ShowDialog() == DialogResult.OK)
-                    {
-                        path = folderOpen.SelectedPath;
-                        string dirName = new DirectoryInfo(path).Name;
-
-                        if (!Directory.Exists(path) || dirName != "Riot Games")
-                        {
-                            MessageBox.Show("Invalid Directory.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
-                            return LoadConfig();
-                        }
-                    }
-                    else
-                        return LoadConfig();
-
-                }
-
-                CreateConfig(path);
-                return true;
-
+                CreateConfig(DEFAULT_LEAGUE_PATH);
             }
-            else
+
+            if (!Directory.Exists(Instance.ClientPath))
             {
-                return true;
+                var result = MessageBox.Show("Please edit " + CONFIG_PATH + " to locate your 'Riot Games' folder.", "Configuration", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                Process.Start(CONFIG_PATH);
+                Environment.Exit(0);
             }
+
         }
 
         private static bool Initialize()
