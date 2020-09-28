@@ -15,10 +15,6 @@ namespace LeagueBot.Api
 {
     public class BotApi : IApi
     {
-        public void initialize()
-        {
-            ClientLCU.Initialize();
-        }
         public void log(object message)
         {
             Logger.Write(message);

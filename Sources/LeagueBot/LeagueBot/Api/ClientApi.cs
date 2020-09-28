@@ -27,6 +27,21 @@ namespace LeagueBot.Api
             get;
             private set;
         }
+        public void initialize()
+        {
+            ClientLCU.Initialize();
+        }
+        public void waitClientReady()
+        {
+            while (true)
+            {
+                if (ClientLCU.IsApiReady())
+                {
+                    break;
+                }
+                Thread.Sleep(2000);
+            }
+        }
         public void closeClient()
         {
             ClientLCU.CloseClient();

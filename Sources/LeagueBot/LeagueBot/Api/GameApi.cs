@@ -78,7 +78,7 @@ namespace LeagueBot.Api
                 {
                     break;
                 }
-                Application.DoEvents();
+           
                 Thread.Sleep(2000);
             }
 

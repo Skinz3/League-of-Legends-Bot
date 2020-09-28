@@ -10,19 +10,15 @@ namespace LeagueBot
     {
         public override void Execute()
         {
-            bot.initialize(); // scripts are isolated.
+            client.initialize(); // scripts are isolated. 
 
             bot.log("Match ended.");
 
             client.onGameEnd();
 
-           
             bot.wait(5 * 1000);
 
             bot.waitProcessOpen(ClientProcessName);
-
-            bot.bringProcessToFront(ClientProcessName);
-            bot.centerProcess(ClientProcessName);
 
             bot.log("Closing client...");
 
@@ -34,7 +30,7 @@ namespace LeagueBot
 
             client.openClient();
 
-            bot.wait(25 * 1000);
+            bot.waitProcessOpen(ClientProcessName);
 
             bot.executePattern("StartCoop");
         }

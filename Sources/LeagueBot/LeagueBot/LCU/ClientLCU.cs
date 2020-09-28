@@ -31,10 +31,14 @@ namespace LeagueBot.LCU
 
 
         private static string CreateLobbyURL => Url + "lol-lobby/v2/lobby";
+
+
         private static string SearchURL => Url + "lol-lobby/v2/lobby/matchmaking/search";
         private static string ReadyCheckURL => Url + "lol-matchmaking/v1/ready-check/";
 
         private static string AcceptURL => Url + "lol-matchmaking/v1/ready-check/accept";
+
+
         private static string PickURL => Url + "lol-champ-select/v1/session/actions/";
         private static string SessionURL => Url + "lol-champ-select/v1/session";
 
@@ -66,6 +70,35 @@ namespace LeagueBot.LCU
                 }
             }
 
+        }
+        public static bool IsApiReady()
+        {
+            using (HttpRequest request = new HttpRequest())
+            {
+                request.IgnoreProtocolErrors = true;
+                request.ConnectTimeout = 5000;
+                request.ReadWriteTimeout = 5000;
+                request.CharacterSet = Encoding.UTF8;
+                request.AddHeader("Authorization", "Basic " + Auth);
+
+                try
+                {
+                    var response = request.Get(Url + "lol-gameflow/v1/availability");
+
+                    if (response.StatusCode == HttpStatusCode.OK)
+                    {
+                        dynamic obj = JsonConvert.DeserializeObject(response.ToString());
+                        bool ready = obj.isAvailable;
+                        return ready;
+                    }
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+
+            return false;
         }
 
         public static bool CreateLobby(QueueEnum queueId)
@@ -229,6 +262,10 @@ namespace LeagueBot.LCU
 
         public static void OpenClient()
         {
+            if (Process.GetProcessesByName("LeagueClient").Length > 0)
+            {
+                return;
+            }
             ProcessStartInfo psi = new ProcessStartInfo();
             psi.FileName = Path.Combine(Configuration.Instance.ClientPath, @"League of Legends\LeagueClient.exe");
             Process.Start(psi);

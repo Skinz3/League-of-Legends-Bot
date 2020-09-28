@@ -26,12 +26,16 @@ namespace LeagueBot
             bot.log("Waiting for league client process...");
 
             bot.waitProcessOpen(ClientProcessName);
-            
-            bot.initialize();
 
             bot.bringProcessToFront(ClientProcessName);
             
             bot.centerProcess(ClientProcessName);   
+
+            client.initialize(); // read current league process informations
+
+            bot.log("Waiting for league client to be ready...");
+
+            client.waitClientReady(); 
 
             while (!client.loadSummoner())
             {
