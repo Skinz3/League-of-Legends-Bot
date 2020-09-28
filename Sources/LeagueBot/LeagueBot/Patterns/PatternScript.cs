@@ -15,6 +15,8 @@ namespace LeagueBot.Patterns
 
         public const string GameProcessName = "League of Legends";
 
+        public virtual bool ThrowException => true;
+
         public BotApi bot
         {
             protected get;

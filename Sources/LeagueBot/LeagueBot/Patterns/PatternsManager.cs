@@ -81,14 +81,22 @@ namespace LeagueBot.Patterns
                 script.client = new ClientApi();
                 script.game = new GameApi();
 
-                try
+                Logger.Write("Pattern : " + name, MessageState.IMPORTANT_INFO);
+
+                if (script.ThrowException)
+                {
+                    try
+                    {
+                        script.Execute();
+                    }
+                    catch
+                    {
+                        script.End();
+                    }
+                }
+                else
                 {
                     script.Execute();
-                }
-                catch
-                {
-                    Logger.Write("Breaking pattern.", MessageState.WARNING);
-                    script.End();
                 }
             }
         }

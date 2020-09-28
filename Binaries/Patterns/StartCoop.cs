@@ -52,7 +52,7 @@ namespace LeagueBot
             SearchMatchResult result = client.searchMatch();
 
             while (result != SearchMatchResult.Ok)
-            {
+            {   
                 switch (result)
                 {
                     case SearchMatchResult.GatekeeperRestricted:

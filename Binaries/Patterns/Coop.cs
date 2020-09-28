@@ -10,6 +10,7 @@ namespace LeagueBot
 {
     public class Coop : PatternScript
     {
+
         private Point CastTargetPoint
         {
             get;
@@ -35,6 +36,14 @@ namespace LeagueBot
             new Item("Needlessly Large Rod",1250),
             new Item("Rabadon's Deathcap",1100), 
         };
+
+        public override bool ThrowException 
+        {
+            get
+            {
+                return false;
+            }
+        }
 
         public override void Execute()
         {
