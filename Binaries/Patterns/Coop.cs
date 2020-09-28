@@ -86,7 +86,7 @@ namespace LeagueBot
 
             GameLoop();
 
-            End();
+            this.End();
         }
         private void BuyItems()
         {

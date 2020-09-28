@@ -81,21 +81,23 @@ namespace LeagueBot.Patterns
                 script.client = new ClientApi();
                 script.game = new GameApi();
 
-                Logger.Write("Pattern : " + name, MessageState.IMPORTANT_INFO);
 
-                if (script.ThrowException)
+                if (!script.ThrowException)
                 {
                     try
                     {
+                        Logger.Write("Pattern : " + name + " (safe)", MessageState.IMPORTANT_INFO);
                         script.Execute();
                     }
                     catch
                     {
+                        Logger.Write("Pattern : " + name + " stopped. Ending...", MessageState.IMPORTANT_INFO);
                         script.End();
                     }
                 }
                 else
                 {
+                    Logger.Write("Pattern : " + name, MessageState.IMPORTANT_INFO);
                     script.Execute();
                 }
             }
