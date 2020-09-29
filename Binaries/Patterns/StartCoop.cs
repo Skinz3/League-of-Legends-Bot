@@ -17,8 +17,9 @@ namespace LeagueBot
             ChampionEnum.Amumu,
         };
 
-        private static QueueEnum QueueType = QueueEnum.BotIntermediate;
+        private static QueueEnum QueueType = QueueEnum.BotIntro;
 
+        
         public override void Execute()
         {
             client.openClient();
@@ -49,6 +50,14 @@ namespace LeagueBot
 
             client.createLobby(QueueType);
 
+           
+
+            ProcessMatch();
+        
+
+        }
+        private void ProcessMatch()
+        {
             bot.log("Searching match...");
             
             bot.wait(3000);
@@ -78,8 +87,6 @@ namespace LeagueBot
 
                 result = client.searchMatch();
             }
-
-            
 
             bool isMatchFound = false;
 
@@ -133,11 +140,25 @@ namespace LeagueBot
                 championIndex++;
 
                 bot.wait(1000);
+            }
 
+            bot.log("Waiting....");
+
+            GameflowPhaseEnum currentPhase = client.getGameflowPhase();
+
+            while (currentPhase != GameflowPhaseEnum.InProgress)
+            {
+                if (currentPhase != GameflowPhaseEnum.ChampSelect)
+                {
+                    bot.warn("Game was dodged, finding match....");
+                    ProcessMatch();
+                    return;
+                }
+                bot.wait(1000);
+                currentPhase = client.getGameflowPhase();
             }
 
             bot.executePattern("Coop");
-            
         }
     }
 }

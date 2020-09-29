@@ -1,5 +1,6 @@
 ﻿using Leaf.xNet;
 using LeagueBot.Game.Enums;
+using LeagueBot.IO;
 using LeagueBot.Patterns;
 using LeagueBot.Utils;
 using Newtonsoft.Json;
@@ -28,22 +29,30 @@ namespace LeagueBot.ApiHelpers
 
         public static bool IsApiReady()
         {
-            using (HttpRequest request = new HttpRequest())
+            try
             {
-                request.CharacterSet = Encoding.UTF8;
-                request.IgnoreProtocolErrors = true;
-                request.ConnectTimeout = 5000;
-                request.ReadWriteTimeout = 5000;
-
-                var response = request.Get(ApiUrl + "/playerlist");
-
-                if (response.StatusCode == HttpStatusCode.OK)
+                using (HttpRequest request = new HttpRequest())
                 {
-                    return true;
-                }
-            }
+                    request.CharacterSet = Encoding.UTF8;
+                    request.IgnoreProtocolErrors = true;
+                    request.ConnectTimeout = 5000;
+                    request.ReadWriteTimeout = 5000;
 
-            return false;
+                    var response = request.Get(ApiUrl + "/playerlist");
+
+                    if (response.StatusCode == HttpStatusCode.OK)
+                    {
+                        return true;
+                    }
+                }
+
+                return false;
+            }
+            catch
+            {
+                Logger.Write("Unable to communicate with LCU Api...", MessageState.WARNING);
+                return false;
+            }
         }
 
         public static bool IsPlayerDead()

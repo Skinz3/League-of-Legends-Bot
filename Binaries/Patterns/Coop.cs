@@ -49,7 +49,7 @@ namespace LeagueBot
         {
             bot.log("Waiting for league of legends process...");
 
-            bot.waitProcessOpen(GameProcessName); // 120 seconds timeout
+            bot.waitProcessOpen(GameProcessName); 
 
             bot.waitUntilProcessBounds(GameProcessName, 1030, 797);
 

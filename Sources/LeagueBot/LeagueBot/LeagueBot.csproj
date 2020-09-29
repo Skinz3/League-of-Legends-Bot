@@ -79,6 +79,7 @@
     <Compile Include="Images\ImageRecognition.cs" />
     <Compile Include="Utils\DirectBitmap.cs" />
     <Compile Include="Utils\FastBitmap.cs" />
+    <Compile Include="Utils\LogFile.cs" />
     <Compile Include="Windows\ApplicationCapture.cs" />
     <Compile Include="Windows\Interop.cs" />
     <Compile Include="Program.cs" />

@@ -1,6 +1,7 @@
 ﻿using LeagueBot.Api;
 using LeagueBot.DesignPattern;
 using LeagueBot.IO;
+using LeagueBot.Utils;
 using LeagueBot.Windows;
 using Microsoft.CSharp;
 using System;
@@ -89,8 +90,9 @@ namespace LeagueBot.Patterns
                         Logger.Write("Pattern : " + name + " (safe)", MessageState.IMPORTANT_INFO);
                         script.Execute();
                     }
-                    catch
+                    catch (Exception ex)
                     {
+                        LogFile.Log(ex);
                         Logger.Write("Pattern : " + name + " stopped. Ending...", MessageState.IMPORTANT_INFO);
                         script.End();
                     }
