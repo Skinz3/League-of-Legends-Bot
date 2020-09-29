@@ -29,9 +29,9 @@
 ## Installation
 
    Requirements :
-   * League Of Legends client in english
-   * a League of legends account
-   * a monitor with a **1920 * 1080** screen resolution.
+   * Actual League Of Legends client
+   * A League of legends account
+   * A monitor with a **1920 * 1080** screen resolution.
    * .NET framework 4.7 installed on computer.
 
    Before launch the bot, you need to follow setup instructions bellow : 
