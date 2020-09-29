@@ -31,22 +31,61 @@ namespace LeagueBot
             get;
             set;
         }
-
         [StartupInvoke("Config", StartupInvokePriority.Initial)]
-        public static void LoadConfig()
+        public static void InitCall()
+        {
+            ThreadStart threadStart = new ThreadStart(() =>
+            {
+                Load();
+            });
+
+            Thread thread = new Thread(threadStart);
+            thread.SetApartmentState(ApartmentState.STA);
+            thread.Start();
+            thread.Join();
+        }
+        private static bool Load()
         {
             if (!Initialize())
             {
-                CreateConfig(DEFAULT_LEAGUE_PATH);
-            }
+                string path = DEFAULT_LEAGUE_PATH;
 
-            if (!Directory.Exists(Instance.ClientPath))
+                if (!Directory.Exists(path))
+                {
+                    var result = MessageBox.Show("Please select the league of legends 'Riot Game' folder.", "Hello", MessageBoxButton.OKCancel, MessageBoxImage.Asterisk);
+
+                    if (result == MessageBoxResult.Cancel)
+                    {
+                        Environment.Exit(0);
+                        return false;
+                    }
+                    FolderBrowserDialog folderOpen = new FolderBrowserDialog();
+                    folderOpen.Description = "Please select the league of legends 'Riot Game' folder.";
+
+                    if (folderOpen.ShowDialog() == DialogResult.OK)
+                    {
+                        path = folderOpen.SelectedPath;
+                        string dirName = new DirectoryInfo(path).Name;
+
+                        if (!Directory.Exists(path) || dirName != "Riot Games")
+                        {
+                            MessageBox.Show("Invalid Directory.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            return Load();
+                        }
+                    }
+                    else
+                        return Load();
+
+                }
+
+                CreateConfig(path);
+                return true;
+
+            }
+            else
             {
-                var result = MessageBox.Show("Please edit " + CONFIG_PATH + " to locate your 'Riot Games' folder.", "Configuration", MessageBoxButton.OK, MessageBoxImage.Asterisk);
-                Process.Start(CONFIG_PATH);
-                Environment.Exit(0);
+                return true;
             }
-
         }
 
         private static bool Initialize()
@@ -84,12 +123,6 @@ namespace LeagueBot
         public static void Save()
         {
             File.WriteAllText(CONFIG_PATH, Json.Serialize(Instance));
-        }
-
-        private static bool IsValidDofusPath(string path)
-        {
-            string combined = Path.Combine(path, @"content/maps");
-            return Directory.Exists(combined);
         }
     }
 }

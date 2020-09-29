@@ -92,7 +92,7 @@ namespace LeagueBot.Patterns
                     }
                     catch (Exception ex)
                     {
-                        LogFile.Log(ex);
+                        LogFile.Log(name + " " + ex);
                         Logger.Write("Pattern : " + name + " stopped. Ending...", MessageState.IMPORTANT_INFO);
                         script.End();
                     }

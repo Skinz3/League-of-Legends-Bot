@@ -35,8 +35,8 @@ namespace LeagueBot.ApiHelpers
                 {
                     request.CharacterSet = Encoding.UTF8;
                     request.IgnoreProtocolErrors = true;
-                    request.ConnectTimeout = 5000;
-                    request.ReadWriteTimeout = 5000;
+                    request.ConnectTimeout = 10000;
+                    request.ReadWriteTimeout = 10000;
 
                     var response = request.Get(ApiUrl + "/playerlist");
 

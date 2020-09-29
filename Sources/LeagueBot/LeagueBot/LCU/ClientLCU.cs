@@ -248,14 +248,20 @@ namespace LeagueBot.LCU
 
         public static void CloseClient()
         {
-            using (var request = CreateRequest())
+            try
             {
-                request.Post(KillUXUrl);
+                using (var request = CreateRequest())
+                {
+                    request.Post(KillUXUrl);
+                }
             }
-
-            foreach (var process in Process.GetProcessesByName(PatternScript.ClientHostProcessName))
+            finally
             {
-                process.Kill();
+
+                foreach (var process in Process.GetProcessesByName(PatternScript.ClientHostProcessName))
+                {
+                    process.Kill();
+                }
             }
         }
 
@@ -271,8 +277,8 @@ namespace LeagueBot.LCU
         {
             HttpRequest request = new HttpRequest();
             request.IgnoreProtocolErrors = true;
-            request.ConnectTimeout = 5000;
-            request.ReadWriteTimeout = 5000;
+            request.ConnectTimeout = 10000;
+            request.ReadWriteTimeout = 10000;
             request.CharacterSet = Encoding.UTF8;
             request.AddHeader("Authorization", "Basic " + Auth);
             return request;
