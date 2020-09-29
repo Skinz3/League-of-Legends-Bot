@@ -17,10 +17,6 @@ namespace LeagueBot
 {
     public class Configuration
     {
-        public const string DEFAULT_LEAGUE_PATH = @"C:\Riot Games";
-
-        public const string CONFIG_PATH = "config.json";
-
         public static Configuration Instance
         {
             get;
@@ -48,7 +44,7 @@ namespace LeagueBot
         {
             if (!Initialize())
             {
-                string path = DEFAULT_LEAGUE_PATH;
+                string path = Constants.DefaultLeaguePath;
 
                 if (!Directory.Exists(path))
                 {
@@ -90,16 +86,16 @@ namespace LeagueBot
 
         private static bool Initialize()
         {
-            if (File.Exists(CONFIG_PATH))
+            if (File.Exists(Constants.ConfigPath))
             {
                 try
                 {
-                    Instance = Json.Deserialize<Configuration>(File.ReadAllText(CONFIG_PATH));
+                    Instance = Json.Deserialize<Configuration>(File.ReadAllText(Constants.ConfigPath));
                     return true;
                 }
                 catch
                 {
-                    File.Delete(CONFIG_PATH);
+                    File.Delete(Constants.ConfigPath);
                     return false;
                 }
 
@@ -122,7 +118,7 @@ namespace LeagueBot
         }
         public static void Save()
         {
-            File.WriteAllText(CONFIG_PATH, Json.Serialize(Instance));
+            File.WriteAllText(Constants.ConfigPath, Json.Serialize(Instance));
         }
     }
 }

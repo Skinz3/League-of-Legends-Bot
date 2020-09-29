@@ -26,11 +26,11 @@ namespace LeagueBot
 
             bot.log("Waiting for league client process...");
 
-            bot.waitProcessOpen(ClientProcessName);
+            bot.waitProcessOpen(Constants.ClientProcessName);
 
-            bot.bringProcessToFront(ClientProcessName);
+            bot.bringProcessToFront(Constants.ClientProcessName);
             
-            bot.centerProcess(ClientProcessName);   
+            bot.centerProcess(Constants.ClientProcessName);   
 
             client.initialize(); // read current league process informations
 
@@ -150,7 +150,7 @@ namespace LeagueBot
             {
                 if (currentPhase != GameflowPhaseEnum.ChampSelect)
                 {
-                    bot.warn("Game was dodged, finding match....");
+                    bot.log("Game was dodged, finding match....");
                     ProcessMatch();
                     return;
                 }

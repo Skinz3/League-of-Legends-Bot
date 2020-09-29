@@ -18,7 +18,7 @@ namespace LeagueBot
 
             bot.wait(5 * 1000);
 
-            bot.waitProcessOpen(ClientProcessName);
+            bot.waitProcessOpen(Constants.ClientProcessName);
 
             bot.log("Closing client...");
 
@@ -30,7 +30,7 @@ namespace LeagueBot
 
             client.openClient();
 
-            bot.waitProcessOpen(ClientProcessName);
+            bot.waitProcessOpen(Constants.ClientProcessName);
 
             bot.executePattern("StartCoop");
         }

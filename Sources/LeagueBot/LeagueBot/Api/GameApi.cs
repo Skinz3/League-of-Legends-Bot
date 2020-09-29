@@ -3,7 +3,6 @@ using LeagueBot.ApiHelpers;
 using LeagueBot.Game.Entities;
 using LeagueBot.Game.Enums;
 using LeagueBot.Game.Misc;
-using LeagueBot.Image;
 using LeagueBot.IO;
 using LeagueBot.Utils;
 using LeagueBot.Windows;

@@ -17,9 +17,7 @@ namespace LeagueBot.ApiHelpers
 {
     public class GameLCU
     {
-        private static int ApiPort = 2999;
-
-        public static string ApiUrl = "https://127.0.0.1:" + ApiPort + "/liveclientdata";
+        public static string ApiUrl = "https://127.0.0.1:" + Constants.GameApiPort + "/liveclientdata";
 
         public static string ActivePlayerUrl = ApiUrl + "/activeplayer";
 
@@ -35,8 +33,8 @@ namespace LeagueBot.ApiHelpers
                 {
                     request.CharacterSet = Encoding.UTF8;
                     request.IgnoreProtocolErrors = true;
-                    request.ConnectTimeout = 10000;
-                    request.ReadWriteTimeout = 10000;
+                    request.ConnectTimeout = Constants.HttpRequestTimeout;
+                    request.ReadWriteTimeout = Constants.HttpRequestTimeout;
 
                     var response = request.Get(ApiUrl + "/playerlist");
 
@@ -140,7 +138,7 @@ namespace LeagueBot.ApiHelpers
         /// <returns></returns>
         private static int GetPort()
         {
-            var processes = Process.GetProcessesByName(PatternScript.ClientProcessName);
+            var processes = Process.GetProcessesByName(Constants.ClientProcessName);
 
             using (var ns = new Process())
             {
@@ -176,8 +174,8 @@ namespace LeagueBot.ApiHelpers
             {
                 request.IgnoreProtocolErrors = true;
                 request.CharacterSet = Encoding.UTF8;
-                request.ConnectTimeout = 5000;
-                request.ReadWriteTimeout = 5000;
+                request.ConnectTimeout = Constants.HttpRequestTimeout;
+                request.ReadWriteTimeout = Constants.HttpRequestTimeout;
                 return request.Get(url).ToString();
             }
         }

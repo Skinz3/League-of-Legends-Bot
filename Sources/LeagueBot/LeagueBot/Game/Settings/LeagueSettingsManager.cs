@@ -11,25 +11,16 @@ using System.Threading.Tasks;
 
 namespace LeagueBot.Game.Settings
 {
-    class LeagueManager
+    public class LeagueSettingsManager
     {
-        const string CONFIG_PATH = @"League of Legends\Config\game.cfg";
-
-        const string KEYCONFIG_PATH = @"League of Legends\Config\input.ini";
-
-        const string PERSISTED_CONFIG_PATH = @"League of Legends\Config\PersistedSettings.json";
-
-        public const int LEAGUE_WIDTH = 1024;
-        public const int LEAGUE_HEIGTH = 768;
-
         [StartupInvoke("League settings", StartupInvokePriority.FourthPass, false)]
         public static void ApplySettings()
         {
-            CFGFile config = new CFGFile(Path.Combine(Configuration.Instance.ClientPath, CONFIG_PATH));
+            CFGFile config = new CFGFile(Path.Combine(Configuration.Instance.ClientPath, Constants.LeagueGameconfigPath));
 
             config.Set("General", "WindowMode", "1");
-            config.Set("General", "Width", LEAGUE_WIDTH.ToString());
-            config.Set("General", "Height", LEAGUE_HEIGTH.ToString());
+            config.Set("General", "Width", Constants.GameWidth.ToString());
+            config.Set("General", "Height", Constants.GameHeigth.ToString());
             config.Set("General", "Colors", "32");
             config.Set("General", "RelativeTeamColors", "1");
             config.Set("General", "UserSetResolution", "1");
@@ -127,7 +118,7 @@ namespace LeagueBot.Game.Settings
 
             Logger.Write("League of legends settings applied.", MessageState.INFO2);
 
-            CFGFile file = new CFGFile(Path.Combine(Configuration.Instance.ClientPath, KEYCONFIG_PATH));
+            CFGFile file = new CFGFile(Path.Combine(Configuration.Instance.ClientPath, Constants.LeagueKeyconfigPath));
 
 
             file.Set("GameEvents", "evtSelectSelf", "[F1]");
@@ -146,11 +137,11 @@ namespace LeagueBot.Game.Settings
             file.Set("GameEvents", "evtUseItem1", "[q]");
             file.Set("GameEvents", "evtUseItem2", "[w]");
             file.Set("GameEvents", "evtUseItem3", "[e]");
-            
+
 
             file.Save();
 
-            string target = Path.Combine(Configuration.Instance.ClientPath, PERSISTED_CONFIG_PATH);
+            string target = Path.Combine(Configuration.Instance.ClientPath, Constants.LeaguePersistedSettingsPath);
 
             File.Copy("PersistedSettings.json", target, true);
         }

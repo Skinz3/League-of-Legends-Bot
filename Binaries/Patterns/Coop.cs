@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using LeagueBot;
 using LeagueBot.Patterns;
 using LeagueBot.Game.Enums;
 using LeagueBot.Game.Misc;
@@ -49,23 +50,23 @@ namespace LeagueBot
         {
             bot.log("Waiting for league of legends process...");
 
-            bot.waitProcessOpen(GameProcessName); 
+            bot.waitProcessOpen(Constants.GameProcessName); 
 
-            bot.waitUntilProcessBounds(GameProcessName, 1030, 797);
+            bot.waitUntilProcessBounds(Constants.GameProcessName, 1030, 797);
 
             bot.wait(200);
 
             bot.log("Waiting for game to load.");
 
-            bot.bringProcessToFront(GameProcessName);
-            bot.centerProcess(GameProcessName);
+            bot.bringProcessToFront(Constants.GameProcessName);
+            bot.centerProcess(Constants.GameProcessName);
 
             game.waitUntilGameStart();
 
             bot.log("Game Started");
 
-            bot.bringProcessToFront(GameProcessName);
-            bot.centerProcess(GameProcessName);
+            bot.bringProcessToFront(Constants.GameProcessName);
+            bot.centerProcess(Constants.GameProcessName);
 
             bot.wait(3000);
 
@@ -128,11 +129,11 @@ namespace LeagueBot
 
             bool isRecalling = false;
 
-            while (bot.isProcessOpen(GameProcessName))
+            while (bot.isProcessOpen(Constants.GameProcessName))
             {
-                bot.bringProcessToFront(GameProcessName);
+                bot.bringProcessToFront(Constants.GameProcessName);
 
-                bot.centerProcess(GameProcessName);
+                bot.centerProcess(Constants.GameProcessName);
 
                 int newLevel = game.player.getLevel();
 

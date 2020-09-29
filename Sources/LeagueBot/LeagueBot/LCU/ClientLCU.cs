@@ -80,8 +80,8 @@ namespace LeagueBot.LCU
             using (HttpRequest request = new HttpRequest())
             {
                 request.IgnoreProtocolErrors = true;
-                request.ConnectTimeout = 5000;
-                request.ReadWriteTimeout = 5000;
+                request.ConnectTimeout = Constants.HttpRequestTimeout;
+                request.ReadWriteTimeout = Constants.HttpRequestTimeout;
                 request.CharacterSet = Encoding.UTF8;
                 request.AddHeader("Authorization", "Basic " + Auth);
 
@@ -255,10 +255,14 @@ namespace LeagueBot.LCU
                     request.Post(KillUXUrl);
                 }
             }
+            catch
+            {
+                Logger.Write("Unable request KillUX()", MessageState.WARNING);
+            }
             finally
             {
 
-                foreach (var process in Process.GetProcessesByName(PatternScript.ClientHostProcessName))
+                foreach (var process in Process.GetProcessesByName(Constants.ClientHostProcessName))
                 {
                     process.Kill();
                 }
@@ -268,7 +272,7 @@ namespace LeagueBot.LCU
         public static void OpenClient()
         {
             ProcessStartInfo psi = new ProcessStartInfo();
-            psi.FileName = Path.Combine(Configuration.Instance.ClientPath, PatternScript.ClientExecutablePath);
+            psi.FileName = Path.Combine(Configuration.Instance.ClientPath, Constants.ClientExecutablePath);
             Process.Start(psi);
         }
 
@@ -277,8 +281,8 @@ namespace LeagueBot.LCU
         {
             HttpRequest request = new HttpRequest();
             request.IgnoreProtocolErrors = true;
-            request.ConnectTimeout = 10000;
-            request.ReadWriteTimeout = 10000;
+            request.ConnectTimeout = Constants.HttpRequestTimeout;
+            request.ReadWriteTimeout = Constants.HttpRequestTimeout;
             request.CharacterSet = Encoding.UTF8;
             request.AddHeader("Authorization", "Basic " + Auth);
             return request;
