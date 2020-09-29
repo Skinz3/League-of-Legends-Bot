@@ -12,7 +12,7 @@ namespace LeagueBot.Utils
     public class DirectBitmap : IDisposable
     {
         public Bitmap Bitmap { get; private set; }
-        public Int32[] Bits { get; private set; }
+        public int[] Bits { get; private set; }
         public bool Disposed { get; private set; }
         public int Height { get; private set; }
         public int Width { get; private set; }

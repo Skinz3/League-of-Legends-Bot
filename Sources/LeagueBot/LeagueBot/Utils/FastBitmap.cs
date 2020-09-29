@@ -11,6 +11,7 @@ namespace LeagueBot.Utils
 {
     /// <summary>
     /// Encapsulates a Bitmap for fast bitmap pixel operations using 32bpp images
+    /// https://github.com/LuizZak/FastBitmap
     /// </summary>
     public unsafe class FastBitmap : IDisposable
     {

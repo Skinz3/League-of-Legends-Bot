@@ -88,7 +88,7 @@ namespace LeagueBot.LCU
                 request.IgnoreProtocolErrors = true;
                 request.ConnectTimeout = Constants.HttpRequestTimeout;
                 request.ReadWriteTimeout = Constants.HttpRequestTimeout;
-                request.CharacterSet = Encoding.UTF8;
+                request.CharacterSet = Constants.HttpRequestEncoding;
                 request.AddHeader("Authorization", "Basic " + Auth);
 
                 try
@@ -289,7 +289,7 @@ namespace LeagueBot.LCU
             request.IgnoreProtocolErrors = true;
             request.ConnectTimeout = Constants.HttpRequestTimeout;
             request.ReadWriteTimeout = Constants.HttpRequestTimeout;
-            request.CharacterSet = Encoding.UTF8;
+            request.CharacterSet = Constants.HttpRequestEncoding;
             request.AddHeader("Authorization", "Basic " + Auth);
             return request;
         }

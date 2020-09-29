@@ -30,7 +30,7 @@ namespace LeagueBot
         [StartupInvoke("Config", StartupInvokePriority.Initial)]
         public static void InitCall()
         {
-            ThreadStart threadStart = new ThreadStart(() =>
+            ThreadStart threadStart = new ThreadStart(() => // <--- One STA Thread for windows UI ... Can we do it another way without declare Main() as STA Thread ?
             {
                 Load();
             });

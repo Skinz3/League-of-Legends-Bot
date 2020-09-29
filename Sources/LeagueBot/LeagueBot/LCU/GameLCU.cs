@@ -31,12 +31,12 @@ namespace LeagueBot.ApiHelpers
             {
                 using (HttpRequest request = new HttpRequest())
                 {
-                    request.CharacterSet = Encoding.UTF8;
+                    request.CharacterSet = Constants.HttpRequestEncoding;
                     request.IgnoreProtocolErrors = true;
                     request.ConnectTimeout = Constants.HttpRequestTimeout;
                     request.ReadWriteTimeout = Constants.HttpRequestTimeout;
 
-                    var response = request.Get(ApiUrl + "/playerlist");
+                    var response = request.Get(PlayerListUrl);
 
                     if (response.StatusCode == HttpStatusCode.OK)
                     {
@@ -173,7 +173,7 @@ namespace LeagueBot.ApiHelpers
             using (HttpRequest request = new HttpRequest())
             {
                 request.IgnoreProtocolErrors = true;
-                request.CharacterSet = Encoding.UTF8;
+                request.CharacterSet = Constants.HttpRequestEncoding;
                 request.ConnectTimeout = Constants.HttpRequestTimeout;
                 request.ReadWriteTimeout = Constants.HttpRequestTimeout;
                 return request.Get(url).ToString();

@@ -11,7 +11,7 @@ namespace LeagueBot.Patterns
     {
         public virtual bool ThrowException => true;
 
-        public BotApi bot
+        public BotApi bot 
         {
             protected get;
             set;
