@@ -36,6 +36,12 @@ namespace LeagueBot.IO
         public static void Write(object value, MessageState state = MessageState.INFO)
         {
             WriteColored(value, Colors[state]);
+
+            if (state == MessageState.ERROR_FATAL)
+            {
+                Console.ReadLine();
+                Environment.Exit(1);
+            }
         }
         public static void WriteColor1(object value)
         {

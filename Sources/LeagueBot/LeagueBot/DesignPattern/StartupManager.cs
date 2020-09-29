@@ -91,9 +91,7 @@ namespace LeagueBot.DesignPattern
                             {
                                 if (data.Key.ExitOnThrow)
                                 {
-                                    Logger.Write(ex.ToString(), MessageState.ERROR);
-                                    Console.ReadKey();
-                                    Environment.Exit(0);
+                                    Logger.Write(ex.ToString(), MessageState.ERROR_FATAL);
                                     return;
                                 }
                                 else

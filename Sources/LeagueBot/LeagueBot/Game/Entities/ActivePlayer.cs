@@ -71,7 +71,7 @@ namespace LeagueBot.Game.Entities
             BotHelper.InputIdle();
         }
 
-        public void upgradeSpell(int indice)
+        public void upgradeSpell(int indice) // <---- replace this by keybinding + league settings
         {
             Point coords = new Point();
 

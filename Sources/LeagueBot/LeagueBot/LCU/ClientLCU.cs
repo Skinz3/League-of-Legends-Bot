@@ -74,6 +74,12 @@ namespace LeagueBot.LCU
                 }
             }
 
+
+            if (Port == 0)
+            {
+                Logger.Write("Unable to initialize ClientLCU.cs (unable to read Api port from process)", MessageState.ERROR_FATAL);
+            }
+
         }
         public static bool IsApiReady()
         {
