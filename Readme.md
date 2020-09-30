@@ -56,16 +56,3 @@
 # Special Thanks
 
    * **Arecki** - For his help with LCU Api.
-   
-# Todo List
-
-   Only pull requests concerning these subjects will be accepted
-
-   * Dont use dynamic operator in ```LCU``` , use classes definitions of ```LCU``` instead.
-   * Object architecture of ``` ApiMembers<> ```, MainPlayer property are defined in ```MainPlayer.cs ``` and ``` Coop.cs``` (dead field for example. Thats sucks)
-   * Use ```Task<T>``` and Parallelism instead of ``` GameLoop()``` in Coop.cs
-   * Optimize pixel searching ? it is possible faster than ```FastBitmap.cs (LockBits)``` ? (see ``` ImageHelper.GetColorPosition(Point point) ``` )
-   * Make a solo in game pattern (we dont need an ally!)
-   * Update Git API References
-   * Add functionality to ``` Coop.cs ```.
-
