@@ -83,7 +83,9 @@ namespace LeagueBot
 
             game.player.upgradeSpellOnLevelUp();
 
-            BuyItems();
+            OnSpawnJoin();
+
+            bot.log("Playing...");
 
             GameLoop();
 
@@ -118,11 +120,6 @@ namespace LeagueBot
         }
         private void GameLoop()
         {
-            AllyIndex = game.getAllyIdToFollow();
-            game.camera.lockAlly(AllyIndex);
-
-            bot.log("Following ally no " + AllyIndex);
-
             int level = game.player.getLevel();
 
             bool dead = false;
@@ -205,8 +202,6 @@ namespace LeagueBot
         {
             AllyIndex = game.getAllyIdToFollow();
             game.camera.lockAlly(AllyIndex);
-
-            bot.log("Following ally no " + AllyIndex);
         }
 
         private void CastAndMove() // Replace this by Champion pattern script.
