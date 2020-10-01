@@ -24,7 +24,7 @@ namespace LeagueBot.LCU.Protocol
 
         public RerollPoints RerollPoints;
 
-        public int summonerId;
+        public long summonerId;
 
         public short summonerLevel;
 
