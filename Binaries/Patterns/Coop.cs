@@ -25,14 +25,15 @@ namespace LeagueBot
 
         private Item[] Items = new Item[]
         {
-            new Item("Doran's Ring",400),
+            new Item("Doran Blade",400),
             new Item("Health Potion",50),
             new Item("Warding Totem",0),
-            new Item("Boots of Speed",300),
-            new Item("Lost Chapter",1300),
-            new Item("Sorcerer's Shoes",800),
-            new Item("Blasting Wand",850),
-            new Item("Luden's Echo",1050), // <--- Cost when Lost Chapter & Blasting Wand were bought
+            new Item("Boots",300),
+            new Item("Dagger",300),
+            new Item("Berserker Greaves",500),
+            new Item("Noonquiver",1300),
+			new Item("Kraken Slayer",2100),
+            //new Item("Luden's Echo",1050), // <--- Cost when Lost Chapter & Blasting Wand were bought
             new Item("Needlessly Large Rod",1250),
             new Item("Needlessly Large Rod",1250),
             new Item("Rabadon's Deathcap",1100), 
