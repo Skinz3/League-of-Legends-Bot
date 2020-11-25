@@ -28,7 +28,7 @@ namespace LeagueBot
             new Item("Doran Ring",400),
             new Item("Boots",300),
             new Item("Lost Chapter",1300),
-			new Item("Sorcerer's Shoes",800),
+			new Item("Sorcerer Shoes",800),
 			new Item("Luden Tempest",1250), // <--- Cost when Lost Chapter & Blasting Wand were bought
             new Item("Needlessly Large Rod",1250),
             new Item("Needlessly Large Rod",1250),
