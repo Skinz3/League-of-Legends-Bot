@@ -61,7 +61,7 @@ namespace LeagueBot.Api
 
                 if (process == null)
                     throw new Exception("Process " + process + " cannot be found.");
-                
+
                 Interop.GetWindowRect(process.MainWindowHandle, out var rect);
 
                 width = rect.Right - rect.Left;

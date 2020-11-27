@@ -4,7 +4,6 @@ namespace LeagueBot.ApiHelpers
 {
     internal class BotHelper
     {
-
         // TODO: Should have functions for emulating keypresses and so on with using delay.
 
         /*

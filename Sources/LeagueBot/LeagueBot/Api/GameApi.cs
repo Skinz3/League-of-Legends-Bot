@@ -22,6 +22,8 @@ namespace LeagueBot.Api
 
     public class GameApi : IApi // Teams[] CameraIndex PlayerIndex
     {
+        private TeamSide? side;
+
         public GameApi()
         {
             Shop = new Shop(this);
@@ -37,8 +39,6 @@ namespace LeagueBot.Api
         public ActivePlayer Player { get; }
 
         public Shop Shop { get; }
-
-        private TeamSide? side;
 
         private TeamSide Side
         {
@@ -79,12 +79,6 @@ namespace LeagueBot.Api
             return index;
         }
 
-        private bool HasSmite(dynamic ally)
-        {
-            return ally.summonerSpells.summonerSpellOne.displayName.ToString().ToLower().Contains("smite") ||
-                    ally.summonerSpells.summonerSpellTwo.displayName.ToString().ToLower().Contains("smite");
-        }
-
         public void MoveCenterScreen()
         {
             InputHelper.RightClick(886, 521);
@@ -95,6 +89,12 @@ namespace LeagueBot.Api
         {
             while (!(GameLCU.IsApiReady() && GameLCU.GetGameTime() > 2d))
                 Thread.Sleep(2000);
+        }
+
+        private bool HasSmite(dynamic ally)
+        {
+            return ally.summonerSpells.summonerSpellOne.displayName.ToString().ToLower().Contains("smite") ||
+                    ally.summonerSpells.summonerSpellTwo.displayName.ToString().ToLower().Contains("smite");
         }
     }
 }

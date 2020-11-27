@@ -12,11 +12,11 @@ namespace LeagueBot.Patterns
 
         public virtual bool ThrowException => true;
 
+        public abstract void Execute();
+
         // TODO: Called on Ending the script
         public virtual void OnEnd()
         {
         }
-
-        public abstract void Execute();
     }
 }
