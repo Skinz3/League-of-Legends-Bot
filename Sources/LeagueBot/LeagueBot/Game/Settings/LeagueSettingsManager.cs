@@ -1,13 +1,6 @@
 ﻿using LeagueBot.DesignPattern;
 using LeagueBot.IO;
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Security;
-using System.Security.Permissions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LeagueBot.Game.Settings
 {
@@ -26,7 +19,6 @@ namespace LeagueBot.Game.Settings
             config.Set("General", "UserSetResolution", "1");
             config.Set("General", "Antialiasing", "0");
             config.Set("General", "AutoAcquireTarget", "1");
-
 
             config.Set("Performance", "GraphicsSlider", "6");
             config.Set("Performance", "ShadowsEnabled", "1");
@@ -48,7 +40,6 @@ namespace LeagueBot.Game.Settings
             config.Set("Performance", "EnvironmentQuality", "4");
             config.Set("Performance", "CharacterQuality", "4");
             config.Set("Performance", "AutoPerformanceSettings", "0");
-
 
             config.Set("HUD", "ShowTimestamps", "0");
             config.Set("HUD", "ShowNeutralCamps", "1");
@@ -103,7 +94,6 @@ namespace LeagueBot.Game.Settings
             config.Set("HUD", "ShowTeamFramesOnLeft", "0");
             config.Set("HUD", "FlipMiniMap", "0");
 
-
             config.Set("Chat", "Transparency", "0.0000");
             config.Set("Chat", "ChatY", "0");
             config.Set("Chat", "ChatX", "0");
@@ -120,24 +110,20 @@ namespace LeagueBot.Game.Settings
 
             CFGFile file = new CFGFile(Path.Combine(Configuration.Instance.ClientPath, Constants.LeagueKeyconfigPath));
 
-
             file.Set("GameEvents", "evtSelectSelf", "[F1]");
             file.Set("GameEvents", "evtSelectAlly4", "[F5]");
             file.Set("GameEvents", "evtSelectAlly3", "[F4]");
             file.Set("GameEvents", "evtSelectAlly2", "[F3]");
             file.Set("GameEvents", "evtSelectAlly1", "[F2]");
 
-
             file.Set("GameEvents", "evtCastSpell1", "[1]");
             file.Set("GameEvents", "evtCastSpell2", "[2]");
             file.Set("GameEvents", "evtCastSpell3", "[3]");
             file.Set("GameEvents", "evtCastSpell4", "[4]");
 
-
             file.Set("GameEvents", "evtUseItem1", "[q]");
             file.Set("GameEvents", "evtUseItem2", "[w]");
             file.Set("GameEvents", "evtUseItem3", "[e]");
-
 
             file.Save();
 

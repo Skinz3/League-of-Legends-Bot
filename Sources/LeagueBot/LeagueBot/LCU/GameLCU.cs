@@ -1,29 +1,106 @@
 ﻿using Leaf.xNet;
 using LeagueBot.Game.Enums;
 using LeagueBot.IO;
-using LeagueBot.Patterns;
-using LeagueBot.Utils;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace LeagueBot.ApiHelpers
 {
     public class GameLCU
     {
-        public static string ApiUrl = "https://127.0.0.1:" + Constants.GameApiPort + "/liveclientdata";
-
         public static string ActivePlayerUrl = ApiUrl + "/activeplayer";
-
+        public static string ApiUrl = "https://127.0.0.1:" + Constants.GameApiPort + "/liveclientdata";
+        public static string GameStatsUrl = ApiUrl + "/gamestats";
         public static string PlayerListUrl = ApiUrl + "/playerlist";
 
-        public static string GameStatsUrl = ApiUrl + "/gamestats";
+        public static dynamic GetAllies()
+        {
+            var resultStr = HttpGetString(PlayerListUrl);
+            dynamic dyn = JsonConvert.DeserializeObject(resultStr);
+            return dyn;
+        }
+
+        public static dynamic GetAlly(int id)
+        {
+            var resultStr = HttpGetString(PlayerListUrl);
+            dynamic dyn = JsonConvert.DeserializeObject(resultStr);
+            return dyn[id - 1];
+        }
+
+        public static double GetGameTime()
+        {
+            var resultStr = HttpGetString(GameStatsUrl);
+            dynamic dyn = JsonConvert.DeserializeObject(resultStr);
+            return dyn.gameTime;
+        }
+
+        public static int GetPlayerGolds()
+        {
+            var resultStr = HttpGetString(ActivePlayerUrl);
+            dynamic dyn = JsonConvert.DeserializeObject(resultStr);
+            return (int)dyn.currentGold;
+        }
+
+        public static int GetPlayerLevel()
+        {
+            var resultStr = HttpGetString(ActivePlayerUrl);
+            dynamic dyn = JsonConvert.DeserializeObject(resultStr);
+            return dyn.level;
+        }
+
+        public static string GetPlayerName()
+        {
+            var resultStr = HttpGetString(ActivePlayerUrl);
+            dynamic dyn = JsonConvert.DeserializeObject(resultStr);
+            return dyn.summonerName;
+        }
+
+        public static SideEnum GetPlayerSide()
+        {
+            string playerName = GetPlayerName();
+
+            var resultStr = HttpGetString(PlayerListUrl);
+
+            dynamic dyn = JsonConvert.DeserializeObject(resultStr);
+
+            foreach (var element in dyn)
+            {
+                if (element.summonerName == playerName)
+                {
+                    if (element.team == "ORDER")
+                    {
+                        return SideEnum.Blue;
+                    }
+                    else
+                    {
+                        return SideEnum.Red;
+                    }
+                }
+            }
+
+            throw new Exception("Wut");
+        }
+
+        public static dynamic GetStats()
+        {
+            var resultStr = HttpGetString(ActivePlayerUrl);
+            dynamic dyn = JsonConvert.DeserializeObject(resultStr);
+            return dyn.championStats;
+        }
+
+        public static string HttpGetString(string url)
+        {
+            using (HttpRequest request = new HttpRequest())
+            {
+                request.IgnoreProtocolErrors = true;
+                request.CharacterSet = Constants.HttpRequestEncoding;
+                request.ConnectTimeout = Constants.HttpRequestTimeout;
+                request.ReadWriteTimeout = Constants.HttpRequestTimeout;
+                return request.Get(url).ToString();
+            }
+        }
 
         public static bool IsApiReady()
         {
@@ -58,80 +135,6 @@ namespace LeagueBot.ApiHelpers
             return GetStats().currentHealth == 0;
         }
 
-        public static int GetPlayerLevel()
-        {
-            var resultStr = HttpGetString(ActivePlayerUrl);
-            dynamic dyn = JsonConvert.DeserializeObject(resultStr);
-            return dyn.level;
-        }
-        public static string GetPlayerName()
-        {
-            var resultStr = HttpGetString(ActivePlayerUrl);
-            dynamic dyn = JsonConvert.DeserializeObject(resultStr);
-            return dyn.summonerName;
-        }
-
-        public static double GetGameTime()
-        {
-            var resultStr = HttpGetString(GameStatsUrl);
-            dynamic dyn = JsonConvert.DeserializeObject(resultStr);
-            return dyn.gameTime;
-        }
-
-
-        public static dynamic GetAlly(int id)
-        {
-            var resultStr = HttpGetString(PlayerListUrl);
-            dynamic dyn = JsonConvert.DeserializeObject(resultStr);
-            return dyn[id - 1];
-        }
-        public static SideEnum GetPlayerSide()
-        {
-            string playerName = GetPlayerName();
-
-            var resultStr = HttpGetString(PlayerListUrl);
-
-            dynamic dyn = JsonConvert.DeserializeObject(resultStr);
-
-            foreach (var element in dyn)
-            {
-                if (element.summonerName == playerName)
-                {
-                    if (element.team == "ORDER")
-                    {
-                        return SideEnum.Blue;
-                    }
-                    else
-                    {
-                        return SideEnum.Red;
-                    }
-                }
-            }
-
-            throw new Exception("Wut");
-
-        }
-
-        public static int GetPlayerGolds()
-        {
-            var resultStr = HttpGetString(ActivePlayerUrl);
-            dynamic dyn = JsonConvert.DeserializeObject(resultStr);
-            return (int)dyn.currentGold;
-        }
-
-        public static dynamic GetAllies()
-        {
-            var resultStr = HttpGetString(PlayerListUrl);
-            dynamic dyn = JsonConvert.DeserializeObject(resultStr);
-            return dyn;
-        }
-
-        public static dynamic GetStats()
-        {
-            var resultStr = HttpGetString(ActivePlayerUrl);
-            dynamic dyn = JsonConvert.DeserializeObject(resultStr);
-            return dyn.championStats;
-        }
         /// <summary>
         /// unused yet.
         /// </summary>
@@ -166,18 +169,6 @@ namespace LeagueBot.ApiHelpers
                 }
             }
             return 0;
-        }
-
-        public static string HttpGetString(string url)
-        {
-            using (HttpRequest request = new HttpRequest())
-            {
-                request.IgnoreProtocolErrors = true;
-                request.CharacterSet = Constants.HttpRequestEncoding;
-                request.ConnectTimeout = Constants.HttpRequestTimeout;
-                request.ReadWriteTimeout = Constants.HttpRequestTimeout;
-                return request.Get(url).ToString();
-            }
         }
     }
 }

@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LeagueBot.IO
 {
@@ -17,6 +14,7 @@ namespace LeagueBot.IO
         ERROR_FATAL = 5,
         SUCCES = 6,
     }
+
     public class Logger
     {
         private const ConsoleColor COLOR_1 = ConsoleColor.Magenta;
@@ -33,6 +31,24 @@ namespace LeagueBot.IO
             { MessageState.ERROR_FATAL,     ConsoleColor.Red }
         };
 
+        public static void NewLine()
+        {
+            Console.WriteLine(Environment.NewLine);
+        }
+
+        public static void OnStartup()
+        {
+            WriteColor2(" .                            .--.      .  ");
+            WriteColor1(" |                            |   )    _|_ ");
+            WriteColor2(" |    .-. .-.  .-...  . .-.   |--:  .-. |  ");
+            WriteColor1(" |   (.-'(   )(   ||  |(.-'   |   )(   )|  ");
+            WriteColor2(" '---'`--'`-'`-`-`|`--`-`--'  '--'  `-' `-'");
+            WriteColor2("               ._.' ");
+            WriteColor2("> https://github.com/Skinz3");
+            Console.WriteLine();
+            Console.Title = Assembly.GetEntryAssembly().GetName().Name + " (" + Program.GameCount + " games)";
+        }
+
         public static void Write(object value, MessageState state = MessageState.INFO)
         {
             WriteColored(value, Colors[state]);
@@ -43,35 +59,21 @@ namespace LeagueBot.IO
                 Environment.Exit(1);
             }
         }
+
         public static void WriteColor1(object value)
         {
             WriteColored(value, COLOR_1);
         }
+
         public static void WriteColor2(object value)
         {
             WriteColored(value, COLOR_2);
         }
+
         private static void WriteColored(object value, ConsoleColor color)
         {
             Console.ForegroundColor = color;
             Console.WriteLine(value);
-        }
-        public static void NewLine()
-        {
-            Console.WriteLine(Environment.NewLine);
-        }
-        public static void OnStartup()
-        {
-
-            WriteColor2(" .                            .--.      .  ");
-            WriteColor1(" |                            |   )    _|_ ");
-            WriteColor2(" |    .-. .-.  .-...  . .-.   |--:  .-. |  ");
-            WriteColor1(" |   (.-'(   )(   ||  |(.-'   |   )(   )|  ");
-            WriteColor2(" '---'`--'`-'`-`-`|`--`-`--'  '--'  `-' `-'");
-            WriteColor2("               ._.' ");
-            WriteColor2("> https://github.com/Skinz3");
-            Console.WriteLine();
-            Console.Title = Assembly.GetEntryAssembly().GetName().Name + " ("+Program.GameCount + " games)";
         }
     }
 }

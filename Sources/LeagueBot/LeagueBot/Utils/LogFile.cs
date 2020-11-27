@@ -1,11 +1,7 @@
 ﻿using LeagueBot.DesignPattern;
 using LeagueBot.IO;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LeagueBot.Utils
 {
@@ -20,7 +16,6 @@ namespace LeagueBot.Utils
             {
                 File.Create(PATH);
             }
-
         }
 
         public static void Log(object message)

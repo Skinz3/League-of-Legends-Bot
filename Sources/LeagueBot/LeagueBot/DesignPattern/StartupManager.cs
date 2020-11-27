@@ -4,8 +4,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LeagueBot.DesignPattern
 {
@@ -19,11 +17,28 @@ namespace LeagueBot.DesignPattern
         SixthPath = 6,
         Last = 7,
     }
+
     public class StartupInvoke : Attribute
     {
-        public StartupInvokePriority Type
+        public StartupInvoke(string name, StartupInvokePriority type, bool exitOnTrow = true)
         {
-            get; set;
+            this.Type = type;
+            this.Name = name;
+            this.Hided = false;
+            this.ExitOnThrow = exitOnTrow;
+        }
+
+        public StartupInvoke(StartupInvokePriority type)
+        {
+            this.Hided = true;
+            this.Type = type;
+            this.ExitOnThrow = true;
+        }
+
+        public bool ExitOnThrow
+        {
+            get;
+            set;
         }
 
         public bool Hided
@@ -35,30 +50,18 @@ namespace LeagueBot.DesignPattern
         {
             get; set;
         }
-        public bool ExitOnThrow
+
+        public StartupInvokePriority Type
         {
-            get;
-            set;
+            get; set;
         }
 
-        public StartupInvoke(string name, StartupInvokePriority type, bool exitOnTrow = true)
-        {
-            this.Type = type;
-            this.Name = name;
-            this.Hided = false;
-            this.ExitOnThrow = exitOnTrow;
-        }
-        public StartupInvoke(StartupInvokePriority type)
-        {
-            this.Hided = true;
-            this.Type = type;
-            this.ExitOnThrow = true;
-        }
         public override string ToString()
         {
             return this.Name;
         }
     }
+
     public class StartupManager
     {
         public static void Initialize(Assembly startupAssembly)
@@ -100,18 +103,13 @@ namespace LeagueBot.DesignPattern
                                     continue;
                                 }
                             }
-
                         }
                         else
                         {
                             Logger.Write(data.Value.Name + " cannot be executed at startup. Invalid signature", MessageState.WARNING);
                             continue;
                         }
-
-
                     }
-
-
                 }
             }
             watch.Stop();

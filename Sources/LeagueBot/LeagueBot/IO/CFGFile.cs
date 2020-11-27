@@ -1,29 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace LeagueBot.IO
 {
     public class CFGFile
     {
-        private const string ELEMENT_REGEX = @"^(\w+)=(.+)$";
-
         private const string CATEGORY_REGEX = @"^\[(\w+)\]$";
-
-        private string Filepath
-        {
-            get;
-            set;
-        }
-        private Dictionary<string, Dictionary<string, string>> Content
-        {
-            get;
-            set;
-        }
+        private const string ELEMENT_REGEX = @"^(\w+)=(.+)$";
 
         public CFGFile(string filePath)
         {
@@ -54,21 +39,16 @@ namespace LeagueBot.IO
             }
         }
 
-        public void Set(string category, string key, string value)
+        private Dictionary<string, Dictionary<string, string>> Content
         {
-            if (!Content.ContainsKey(category))
-            {
-                Content.Add(category, new Dictionary<string, string>());
-            }
+            get;
+            set;
+        }
 
-            if (!Content[category].ContainsKey(key))
-            {
-                Content[category].Add(key, value);
-            }
-            else
-            {
-                Content[category][key] = value;
-            }
+        private string Filepath
+        {
+            get;
+            set;
         }
 
         public void Save()
@@ -87,6 +67,23 @@ namespace LeagueBot.IO
             }
 
             File.WriteAllText(Filepath, sb.ToString());
+        }
+
+        public void Set(string category, string key, string value)
+        {
+            if (!Content.ContainsKey(category))
+            {
+                Content.Add(category, new Dictionary<string, string>());
+            }
+
+            if (!Content[category].ContainsKey(key))
+            {
+                Content[category].Add(key, value);
+            }
+            else
+            {
+                Content[category][key] = value;
+            }
         }
     }
 }

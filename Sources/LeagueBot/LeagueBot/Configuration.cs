@@ -1,14 +1,8 @@
 ﻿using LeagueBot.DesignPattern;
 using LeagueBot.IO;
-using Microsoft.Win32;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Forms;
 using MessageBox = System.Windows.MessageBox;
@@ -17,29 +11,59 @@ namespace LeagueBot
 {
     public class Configuration
     {
-        public static Configuration Instance
+        public static Configuration Instance { get; private set; }
+
+        public string ClientPath { get; set; }
+
+        public static void CreateConfig(string clientPath)
         {
-            get;
-            private set;
+            Instance = new Configuration
+            {
+                ClientPath = clientPath,
+            };
+
+            Save();
+
+            Logger.Write("Configuration file created!", MessageState.SUCCES);
         }
-        public string ClientPath
-        {
-            get;
-            set;
-        }
+
         [StartupInvoke("Config", StartupInvokePriority.Initial)]
         public static void InitCall()
         {
-            ThreadStart threadStart = new ThreadStart(() => // <--- One STA Thread for windows UI ... Can we do it another way without declare Main() as STA Thread ?
-            {
-                Load();
-            });
+            ThreadStart threadStart = new ThreadStart(() => Load());// <--- One STA Thread for windows UI ... Can we do it another way without declare Main() as STA Thread ?
 
             Thread thread = new Thread(threadStart);
             thread.SetApartmentState(ApartmentState.STA);
             thread.Start();
             thread.Join();
         }
+
+        public static void Save()
+        {
+            File.WriteAllText(Constants.ConfigPath, Json.Serialize(Instance));
+        }
+
+        private static bool Initialize()
+        {
+            if (File.Exists(Constants.ConfigPath))
+            {
+                try
+                {
+                    Instance = Json.Deserialize<Configuration>(File.ReadAllText(Constants.ConfigPath));
+                    return true;
+                }
+                catch
+                {
+                    File.Delete(Constants.ConfigPath);
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         private static bool Load()
         {
             if (!Initialize())
@@ -71,54 +95,15 @@ namespace LeagueBot
                     }
                     else
                         return Load();
-
                 }
 
                 CreateConfig(path);
                 return true;
-
             }
             else
             {
                 return true;
             }
-        }
-
-        private static bool Initialize()
-        {
-            if (File.Exists(Constants.ConfigPath))
-            {
-                try
-                {
-                    Instance = Json.Deserialize<Configuration>(File.ReadAllText(Constants.ConfigPath));
-                    return true;
-                }
-                catch
-                {
-                    File.Delete(Constants.ConfigPath);
-                    return false;
-                }
-
-            }
-            else
-            {
-                return false;
-            }
-        }
-        public static void CreateConfig(string clientPath)
-        {
-            Instance = new Configuration()
-            {
-                ClientPath = clientPath,
-            };
-
-            Save();
-
-            Logger.Write("Configuration file created!", MessageState.SUCCES);
-        }
-        public static void Save()
-        {
-            File.WriteAllText(Constants.ConfigPath, Json.Serialize(Instance));
         }
     }
 }

@@ -1,17 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LeagueBot.Utils
 {
     /// <summary>
-    /// Encapsulates a Bitmap for fast bitmap pixel operations using 32bpp images
-    /// https://github.com/LuizZak/FastBitmap
+    /// Encapsulates a Bitmap for fast bitmap pixel operations using 32bpp images https://github.com/LuizZak/FastBitmap
     /// </summary>
     public unsafe class FastBitmap : IDisposable
     {
@@ -68,8 +63,12 @@ namespace LeagueBot.Utils
         /// <summary>
         /// Gets an array of 32-bit color pixel values that represent this FastBitmap
         /// </summary>
-        /// <exception cref="Exception">The locking operation required to extract the values off from the underlying bitmap failed</exception>
-        /// <exception cref="InvalidOperationException">The bitmap is already locked outside this fast bitmap</exception>
+        /// <exception cref="Exception">
+        /// The locking operation required to extract the values off from the underlying bitmap failed
+        /// </exception>
+        /// <exception cref="InvalidOperationException">
+        /// The bitmap is already locked outside this fast bitmap
+        /// </exception>
         public int[] DataArray
         {
             get
@@ -98,11 +97,13 @@ namespace LeagueBot.Utils
         }
 
         /// <summary>
-        /// Creates a new instance of the FastBitmap class with a specified Bitmap.
-        /// The bitmap provided must have a 32bpp depth
+        /// Creates a new instance of the FastBitmap class with a specified Bitmap. The bitmap
+        /// provided must have a 32bpp depth
         /// </summary>
         /// <param name="bitmap">The Bitmap object to encapsulate on this FastBitmap object</param>
-        /// <exception cref="ArgumentException">The bitmap provided does not have a 32bpp pixel format</exception>
+        /// <exception cref="ArgumentException">
+        /// The bitmap provided does not have a 32bpp pixel format
+        /// </exception>
         public FastBitmap(Bitmap bitmap)
         {
             if (System.Drawing.Image.GetPixelFormatSize(bitmap.PixelFormat) != 32)
@@ -117,8 +118,8 @@ namespace LeagueBot.Utils
         }
 
         /// <summary>
-        /// Disposes of this fast bitmap object and releases any pending resources.
-        /// The underlying bitmap is not disposes, and is unlocked, if currently locked
+        /// Disposes of this fast bitmap object and releases any pending resources. The underlying
+        /// bitmap is not disposes, and is unlocked, if currently locked
         /// </summary>
         public void Dispose()
         {
@@ -129,29 +130,39 @@ namespace LeagueBot.Utils
         }
 
         /// <summary>
-        /// Locks the bitmap to start the bitmap operations. If the bitmap is already locked,
-        /// an exception is thrown
+        /// Locks the bitmap to start the bitmap operations. If the bitmap is already locked, an
+        /// exception is thrown
         /// </summary>
-        /// <returns>A fast bitmap locked struct that will unlock the underlying bitmap after disposal</returns>
+        /// <returns>
+        /// A fast bitmap locked struct that will unlock the underlying bitmap after disposal
+        /// </returns>
         /// <exception cref="InvalidOperationException">The bitmap is already locked</exception>
-        /// <exception cref="System.Exception">The locking operation in the underlying bitmap failed</exception>
-        /// <exception cref="InvalidOperationException">The bitmap is already locked outside this fast bitmap</exception>
+        /// <exception cref="System.Exception">
+        /// The locking operation in the underlying bitmap failed
+        /// </exception>
+        /// <exception cref="InvalidOperationException">
+        /// The bitmap is already locked outside this fast bitmap
+        /// </exception>
         public FastBitmapLocker Lock()
         {
             return Lock((FastBitmapLockFormat)_bitmap.PixelFormat);
         }
 
         /// <summary>
-        /// Locks the bitmap to start the bitmap operations. If the bitmap is already locked,
-        /// an exception is thrown.
+        /// Locks the bitmap to start the bitmap operations. If the bitmap is already locked, an
+        /// exception is thrown.
         ///
         /// The provided pixel format should be a 32bpp format.
         /// </summary>
         /// <param name="pixelFormat">A pixel format to use when locking the underlying bitmap</param>
-        /// <returns>A fast bitmap locked struct that will unlock the underlying bitmap after disposal</returns>
+        /// <returns>
+        /// A fast bitmap locked struct that will unlock the underlying bitmap after disposal
+        /// </returns>
         /// <exception cref="InvalidOperationException">The bitmap is already locked</exception>
         /// <exception cref="Exception">The locking operation in the underlying bitmap failed</exception>
-        /// <exception cref="InvalidOperationException">The bitmap is already locked outside this fast bitmap</exception>
+        /// <exception cref="InvalidOperationException">
+        /// The bitmap is already locked outside this fast bitmap
+        /// </exception>
         public FastBitmapLocker Lock(FastBitmapLockFormat pixelFormat)
         {
             if (Locked)
@@ -167,10 +178,18 @@ namespace LeagueBot.Utils
         /// </summary>
         /// <param name="lockMode">The lock mode to use on the bitmap</param>
         /// <param name="pixelFormat">A pixel format to use when locking the underlying bitmap</param>
-        /// <returns>A fast bitmap locked struct that will unlock the underlying bitmap after disposal</returns>
-        /// <exception cref="System.Exception">The locking operation in the underlying bitmap failed</exception>
-        /// <exception cref="InvalidOperationException">The bitmap is already locked outside this fast bitmap</exception>
-        /// <exception cref="ArgumentException"><see cref="!:pixelFormat"/> is not a 32bpp format</exception>
+        /// <returns>
+        /// A fast bitmap locked struct that will unlock the underlying bitmap after disposal
+        /// </returns>
+        /// <exception cref="System.Exception">
+        /// The locking operation in the underlying bitmap failed
+        /// </exception>
+        /// <exception cref="InvalidOperationException">
+        /// The bitmap is already locked outside this fast bitmap
+        /// </exception>
+        /// <exception cref="ArgumentException">
+        /// <see cref="!:pixelFormat"/> is not a 32bpp format
+        /// </exception>
         private FastBitmapLocker Lock(ImageLockMode lockMode, PixelFormat pixelFormat)
         {
             var rect = new Rectangle(0, 0, _bitmap.Width, _bitmap.Height);
@@ -184,11 +203,17 @@ namespace LeagueBot.Utils
         /// <param name="lockMode">The lock mode to use on the bitmap</param>
         /// <param name="rect">The rectangle to lock</param>
         /// <param name="pixelFormat">A pixel format to use when locking the underlying bitmap</param>
-        /// <returns>A fast bitmap locked struct that will unlock the underlying bitmap after disposal</returns>
+        /// <returns>
+        /// A fast bitmap locked struct that will unlock the underlying bitmap after disposal
+        /// </returns>
         /// <exception cref="System.ArgumentException">The provided region is invalid</exception>
-        /// <exception cref="System.Exception">The locking operation in the underlying bitmap failed</exception>
+        /// <exception cref="System.Exception">
+        /// The locking operation in the underlying bitmap failed
+        /// </exception>
         /// <exception cref="InvalidOperationException">The bitmap region is already locked</exception>
-        /// <exception cref="ArgumentException"><see cref="!:pixelFormat"/> is not a 32bpp format</exception>
+        /// <exception cref="ArgumentException">
+        /// <see cref="!:pixelFormat"/> is not a 32bpp format
+        /// </exception>
         private FastBitmapLocker Lock(ImageLockMode lockMode, Rectangle rect, PixelFormat pixelFormat)
         {
             // Lock the bitmap's bits
@@ -208,7 +233,9 @@ namespace LeagueBot.Utils
         /// beforehand, an exception is thrown
         /// </summary>
         /// <exception cref="InvalidOperationException">The bitmap is already unlocked</exception>
-        /// <exception cref="System.Exception">The unlocking operation in the underlying bitmap failed</exception>
+        /// <exception cref="System.Exception">
+        /// The unlocking operation in the underlying bitmap failed
+        /// </exception>
         public void Unlock()
         {
             if (!Locked)
@@ -229,7 +256,9 @@ namespace LeagueBot.Utils
         /// <param name="y">The Y coordinate of the pixel to set</param>
         /// <param name="color">The new color of the pixel to set</param>
         /// <exception cref="InvalidOperationException">The fast bitmap is not locked</exception>
-        /// <exception cref="ArgumentOutOfRangeException">The provided coordinates are out of bounds of the bitmap</exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// The provided coordinates are out of bounds of the bitmap
+        /// </exception>
         public void SetPixel(int x, int y, Color color)
         {
             SetPixel(x, y, color.ToArgb());
@@ -243,7 +272,9 @@ namespace LeagueBot.Utils
         /// <param name="y">The Y coordinate of the pixel to set</param>
         /// <param name="color">The new color of the pixel to set</param>
         /// <exception cref="InvalidOperationException">The fast bitmap is not locked</exception>
-        /// <exception cref="ArgumentOutOfRangeException">The provided coordinates are out of bounds of the bitmap</exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// The provided coordinates are out of bounds of the bitmap
+        /// </exception>
         public void SetPixel(int x, int y, int color)
         {
             SetPixel(x, y, unchecked((uint)color));
@@ -257,7 +288,9 @@ namespace LeagueBot.Utils
         /// <param name="y">The Y coordinate of the pixel to set</param>
         /// <param name="color">The new color of the pixel to set</param>
         /// <exception cref="InvalidOperationException">The fast bitmap is not locked</exception>
-        /// <exception cref="ArgumentOutOfRangeException">The provided coordinates are out of bounds of the bitmap</exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// The provided coordinates are out of bounds of the bitmap
+        /// </exception>
         public void SetPixel(int x, int y, uint color)
         {
             if (!Locked)
@@ -284,20 +317,24 @@ namespace LeagueBot.Utils
         /// <param name="x">The X coordinate of the pixel to get</param>
         /// <param name="y">The Y coordinate of the pixel to get</param>
         /// <exception cref="InvalidOperationException">The fast bitmap is not locked</exception>
-        /// <exception cref="ArgumentOutOfRangeException">The provided coordinates are out of bounds of the bitmap</exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// The provided coordinates are out of bounds of the bitmap
+        /// </exception>
         public Color GetPixel(int x, int y)
         {
             return Color.FromArgb(GetPixelInt(x, y));
         }
 
         /// <summary>
-        /// Gets the pixel color at the given coordinates as an integer value. If the bitmap
-        /// was not locked beforehands, an exception is thrown
+        /// Gets the pixel color at the given coordinates as an integer value. If the bitmap was not
+        /// locked beforehands, an exception is thrown
         /// </summary>
         /// <param name="x">The X coordinate of the pixel to get</param>
         /// <param name="y">The Y coordinate of the pixel to get</param>
         /// <exception cref="InvalidOperationException">The fast bitmap is not locked</exception>
-        /// <exception cref="ArgumentOutOfRangeException">The provided coordinates are out of bounds of the bitmap</exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// The provided coordinates are out of bounds of the bitmap
+        /// </exception>
         public int GetPixelInt(int x, int y)
         {
             if (!Locked)
@@ -318,13 +355,15 @@ namespace LeagueBot.Utils
         }
 
         /// <summary>
-        /// Gets the pixel color at the given coordinates as an unsigned integer value.
-        /// If the bitmap was not locked beforehands, an exception is thrown
+        /// Gets the pixel color at the given coordinates as an unsigned integer value. If the
+        /// bitmap was not locked beforehands, an exception is thrown
         /// </summary>
         /// <param name="x">The X coordinate of the pixel to get</param>
         /// <param name="y">The Y coordinate of the pixel to get</param>
         /// <exception cref="InvalidOperationException">The fast bitmap is not locked</exception>
-        /// <exception cref="ArgumentOutOfRangeException">The provided coordinates are out of bounds of the bitmap</exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        /// The provided coordinates are out of bounds of the bitmap
+        /// </exception>
         public uint GetPixelUInt(int x, int y)
         {
             if (!Locked)
@@ -345,8 +384,9 @@ namespace LeagueBot.Utils
         }
 
         /// <summary>
-        /// Copies the contents of the given array of colors into this FastBitmap.
-        /// Throws an ArgumentException if the count of colors on the array mismatches the pixel count from this FastBitmap
+        /// Copies the contents of the given array of colors into this FastBitmap. Throws an
+        /// ArgumentException if the count of colors on the array mismatches the pixel count from
+        /// this FastBitmap
         /// </summary>
         /// <param name="colors">The array of colors to copy</param>
         /// <param name="ignoreZeroes">Whether to ignore zeroes when copying the data</param>
@@ -439,8 +479,9 @@ namespace LeagueBot.Utils
             }
             else
             {
-                // Defines the ammount of assignments that the main while() loop is performing per loop.
-                // The value specified here must match the number of assignment statements inside that loop
+                // Defines the ammount of assignments that the main while() loop is performing per
+                // loop. The value specified here must match the number of assignment statements
+                // inside that loop
                 const int assignsPerLoop = 8;
 
                 int rem = count % assignsPerLoop;
@@ -572,7 +613,9 @@ namespace LeagueBot.Utils
         /// <param name="source">The source image to copy</param>
         /// <param name="srcRect">The region on the source bitmap that will be copied over</param>
         /// <param name="destRect">The region on this fast bitmap that will be changed</param>
-        /// <exception cref="ArgumentException">The provided source bitmap is the same bitmap locked in this FastBitmap</exception>
+        /// <exception cref="ArgumentException">
+        /// The provided source bitmap is the same bitmap locked in this FastBitmap
+        /// </exception>
         public void CopyRegion(Bitmap source, Rectangle srcRect, Rectangle destRect)
         {
             // Throw exception when trying to copy same bitmap over
@@ -584,7 +627,8 @@ namespace LeagueBot.Utils
             var srcBitmapRect = new Rectangle(0, 0, source.Width, source.Height);
             var destBitmapRect = new Rectangle(0, 0, Width, Height);
 
-            // Check if the rectangle configuration doesn't generate invalid states or does not affect the target image
+            // Check if the rectangle configuration doesn't generate invalid states or does not
+            // affect the target image
             if (srcRect.Width <= 0 || srcRect.Height <= 0 || destRect.Width <= 0 || destRect.Height <= 0 ||
                 !srcBitmapRect.IntersectsWith(srcRect) || !destRect.IntersectsWith(destBitmapRect))
                 return;
@@ -592,8 +636,9 @@ namespace LeagueBot.Utils
             // Find the areas of the first and second bitmaps that are going to be affected
             srcBitmapRect = Rectangle.Intersect(srcRect, srcBitmapRect);
 
-            // Clip the source rectangle on top of the destination rectangle in a way that clips out the regions of the original bitmap
-            // that will not be drawn on the destination bitmap for being out of bounds
+            // Clip the source rectangle on top of the destination rectangle in a way that clips out
+            // the regions of the original bitmap that will not be drawn on the destination bitmap
+            // for being out of bounds
             srcBitmapRect = Rectangle.Intersect(srcBitmapRect, new Rectangle(srcRect.X, srcRect.Y, destRect.Width, destRect.Height));
 
             destBitmapRect = Rectangle.Intersect(destRect, destBitmapRect);
@@ -601,7 +646,8 @@ namespace LeagueBot.Utils
             // Clip the source bitmap region yet again here
             srcBitmapRect = Rectangle.Intersect(srcBitmapRect, new Rectangle(-destRect.X + srcRect.X, -destRect.Y + srcRect.Y, Width, Height));
 
-            // Calculate the rectangle containing the maximum possible area that is supposed to be affected by the copy region operation
+            // Calculate the rectangle containing the maximum possible area that is supposed to be
+            // affected by the copy region operation
             int copyWidth = Math.Min(srcBitmapRect.Width, destBitmapRect.Width);
             int copyHeight = Math.Min(srcBitmapRect.Height, destBitmapRect.Height);
 
@@ -636,13 +682,15 @@ namespace LeagueBot.Utils
         }
 
         /// <summary>
-        /// Performs a copy operation of the pixels from the Source bitmap to the Target bitmap.
-        /// If the dimensions or pixel depths of both images don't match, the copy is not performed
+        /// Performs a copy operation of the pixels from the Source bitmap to the Target bitmap. If
+        /// the dimensions or pixel depths of both images don't match, the copy is not performed
         /// </summary>
         /// <param name="source">The bitmap to copy the pixels from</param>
         /// <param name="target">The bitmap to copy the pixels to</param>
         /// <returns>Whether the copy proceedure was successful</returns>
-        /// <exception cref="ArgumentException">The provided source and target bitmaps are the same</exception>
+        /// <exception cref="ArgumentException">
+        /// The provided source and target bitmaps are the same
+        /// </exception>
         public static bool CopyPixels(Bitmap source, Bitmap target)
         {
             if (source == target)
@@ -692,7 +740,9 @@ namespace LeagueBot.Utils
         /// <param name="target">The target image to be altered</param>
         /// <param name="srcRect">The region on the source bitmap that will be copied over</param>
         /// <param name="destRect">The region on the target bitmap that will be changed</param>
-        /// <exception cref="ArgumentException">The provided source and target bitmaps are the same bitmap</exception>
+        /// <exception cref="ArgumentException">
+        /// The provided source and target bitmaps are the same bitmap
+        /// </exception>
         public static void CopyRegion(Bitmap source, Bitmap target, Rectangle srcRect, Rectangle destRect)
         {
             var srcBitmapRect = new Rectangle(0, 0, source.Width, source.Height);
@@ -712,8 +762,8 @@ namespace LeagueBot.Utils
         }
 
         /// <summary>
-        /// Returns a bitmap that is a slice of the original provided 32bpp Bitmap.
-        /// The region must have a width and a height > 0, and must lie inside the source bitmap's area
+        /// Returns a bitmap that is a slice of the original provided 32bpp Bitmap. The region must
+        /// have a width and a height &gt; 0, and must lie inside the source bitmap's area
         /// </summary>
         /// <param name="source">The source bitmap to slice</param>
         /// <param name="region">The region of the source bitmap to slice</param>
@@ -756,6 +806,7 @@ namespace LeagueBot.Utils
             Unsafe.InitBlock(dest, (byte)value, (uint)count);
         }
 #else
+
         /// <summary>
         /// .NET wrapper to native call of 'memcpy'. Requires Microsoft Visual C++ Runtime installed
         /// </summary>
@@ -773,10 +824,12 @@ namespace LeagueBot.Utils
         /// </summary>
         [DllImport("msvcrt.dll", EntryPoint = "memset", CallingConvention = CallingConvention.Cdecl, SetLastError = false)]
         public static extern IntPtr memset(void* dest, int value, ulong count);
+
 #endif
 
         /// <summary>
-        /// Represents a disposable structure that is returned during Lock() calls, and unlocks the bitmap on Dispose calls
+        /// Represents a disposable structure that is returned during Lock() calls, and unlocks the
+        /// bitmap on Dispose calls
         /// </summary>
         public struct FastBitmapLocker : IDisposable
         {
@@ -786,10 +839,13 @@ namespace LeagueBot.Utils
             public FastBitmap FastBitmap { get; }
 
             /// <summary>
-            /// Initializes a new instance of the FastBitmapLocker struct with an initial fast bitmap object.
-            /// The fast bitmap object passed will be unlocked after calling Dispose() on this struct
+            /// Initializes a new instance of the FastBitmapLocker struct with an initial fast
+            /// bitmap object. The fast bitmap object passed will be unlocked after calling
+            /// Dispose() on this struct
             /// </summary>
-            /// <param name="fastBitmap">A fast bitmap to attach to this locker which will be released after a call to Dispose</param>
+            /// <param name="fastBitmap">
+            /// A fast bitmap to attach to this locker which will be released after a call to Dispose
+            /// </param>
             public FastBitmapLocker(FastBitmap fastBitmap)
             {
                 FastBitmap = fastBitmap;
@@ -811,11 +867,23 @@ namespace LeagueBot.Utils
     /// </summary>
     public enum FastBitmapLockFormat
     {
-        /// <summary>Specifies that the format is 32 bits per pixel; 8 bits each are used for the red, green, and blue components. The remaining 8 bits are not used.</summary>
+        /// <summary>
+        /// Specifies that the format is 32 bits per pixel; 8 bits each are used for the red, green,
+        /// and blue components. The remaining 8 bits are not used.
+        /// </summary>
         Format32bppRgb = 139273,
-        /// <summary>Specifies that the format is 32 bits per pixel; 8 bits each are used for the alpha, red, green, and blue components. The red, green, and blue components are premultiplied, according to the alpha component.</summary>
+
+        /// <summary>
+        /// Specifies that the format is 32 bits per pixel; 8 bits each are used for the alpha, red,
+        /// green, and blue components. The red, green, and blue components are premultiplied,
+        /// according to the alpha component.
+        /// </summary>
         Format32bppPArgb = 925707,
-        /// <summary>Specifies that the format is 32 bits per pixel; 8 bits each are used for the alpha, red, green, and blue components.</summary>
+
+        /// <summary>
+        /// Specifies that the format is 32 bits per pixel; 8 bits each are used for the alpha, red,
+        /// green, and blue components.
+        /// </summary>
         Format32bppArgb = 2498570,
     }
 
@@ -825,7 +893,8 @@ namespace LeagueBot.Utils
     public static class FastBitmapExtensions
     {
         /// <summary>
-        /// Locks this bitmap into memory and returns a FastBitmap that can be used to manipulate its pixels
+        /// Locks this bitmap into memory and returns a FastBitmap that can be used to manipulate
+        /// its pixels
         /// </summary>
         /// <param name="bitmap">The bitmap to lock</param>
         /// <returns>A locked FastBitmap</returns>
@@ -838,7 +907,8 @@ namespace LeagueBot.Utils
         }
 
         /// <summary>
-        /// Locks this bitmap into memory and returns a FastBitmap that can be used to manipulate its pixels
+        /// Locks this bitmap into memory and returns a FastBitmap that can be used to manipulate
+        /// its pixels
         /// </summary>
         /// <param name="bitmap">The bitmap to lock</param>
         /// <param name="lockFormat">The underlying pixel format to use when locking the bitmap</param>
@@ -852,8 +922,8 @@ namespace LeagueBot.Utils
         }
 
         /// <summary>
-        /// Returns a deep clone of this Bitmap object, with all the data copied over.
-        /// After a deep clone, the new bitmap is completely independent from the original
+        /// Returns a deep clone of this Bitmap object, with all the data copied over. After a deep
+        /// clone, the new bitmap is completely independent from the original
         /// </summary>
         /// <param name="bitmap">The bitmap to clone</param>
         /// <returns>A deep clone of this Bitmap object, with all the data copied over</returns>

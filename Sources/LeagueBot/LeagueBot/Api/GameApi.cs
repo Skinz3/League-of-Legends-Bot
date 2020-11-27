@@ -1,22 +1,8 @@
-﻿using InputManager;
-using LeagueBot.ApiHelpers;
+﻿using LeagueBot.ApiHelpers;
 using LeagueBot.Game.Entities;
 using LeagueBot.Game.Enums;
 using LeagueBot.Game.Misc;
-using LeagueBot.IO;
-using LeagueBot.Utils;
-using LeagueBot.Windows;
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Drawing.Imaging;
-using System.Linq;
-using System.Net;
-using System.Net.Security;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace LeagueBot.Api
 {
@@ -33,90 +19,59 @@ namespace LeagueBot.Api
      * -> * We back after Flee
      * -> * Walk to our first turret
      */
+
     public class GameApi : IApi // Teams[] CameraIndex PlayerIndex
     {
-        public Shop shop
-        {
-            get;
-            private set;
-        }
-        public Camera camera
-        {
-            get;
-            private set;
-        }
-        public Chat chat
-        {
-            get;
-            private set;
-        }
-        private SideEnum? side
-        {
-            get;
-            set;
-        }
-        public ActivePlayer player
-        {
-            get;
-            private set;
-        }
         public GameApi()
         {
-            this.shop = new Shop(this);
-            this.camera = new Camera(this);
-            this.chat = new Chat(this);
-            this.player = new ActivePlayer(this);
+            Shop = new Shop(this);
+            Camera = new Camera(this);
+            Chat = new Chat(this);
+            Player = new ActivePlayer(this);
         }
 
-       
-        public void waitUntilGameStart()
+        public Camera Camera { get; }
+
+        public Chat Chat { get; }
+
+        public ActivePlayer Player { get; }
+
+        public Shop Shop { get; }
+
+        private SideEnum? side;
+
+        private SideEnum Side
         {
-            while (true)
+            get
             {
-                if (GameLCU.IsApiReady() && GameLCU.GetGameTime() > 2d)
-                {
-                    break;
-                }
-           
-                Thread.Sleep(2000);
+                side = side ?? GameLCU.GetPlayerSide();
+                return side.Value;
             }
-
         }
-     
-        public dynamic getAllies()
-        {
-            return GameLCU.GetAllies();
-        }
-        public int getAllyIdToFollow()
-        {
-            const int StartIndex = 2;
 
-            int max = -1;
-            int index = StartIndex;
+        public dynamic GetAllies() => GameLCU.GetAllies();
+
+        public int GetAllyToFollowId()
+        {
+            var startIndex = 2;
+
+            int maxKils = -1;
+            int index = startIndex;
 
             int i = index;
-
-            var allies = getAllies();
-
-            foreach (var ally in allies)
+            foreach (var ally in GetAllies())
             {
-                if (i - StartIndex == 4)
-                {
+                if (i - startIndex == 4)
                     break;
-                }
 
-                if (ally.summonerName == player.getName())
+                if (!ally.summonerName == Player.getName() &&
+                    !ally.isDead &&
+                    !HasSmite(ally) &&
+                    ally.scores.kills > maxKils
+                    )
                 {
-                    continue;
-                }
-                if (ally.scores.kills > max && ally.isDead == false)
-                {
-                    if (!ally.summonerSpells.summonerSpellOne.displayName.ToString().ToLower().Contains("smite") && // not jungler
-                        !ally.summonerSpells.summonerSpellTwo.displayName.ToString().ToLower().Contains("smite"))
-                    {
-                        max = ally.scores.kills;
-                        index = i;
-                    }
+                    maxKils = ally.scores.kills;
+                    index = i;
                 }
                 i++;
             }
@@ -124,19 +79,22 @@ namespace LeagueBot.Api
             return index;
         }
 
-        public SideEnum getSide()
+        private bool HasSmite(dynamic ally)
         {
-            if (side == null)
-            {
-                side = GameLCU.GetPlayerSide();
-            }
-            return side.Value;
+            return ally.summonerSpells.summonerSpellOne.displayName.ToString().ToLower().Contains("smite") ||
+                    ally.summonerSpells.summonerSpellTwo.displayName.ToString().ToLower().Contains("smite");
         }
 
-        public void moveCenterScreen()
+        public void MoveCenterScreen()
         {
             InputHelper.RightClick(886, 521);
             BotHelper.InputIdle();
+        }
+
+        public void WaitForGameStart()
+        {
+            while (!(GameLCU.IsApiReady() && GameLCU.GetGameTime() > 2d))
+                Thread.Sleep(2000);
         }
     }
 }

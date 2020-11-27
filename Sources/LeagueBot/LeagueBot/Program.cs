@@ -1,22 +1,19 @@
 ﻿using LeagueBot.DesignPattern;
 using LeagueBot.IO;
 using LeagueBot.Patterns;
-using LeagueBot.Utils;
-using LeagueBot.Windows;
 using System;
 using System.Reflection;
 
 namespace LeagueBot
 {
-    /* 
+    /*
      * The user input settings (game mode, champion , champion behaviour)
      * -> We create SessionParameters.cs that we pass to each scripts.
      * Or
-     * 
+     *
      * The user input settings (game mode, champion , champion behaviour)
      * -> We create Session.cs that call scripts.
      */
-
 
     /* *** Final Goal ***
      * Todo -> Champion script (GameLoop() function is relative the champion)
@@ -26,21 +23,12 @@ namespace LeagueBot
      * Optimize pixel searching ? it is possible faster than FastBitmap.cs (LockBits) ?
      * Make solo pattern instead of following ally.
      */
-    class Program
+
+    internal class Program
     {
         public static int GameCount = 0;
 
-        static void Main(string[] args)
-        {
-            Logger.OnStartup();
-
-            StartupManager.Initialize(Assembly.GetExecutingAssembly());
-
-            HandleCommand();
-
-            Console.Read();
-        }
-        static void HandleCommand()
+        private static void HandleCommand()
         {
             Logger.Write("Enter a pattern filename, type 'help' for help.", MessageState.INFO);
 
@@ -58,5 +46,15 @@ namespace LeagueBot
             HandleCommand();
         }
 
+        private static void Main(string[] args)
+        {
+            Logger.OnStartup();
+
+            StartupManager.Initialize(Assembly.GetExecutingAssembly());
+
+            HandleCommand();
+
+            Console.Read();
+        }
     }
 }
