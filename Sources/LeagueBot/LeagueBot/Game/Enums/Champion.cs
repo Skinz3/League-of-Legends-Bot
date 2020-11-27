@@ -1,6 +1,6 @@
 ﻿namespace LeagueBot.Game.Enums
 {
-    public enum ChampionEnum
+    public enum Champion
     {
         None = -1,
         Shaco = 35,

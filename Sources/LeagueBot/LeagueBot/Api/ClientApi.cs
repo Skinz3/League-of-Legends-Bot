@@ -11,9 +11,9 @@ namespace LeagueBot.Api
     {
         private Summoner summoner;
 
-        public GameflowPhaseEnum GameflowPhase => ClientLCU.GetGameflowPhase();
+        public GameflowPhase GameflowPhase => ClientLCU.GetGameflowPhase();
 
-        public bool IsMatchFound => ClientLCU.IsMatchFound();
+        public bool IsMatchFound => ClientLCU.IsMatchFound;
 
         public Summoner Summoner
         {
@@ -28,7 +28,7 @@ namespace LeagueBot.Api
 
         public void CloseClient() => ClientLCU.CloseClient();
 
-        public void CreateLobby(QueueEnum queueId) => ClientLCU.CreateLobby(queueId);
+        public void CreateLobby(QueueType queueId) => ClientLCU.CreateLobby(queueId);
 
         public void Initialize() => ClientLCU.Initialize();
 
@@ -41,7 +41,7 @@ namespace LeagueBot.Api
 
         public void OpenClient() => ClientLCU.OpenClient();
 
-        public ChampionPickResult PickChampion(ChampionEnum champion) => ClientLCU.PickChampion(summoner, champion);
+        public ChampionPickResult PickChampion(Champion champion) => ClientLCU.PickChampion(summoner, champion);
 
         public SearchMatchResult SearchMatch() => ClientLCU.SearchMatch();
 

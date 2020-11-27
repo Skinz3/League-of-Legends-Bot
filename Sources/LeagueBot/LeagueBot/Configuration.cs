@@ -13,7 +13,7 @@ namespace LeagueBot
     {
         public static Configuration Instance { get; private set; }
 
-        public string ClientPath { get; set; }
+        public string ClientPath { get; private set; }
 
         public static void CreateConfig(string clientPath)
         {
@@ -24,7 +24,7 @@ namespace LeagueBot
 
             Save();
 
-            Logger.Write("Configuration file created!", MessageState.SUCCES);
+            Logger.Write("Configuration file created!", LogLevel.SUCCES);
         }
 
         [StartupInvoke("Config", StartupInvokePriority.Initial)]
@@ -55,13 +55,10 @@ namespace LeagueBot
                 catch
                 {
                     File.Delete(Constants.ConfigPath);
-                    return false;
                 }
             }
-            else
-            {
-                return false;
-            }
+
+            return default;
         }
 
         private static bool Load()
@@ -79,7 +76,8 @@ namespace LeagueBot
                         Environment.Exit(0);
                         return false;
                     }
-                    FolderBrowserDialog folderOpen = new FolderBrowserDialog();
+
+                    var folderOpen = new FolderBrowserDialog();
                     folderOpen.Description = "Please select the league of legends 'Riot Game' folder.";
 
                     if (folderOpen.ShowDialog() == DialogResult.OK)

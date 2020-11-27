@@ -4,37 +4,23 @@ using System.Reflection;
 
 namespace LeagueBot.IO
 {
-    public enum MessageState
-    {
-        INFO = 0,
-        INFO2 = 1,
-        IMPORTANT_INFO = 2,
-        WARNING = 3,
-        ERROR = 4,
-        ERROR_FATAL = 5,
-        SUCCES = 6,
-    }
-
     public class Logger
     {
         private const ConsoleColor COLOR_1 = ConsoleColor.Magenta;
         private const ConsoleColor COLOR_2 = ConsoleColor.DarkMagenta;
 
-        private static Dictionary<MessageState, ConsoleColor> Colors = new Dictionary<MessageState, ConsoleColor>()
+        private static readonly Dictionary<LogLevel, ConsoleColor> Colors = new Dictionary<LogLevel, ConsoleColor>()
         {
-            { MessageState.INFO,            ConsoleColor.Gray },
-            { MessageState.INFO2,           ConsoleColor.DarkGray },
-            { MessageState.IMPORTANT_INFO,  ConsoleColor.White },
-            { MessageState.SUCCES,          ConsoleColor.Green },
-            { MessageState.WARNING,         ConsoleColor.Yellow },
-            { MessageState.ERROR ,          ConsoleColor.DarkRed},
-            { MessageState.ERROR_FATAL,     ConsoleColor.Red }
+            { LogLevel.INFO,            ConsoleColor.Gray },
+            { LogLevel.INFO2,           ConsoleColor.DarkGray },
+            { LogLevel.IMPORTANT_INFO,  ConsoleColor.White },
+            { LogLevel.SUCCES,          ConsoleColor.Green },
+            { LogLevel.WARNING,         ConsoleColor.Yellow },
+            { LogLevel.ERROR ,          ConsoleColor.DarkRed},
+            { LogLevel.ERROR_FATAL,     ConsoleColor.Red }
         };
 
-        public static void NewLine()
-        {
-            Console.WriteLine(Environment.NewLine);
-        }
+        public static void NewLine() => Console.WriteLine(Environment.NewLine);
 
         public static void OnStartup()
         {
@@ -49,26 +35,20 @@ namespace LeagueBot.IO
             Console.Title = Assembly.GetEntryAssembly().GetName().Name + " (" + Program.GameCount + " games)";
         }
 
-        public static void Write(object value, MessageState state = MessageState.INFO)
+        public static void Write(object value, LogLevel state = LogLevel.INFO)
         {
             WriteColored(value, Colors[state]);
 
-            if (state == MessageState.ERROR_FATAL)
+            if (state == LogLevel.ERROR_FATAL)
             {
                 Console.ReadLine();
                 Environment.Exit(1);
             }
         }
 
-        public static void WriteColor1(object value)
-        {
-            WriteColored(value, COLOR_1);
-        }
+        public static void WriteColor1(object value) => WriteColored(value, COLOR_1);
 
-        public static void WriteColor2(object value)
-        {
-            WriteColored(value, COLOR_2);
-        }
+        public static void WriteColor2(object value) => WriteColored(value, COLOR_2);
 
         private static void WriteColored(object value, ConsoleColor color)
         {

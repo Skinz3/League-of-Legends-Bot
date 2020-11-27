@@ -18,6 +18,8 @@ namespace LeagueBot.LCU
 
         private static int Port;
 
+        public static bool IsMatchFound => GetGameflowPhase() == GameflowPhase.ReadyCheck;
+
         private static string AcceptURL => Url + "lol-matchmaking/v1/ready-check/accept";
 
         private static string CreateLobbyURL => Url + "lol-lobby/v2/lobby";
@@ -51,52 +53,36 @@ namespace LeagueBot.LCU
         public static void AcceptMatch()
         {
             using (var request = CreateRequest())
-            {
                 request.Post(AcceptURL);
-            }
         }
 
-        public static bool CanPickChampion(ChampionEnum champion)
-        {
-            return GetPickableChampions().Contains((int)champion);
-        }
+        public static bool CanPickChampion(Champion champion) => GetPickableChampions().Contains((int)champion);
 
         public static void CloseClient()
         {
             try
             {
                 using (var request = CreateRequest())
-                {
                     request.Post(KillUXUrl);
-                }
             }
             catch
             {
-                Logger.Write("Unable request KillUX()", MessageState.WARNING);
+                Logger.Write("Unable request KillUX()", LogLevel.WARNING);
             }
             finally
             {
                 foreach (var process in Process.GetProcessesByName(Constants.ClientHostProcessName))
-                {
                     process.Kill();
-                }
             }
         }
 
-        public static bool CreateLobby(QueueEnum queueId)
+        public static bool CreateLobby(QueueType queueId)
         {
             using (var request = CreateRequest())
             {
-                string response = request.Post(CreateLobbyURL, "{\"queueId\": " + (int)queueId + "}", "application/json").StatusCode.ToString();
+                var response = request.Post(CreateLobbyURL, "{\"queueId\": " + (int)queueId + "}", "application/json").StatusCode.ToString();
 
-                if (response == "OK")
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                return response == "OK";
             }
         }
 
@@ -118,13 +104,13 @@ namespace LeagueBot.LCU
             }
         }
 
-        public static GameflowPhaseEnum GetGameflowPhase()
+        public static GameflowPhase GetGameflowPhase()
         {
             using (var request = CreateRequest())
             {
                 var result = request.Get(GameflowPhaseUrl).ToString();
                 result = Regex.Match(result, "\"(.*)\"").Groups[1].Value;
-                return (GameflowPhaseEnum)Enum.Parse(typeof(GameflowPhaseEnum), result);
+                return (GameflowPhase)Enum.Parse(typeof(GameflowPhase), result);
             }
         }
 
@@ -158,9 +144,7 @@ namespace LeagueBot.LCU
             }
 
             if (Port == 0)
-            {
-                Logger.Write("Unable to initialize ClientLCU.cs (unable to read Api port from process)", MessageState.ERROR_FATAL);
-            }
+                Logger.Write("Unable to initialize ClientLCU.cs (unable to read Api port from process)", LogLevel.ERROR_FATAL);
         }
 
         public static bool IsApiReady()
@@ -184,53 +168,41 @@ namespace LeagueBot.LCU
                         return ready;
                     }
                 }
-                catch
-                {
-                    return false;
-                }
+                catch { /* Swallow */ }
             }
 
-            return false;
-        }
-
-        public static bool IsMatchFound()
-        {
-            return GetGameflowPhase() == GameflowPhaseEnum.ReadyCheck;
+            return default;
         }
 
         public static void OpenClient()
         {
-            ProcessStartInfo psi = new ProcessStartInfo();
+            var psi = new ProcessStartInfo();
             psi.FileName = Path.Combine(Configuration.Instance.ClientPath, Constants.ClientExecutablePath);
             Process.Start(psi);
         }
 
-        public static ChampionPickResult PickChampion(Summoner currentSummoner, ChampionEnum champion)
+        public static ChampionPickResult PickChampion(Summoner currentSummoner, Champion champion)
         {
             var session = ClientLCU.GetChampSelectSession();
 
             foreach (var summoner in session.actions[0])
             {
                 if (summoner.championId == (int)champion)
-                {
                     return ChampionPickResult.ChampionPicked;
-                }
             }
 
             int[] pickableChampions = GetPickableChampions();
 
             if (!pickableChampions.Contains((int)champion))
-            {
                 return ChampionPickResult.ChampionNotOwned;
-            }
 
             int championId = (int)champion;
-
             for (int id = 0; id < 10; id++) // <-- clean this. What is 'id' ?
             {
                 using (var request = CreateRequest())
                 {
-                    var result = request.Patch(PickURL + id, "{\"actorCellId\": 0, \"championId\": " + championId + ", \"completed\": true, \"id\": " + id + ", \"isAllyAction\": true, \"type\": \"string\"}", "application/json").ToString();
+                    var result = request.Patch(PickURL + id, "{\"actorCellId\": 0, \"championId\": " + championId + ", \"completed\": true, \"id\": "
+                        + id + ", \"isAllyAction\": true, \"type\": \"string\"}", "application/json").ToString();
                 }
             }
 
@@ -244,9 +216,7 @@ namespace LeagueBot.LCU
                 string response = request.Post(SearchURL).ToString();
 
                 if (response == string.Empty)
-                {
                     return SearchMatchResult.Ok;
-                }
                 else
                 {
                     SearchMatchResult result = SearchMatchResult.Unknown;
@@ -270,7 +240,7 @@ namespace LeagueBot.LCU
                             break;
 
                         default:
-                            Logger.Write("Unknown search match result : " + obj.message, MessageState.WARNING);
+                            Logger.Write("Unknown search match result : " + obj.message, LogLevel.WARNING);
                             break;
                     }
 

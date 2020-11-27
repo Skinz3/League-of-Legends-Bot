@@ -13,9 +13,7 @@ namespace LeagueBot.Utils
         public static void Initialize()
         {
             if (!File.Exists(PATH))
-            {
                 File.Create(PATH);
-            }
         }
 
         public static void Log(object message)
@@ -27,7 +25,7 @@ namespace LeagueBot.Utils
             }
             catch (Exception ex)
             {
-                Logger.Write("Unable to log: " + ex, MessageState.ERROR);
+                Logger.Write("Unable to log: " + ex, LogLevel.ERROR);
             }
         }
     }

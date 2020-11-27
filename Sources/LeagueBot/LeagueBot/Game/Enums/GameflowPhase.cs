@@ -1,6 +1,6 @@
 ﻿namespace LeagueBot.Game.Enums
 {
-    public enum GameflowPhaseEnum
+    public enum GameflowPhase
     {
         None,
         Lobby,

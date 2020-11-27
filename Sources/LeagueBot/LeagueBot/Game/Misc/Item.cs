@@ -4,27 +4,14 @@
     {
         public Item(string name, int cost)
         {
-            this.Name = name;
-            this.Cost = cost;
-            this.Buyed = false;
+            Name = name;
+            GoldCost = cost;
         }
 
-        public bool Buyed
-        {
-            get;
-            set;
-        }
+        public bool Bought { get; }
 
-        public int Cost
-        {
-            get;
-            private set;
-        }
+        public int GoldCost { get; }
 
-        public string Name
-        {
-            get;
-            private set;
-        }
+        public string Name { get; }
     }
 }

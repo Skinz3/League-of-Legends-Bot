@@ -12,7 +12,7 @@ namespace LeagueBot.Game.Misc
         {
         }
 
-        public void talkInChampSelect(string message)
+        public void WriteChatChampionselect(string message)
         {
             InputHelper.LeftClick(390, 940, 200);
 
@@ -30,7 +30,7 @@ namespace LeagueBot.Game.Misc
             BotHelper.InputIdle();
         }
 
-        public void talkInGame(string message)
+        public void WriteChatGame(string message)
         {
             Keyboard.KeyPress(Keys.Enter, 150);
 

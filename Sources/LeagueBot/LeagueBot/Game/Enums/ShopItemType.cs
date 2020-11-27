@@ -1,6 +1,6 @@
 ﻿namespace LeagueBot.Game.Enums
 {
-    public enum ShopItemTypeEnum
+    public enum ShopItemType
     {
         Starting,
         Early,

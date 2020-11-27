@@ -30,7 +30,7 @@ namespace LeagueBot
 
         private static void HandleCommand()
         {
-            Logger.Write("Enter a pattern filename, type 'help' for help.", MessageState.INFO);
+            Logger.Write("Enter a pattern filename, type 'help' for help.", LogLevel.INFO);
 
             string line = Console.ReadLine();
 

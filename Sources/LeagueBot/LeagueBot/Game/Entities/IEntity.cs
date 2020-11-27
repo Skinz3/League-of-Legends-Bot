@@ -4,9 +4,6 @@ namespace LeagueBot.Game.Entities
 {
     public interface IEntity
     {
-        Point Position
-        {
-            get;
-        }
+        Point Position { get; }
     }
 }

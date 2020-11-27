@@ -13,13 +13,13 @@ namespace LeagueBot.Api
         public void BringProcessToFront(string processName)
         {
             if (!Interop.BringWindowToFront(processName))
-                Logger.Write("Unable to bring process to front: " + processName, MessageState.WARNING);
+                Logger.Write("Unable to bring process to front: " + processName, LogLevel.WARNING);
         }
 
         public void CenterProcess(string processName)
         {
             if (!Interop.CenterProcessWindow(processName))
-                Logger.Write("Unable to center process: " + processName, MessageState.WARNING);
+                Logger.Write("Unable to center process: " + processName, LogLevel.WARNING);
         }
 
         public void ExecutePattern(string name) => PatternsManager.Execute(name);
@@ -28,11 +28,11 @@ namespace LeagueBot.Api
 
         public bool IsProcessOpen(string processName) => Process.GetProcessesByName(processName).Length > 0;
 
-        public void LogError(object message) => Logger.Write(message, MessageState.ERROR); // TODO: Pretty redundant, just extend LogMessage
+        public void LogError(object message) => Logger.Write(message, LogLevel.ERROR); // TODO: Pretty redundant, just extend LogMessage
 
         public void LogMessage(object message) => Logger.Write(message);
 
-        public void LogWarning(object message) => Logger.Write(message, MessageState.WARNING);
+        public void LogWarning(object message) => Logger.Write(message, LogLevel.WARNING);
 
         public void Sleep(int ms) => BotHelper.Sleep(ms);
 

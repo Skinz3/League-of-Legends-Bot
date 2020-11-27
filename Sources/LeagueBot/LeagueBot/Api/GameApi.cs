@@ -38,9 +38,9 @@ namespace LeagueBot.Api
 
         public Shop Shop { get; }
 
-        private SideEnum? side;
+        private TeamSide? side;
 
-        private SideEnum Side
+        private TeamSide Side
         {
             get
             {
@@ -64,7 +64,7 @@ namespace LeagueBot.Api
                 if (i - startIndex == 4)
                     break;
 
-                if (!ally.summonerName == Player.getName() &&
+                if (ally.summonerName != Player.Name &&
                     !ally.isDead &&
                     !HasSmite(ally) &&
                     ally.scores.kills > maxKils

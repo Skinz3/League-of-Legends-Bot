@@ -7,16 +7,11 @@ namespace LeagueBot.Game.Misc
     {
         public Shop(GameApi api) : base(api)
         {
-            this.Opened = false;
         }
 
-        public bool Opened
-        {
-            get;
-            set;
-        }
+        public bool IsOpen { get; private set; }
 
-        public void buySearchedItem()
+        public void BuyCurrentItem()
         {
             BotHelper.InputIdle();
 
@@ -29,7 +24,7 @@ namespace LeagueBot.Game.Misc
             BotHelper.InputIdle();
         }
 
-        public void searchItem(string name)
+        public void SearchForItem(string name)
         {
             InputHelper.KeyDown("LControlKey");
             InputHelper.KeyDown("L");
@@ -41,19 +36,15 @@ namespace LeagueBot.Game.Misc
             InputHelper.InputWords(name);
         }
 
-        public void toogle()
+        public void ToggleOpen()
         {
-            if (Opened)
-            {
+            if (IsOpen)
                 InputHelper.PressKey("Escape");
-            }
             else
-            {
                 InputHelper.PressKey("P");
-            }
 
             BotHelper.InputIdle();
-            Opened = !Opened;
+            IsOpen = !IsOpen;
         }
     }
 }

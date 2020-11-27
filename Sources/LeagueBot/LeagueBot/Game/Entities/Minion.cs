@@ -6,13 +6,9 @@ namespace LeagueBot.Game.Entities
     {
         public Minion(Point position)
         {
-            this.Position = position;
+            Position = position;
         }
 
-        public Point Position
-        {
-            get;
-            private set;
-        }
+        public Point Position { get; }
     }
 }

@@ -4,27 +4,16 @@ namespace LeagueBot.Patterns
 {
     public abstract class PatternScript
     {
-        public BotApi bot
-        {
-            protected get;
-            set;
-        }
+        public BotApi Bot { get; internal set; }
 
-        public ClientApi client
-        {
-            protected get;
-            set;
-        }
+        public ClientApi Client { get; internal set; }
 
-        public GameApi game
-        {
-            protected get;
-            set;
-        }
+        public GameApi Game { get; internal set; }
 
         public virtual bool ThrowException => true;
 
-        public virtual void End()
+        // TODO: Called on Ending the script
+        public virtual void OnEnd()
         {
         }
 

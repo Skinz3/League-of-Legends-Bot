@@ -1,6 +1,6 @@
 ﻿namespace LeagueBot.Game.Enums
 {
-    public enum SideEnum
+    public enum TeamSide
     {
         Blue,
         Red,

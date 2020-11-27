@@ -6,13 +6,9 @@ namespace LeagueBot.Game
     {
         public ApiMember(T api)
         {
-            this.Api = api;
+            Api = api;
         }
 
-        protected T Api
-        {
-            get;
-            private set;
-        }
+        protected T Api { get; }
     }
 }

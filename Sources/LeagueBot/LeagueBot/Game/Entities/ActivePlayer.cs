@@ -11,102 +11,80 @@ namespace LeagueBot.Game.Entities
         {
         }
 
-        public bool dead()
+        public int CurrentGold => GameLCU.GetPlayerGolds();
+
+        public double HealthPercentage
         {
-            return GameLCU.IsPlayerDead();
-        }
-
-        public int getGolds()
-        {
-            return GameLCU.GetPlayerGolds();
-        }
-
-        public double getHealthPercent()
-        {
-            var stats = getStats();
-            return stats.currentHealth / stats.maxHealth;
-        }
-
-        public int getLevel()
-        {
-            return GameLCU.GetPlayerLevel();
-        }
-
-        public double getManaPercent()
-        {
-            var stats = getStats();
-            return stats.resourceValue / stats.resourceMax;
-        }
-
-        public string getName()
-        {
-            return GameLCU.GetPlayerName();
-        }
-
-        public IEntity getNearTarget()
-        {
-            Color color = Color.FromArgb(203, 98, 88); // champion lifebar
-
-            Color color2 = Color.FromArgb(208, 94, 94); // minion lifebar
-
-            var target = ScreenHelper.GetColorPosition(color);
-
-            if (target == null)
+            get
             {
-                var minion = ScreenHelper.GetColorPosition(color2);
-
-                if (minion == null)
-                {
-                    return null;
-                }
-                else
-                {
-                    return new Minion(new Point(minion.Value.X + 30, minion.Value.Y + 40));
-                }
+                var stats = GameLCU.GetStats();
+                return stats.currentHealth / stats.maxHealth;
             }
+        }
+
+        public bool IsDead => GameLCU.IsPlayerDead;
+
+        public int Level => GameLCU.GetPlayerLevel();
+
+        public string Name => GameLCU.GetPlayerName();
+
+        public double ResourcePercentage
+        {
+            get
+            {
+                var stats = GameLCU.GetStats();
+                return stats.resourceValue / stats.resourceMax;
+            }
+        }
+
+        public IEntity GetNearTarget()
+        {
+            Color championLifebar = Color.FromArgb(203, 98, 88); // champion lifebar
+            Color minionLifebar = Color.FromArgb(208, 94, 94); // minion lifebar
+
+            var champion = ScreenHelper.GetColorPosition(championLifebar);
+
+            if (champion != default)
+                return new Champion(false, new Point(champion.Value.X + 50, champion.Value.Y + 60)); // lifebarposition + offset to find model
             else
             {
-                return new Champion(false, new Point(target.Value.X + 50, target.Value.Y + 60)); // lifebarposition + offset to find model
+                var minion = ScreenHelper.GetColorPosition(minionLifebar);
+
+                if (minion != default)
+                    return new Minion(new Point(minion.Value.X + 30, minion.Value.Y + 40));
             }
+
+            return default;
         }
 
-        public dynamic getStats()
-        {
-            return GameLCU.GetStats();
-        }
+        public dynamic GetStats() => GameLCU.GetStats();
 
-        public void recall()
+        public void Recall()
         {
             InputHelper.PressKey("B");
             BotHelper.InputIdle();
         }
 
-        public void tryCastSpellOnTarget(int indice)
+        public void TryCastSpellOnTarget(int index)
         {
-            IEntity target = getNearTarget();
+            IEntity target = GetNearTarget();
 
-            if (target == null)
+            if (target == null ||
+                target is Minion && index == 3 ||
+                target is Minion && index == 4
+                )
                 return;
 
-            if (target is Minion && indice == 3)
-            {
-                return;
-            }
-            if (target is Minion && indice == 4)
-            {
-                return;
-            }
-            string key = "D" + indice;
+            var key = "D" + index;
             InputHelper.MoveMouse(target.Position.X, target.Position.Y);
             InputHelper.PressKey(key);
             BotHelper.InputIdle();
         }
 
-        public void upgradeSpell(int indice) // <---- replace this by keybinding + league settings
+        public void UpgradeSpell(int index) // <---- replace this by keybinding + league settings
         {
-            Point coords = new Point();
-
-            switch (indice)
+            Point coords;
+            switch (index)
             {
                 case 1:
                     coords = new Point(826, 833);
@@ -125,7 +103,7 @@ namespace LeagueBot.Game.Entities
                     break;
 
                 default:
-                    Logger.Write("Unknown spell indice :" + indice, MessageState.WARNING);
+                    Logger.Write("Unknown spell indice :" + index, LogLevel.WARNING);
                     return;
             }
 
@@ -133,90 +111,88 @@ namespace LeagueBot.Game.Entities
             BotHelper.InputIdle();
         }
 
-        public void upgradeSpellOnLevelUp()
+        public void UpgradeSpellOnLevelUp()
         {
-            int level = getLevel();
-
-            switch (level)
+            switch (Level)
             {
                 case 1:
-                    upgradeSpell(1); // Q 1
+                    UpgradeSpell(1); // Q 1
                     break;
 
                 case 2:
-                    upgradeSpell(2); // W 1
+                    UpgradeSpell(2); // W 1
                     break;
 
                 case 3:
-                    upgradeSpell(3); // E 1
+                    UpgradeSpell(3); // E 1
                     break;
 
                 case 4:
-                    upgradeSpell(1); // Q 2
+                    UpgradeSpell(1); // Q 2
                     break;
 
                 case 5:
-                    upgradeSpell(1); // Q 3
+                    UpgradeSpell(1); // Q 3
                     break;
 
                 case 6:
-                    upgradeSpell(4); // R 1
+                    UpgradeSpell(4); // R 1
                     break;
 
                 case 7:
-                    upgradeSpell(1); // Q 4
+                    UpgradeSpell(1); // Q 4
                     break;
 
                 case 8:
-                    upgradeSpell(3); // E 2
+                    UpgradeSpell(3); // E 2
                     break;
 
                 case 9:
-                    upgradeSpell(1); // Q max
+                    UpgradeSpell(1); // Q max
                     break;
 
                 case 10:
-                    upgradeSpell(3); // E 3
+                    UpgradeSpell(3); // E 3
                     break;
 
                 case 11:
-                    upgradeSpell(4); // R 2
+                    UpgradeSpell(4); // R 2
                     break;
 
                 case 12:
-                    upgradeSpell(3); // E 4
+                    UpgradeSpell(3); // E 4
                     break;
 
                 case 13:
-                    upgradeSpell(3); // E max
+                    UpgradeSpell(3); // E max
                     break;
 
                 case 14:
-                    upgradeSpell(2); // W 2
+                    UpgradeSpell(2); // W 2
                     break;
 
                 case 15:
-                    upgradeSpell(2); // W 3
+                    UpgradeSpell(2); // W 3
                     break;
 
                 case 16:
-                    upgradeSpell(4); // R max
+                    UpgradeSpell(4); // R max
                     break;
 
                 case 17:
-                    upgradeSpell(2); // W 4
+                    UpgradeSpell(2); // W 4
                     break;
 
                 case 18:
-                    upgradeSpell(2); // W max
+                    UpgradeSpell(2); // W max
                     break;
 
                 default:
                     //something not leveled?
-                    upgradeSpell(1);
-                    upgradeSpell(2);
-                    upgradeSpell(3);
-                    upgradeSpell(4);
+                    UpgradeSpell(1);
+                    UpgradeSpell(2);
+                    UpgradeSpell(3);
+                    UpgradeSpell(4);
                     break;
             }
         }

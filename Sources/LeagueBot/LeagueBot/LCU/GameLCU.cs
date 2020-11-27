@@ -15,6 +15,8 @@ namespace LeagueBot.ApiHelpers
         public static string GameStatsUrl = ApiUrl + "/gamestats";
         public static string PlayerListUrl = ApiUrl + "/playerlist";
 
+        public static bool IsPlayerDead => GetStats().currentHealth == 0;
+
         public static dynamic GetAllies()
         {
             var resultStr = HttpGetString(PlayerListUrl);
@@ -57,9 +59,9 @@ namespace LeagueBot.ApiHelpers
             return dyn.summonerName;
         }
 
-        public static SideEnum GetPlayerSide()
+        public static TeamSide GetPlayerSide()
         {
-            string playerName = GetPlayerName();
+            var playerName = GetPlayerName();
 
             var resultStr = HttpGetString(PlayerListUrl);
 
@@ -68,19 +70,10 @@ namespace LeagueBot.ApiHelpers
             foreach (var element in dyn)
             {
                 if (element.summonerName == playerName)
-                {
-                    if (element.team == "ORDER")
-                    {
-                        return SideEnum.Blue;
-                    }
-                    else
-                    {
-                        return SideEnum.Red;
-                    }
-                }
+                    return element.team == "ORDER" ? TeamSide.Blue : TeamSide.Red;
             }
 
-            throw new Exception("Wut");
+            throw new Exception("Wut"); // TODO: What is this supposed to be?
         }
 
         public static dynamic GetStats()
@@ -116,23 +109,15 @@ namespace LeagueBot.ApiHelpers
                     var response = request.Get(PlayerListUrl);
 
                     if (response.StatusCode == HttpStatusCode.OK)
-                    {
                         return true;
-                    }
                 }
-
-                return false;
             }
             catch
             {
-                Logger.Write("Unable to communicate with LCU Api...", MessageState.WARNING);
-                return false;
+                Logger.Write("Unable to communicate with LCU Api...", LogLevel.WARNING);
             }
-        }
 
-        public static bool IsPlayerDead()
-        {
-            return GetStats().currentHealth == 0;
+            return default;
         }
 
         /// <summary>
@@ -168,7 +153,8 @@ namespace LeagueBot.ApiHelpers
                     }
                 }
             }
-            return 0;
+
+            return default;
         }
     }
 }

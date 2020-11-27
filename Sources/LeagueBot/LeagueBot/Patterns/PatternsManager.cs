@@ -19,41 +19,36 @@ namespace LeagueBot.Patterns
         public const string PATH = "Patterns\\";
         private static Dictionary<string, Type> Scripts = new Dictionary<string, Type>();
 
-        public static bool Contains(string name)
-        {
-            return Scripts.ContainsKey(name);
-        }
+        public static bool Contains(string name) => Scripts.ContainsKey(name);
 
         public static void Execute(string name)
         {
             if (!Scripts.ContainsKey(name))
-            {
-                Logger.Write("Unable to execute " + name + EXTENSION + ". Script not found.", MessageState.WARNING);
-            }
+                Logger.Write("Unable to execute " + name + EXTENSION + ". Script not found.", LogLevel.WARNING);
             else
             {
-                PatternScript script = (PatternScript)Activator.CreateInstance(Scripts[name]);
-                script.bot = new BotApi();
-                script.client = new ClientApi();
-                script.game = new GameApi();
+                var script = (PatternScript)Activator.CreateInstance(Scripts[name]);
+                script.Bot = new BotApi();
+                script.Client = new ClientApi();
+                script.Game = new GameApi();
 
                 if (!script.ThrowException)
                 {
                     try
                     {
-                        Logger.Write("Pattern : " + name + " (safe)", MessageState.IMPORTANT_INFO);
+                        Logger.Write("Pattern : " + name + " (safe)", LogLevel.IMPORTANT_INFO);
                         script.Execute();
                     }
                     catch (Exception ex)
                     {
                         LogFile.Log(name + " " + ex);
-                        Logger.Write("Pattern : " + name + " stopped. Ending...", MessageState.IMPORTANT_INFO);
-                        script.End();
+                        Logger.Write("Pattern : " + name + " stopped. Ending...", LogLevel.IMPORTANT_INFO);
+                        script.OnEnd();
                     }
                 }
                 else
                 {
-                    Logger.Write("Pattern : " + name, MessageState.IMPORTANT_INFO);
+                    Logger.Write("Pattern : " + name, LogLevel.IMPORTANT_INFO);
                     script.Execute();
                 }
             }
@@ -62,13 +57,15 @@ namespace LeagueBot.Patterns
         [StartupInvoke("Patterns", StartupInvokePriority.SecondPass)]
         public static void Initialize()
         {
-            CSharpCodeProvider codeProvider = new CSharpCodeProvider();
+            var codeProvider = new CSharpCodeProvider();
 
-            CompilerParameters parameters = new CompilerParameters();
-            parameters.GenerateExecutable = false;
-            parameters.GenerateInMemory = true;
-            parameters.OutputAssembly = string.Empty;
-            parameters.IncludeDebugInformation = false;
+            var parameters = new CompilerParameters
+            {
+                GenerateExecutable = false,
+                GenerateInMemory = true,
+                OutputAssembly = string.Empty,
+                IncludeDebugInformation = false
+            };
 
             parameters.ReferencedAssemblies.Add(Assembly.GetExecutingAssembly().Location);
             parameters.ReferencedAssemblies.Add("System.Drawing.dll");
@@ -82,10 +79,9 @@ namespace LeagueBot.Patterns
                 StringBuilder sb = new StringBuilder();
 
                 foreach (CompilerError err in results.Errors)
-                {
                     sb.AppendLine(string.Format("{0}({1},{2}) : {3}", Path.GetFileName(err.FileName), err.Line, err.Column, err.ErrorText));
-                }
-                Logger.Write(sb.ToString(), MessageState.WARNING);
+
+                Logger.Write(sb.ToString(), LogLevel.WARNING);
                 Console.Read();
                 Environment.Exit(0);
             }
@@ -93,19 +89,14 @@ namespace LeagueBot.Patterns
             codeProvider.Dispose();
 
             foreach (var type in results.CompiledAssembly.GetTypes())
-            {
                 Scripts.Add(type.Name, type);
-            }
         }
 
         public static string ToString()
         {
-            StringBuilder sb = new StringBuilder();
-
+            var sb = new StringBuilder();
             foreach (var script in Scripts)
-            {
                 sb.AppendLine("-" + script.Key);
-            }
 
             return sb.ToString();
         }

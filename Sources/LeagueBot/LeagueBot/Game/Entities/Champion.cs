@@ -6,20 +6,12 @@ namespace LeagueBot.Game.Entities
     {
         public Champion(bool ally, Point position)
         {
-            this.Ally = ally;
-            this.Position = position;
+            Ally = ally;
+            Position = position;
         }
 
-        public bool Ally
-        {
-            get;
-            private set;
-        }
+        public bool Ally { get; }
 
-        public Point Position
-        {
-            get;
-            private set;
-        }
+        public Point Position { get; }
     }
 }

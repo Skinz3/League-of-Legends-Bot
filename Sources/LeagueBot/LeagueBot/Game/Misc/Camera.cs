@@ -7,25 +7,20 @@ namespace LeagueBot.Game.Misc
     {
         public Camera(GameApi api) : base(api)
         {
-            this.Locked = false;
         }
 
-        public bool Locked
-        {
-            get;
-            set;
-        }
+        public bool Locked { get; private set; }
 
-        public void lockAlly(int allyIndice)
+        public void LockAlly(int allyIndex)
         {
-            string key = "F" + allyIndice;
+            string key = "F" + allyIndex;
             InputHelper.KeyUp(key);
             BotHelper.InputIdle();
             InputHelper.KeyDown(key);
             BotHelper.InputIdle();
         }
 
-        public void toggle()
+        public void Toggle()
         {
             InputHelper.LeftClick(1241, 920);
             BotHelper.InputIdle();

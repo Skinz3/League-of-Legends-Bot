@@ -22,44 +22,28 @@ namespace LeagueBot.DesignPattern
     {
         public StartupInvoke(string name, StartupInvokePriority type, bool exitOnTrow = true)
         {
-            this.Type = type;
-            this.Name = name;
-            this.Hided = false;
-            this.ExitOnThrow = exitOnTrow;
+            Type = type;
+            Name = name;
+            Hidden = false;
+            ExitOnThrow = exitOnTrow;
         }
 
         public StartupInvoke(StartupInvokePriority type)
         {
-            this.Hided = true;
-            this.Type = type;
-            this.ExitOnThrow = true;
+            Hidden = true;
+            Type = type;
+            ExitOnThrow = true;
         }
 
-        public bool ExitOnThrow
-        {
-            get;
-            set;
-        }
+        public bool ExitOnThrow { get; }
 
-        public bool Hided
-        {
-            get; set;
-        }
+        public bool Hidden { get; }
 
-        public string Name
-        {
-            get; set;
-        }
+        public string Name { get; }
 
-        public StartupInvokePriority Type
-        {
-            get; set;
-        }
+        public StartupInvokePriority Type { get; }
 
-        public override string ToString()
-        {
-            return this.Name;
-        }
+        public override string ToString() => Name;
     }
 
     public class StartupManager
@@ -68,7 +52,7 @@ namespace LeagueBot.DesignPattern
         {
             Logger.WriteColor1("** Initialisation **");
 
-            Stopwatch watch = Stopwatch.StartNew();
+            var watch = Stopwatch.StartNew();
 
             foreach (var pass in Enum.GetValues(typeof(StartupInvokePriority)))
             {
@@ -79,12 +63,12 @@ namespace LeagueBot.DesignPattern
 
                     foreach (var data in attributes)
                     {
-                        if (!data.Key.Hided)
-                        {
-                            Logger.Write("(" + pass + ") Loading " + data.Key.Name + " ...", MessageState.INFO);
-                        }
+                        if (!data.Key.Hidden)
+                            Logger.Write("(" + pass + ") Loading " + data.Key.Name + " ...", LogLevel.INFO);
 
-                        if (data.Value.IsStatic)
+                        if (!data.Value.IsStatic)
+                            Logger.Write(data.Value.Name + " cannot be executed at startup. Invalid signature", LogLevel.WARNING);
+                        else
                         {
                             try
                             {
@@ -94,20 +78,12 @@ namespace LeagueBot.DesignPattern
                             {
                                 if (data.Key.ExitOnThrow)
                                 {
-                                    Logger.Write(ex.ToString(), MessageState.ERROR_FATAL);
+                                    Logger.Write(ex.ToString(), LogLevel.ERROR_FATAL);
                                     return;
                                 }
                                 else
-                                {
-                                    Logger.Write("Unable to initialize " + data.Key.Name, MessageState.WARNING);
-                                    continue;
-                                }
+                                    Logger.Write("Unable to initialize " + data.Key.Name, LogLevel.WARNING);
                             }
-                        }
-                        else
-                        {
-                            Logger.Write(data.Value.Name + " cannot be executed at startup. Invalid signature", MessageState.WARNING);
-                            continue;
                         }
                     }
                 }

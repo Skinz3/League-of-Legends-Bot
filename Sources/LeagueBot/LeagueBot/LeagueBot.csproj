@@ -41,11 +41,12 @@
   <ItemGroup>
     <Compile Include="ApiHelpers\BotHelper.cs" />
     <Compile Include="Constants.cs" />
-    <Compile Include="Game\Enums\ChampionEnum.cs" />
+    <Compile Include="Game\Enums\Champion.cs" />
     <Compile Include="Game\Enums\ChampionPickResult.cs" />
-    <Compile Include="Game\Enums\GameflowPhaseEnum.cs" />
-    <Compile Include="Game\Enums\QueueEnum.cs" />
+    <Compile Include="Game\Enums\GameflowPhase.cs" />
+    <Compile Include="Game\Enums\QueueType.cs" />
     <Compile Include="Game\Enums\SearchMatchResult.cs" />
+    <Compile Include="IO\LogLevel.cs" />
     <Compile Include="LCU\ClientLCU.cs" />
     <Compile Include="LCU\GameLCU.cs" />
     <Compile Include="Api\BotApi.cs" />
@@ -59,8 +60,8 @@
     <Compile Include="Game\Entities\IEntity.cs" />
     <Compile Include="Game\Entities\ActivePlayer.cs" />
     <Compile Include="Game\Entities\Minion.cs" />
-    <Compile Include="Game\Enums\ShopItemTypeEnum.cs" />
-    <Compile Include="Game\Enums\SideEnum.cs" />
+    <Compile Include="Game\Enums\ShopItemType.cs" />
+    <Compile Include="Game\Enums\TeamSide.cs" />
     <Compile Include="Game\ApiMember.cs" />
     <Compile Include="Game\Misc\Camera.cs" />
     <Compile Include="Game\Misc\Chat.cs" />

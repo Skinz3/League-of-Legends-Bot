@@ -6,7 +6,7 @@ namespace LeagueBot.IO
     {
         public static T Deserialize<T>(string content) where T : class
         {
-            return (T)JsonConvert.DeserializeObject<T>(content);
+            return JsonConvert.DeserializeObject<T>(content);
         }
 
         public static string Serialize<T>(T obj)
