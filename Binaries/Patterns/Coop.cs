@@ -118,8 +118,6 @@ namespace LeagueBot
         {
             int golds = game.player.getGolds();
 
-            game.shop.toogle();
-
             foreach (Item item in Items)
             {
                 if (item.Cost > golds)
@@ -134,7 +132,6 @@ namespace LeagueBot
 
                 }
             }
-            game.shop.toogle();
             
 
         }
