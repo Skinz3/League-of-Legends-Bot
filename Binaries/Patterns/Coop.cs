@@ -308,9 +308,6 @@ namespace LeagueBot
 
                 game.player.tryCastSpellOnTarget(4); // ult 
 
-                game.moveCenterScreen();
-
-                game.player.tryCastSpellOnTarget(d); // ult 
 
         }
 
