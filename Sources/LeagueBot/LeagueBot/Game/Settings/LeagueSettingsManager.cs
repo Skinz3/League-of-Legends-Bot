@@ -42,11 +42,11 @@ namespace LeagueBot.Game.Settings
             config.Set("Performance", "BudgetDrawCallCount", "1000");
             config.Set("Performance", "EnableGrassSwaying", "1");
             config.Set("Performance", "EnableFXAA", "1");
-            config.Set("Performance", "FrameCapType", "8");
-            config.Set("Performance", "ShadowQuality", "4");
-            config.Set("Performance", "EffectsQuality", "4");
-            config.Set("Performance", "EnvironmentQuality", "4");
-            config.Set("Performance", "CharacterQuality", "4");
+            config.Set("Performance", "FrameCapType", "4");
+            config.Set("Performance", "ShadowQuality", "2");
+            config.Set("Performance", "EffectsQuality", "2");
+            config.Set("Performance", "EnvironmentQuality", "2");
+            config.Set("Performance", "CharacterQuality", "2");
             config.Set("Performance", "AutoPerformanceSettings", "0");
 
 

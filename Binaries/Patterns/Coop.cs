@@ -115,6 +115,36 @@ namespace LeagueBot
             game.shop.toogle();
 
         }
+        private void CheckBuyItems()
+        {
+            int golds = game.player.getGolds();
+
+            game.shop.toogle();
+
+            foreach (Item item in Items)
+            {
+                if (item.Cost > golds)
+                {
+                    break;
+                }
+                if (!item.Buyed)
+                {
+                    game.player.recall();
+                    bot.wait(8500);
+                    game.shop.searchItem(item.Name);
+
+                    game.shop.buySearchedItem();
+
+                    item.Buyed = true;
+
+                    golds -= item.Cost;
+                }
+            }
+
+            game.shop.toogle();
+
+        }
+
         private void GameLoop()
         {
             int level = game.player.getLevel();
@@ -161,7 +191,7 @@ namespace LeagueBot
                 if (isRecalling)
                 {
                     game.player.recall();
-                    bot.wait(4000);
+                    bot.wait(8000);
 
                     if (game.player.getManaPercent() == 1)
                     {
@@ -203,21 +233,61 @@ namespace LeagueBot
 
         private void CastAndMove() // Replace this by Champion pattern script.
         {
+            int NumeroAzione = random.Next(6);
             game.moveCenterScreen();
 
-            game.player.tryCastSpellOnTarget(3); // veigar cage
+            if (NumeroAzione = 0)
+                {
+                game.player.tryCastSpellOnTarget(3); // veigar cage
+                game.moveCenterScreen();
+                bot.wait(2000);
+                int NumeroAzione = random.Next(6);
+            }
+            else if (NumeroAzione = 1)
+            {
+                game.player.tryCastSpellOnTarget(2); // Z
+                game.moveCenterScreen();
+                bot.wait(2000);
+                int NumeroAzione = random.Next(6);
+            }
 
-            game.moveCenterScreen();
+            else if (NumeroAzione = 2)
+            {
+                game.player.tryCastSpellOnTarget(1); // Q
+                game.moveCenterScreen();
+                bot.wait(2000);
+                int NumeroAzione = random.Next(6);
+            }
 
-            game.player.tryCastSpellOnTarget(2); // Z
+            else if (NumeroAzione = 3)
+            {
+                game.player.tryCastSpellOnTarget(4); // ult 
+                game.moveCenterScreen();
+                bot.wait(2000);
+                int NumeroAzione = random.Next(6);
+            }
+            else if (NumeroAzione = 4)
+            {
+                game.player.tryCastSpellOnTarget(D); // Flash 
+                game.moveCenterScreen();
+                bot.wait(2000);
+                int NumeroAzione = random.Next(6);
+            }
+            else if (NumeroAzione = 5)
+            {
+                game.player.tryCastSpellOnTarget(F); // Ghost
+                game.moveCenterScreen();
+                bot.wait(2000);
+                int NumeroAzione = random.Next(6);
+            }
+            else if (NumeroAzione = 6)
+            {
+                CheckBuyItems();
+                game.moveCenterScreen();
+                bot.wait(2000);
+                int NumeroAzione = random.Next(6);
+            }
 
-            game.moveCenterScreen();
-
-            game.player.tryCastSpellOnTarget(1); // Q
-
-            game.moveCenterScreen();
-
-            game.player.tryCastSpellOnTarget(4); // ult 
         }
 
         public override void End()
