@@ -128,7 +128,7 @@ namespace LeagueBot
                 }
                 if (!item.Buyed)
                 {
-                    isRecalling = true;
+                    GameLoop(isRecalling = true);
                     
                 }
             }
