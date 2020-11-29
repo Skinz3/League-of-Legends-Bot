@@ -139,8 +139,10 @@ namespace LeagueBot
                     golds -= item.Cost;
                 }
             }
-
             game.shop.toogle();
+            AllyIndex = game.getAllyIdToFollow();
+            game.camera.lockAlly(AllyIndex);
+            
 
         }
 
