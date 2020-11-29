@@ -296,40 +296,38 @@ namespace LeagueBot
 
             }
           */
-            
-                game.moveCenterScreen();
+            int Ripeti = 0;
+            while (Ripeti < 10)
+            {
+                Console.WriteLine(number);
+                Ripeti = Ripeti + 1;
 
-                bot.wait(3000);
+                game.moveCenterScreen();
 
                 game.player.tryCastSpellOnTarget(3); // veigar cage
 
                 game.moveCenterScreen();
 
-            bot.wait(3000);
                 game.player.tryCastSpellOnTarget(2); // Z
 
                 game.moveCenterScreen();
 
-            bot.wait(3000);
                 game.player.tryCastSpellOnTarget(1); // Q
 
                 game.moveCenterScreen();
 
-            bot.wait(3000);
                 game.player.tryCastSpellOnTarget(4); // ult 
 
                 game.moveCenterScreen();
 
-            bot.wait(3000);
                 game.player.tryCastSpellOnTarget(5); // Flash
 
                 game.moveCenterScreen();
 
-            bot.wait(3000);
                 game.player.tryCastSpellOnTarget(6); // Ghost
-
+            }
             CheckBuyItems();
-            bot.wait(3000);
+            Ripeti = 0;
         }
 
 
