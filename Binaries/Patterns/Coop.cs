@@ -209,6 +209,11 @@ namespace LeagueBot
                     continue;
                 }
 
+                if (game.player.getHealthPercent() <= 0.07d)
+                {
+                    isRecalling = true;
+                    continue;
+                }
 
                 CastAndMove();
 
@@ -294,21 +299,37 @@ namespace LeagueBot
             
                 game.moveCenterScreen();
 
+                bot.wait(3000);
+
                 game.player.tryCastSpellOnTarget(3); // veigar cage
 
                 game.moveCenterScreen();
 
+            bot.wait(3000);
                 game.player.tryCastSpellOnTarget(2); // Z
 
                 game.moveCenterScreen();
 
+            bot.wait(3000);
                 game.player.tryCastSpellOnTarget(1); // Q
 
                 game.moveCenterScreen();
 
+            bot.wait(3000);
                 game.player.tryCastSpellOnTarget(4); // ult 
 
+                game.moveCenterScreen();
 
+            bot.wait(3000);
+                game.player.tryCastSpellOnTarget(5); // Flash
+
+                game.moveCenterScreen();
+
+            bot.wait(3000);
+                game.player.tryCastSpellOnTarget(6); // Ghost
+
+            CheckBuyItems();
+            bot.wait(3000);
         }
 
 
