@@ -128,7 +128,12 @@ namespace LeagueBot
                 {
                     game.player.recall();
                     bot.wait(8000);
-                    OnSpawnJoin();
+                    if (game.player.getManaPercent() == 1)
+                    {
+                        OnSpawnJoin();
+                        isRecalling = false;
+                    }
+         
 
                 }
             }
