@@ -187,7 +187,7 @@ namespace LeagueBot
                 if (isRecalling)
                 {
                     game.player.recall();
-                    bot.wait(8000);
+                    bot.wait(8500);
 
                     if (game.player.getManaPercent() == 1)
                     {
