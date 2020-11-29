@@ -128,20 +128,11 @@ namespace LeagueBot
                 }
                 if (!item.Buyed)
                 {
-                    game.player.recall();
-                    bot.wait(8500);
-                    game.shop.searchItem(item.Name);
-
-                    game.shop.buySearchedItem();
-
-                    item.Buyed = true;
-
-                    golds -= item.Cost;
+                    isRecalling = true;
+                    
                 }
             }
             game.shop.toogle();
-            AllyIndex = game.getAllyIdToFollow();
-            game.camera.lockAlly(AllyIndex);
             
 
         }
