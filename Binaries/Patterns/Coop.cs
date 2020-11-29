@@ -233,6 +233,7 @@ namespace LeagueBot
 
         private void CastAndMove() // Replace this by Champion pattern script.
         {
+            /*
             Random rnd = new Random();
             int Numero = rnd.Next(0, 6);
             game.moveCenterScreen();
@@ -287,9 +288,33 @@ namespace LeagueBot
                 game.moveCenterScreen();
                 bot.wait(2000);
                 int Numero = rnd.Next(0, 6);
+
             }
+          */
+            
+                game.moveCenterScreen();
+
+                game.player.tryCastSpellOnTarget(3); // veigar cage
+
+                game.moveCenterScreen();
+
+                game.player.tryCastSpellOnTarget(2); // Z
+
+                game.moveCenterScreen();
+
+                game.player.tryCastSpellOnTarget(1); // Q
+
+                game.moveCenterScreen();
+
+                game.player.tryCastSpellOnTarget(4); // ult 
+
+                game.moveCenterScreen();
+
+                game.player.tryCastSpellOnTarget(d); // ult 
 
         }
+
+
 
         public override void End()
         {
