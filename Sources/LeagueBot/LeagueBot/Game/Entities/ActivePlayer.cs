@@ -117,12 +117,14 @@ namespace LeagueBot.Game.Entities
             switch (level)
             {
                 case 1:
-                    upgradeSpell(1); // Q 1
                     Logger.Write("[Q] Level up!");
+                    upgradeSpell(1); // Q 1
+                    
                     break;
                 case 2:
-                    upgradeSpell(2); // W 1
                     Logger.Write("[W] Level up!");
+                    upgradeSpell(2); // W 1
+                    
                     break;
                 case 3:
                     upgradeSpell(3); // E 1
