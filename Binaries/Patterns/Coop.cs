@@ -31,7 +31,7 @@ namespace LeagueBot
 			new Item("Luden Tempest",1250), // <--- Cost when Lost Chapter & Blasting Wand were bought
             new Item("Needlessly Large Rod",1250),
             new Item("Needlessly Large Rod",1250),
-            new Item("Rabadon's Deathcap",1100), 
+            new Item("Rabadon Deathcap",1100), 
         };
 
         public override bool ThrowException 
