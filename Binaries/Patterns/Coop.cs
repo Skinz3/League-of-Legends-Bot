@@ -233,6 +233,7 @@ namespace LeagueBot
 
         private void CastAndMove() // Replace this by Champion pattern script.
         {
+            Random rnd = new Random();
             int Numero = rnd.Next(0, 6);
             game.moveCenterScreen();
 
