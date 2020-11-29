@@ -131,7 +131,7 @@ namespace LeagueBot
                     if (game.player.getManaPercent() == 1)
                     {
                         OnSpawnJoin();
-                        isRecalling = false;
+                
                     }
          
 
