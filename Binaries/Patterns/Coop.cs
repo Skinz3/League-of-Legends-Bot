@@ -300,7 +300,7 @@ namespace LeagueBot
             int Ripeti = 0;
             while (Ripeti < 10)
             {
-                Console.WriteLine(number);
+                
                 Ripeti = Ripeti + 1;
 
                 game.moveCenterScreen();
