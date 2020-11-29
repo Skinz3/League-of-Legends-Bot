@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using LeagueBot.Patterns;
 
 namespace LeagueBot.Game.Entities
 {
@@ -117,57 +118,75 @@ namespace LeagueBot.Game.Entities
             {
                 case 1:
                     upgradeSpell(1); // Q 1
+                    bot.log("[Q] Level up!");
                     break;
                 case 2:
                     upgradeSpell(2); // W 1
+                    bot.log("[W] Level up!");
                     break;
                 case 3:
                     upgradeSpell(3); // E 1
+                    bot.log("[E] Level up!");
                     break;
                 case 4:
                     upgradeSpell(1); // Q 2
+                    bot.log("[Q] Level up!");
                     break;
                 case 5:
                     upgradeSpell(1); // Q 3
+                    bot.log("[Q] Level up!");
                     break;
                 case 6:
                     upgradeSpell(4); // R 1
+                    bot.log("[R] Level up!");
                     break;
                 case 7:
                     upgradeSpell(1); // Q 4
+                    bot.log("[Q] Level up!");
                     break;
                 case 8:
                     upgradeSpell(3); // E 2
+                    bot.log("[E] Level up!");
                     break;
                 case 9:
                     upgradeSpell(1); // Q max
+                    bot.log("[Q] Level up!");
                     break;
                 case 10:
                     upgradeSpell(3); // E 3
+                    bot.log("[E] Level up!");
                     break;
                 case 11:
                     upgradeSpell(4); // R 2
+                    bot.log("[R] Level up!");
                     break;
                 case 12:
                     upgradeSpell(3); // E 4
+                    bot.log("[E] Level up!");
                     break;
                 case 13:
                     upgradeSpell(3); // E max
+                    bot.log("[E] Level up!");
                     break;
                 case 14:
                     upgradeSpell(2); // W 2
+                    bot.log("[W] Level up!");
                     break;
                 case 15:
                     upgradeSpell(2); // W 3
+                    bot.log("[W] Level up!");
                     break;
                 case 16:
                     upgradeSpell(4); // R max
+                    bot.log("[R] Level up!");
                     break;
                 case 17:
                     upgradeSpell(2); // W 4
+                    bot.log("[W] Level up!");
                     break;
                 case 18:
                     upgradeSpell(2); // W max
+                    bot.log("[W] Level up!");
                     break;
                 default:
                     //something not leveled?
