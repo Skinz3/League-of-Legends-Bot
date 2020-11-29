@@ -233,59 +233,59 @@ namespace LeagueBot
 
         private void CastAndMove() // Replace this by Champion pattern script.
         {
-            int NumeroAzione = 0;
+            int Numero = rnd.Next(0, 6);
             game.moveCenterScreen();
 
-            if (NumeroAzione = 0)
+            if (Numero = 0)
                 {
                 game.player.tryCastSpellOnTarget(3); // veigar cage
                 game.moveCenterScreen();
                 bot.wait(2000);
-                int NumeroAzione = random.Next(6);
+                int Numero = rnd.Next(0, 6);
             }
-            else if (NumeroAzione = 1)
+            else if (Numero = 1)
             {
                 game.player.tryCastSpellOnTarget(2); // Z
                 game.moveCenterScreen();
                 bot.wait(2000);
-                int NumeroAzione = random.Next(6);
+                int Numero = rnd.Next(0, 6);
             }
 
-            else if (NumeroAzione = 2)
+            else if (Numero = 2)
             {
                 game.player.tryCastSpellOnTarget(1); // Q
                 game.moveCenterScreen();
                 bot.wait(2000);
-                int NumeroAzione = random.Next(6);
+                int Numero = rnd.Next(0, 6);
             }
 
-            else if (NumeroAzione = 3)
+            else if (Numero = 3)
             {
                 game.player.tryCastSpellOnTarget(4); // ult 
                 game.moveCenterScreen();
                 bot.wait(2000);
-                int NumeroAzione = random.Next(6);
+                int Numero = rnd.Next(0, 6);
             }
-            else if (NumeroAzione = 4)
+            else if (Numero = 4)
             {
                 game.player.tryCastSpellOnTarget(D); // Flash 
                 game.moveCenterScreen();
                 bot.wait(2000);
-                int NumeroAzione = random.Next(6);
+                int Numero = rnd.Next(0, 6);
             }
-            else if (NumeroAzione = 5)
+            else if (Numero = 5)
             {
                 game.player.tryCastSpellOnTarget(F); // Ghost
                 game.moveCenterScreen();
                 bot.wait(2000);
-                int NumeroAzione = random.Next(6);
+                int Numero = rnd.Next(0, 6);
             }
-            else if (NumeroAzione = 6)
+            else if (Numero = 6)
             {
                 CheckBuyItems();
                 game.moveCenterScreen();
                 bot.wait(2000);
-                int NumeroAzione = random.Next(6);
+                int Numero = rnd.Next(0, 6);
             }
 
         }
