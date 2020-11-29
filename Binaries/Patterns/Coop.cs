@@ -128,8 +128,10 @@ namespace LeagueBot
                 }
                 if (!item.Buyed)
                 {
-                    GameLoop(isRecalling = true);
-                    
+                    game.player.recall();
+                    bot.wait(8000);
+                    OnSpawnJoin();
+
                 }
             }
             game.shop.toogle();
