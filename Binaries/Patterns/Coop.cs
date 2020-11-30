@@ -117,11 +117,10 @@ namespace LeagueBot
             game.shop.toogle();
 
         }
-        private void CheckBuyItems(out bool GoBackBuy)
+        private void CheckBuyItems()
         {
             int golds = game.player.getGolds();
-            bool GoBackBuy = false;
-
+            
             foreach (Item item in Items)
             {
                 if (item.Cost > golds)
