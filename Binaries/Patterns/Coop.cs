@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using LeagueBot;
@@ -28,13 +27,13 @@ namespace LeagueBot
             new Item("Doran Ring",400),
             new Item("Sorcere",1100),
             new Item("Lost Chapter",1300),
-			new Item("Luden Tempest",2100), // <--- Cost when Lost Chapter & Blasting Wand were bought
+            new Item("Luden Tempest",2100), // <--- Cost when Lost Chapter & Blasting Wand were bought
             new Item("Needlessly Large Rod",1250),
             new Item("Needlessly Large Rod",1250),
-            new Item("Rabadon Deathcap",1100), 
+            new Item("Rabadon Deathcap",1100),
         };
 
-        public override bool ThrowException 
+        public override bool ThrowException
         {
             get
             {
@@ -46,7 +45,7 @@ namespace LeagueBot
         {
             bot.log("Waiting for league of legends process...");
 
-            bot.waitProcessOpen(Constants.GameProcessName); 
+            bot.waitProcessOpen(Constants.GameProcessName);
 
             bot.waitUntilProcessBounds(Constants.GameProcessName, 1030, 797);
 
@@ -90,27 +89,24 @@ namespace LeagueBot
         private void BuyItems()
         {
             int golds = game.player.getGolds();
-            bot.wait(500);
+
             game.shop.toogle();
 
             foreach (Item item in Items)
             {
-                if (game.player.getManaPercent() == 1)
+                if (item.Cost > golds)
                 {
-                    if (item.Cost > golds)
-                    {
-                        break;
-                    }
-                    if (!item.Buyed)
-                    {
-                        game.shop.searchItem(item.Name);
+                    break;
+                }
+                if (!item.Buyed)
+                {
+                    game.shop.searchItem(item.Name);
 
-                        game.shop.buySearchedItem();
+                    game.shop.buySearchedItem();
 
-                        item.Buyed = true;
+                    item.Buyed = true;
 
-                        golds -= item.Cost;
-                    }
+                    golds -= item.Cost;
                 }
             }
 
@@ -120,7 +116,7 @@ namespace LeagueBot
         private void CheckBuyItems()
         {
             int golds = game.player.getGolds();
-            
+
             foreach (Item item in Items)
             {
                 if (item.Cost > golds)
@@ -130,14 +126,17 @@ namespace LeagueBot
                 if (!item.Buyed)
                 {
                     game.player.recall();
-                    bot.wait(1000);
-                    OnSpawnJoin();
-                }
-         
+                    bot.wait(8000);
+                    if (game.player.getManaPercent() == 1)
+                    {
+                        OnSpawnJoin();
+
+                    }
+
 
                 }
             }
-            
+
 
         }
 
@@ -148,7 +147,6 @@ namespace LeagueBot
             bool dead = false;
 
             bool isRecalling = false;
-
 
             while (bot.isProcessOpen(Constants.GameProcessName))
             {
@@ -211,7 +209,6 @@ namespace LeagueBot
                     isRecalling = true;
                     continue;
                 }
-
 
                 CastAndMove();
 
@@ -297,7 +294,7 @@ namespace LeagueBot
             int Ripeti = 0;
             while (Ripeti < 10)
             {
-                
+
                 Ripeti = Ripeti + 1;
 
                 game.moveCenterScreen();
