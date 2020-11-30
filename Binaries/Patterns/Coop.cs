@@ -90,24 +90,27 @@ namespace LeagueBot
         private void BuyItems()
         {
             int golds = game.player.getGolds();
-
+            bot.wait(500);
             game.shop.toogle();
 
             foreach (Item item in Items)
             {
-                if (item.Cost > golds)
+                if (game.player.getManaPercent() == 1)
                 {
-                    break;
-                }
-                if (!item.Buyed)
-                {
-                    game.shop.searchItem(item.Name);
+                    if (item.Cost > golds)
+                    {
+                        break;
+                    }
+                    if (!item.Buyed)
+                    {
+                        game.shop.searchItem(item.Name);
 
-                    game.shop.buySearchedItem();
+                        game.shop.buySearchedItem();
 
-                    item.Buyed = true;
+                        item.Buyed = true;
 
-                    golds -= item.Cost;
+                        golds -= item.Cost;
+                    }
                 }
             }
 
@@ -127,10 +130,10 @@ namespace LeagueBot
                 }
                 if (!item.Buyed)
                 {
-                    GoBackBuy = true;
-                    GameLoop(GoBackBuy);
-                
-                    }
+                    game.player.recall();
+                    bot.wait(1000);
+                    OnSpawnJoin();
+                }
          
 
                 }
@@ -139,7 +142,7 @@ namespace LeagueBot
 
         }
 
-        private void GameLoop(in bool GoBackBuy)
+        private void GameLoop()
         {
             int level = game.player.getLevel();
 
@@ -147,7 +150,6 @@ namespace LeagueBot
 
             bool isRecalling = false;
 
-            
 
             while (bot.isProcessOpen(Constants.GameProcessName))
             {
@@ -210,13 +212,6 @@ namespace LeagueBot
                     isRecalling = true;
                     continue;
                 }
-
-                if (GoBackBuy = true)
-            {
-                isRecalling = true;
-                GoBackBuy = false;
-                continue;
-            }
 
 
                 CastAndMove();
