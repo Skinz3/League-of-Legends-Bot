@@ -91,7 +91,7 @@ namespace LeagueBot
             int golds = game.player.getGolds();
 
             game.shop.toogle();
-
+            bot.wait(5000);
             foreach (Item item in Items)
             {
                 if (item.Cost > golds)
@@ -126,13 +126,13 @@ namespace LeagueBot
                 if (!item.Buyed)
                 {
                     game.player.recall();
-                    bot.wait(8000);
+                    bot.wait(10000);
                     if (game.player.getManaPercent() == 1)
                     {
                         OnSpawnJoin();
 
                     }
-
+                    
 
                 }
             }
@@ -292,7 +292,7 @@ namespace LeagueBot
             }
           */
             int Ripeti = 0;
-            while (Ripeti < 10)
+            while (Ripeti < 5)
             {
 
                 Ripeti = Ripeti + 1;
