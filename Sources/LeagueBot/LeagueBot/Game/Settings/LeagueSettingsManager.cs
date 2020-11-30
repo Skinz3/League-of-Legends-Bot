@@ -41,7 +41,7 @@ namespace LeagueBot.Game.Settings
             config.Set("Performance", "BudgetTriangleCount", "300000");
             config.Set("Performance", "BudgetDrawCallCount", "1000");
             config.Set("Performance", "EnableGrassSwaying", "1");
-            config.Set("Performance", "EnableFXAA", "1");
+            config.Set("Performance", "EnableFXAA", "0");
             config.Set("Performance", "FrameCapType", "4");
             config.Set("Performance", "ShadowQuality", "2");
             config.Set("Performance", "EffectsQuality", "2");
@@ -132,6 +132,8 @@ namespace LeagueBot.Game.Settings
             file.Set("GameEvents", "evtCastSpell2", "[2]");
             file.Set("GameEvents", "evtCastSpell3", "[3]");
             file.Set("GameEvents", "evtCastSpell4", "[4]");
+            file.Set("GameEvents", "evtCastAvatarSpell1", "[5]");
+            file.Set("GameEvents", "evtCastAvatarSpell2", "[6]");
 
 
             file.Set("GameEvents", "evtUseItem1", "[q]");

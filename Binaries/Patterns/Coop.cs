@@ -114,9 +114,10 @@ namespace LeagueBot
             game.shop.toogle();
 
         }
-        private void CheckBuyItems()
+        private void CheckBuyItems(out bool GoBackBuy)
         {
             int golds = game.player.getGolds();
+            bool GoBackBuy = false;
 
             foreach (Item item in Items)
             {
@@ -126,11 +127,8 @@ namespace LeagueBot
                 }
                 if (!item.Buyed)
                 {
-                    game.player.recall();
-                    bot.wait(8000);
-                    if (game.player.getManaPercent() == 1)
-                    {
-                        OnSpawnJoin();
+                    GoBackBuy = true;
+                    GameLoop(GoBackBuy);
                 
                     }
          
@@ -141,13 +139,15 @@ namespace LeagueBot
 
         }
 
-        private void GameLoop()
+        private void GameLoop(in bool GoBackBuy)
         {
             int level = game.player.getLevel();
 
             bool dead = false;
 
             bool isRecalling = false;
+
+            
 
             while (bot.isProcessOpen(Constants.GameProcessName))
             {
@@ -210,6 +210,14 @@ namespace LeagueBot
                     isRecalling = true;
                     continue;
                 }
+
+                if (GoBackBuy = true)
+            {
+                isRecalling = true;
+                GoBackBuy = false;
+                continue;
+            }
+
 
                 CastAndMove();
 
