@@ -292,7 +292,7 @@ namespace LeagueBot
             }
           */
             int Ripeti = 0;
-            while (Ripeti < 5)
+            while (Ripeti < 3)
             {
 
                 Ripeti = Ripeti + 1;
@@ -321,8 +321,9 @@ namespace LeagueBot
 
                 game.player.tryCastSpellOnTarget(6); // Ghost
             }
-            CheckBuyItems();
             Ripeti = 0;
+            CheckBuyItems();
+            
         }
 
 
