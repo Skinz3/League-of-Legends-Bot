@@ -130,7 +130,7 @@ namespace LeagueBot
                 if (!item.Buyed)
                 {
                     game.player.recall();
-                    bot.wait(/1000);
+                    bot.wait(1000);
                     OnSpawnJoin();
                 }
          
