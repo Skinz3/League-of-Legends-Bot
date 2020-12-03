@@ -48,7 +48,7 @@ namespace LeagueBot.Game.Misc
             BotHelper.InputIdle();
 
             InputHelper.InputWords(name);
-
+            Logger.Write("Buyed " + name);
         }
         public void buySearchedItem()
         {
