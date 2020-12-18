@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using LeagueBot.Patterns;
 
 namespace LeagueBot.Game.Entities
 {
@@ -116,58 +117,78 @@ namespace LeagueBot.Game.Entities
             switch (level)
             {
                 case 1:
+                    Logger.Write("[Q] Level up!");
                     upgradeSpell(1); // Q 1
+                    
                     break;
                 case 2:
+                    Logger.Write("[W] Level up!");
                     upgradeSpell(2); // W 1
+                    
                     break;
                 case 3:
                     upgradeSpell(3); // E 1
+                    Logger.Write("[E] Level up!");
                     break;
                 case 4:
                     upgradeSpell(1); // Q 2
+                    Logger.Write("[Q] Level up!");
                     break;
                 case 5:
                     upgradeSpell(1); // Q 3
+                    Logger.Write("[Q] Level up!");
                     break;
                 case 6:
                     upgradeSpell(4); // R 1
+                    Logger.Write("[R] Level up!");
                     break;
                 case 7:
                     upgradeSpell(1); // Q 4
+                    Logger.Write("[Q] Level up!");
                     break;
                 case 8:
                     upgradeSpell(3); // E 2
+                    Logger.Write("[E] Level up!");
                     break;
                 case 9:
                     upgradeSpell(1); // Q max
+                    Logger.Write("[Q] Level up!");
                     break;
                 case 10:
                     upgradeSpell(3); // E 3
+                    Logger.Write("[E] Level up!");
                     break;
                 case 11:
                     upgradeSpell(4); // R 2
+                    Logger.Write("[R] Level up!");
                     break;
                 case 12:
                     upgradeSpell(3); // E 4
+                    Logger.Write("[E] Level up!");
                     break;
                 case 13:
                     upgradeSpell(3); // E max
+                    Logger.Write("[E] Level up!");
                     break;
                 case 14:
                     upgradeSpell(2); // W 2
+                    Logger.Write("[W] Level up!");
                     break;
                 case 15:
                     upgradeSpell(2); // W 3
+                    Logger.Write("[W] Level up!");
                     break;
                 case 16:
                     upgradeSpell(4); // R max
+                    Logger.Write("[R] Level up!");
                     break;
                 case 17:
                     upgradeSpell(2); // W 4
+                    Logger.Write("[W] Level up!");
                     break;
                 case 18:
                     upgradeSpell(2); // W max
+                    Logger.Write("[W] Level up!");
                     break;
                 default:
                     //something not leveled?

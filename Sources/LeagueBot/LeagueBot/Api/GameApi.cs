@@ -120,8 +120,9 @@ namespace LeagueBot.Api
                 }
                 i++;
             }
-
+            Logger.Write("Ally Followed: N° " + i);
             return index;
+           
         }
 
         public SideEnum getSide()

@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using LeagueBot;
@@ -26,19 +25,15 @@ namespace LeagueBot
         private Item[] Items = new Item[]
         {
             new Item("Doran Ring",400),
-            new Item("Health Potion",50),
-            new Item("Warding Totem",0),
-            new Item("Boots",300),
+            new Item("Sorcere",1100),
             new Item("Lost Chapter",1300),
-            new Item("Sorcerer's Shoes",800),
-            new Item("Blasting Wand",850),
-            new Item("Luden Tempest",1250), // <--- Cost when Lost Chapter & Blasting Wand were bought
+            new Item("Luden Tempest",2100), // <--- Cost when Lost Chapter & Blasting Wand were bought
             new Item("Needlessly Large Rod",1250),
             new Item("Needlessly Large Rod",1250),
-            new Item("Rabadon's Deathcap",1300), 
+            new Item("Rabadon Deathcap",1100),
         };
 
-        public override bool ThrowException 
+        public override bool ThrowException
         {
             get
             {
@@ -50,7 +45,7 @@ namespace LeagueBot
         {
             bot.log("Waiting for league of legends process...");
 
-            bot.waitProcessOpen(Constants.GameProcessName); 
+            bot.waitProcessOpen(Constants.GameProcessName);
 
             bot.waitUntilProcessBounds(Constants.GameProcessName, 1030, 797);
 
@@ -96,7 +91,7 @@ namespace LeagueBot
             int golds = game.player.getGolds();
 
             game.shop.toogle();
-
+            bot.wait(5000);
             foreach (Item item in Items)
             {
                 if (item.Cost > golds)
@@ -118,6 +113,33 @@ namespace LeagueBot
             game.shop.toogle();
 
         }
+        private void CheckBuyItems()
+        {
+            int golds = game.player.getGolds();
+
+            foreach (Item item in Items)
+            {
+                if (item.Cost > golds)
+                {
+                    break;
+                }
+                if (!item.Buyed)
+                {
+                    game.player.recall();
+                    bot.wait(10000);
+                    if (game.player.getManaPercent() == 1)
+                    {
+                        OnSpawnJoin();
+
+                    }
+                    
+
+                }
+            }
+
+
+        }
+
         private void GameLoop()
         {
             int level = game.player.getLevel();
@@ -164,7 +186,7 @@ namespace LeagueBot
                 if (isRecalling)
                 {
                     game.player.recall();
-                    bot.wait(4000);
+                    bot.wait(8500);
 
                     if (game.player.getManaPercent() == 1)
                     {
@@ -182,6 +204,11 @@ namespace LeagueBot
                     continue;
                 }
 
+                if (game.player.getHealthPercent() <= 0.07d)
+                {
+                    isRecalling = true;
+                    continue;
+                }
 
                 CastAndMove();
 
@@ -206,22 +233,100 @@ namespace LeagueBot
 
         private void CastAndMove() // Replace this by Champion pattern script.
         {
+            /*
+            Random rnd = new Random();
+            int Numero = rnd.Next(0, 6);
             game.moveCenterScreen();
 
-            game.player.tryCastSpellOnTarget(3); // veigar cage
+            if (Numero = 0)
+                {
+                game.player.tryCastSpellOnTarget(3); // veigar cage
+                game.moveCenterScreen();
+                bot.wait(2000);
+                int Numero = rnd.Next(0, 6);
+            }
+            else if (Numero = 1)
+            {
+                game.player.tryCastSpellOnTarget(2); // Z
+                game.moveCenterScreen();
+                bot.wait(2000);
+                int Numero = rnd.Next(0, 6);
+            }
 
-            game.moveCenterScreen();
+            else if (Numero = 2)
+            {
+                game.player.tryCastSpellOnTarget(1); // Q
+                game.moveCenterScreen();
+                bot.wait(2000);
+                int Numero = rnd.Next(0, 6);
+            }
 
-            game.player.tryCastSpellOnTarget(2); // Z
+            else if (Numero = 3)
+            {
+                game.player.tryCastSpellOnTarget(4); // ult 
+                game.moveCenterScreen();
+                bot.wait(2000);
+                int Numero = rnd.Next(0, 6);
+            }
+            else if (Numero = 4)
+            {
+                game.player.tryCastSpellOnTarget(D); // Flash 
+                game.moveCenterScreen();
+                bot.wait(2000);
+                int Numero = rnd.Next(0, 6);
+            }
+            else if (Numero = 5)
+            {
+                game.player.tryCastSpellOnTarget(F); // Ghost
+                game.moveCenterScreen();
+                bot.wait(2000);
+                int Numero = rnd.Next(0, 6);
+            }
+            else if (Numero = 6)
+            {
+                CheckBuyItems();
+                game.moveCenterScreen();
+                bot.wait(2000);
+                int Numero = rnd.Next(0, 6);
 
-            game.moveCenterScreen();
+            }
+          */
+            int Ripeti = 0;
+            while (Ripeti < 3)
+            {
 
-            game.player.tryCastSpellOnTarget(1); // Q
+                Ripeti = Ripeti + 1;
 
-            game.moveCenterScreen();
+                game.moveCenterScreen();
 
-            game.player.tryCastSpellOnTarget(4); // ult 
+                game.player.tryCastSpellOnTarget(3); // veigar cage
+
+                game.moveCenterScreen();
+
+                game.player.tryCastSpellOnTarget(2); // Z
+
+                game.moveCenterScreen();
+
+                game.player.tryCastSpellOnTarget(1); // Q
+
+                game.moveCenterScreen();
+
+                game.player.tryCastSpellOnTarget(4); // ult 
+
+                game.moveCenterScreen();
+
+                game.player.tryCastSpellOnTarget(5); // Flash
+
+                game.moveCenterScreen();
+
+                game.player.tryCastSpellOnTarget(6); // Ghost
+            }
+            Ripeti = 0;
+            CheckBuyItems();
+            
         }
+
+
 
         public override void End()
         {
