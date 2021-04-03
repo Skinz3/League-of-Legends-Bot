@@ -8,7 +8,10 @@ namespace LeagueBot.Game.Enums
 {
     public enum QueueEnum
     {
+
+        BotBeginner = 810,
         BotIntro = 830,
         BotIntermediate = 850,
+        
     }
 }
