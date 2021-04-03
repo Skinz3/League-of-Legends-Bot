@@ -1,5 +1,6 @@
 ﻿using LeagueBot.ApiHelpers;
 using LeagueBot.IO;
+using LeagueBot.LCU;
 using LeagueBot.Patterns;
 using LeagueBot.Windows;
 using System;
@@ -9,18 +10,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static LeagueBot.Windows.Interop;
-using LeagueBot.Patterns;
 
 namespace LeagueBot.Api
 {
     public class BotApi : IApi
     {
-        //public int _outMaxTime = 360; // 6 minutes.
-        //public int _outActualTime = 0;
-
-        public void log(string message)
+        public void log(object message)
         {
-            BotHelper.Log(message);
+            Logger.Write(message);
+        }
+        public void warn(object message)
+        {
+            Logger.Write(message, MessageState.WARNING);
+        }
+        public void error(object message)
+        {
+            Logger.Write(message, MessageState.ERROR);
         }
         public void wait(int ms)
         {
@@ -73,20 +78,22 @@ namespace LeagueBot.Api
                 Logger.Write("Unable to bring process to front: " + processName, MessageState.WARNING);
             }
         }
-        public void waitProcessOpen(string processName)
+        public void waitProcessOpen(string processName, Action timeoutCallback = null, int timeout = 20)
         {
+            Stopwatch st = Stopwatch.StartNew();
+
             while (!Interop.IsProcessOpen(processName))
             {
-                BotHelper.Wait(1000);
-
-                /*if(processName == "League of Legends") { 
-                    _outActualTime++;
-
-                    if(_outActualTime == _outMaxTime)
+                if (timeoutCallback != null)
+                {
+                    if (st.Elapsed.TotalSeconds > timeout)
                     {
-                        Logger.Write("Someone picked your champ... ", MessageState.WARNING);
+                        timeoutCallback();
+                        return;
                     }
-                }*/
+
+                }
+                BotHelper.Wait(1000);
             }
         }
         public void inputWords(string words, int keyDelay = 50, int delay = 100)

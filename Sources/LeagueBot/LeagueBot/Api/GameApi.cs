@@ -3,14 +3,18 @@ using LeagueBot.ApiHelpers;
 using LeagueBot.Game.Entities;
 using LeagueBot.Game.Enums;
 using LeagueBot.Game.Misc;
-using LeagueBot.Image;
 using LeagueBot.IO;
+using LeagueBot.Utils;
 using LeagueBot.Windows;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
+using System.Net;
+using System.Net.Security;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -29,7 +33,7 @@ namespace LeagueBot.Api
      * -> * We back after Flee
      * -> * Walk to our first turret
      */
-    public class GameApi : IApi
+    public class GameApi : IApi // Teams[] CameraIndex PlayerIndex
     {
         public Shop shop
         {
@@ -46,12 +50,12 @@ namespace LeagueBot.Api
             get;
             private set;
         }
-        private SideEnum side
+        private SideEnum? side
         {
             get;
             set;
         }
-        public MainPlayer player
+        public ActivePlayer player
         {
             get;
             private set;
@@ -61,22 +65,73 @@ namespace LeagueBot.Api
             this.shop = new Shop(this);
             this.camera = new Camera(this);
             this.chat = new Chat(this);
-            this.player = new MainPlayer(this);
+            this.player = new ActivePlayer(this);
         }
 
+       
         public void waitUntilGameStart()
         {
-            ImageHelper.WaitForColor(997, 904, "#00D304");
+            while (true)
+            {
+                if (GameLCU.IsApiReady() && GameLCU.GetGameTime() > 2d)
+                {
+                    break;
+                }
+           
+                Thread.Sleep(2000);
+            }
+
+        }
+     
+        public dynamic getAllies()
+        {
+            return GameLCU.GetAllies();
+        }
+        public int getAllyIdToFollow()
+        {
+            const int StartIndex = 2;
+
+            int max = -1;
+            int index = StartIndex;
+
+            int i = index;
+
+            var allies = getAllies();
+
+            foreach (var ally in allies)
+            {
+                if (i - StartIndex == 4)
+                {
+                    break;
+                }
+
+                if (ally.summonerName == player.getName())
+                {
+                    continue;
+                }
+                if (ally.scores.kills > max && ally.isDead == false)
+                {
+                    if (!ally.summonerSpells.summonerSpellOne.displayName.ToString().ToLower().Contains("smite") && // not jungler
+                        !ally.summonerSpells.summonerSpellTwo.displayName.ToString().ToLower().Contains("smite"))
+                    {
+                        max = ally.scores.kills;
+                        index = i;
+                    }
+                }
+                i++;
+            }
+            Logger.Write("Ally Followed: N° " + i);
+            return index;
+           
         }
 
-        public void detectSide()
-        {
-            //when side is detected, reset all bot items.
-            this.side = ImageHelper.GetColor(1343, 868) == "#2A768C" ? SideEnum.Blue : SideEnum.Red;
-        }
         public SideEnum getSide()
         {
-            return this.side;
+            if (side == null)
+            {
+                side = GameLCU.GetPlayerSide();
+            }
+            return side.Value;
         }
 
         public void moveCenterScreen()

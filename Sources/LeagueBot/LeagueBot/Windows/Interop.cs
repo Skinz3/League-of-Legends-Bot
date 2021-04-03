@@ -112,9 +112,7 @@ namespace LeagueBot.Windows
         {
             Cursor.Position = new Point(x, y);
         }
-        /// <summary>
-        /// Struct representing a point.
-        /// </summary>
+
         [StructLayout(LayoutKind.Sequential)]
         private struct POINT
         {

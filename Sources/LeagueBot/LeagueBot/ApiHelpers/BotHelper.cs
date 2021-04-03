@@ -17,7 +17,7 @@ namespace LeagueBot.ApiHelpers
         /*
          * In milliseconds
          */
-        private const int IDLE_DELAY = 150;
+        private const int IDLE_DELAY = 250;
 
         public static void Wait(int ms)
         {
@@ -26,10 +26,6 @@ namespace LeagueBot.ApiHelpers
         public static void InputIdle()
         {
             Thread.Sleep(IDLE_DELAY);
-        }
-        public static void Log(string message)
-        {
-            Logger.Write(message, MessageState.INFO2);
         }
     }
 }
