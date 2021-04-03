@@ -8,41 +8,29 @@ namespace LeagueBot
 {
     public class EndCoop : PatternScript
     {
-        
         public override void Execute()
         {
-             bot.log("Match ended.");
+            client.initialize(); // scripts are isolated. 
 
-            bot.waitProcessOpen(CLIENT_PROCESS_NAME);
+            bot.log("Match ended.");
 
-            bot.bringProcessToFront(CLIENT_PROCESS_NAME);
-            bot.centerProcess(CLIENT_PROCESS_NAME);
+            client.onGameEnd();
 
-            bot.wait(5000);
+            bot.wait(5 * 1000);
 
-            client.skipHonor();
+            bot.waitProcessOpen(Constants.ClientProcessName);
 
-            bot.wait(4000);
+            bot.log("Closing client...");
 
-            if (client.levelUp())
-            {
-                bot.log("level up!");
-                client.skipLevelRewards();
-            }
+            client.closeClient();
+           
+            bot.wait(5 * 1000);
 
-            bot.wait(4000);
+            bot.log("Opening client..");
 
-            while (client.questCompleted())
-            {
-                bot.log("quest completed!");
-                client.skipLevelRewards();
-            }
+            client.openClient();
 
-            bot.wait(4000);
-
-            client.closeGameRecap();
-
-            bot.wait(4000);
+            bot.waitProcessOpen(Constants.ClientProcessName);
 
             bot.executePattern("StartCoop");
         }

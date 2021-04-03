@@ -1,24 +1,33 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace LeagueBot.Game.Misc
 {
     public class Item
     {
-        public string name = "NoName";
-        public int cost = 0;
-        public bool got = false;
-        public bool canStack = false;
-        public int buyOrder = 0;
-        public Point point;
-
-        public Item(string name,int cost, bool got, bool canstack, int buyorder, Point position)
+        public string Name
         {
-            this.name = name;
-            this.cost = cost; 
-            this.got = got;
-            canStack = canstack;
-            buyOrder = buyorder;
-            point = position;
+            get;
+            private set;
+        }
+        public int Cost
+        {
+            get;
+            private set;
+        }
+        public bool Buyed
+        {
+            get;
+            set;
+        }
+        public Item(string name, int cost)
+        {
+            this.Name = name;
+            this.Cost = cost;
+            this.Buyed = false;
         }
     }
 }

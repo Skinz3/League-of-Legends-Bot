@@ -3,9 +3,12 @@ using LeagueBot.IO;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Forms;
 using MessageBox = System.Windows.MessageBox;
@@ -14,10 +17,6 @@ namespace LeagueBot
 {
     public class Configuration
     {
-        public const string DEFAULT_LEAGUE_PATH = @"C:\Riot Games";
-
-        public const string CONFIG_PATH = "config.json";
-
         public static Configuration Instance
         {
             get;
@@ -29,11 +28,23 @@ namespace LeagueBot
             set;
         }
         [StartupInvoke("Config", StartupInvokePriority.Initial)]
-        public static bool LoadConfig()
+        public static void InitCall()
+        {
+            ThreadStart threadStart = new ThreadStart(() => // <--- One STA Thread for windows UI ... Can we do it another way without declare Main() as STA Thread ?
+            {
+                Load();
+            });
+
+            Thread thread = new Thread(threadStart);
+            thread.SetApartmentState(ApartmentState.STA);
+            thread.Start();
+            thread.Join();
+        }
+        private static bool Load()
         {
             if (!Initialize())
             {
-                string path = DEFAULT_LEAGUE_PATH;
+                string path = Constants.DefaultLeaguePath;
 
                 if (!Directory.Exists(path))
                 {
@@ -55,11 +66,11 @@ namespace LeagueBot
                         if (!Directory.Exists(path) || dirName != "Riot Games")
                         {
                             MessageBox.Show("Invalid Directory.", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
-                            return LoadConfig();
+                            return Load();
                         }
                     }
                     else
-                        return LoadConfig();
+                        return Load();
 
                 }
 
@@ -75,16 +86,16 @@ namespace LeagueBot
 
         private static bool Initialize()
         {
-            if (File.Exists(CONFIG_PATH))
+            if (File.Exists(Constants.ConfigPath))
             {
                 try
                 {
-                    Instance = Json.Deserialize<Configuration>(File.ReadAllText(CONFIG_PATH));
+                    Instance = Json.Deserialize<Configuration>(File.ReadAllText(Constants.ConfigPath));
                     return true;
                 }
                 catch
                 {
-                    File.Delete(CONFIG_PATH);
+                    File.Delete(Constants.ConfigPath);
                     return false;
                 }
 
@@ -107,13 +118,7 @@ namespace LeagueBot
         }
         public static void Save()
         {
-            File.WriteAllText(CONFIG_PATH, Json.Serialize(Instance));
-        }
-
-        private static bool IsValidDofusPath(string path)
-        {
-            string combined = Path.Combine(path, @"content/maps");
-            return Directory.Exists(combined);
+            File.WriteAllText(Constants.ConfigPath, Json.Serialize(Instance));
         }
     }
 }

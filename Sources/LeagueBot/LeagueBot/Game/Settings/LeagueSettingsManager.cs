@@ -11,22 +11,16 @@ using System.Threading.Tasks;
 
 namespace LeagueBot.Game.Settings
 {
-    class LeagueManager
+    public class LeagueSettingsManager
     {
-        const string CONFIG_PATH = @"League of Legends\Config\game.cfg";
-
-        const string KEYCONFIG_PATH = @"League of Legends\Config\input.ini";
-
-        const string PERSISTED_CONFIG_PATH = @"League of Legends\Config\PersistedSettings.json";
-
         [StartupInvoke("League settings", StartupInvokePriority.FourthPass, false)]
         public static void ApplySettings()
         {
-            CFGFile config = new CFGFile(Path.Combine(Configuration.Instance.ClientPath, CONFIG_PATH));
+            CFGFile config = new CFGFile(Path.Combine(Configuration.Instance.ClientPath, Constants.LeagueGameconfigPath));
 
             config.Set("General", "WindowMode", "1");
-            config.Set("General", "Width", "1024");
-            config.Set("General", "Height", "768");
+            config.Set("General", "Width", Constants.GameWidth.ToString());
+            config.Set("General", "Height", Constants.GameHeigth.ToString());
             config.Set("General", "Colors", "32");
             config.Set("General", "RelativeTeamColors", "1");
             config.Set("General", "UserSetResolution", "1");
@@ -47,12 +41,12 @@ namespace LeagueBot.Game.Settings
             config.Set("Performance", "BudgetTriangleCount", "300000");
             config.Set("Performance", "BudgetDrawCallCount", "1000");
             config.Set("Performance", "EnableGrassSwaying", "1");
-            config.Set("Performance", "EnableFXAA", "1");
-            config.Set("Performance", "FrameCapType", "8");
-            config.Set("Performance", "ShadowQuality", "4");
-            config.Set("Performance", "EffectsQuality", "4");
-            config.Set("Performance", "EnvironmentQuality", "4");
-            config.Set("Performance", "CharacterQuality", "4");
+            config.Set("Performance", "EnableFXAA", "0");
+            config.Set("Performance", "FrameCapType", "4");
+            config.Set("Performance", "ShadowQuality", "2");
+            config.Set("Performance", "EffectsQuality", "2");
+            config.Set("Performance", "EnvironmentQuality", "2");
+            config.Set("Performance", "CharacterQuality", "2");
             config.Set("Performance", "AutoPerformanceSettings", "0");
 
 
@@ -124,7 +118,7 @@ namespace LeagueBot.Game.Settings
 
             Logger.Write("League of legends settings applied.", MessageState.INFO2);
 
-            CFGFile file = new CFGFile(Path.Combine(Configuration.Instance.ClientPath, KEYCONFIG_PATH));
+            CFGFile file = new CFGFile(Path.Combine(Configuration.Instance.ClientPath, Constants.LeagueKeyconfigPath));
 
 
             file.Set("GameEvents", "evtSelectSelf", "[F1]");
@@ -138,16 +132,18 @@ namespace LeagueBot.Game.Settings
             file.Set("GameEvents", "evtCastSpell2", "[2]");
             file.Set("GameEvents", "evtCastSpell3", "[3]");
             file.Set("GameEvents", "evtCastSpell4", "[4]");
+            file.Set("GameEvents", "evtCastAvatarSpell1", "[5]");
+            file.Set("GameEvents", "evtCastAvatarSpell2", "[6]");
 
 
             file.Set("GameEvents", "evtUseItem1", "[q]");
             file.Set("GameEvents", "evtUseItem2", "[w]");
             file.Set("GameEvents", "evtUseItem3", "[e]");
-            //file.Set("General", "AutoAcquireTarget", "1");
+
 
             file.Save();
 
-            string target = Path.Combine(Configuration.Instance.ClientPath, PERSISTED_CONFIG_PATH);
+            string target = Path.Combine(Configuration.Instance.ClientPath, Constants.LeaguePersistedSettingsPath);
 
             File.Copy("PersistedSettings.json", target, true);
         }

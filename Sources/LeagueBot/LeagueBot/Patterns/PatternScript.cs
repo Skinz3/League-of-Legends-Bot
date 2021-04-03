@@ -9,11 +9,9 @@ namespace LeagueBot.Patterns
 {
     public abstract class PatternScript
     {
-        public const string CLIENT_PROCESS_NAME = "LeagueClientUX";
+        public virtual bool ThrowException => true;
 
-        public const string GAME_PROCESS_NAME = "League of Legends";
-
-        public BotApi bot
+        public BotApi bot 
         {
             protected get;
             set;
@@ -30,5 +28,10 @@ namespace LeagueBot.Patterns
         }
 
         public abstract void Execute();
+
+        public virtual void End()
+        {
+
+        }
     }
 }

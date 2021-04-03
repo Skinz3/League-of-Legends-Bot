@@ -1,81 +1,92 @@
 ﻿using LeagueBot.ApiHelpers;
+using LeagueBot.IO;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
+using System.Management;
+using System.Reflection;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Leaf.xNet;
+using System.Threading;
+using LeagueBot.Patterns;
+using LeagueBot.LCU;
+using LeagueBot.Game;
+using LeagueBot.Game.Enums;
+using LeagueBot.LCU.Protocol;
 
 namespace LeagueBot.Api
 {
     public class ClientApi : IApi
     {
-        public void clickPlayButton()
+        public Summoner summoner
         {
-            InputHelper.LeftClick(306, 139);
+            get;
+            private set;
         }
-        public void clickAramButton()
+        public void initialize()
         {
-            InputHelper.LeftClick(787, 362);
+            ClientLCU.Initialize();
         }
-        public void clickCoopvsIAText()
+        public void waitClientReady()
         {
-            InputHelper.LeftClick(336, 213);
+            while (true)
+            {
+                if (ClientLCU.IsApiReady())
+                {
+                    break;
+                }
+                Thread.Sleep(2000);
+            }
         }
-        public void clickIntroText()
+        public void closeClient()
         {
-            InputHelper.LeftClick(733, 709);
+            ClientLCU.CloseClient();
         }
-        public void clickIntermediateText()
+        public void openClient()
         {
-            InputHelper.LeftClick(755, 790);
+            ClientLCU.OpenClient();
         }
-        public void clickConfirmButton()
+        public bool loadSummoner()
         {
-            InputHelper.LeftClick(832, 949);
+            this.summoner = ClientLCU.GetCurrentSummoner();
+            return summoner != null;
         }
-        public void clickFindMatchButton()
+        public void createLobby(QueueEnum queueId)
         {
-            InputHelper.LeftClick(832, 949);
+            ClientLCU.CreateLobby(queueId);
         }
-        public void skipLevelRewards()
+        public SearchMatchResult searchMatch()
         {
-            InputHelper.LeftClick(953, 938);
-        }
-        public void clickChampSearch()
-        {
-            InputHelper.LeftClick(1109, 219);
-        }
-        public bool levelUp()
-        {
-            return TextHelper.TextExists(872, 237, 300, 300, "level up");
-        }
-        public bool questCompleted()
-        {
-            return TextHelper.TextExists(872, 237, 300, 300, "mission");
-        }
-        public bool mustSelectChamp()
-        {
-            return TextHelper.TextExists(692, 111, 512, 63, "choose your champion");
-        }
-        public void lockChampion()
-        {
-            InputHelper.LeftClick(959, 831);
+            return ClientLCU.SearchMatch();
         }
         public void acceptMatch()
         {
-            InputHelper.LeftClick(947, 780);
+            ClientLCU.AcceptMatch();
         }
-        public void selectFirstChampion()
+        public bool isMatchFound()
         {
-            InputHelper.LeftClick(645, 275);
+            return ClientLCU.IsMatchFound();
         }
-        public void skipHonor()
+        public GameflowPhaseEnum getGameflowPhase()
         {
-            InputHelper.LeftClick(962, 903);
+            return ClientLCU.GetGameflowPhase();
         }
-        public void closeGameRecap()
+
+        public ChampionPickResult pickChampion(ChampionEnum champion)
         {
-            InputHelper.LeftClick(716, 947);
+            return ClientLCU.PickChampion(summoner, champion);
         }
+
+        public void onGameEnd()
+        {
+            Program.GameCount++;
+
+            Console.Title = Assembly.GetEntryAssembly().GetName().Name + " (" + Program.GameCount + " games)";
+        }
+
     }
 }

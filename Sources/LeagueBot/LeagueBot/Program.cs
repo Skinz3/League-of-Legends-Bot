@@ -1,20 +1,10 @@
 ﻿using LeagueBot.DesignPattern;
-using LeagueBot.Game;
-using LeagueBot.Game.Enums;
-using LeagueBot.Image;
 using LeagueBot.IO;
 using LeagueBot.Patterns;
-using LeagueBot.Texts;
+using LeagueBot.Utils;
 using LeagueBot.Windows;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using static LeagueBot.Windows.Interop;
 
 namespace LeagueBot
 {
@@ -26,9 +16,20 @@ namespace LeagueBot
      * The user input settings (game mode, champion , champion behaviour)
      * -> We create Session.cs that call scripts.
      */
+
+
+    /* *** Final Goal ***
+     * Todo -> Champion script (GameLoop() function is relative the champion)
+     * Dont use dynamic in LCU , use classes definitions of LCU instead.
+     * Object architecture of ApiMembers<>, MainPlayer property are defined in MainPlayer.cs and Coop.cs (dead property for example. Thats sucks)
+     * Use Task<T> and Parallelism instead of GameLoop()
+     * Optimize pixel searching ? it is possible faster than FastBitmap.cs (LockBits) ?
+     * Make solo pattern instead of following ally.
+     */
     class Program
     {
-        [STAThread]
+        public static int GameCount = 0;
+
         static void Main(string[] args)
         {
             Logger.OnStartup();
@@ -52,10 +53,10 @@ namespace LeagueBot
                 return;
             }
 
-
             PatternsManager.Execute(line);
 
             HandleCommand();
         }
+
     }
 }

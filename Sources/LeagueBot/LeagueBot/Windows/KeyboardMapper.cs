@@ -65,6 +65,8 @@ namespace LeagueBot.Windows
                     return Keys.Y;
                 case "z":
                     return Keys.Z;
+                case "'":
+                    return Keys.D4;
                 case " ":
                     return Keys.Space;
                 default:
