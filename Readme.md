@@ -38,10 +38,6 @@
 
    [Setup instructions](https://github.com/Skinz3/League-Of-Legends-BOT/wiki/How-to-make-it-work)
 
-	 
-# Contact
-
-   Join the discord server : [![Discord](https://discordapp.com/api/guilds/700654362841579571/widget.png)](https://discord.gg/cB8qtcE)
 
 # LeagueBot Wiki
 
@@ -51,7 +47,7 @@
 
 # Author
 
-   * **Skinz** - [Skinz#1128](https://github.com/Skinz3)
+   * **Skinz** - [Skinz#1559](https://github.com/Skinz3)
 
 # Special Thanks
 
