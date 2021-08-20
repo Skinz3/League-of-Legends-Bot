@@ -46,7 +46,7 @@
 
 # Author
 
-   * **Skinz** - [Skinz#1559](https://github.com/Skinz3)
+   * **Skinz** - https://github.com/Skinz3
 
 # Special Thanks
 
