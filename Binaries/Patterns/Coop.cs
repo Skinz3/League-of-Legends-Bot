@@ -47,7 +47,7 @@ namespace LeagueBot
 
             bot.waitProcessOpen(Constants.GameProcessName);
 
-            bot.waitUntilProcessBounds(Constants.GameProcessName, 1030, 797);
+            bot.waitUntilProcessBounds(Constants.GameProcessName, 1040, 800);
 
             bot.wait(200);
 
