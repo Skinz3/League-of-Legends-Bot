@@ -1,9 +1,10 @@
 
 <p align="center">
+  # Question concerning the project and its status ?   [Ask here](https://niddle-web.com/home?page=84410368) 
   <img  src="icon.png">
 </p>
 
-# Welcome to LeagueBot. Question concerning the project and its status ?   [Ask here](https://niddle-web.com/home?page=84410368) 
+# Welcome to LeagueBot. 
 
 
 
