@@ -1,6 +1,8 @@
 
+<h1>Question concerning the project and its status ? Ask here : https://niddle-web.com/home?page=84410368 </h1>
+
 <p align="center">
-  <h1>Question concerning the project and its status ? Ask here : https://niddle-web.com/home?page=84410368 </h1>
+  
   <img  src="icon.png">
 </p>
 
