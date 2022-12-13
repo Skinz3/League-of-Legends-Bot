@@ -3,9 +3,9 @@
   <img  src="icon.png">
 </p>
 
-# Welcome to LeagueBot 
+# Welcome to LeagueBot. Question concerning the project and its status ?   [Ask here](https://niddle-web.com/home?page=84410368) 
 
-## Question concerning the project and its status ?   [Ask here](https://niddle-web.com/home?page=84410368) 
+
 
   * League of legends bot is a pixel bot for League Of Legends 10.19, written in C# .NET using image processing (image & text recognition), Interop and scriptting engine.
   * This software is opensource and free feel free to create a pull request!
