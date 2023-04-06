@@ -3,7 +3,7 @@
 
 <p align="center">
   
-  <img  src="https://cdn.discordapp.com/attachments/880584031505362984/1093188093798002778/logo.png">
+  <img  src="icon.png">
 </p>
 
 # Welcome to LeagueBot. 
