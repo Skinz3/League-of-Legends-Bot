@@ -1,5 +1,5 @@
 
-<h1>This project is deprecated. For more information on an updated version : https://discord.gg/AcrahFvq </h1>
+<h1>This project is deprecated. For more information on an updated version : https://discord.gg/bShwkmAaZd </h1>
 
 <p align="center">
   
