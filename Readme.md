@@ -1,9 +1,9 @@
 
-<h1>Question concerning the project and its status ? Ask here : https://niddle-web.com/home?page=84410368 </h1>
+<h1>This project is deprecated. For more information on an updated version : https://discord.gg/AcrahFvq </h1>
 
 <p align="center">
   
-  <img  src="icon.png">
+  <img  src="https://cdn.discordapp.com/attachments/880584031505362984/1093188093798002778/logo.png">
 </p>
 
 # Welcome to LeagueBot. 
