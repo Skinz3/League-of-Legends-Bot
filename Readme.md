@@ -1,6 +1,8 @@
 
 <h1>This project is deprecated. For more information on an updated version by the original author : https://discord.gg/bShwkmAaZd </h1>
 
+<h1>HTTPS://league-bot.com</h1>
+
 <p align="center">
   
   <img  src="icon.png">
