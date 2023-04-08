@@ -27,9 +27,6 @@
   * End game, earn experience
   * Loop 👨‍🌾🐿️
   
-
-## Download 
-   * For non developpers, You can download LeagueBot updater [here](https://github.com/Skinz3/League-Of-Legends-BOT/raw/master/Updater.zip) to automatically get the binaries and automatically download updates ! 🤫
 ## Installation
 
    Requirements :
@@ -37,12 +34,6 @@
    * A League of legends account
    * A monitor with a **1920 * 1080** screen resolution.
    * .NET framework 4.7 installed on computer.
-
-   Before launch the bot, you need to follow setup instructions bellow : 
-
-   [Setup instructions](https://github.com/Skinz3/League-Of-Legends-BOT/wiki/How-to-make-it-work)
-
-
 
 # Author
 
