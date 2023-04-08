@@ -43,11 +43,6 @@
    [Setup instructions](https://github.com/Skinz3/League-Of-Legends-BOT/wiki/How-to-make-it-work)
 
 
-# LeagueBot Wiki
-
-   FAQ, Api documentation... some good stuff :wink:
-
-   [Here is the wiki](https://github.com/Skinz3/League-Of-Legends-BOT/wiki) 
 
 # Author
 
