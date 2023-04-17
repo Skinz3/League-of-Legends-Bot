@@ -1,7 +1,9 @@
 
-<h1>This project is deprecated. For more information on an updated version by the original author : https://discord.gg/bShwkmAaZd </h1>
+<h1>This project is deprecated. For more information on an updated version by the original author : </h1>
 
-<h1>https://league-bot.com</h1>
+Community : <h1> https://discord.gg/bShwkmAaZd </h1>
+
+Website : <h1>https://league-bot.com</h1>
 
 <p align="center">
   
