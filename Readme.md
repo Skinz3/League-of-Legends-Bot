@@ -14,7 +14,7 @@
 
 <p align="center">
   
-  <img  src="icon.png">
+  <img  src="LeagueBot/icon.png">
 </p>
 
 # Welcome to LeagueBot. 
