@@ -1,6 +1,6 @@
 <p align="center">
   
-  <img style="border-radius:12px"  src="https://i.imgur.com/7t6LB1C.jpeg">
+ <a href="https://league-bot.com"> <img style="border-radius:12px"  src="https://i.imgur.com/7t6LB1C.jpeg"> </a>
 </p>
 
 
