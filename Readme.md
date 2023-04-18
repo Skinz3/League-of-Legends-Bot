@@ -1,9 +1,26 @@
+<p align="center">
+  
+ <a href="https://league-bot.com"> <img style="border-radius:12px"  src="https://i.imgur.com/7t6LB1C.jpeg"> </a>
+</p>
+
+
+
+
+ <h1> Try it yourself : https://league-bot.com</h1>
+<h1><a href="https://discord.gg/bShwkmAaZd" >Join us on discord  </a></h1>
+  
+
+
 
 <p align="center">
+  
   <img  src="icon.png">
 </p>
 
-# Welcome to LeagueBot 
+# Welcome to LeagueBot. 
+
+
+<h1>This project is deprecated. join https://league-bot.com to get the new version </h1>
 
   * League of legends bot is a pixel bot for League Of Legends 10.19, written in C# .NET using image processing (image & text recognition), Interop and scriptting engine.
   * This software is opensource and free feel free to create a pull request!
@@ -22,9 +39,6 @@
   * End game, earn experience
   * Loop 👨‍🌾🐿️
   
-
-## Download 
-   * For non developpers, You can download LeagueBot updater [here](https://github.com/Skinz3/League-Of-Legends-BOT/raw/master/Updater.zip) to automatically get the binaries and automatically download updates ! 🤫
 ## Installation
 
    Requirements :
@@ -32,17 +46,6 @@
    * A League of legends account
    * A monitor with a **1920 * 1080** screen resolution.
    * .NET framework 4.7 installed on computer.
-
-   Before launch the bot, you need to follow setup instructions bellow : 
-
-   [Setup instructions](https://github.com/Skinz3/League-Of-Legends-BOT/wiki/How-to-make-it-work)
-
-
-# LeagueBot Wiki
-
-   FAQ, Api documentation... some good stuff :wink:
-
-   [Here is the wiki](https://github.com/Skinz3/League-Of-Legends-BOT/wiki) 
 
 # Author
 
