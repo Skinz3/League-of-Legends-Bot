@@ -3,7 +3,7 @@
   <img style="border-radius:12px"  src="https://i.imgur.com/7t6LB1C.jpeg">
 </p>
 
-Join us on discord : <h1> https://discord.gg/bShwkmAaZd </h1>
+<h1><a href="https://discord.gg/bShwkmAaZd" >Join us on discord  </a></h1>
 
 Try it yourself : <h1>https://league-bot.com</h1>
 
