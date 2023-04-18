@@ -6,7 +6,7 @@
 
 
 <p align="center">
-  Try it yourself : <h1>https://league-bot.com</h1>
+  Try it yourself : https://league-bot.com
 <h1><a href="https://discord.gg/bShwkmAaZd" >Join us on discord  </a></h1>
   
 </p>
