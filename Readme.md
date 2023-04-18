@@ -15,9 +15,7 @@ Website : <h1>https://league-bot.com</h1>
 # Welcome to LeagueBot. 
 
 
-
-
-<h1>This project is deprecated. For more information on an updated version by the original author : </h1>
+<h1>This project is deprecated. join https://league-bot.com to get the new version </h1>
 
   * League of legends bot is a pixel bot for League Of Legends 10.19, written in C# .NET using image processing (image & text recognition), Interop and scriptting engine.
   * This software is opensource and free feel free to create a pull request!
