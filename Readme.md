@@ -1,6 +1,6 @@
 <p align="center">
   
- <a href="https://league-bot.com"> <img style="border-radius:12px"  src="https://i.imgur.com/7t6LB1C.jpeg"> </a>
+ <a href="https://league-bot.com"> <img style="border-radius:12px"  src="https://i.ibb.co/KXJ3Tcy/art-modified.png"> </a>
 </p>
 
  <h1> Download 🚀: https://league-bot.com</h1>
