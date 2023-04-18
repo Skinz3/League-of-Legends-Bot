@@ -7,7 +7,7 @@
 
 
  <h1> Download 🥰 : https://league-bot.com</h1>
-<h1><a href="https://discord.gg/bShwkmAaZd" >Join us on discord  </a></h1>
+<h1>🥰 <a href="https://discord.gg/bShwkmAaZd" >Join us on discord  </a></h1>
   
 
 
