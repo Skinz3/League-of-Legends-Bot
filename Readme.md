@@ -3,9 +3,9 @@
   <img style="border-radius:12px"  src="https://i.imgur.com/7t6LB1C.jpeg">
 </p>
 
-Community : <h1> https://discord.gg/bShwkmAaZd </h1>
+Join us on discord : <h1> https://discord.gg/bShwkmAaZd </h1>
 
-Website : <h1>https://league-bot.com</h1>
+Try it yourself : <h1>https://league-bot.com</h1>
 
 <p align="center">
   
