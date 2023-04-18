@@ -10,13 +10,13 @@
 <h1>🥰 <a href="https://discord.gg/bShwkmAaZd" >Join us on discord  </a></h1>
   
 
-
+</br></br></br></br></br></br></br></br>
 
 <p align="center">
   
   <img  src="LeagueBot/icon.png">
 </p>
-</br></br></br></br></br></br></br></br>
+
 # Welcome to LeagueBot. 
 
 
