@@ -3,9 +3,14 @@
   <img style="border-radius:12px"  src="https://i.imgur.com/7t6LB1C.jpeg">
 </p>
 
-<h1><a href="https://discord.gg/bShwkmAaZd" >Join us on discord  </a></h1>
 
-Try it yourself : <h1>https://league-bot.com</h1>
+
+<p align="center">
+  Try it yourself : <h1>https://league-bot.com</h1>
+<h1><a href="https://discord.gg/bShwkmAaZd" >Join us on discord  </a></h1>
+  
+</p>
+
 
 <p align="center">
   
