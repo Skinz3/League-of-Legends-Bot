@@ -1,6 +1,6 @@
 <p align="center">
   
-  <img  src="https://i.imgur.com/7t6LB1C.jpeg">
+  <img style="border-radius:12px"  src="https://i.imgur.com/7t6LB1C.jpeg">
 </p>
 
 Community : <h1> https://discord.gg/bShwkmAaZd </h1>
