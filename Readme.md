@@ -3,14 +3,9 @@
  <a href="https://league-bot.com"> <img style="border-radius:12px"  src="https://i.imgur.com/7t6LB1C.jpeg"> </a>
 </p>
 
-
-
-
  <h1> Download 🚀: https://league-bot.com</h1>
 <h1>🥰 <a href="https://discord.gg/bShwkmAaZd" >Join us on discord  </a></h1>
   
-
-</br></br></br></br></br></br></br></br>
 
 <p align="center">
   
