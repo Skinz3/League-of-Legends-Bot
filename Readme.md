@@ -5,7 +5,7 @@
  <h1> Download 🚀: https://league-bot.com</h1>
 <h1>🥰 <a href="https://discord.gg/bShwkmAaZd" >Join us on discord  </a></h1>
   
-  <iframe src="https://discord.com/widget?id=1092943031906336828&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+
 
 <p align="center">
   
