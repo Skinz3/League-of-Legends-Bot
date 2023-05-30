@@ -1,5 +1,5 @@
 
- <a href="https://league-bot.com"> <img style="border-radius:12px"  src="LeagueBot/demo.png"> </a>
+ <a href="https://league-bot.com"> <img style="border-radius:12px"  src="LeagueBot/site.png"> </a>
 
 
  <h1> Download 🚀: https://league-bot.com</h1>
