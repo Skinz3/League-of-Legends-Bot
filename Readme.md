@@ -1,11 +1,4 @@
 
- <a href="https://league-bot.com"> <img style="border-radius:12px"  src="LeagueBot/site.png"> </a>
-
-
- <h1> Download 🚀: https://league-bot.com</h1>
-<h1>🥰 <a href="https://discord.gg/bShwkmAaZd" >Join us on discord  </a></h1>
-  
-
 
 <p align="center">
   
@@ -16,7 +9,7 @@
 # Welcome to LeagueBot. 
 
 
-<h1>This project is deprecated. join https://league-bot.com to get the new version </h1>
+<h1>This project is deprecated. </h1>
 
   * League of legends bot is a pixel bot for League Of Legends 10.19, written in C# .NET using image processing (image & text recognition), Interop and scriptting engine.
   * This software is opensource and free feel free to create a pull request!
